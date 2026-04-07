@@ -12,7 +12,7 @@ Route::get('/pagina-principal', function ()
 { return view('pagina-principal');
 });
 
-//para mostrar el formulario
+//ruta para que desde el boton "contactanos" devuelva el formulario de contacto
 Route::get('/contacto', function () {
     return view('contacto');
 });//retorna la vista contacto cuando se realiza una peticion GET a la ruta /contacto
