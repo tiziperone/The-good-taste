@@ -8,6 +8,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/bondiola', function () {
+    return view('bondiola');
+});
+
+Route::get('/milanesas', function () {
+    return view('milanesas');
+});
+
 Route::get('/pagina-principal', function ()
 { return view('pagina-principal');
 });

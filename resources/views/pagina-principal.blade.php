@@ -31,8 +31,8 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">Inicio</a>
-        <a class="nav-link mx-2 text-black" href="#">Bondiola</a>
-        <a class="nav-link mx-2 text-black" href="#">Milanesas</a>
+        <a class="nav-link mx-2 text-black" href="{{ url('/bondiola') }}">Bondiola</a>
+        <a class="nav-link mx-2 text-black" href="{{ url('/milanesas') }}">Milanesas</a>
         <a class="nav-link mx-2 text-black" href="#">Pastas</a>
       </div>
     </div>
