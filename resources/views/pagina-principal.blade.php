@@ -55,13 +55,14 @@
     </div>
     <div class="carousel-item" style="max-height: 580px">
         <!--Imagen de milanesas-->
-      <img src="{{ url('/Img/MILANESA.jpg')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center;" alt="...">
+      <img src="{{ url('/Img/MilanesaHome.jpg')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center;" alt="...">
     </div>
     <div class="carousel-item" style="max-height: 580px">
         <!--Imagen de pastas-->
-      <img src="{{ url('/Img/imagen_de_pastas_202604082218.png')}}" class="d-block w-100" alt="...">
+      <img src="{{ url('/Img/PastaHome.png')}}" class="d-block w-100" alt="...">
     </div>
   </div>
+  
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
