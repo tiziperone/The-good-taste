@@ -62,7 +62,7 @@
       <img src="{{ url('/Img/PastaHome.png')}}" class="d-block w-100" alt="...">
     </div>
   </div>
-  
+
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -74,10 +74,11 @@
 </div>
 
 <!-- Boton para ir al apartado de contacto creado anteriormente -->
-<a href="{{ url('/contacto') }}" class="btn btn-primary mt-4 m-4 p-2">
-  <h2 class="text-center fs-5">Contáctanos</h2>
-</a>
-
+<div class="d-grid col-2 mx-auto mt-5">
+  <a href="{{ url('/contacto') }}" class="btn btn-primary">
+    <h2 class="text-center fs-5">Contáctanos</h2>
+  </a>
+</div>
 <div class="container-fluid px-0 mt-5">
   <div class="row g-0">
     <div class="col-12 bg-dark text-white p-3">
