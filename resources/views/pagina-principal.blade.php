@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" href="{{ asset('Img/LogoOscuroRedondoTransparente.png') }}" type="image-png">
+  <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
   <title>The Good Taste - Home</title>
 
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -24,7 +24,7 @@
 <!--Barra de navegacion-->
 <nav class="navbar navbar-expand-sm bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="#">The good taste</a>
+    <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">The good taste</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -70,16 +70,27 @@
   </button>
 </div>
 
-<!-- Reemplazamos el apartado del boton por otro que te lleva a contacto
-<button type="submit" class="btn-cente m-3 p-2">
-    Enviar Mensaje
-        </button>
-        </form>-->
-
 <!-- Boton para ir al apartado de contacto creado anteriormente -->
 <a href="{{ url('/contacto') }}" class="btn btn-primary mt-4 m-4 p-2">
   <h2 class="text-center fs-5">Contáctanos</h2>
 </a>
+
+<div class="container-fluid px-0 mt-5">
+  <div class="row g-0">
+    <div class="col-12 bg-dark text-white p-3">
+      <h2 class="text-center m-0 fs-5 p-3">Acerca de nosotros</h2>
+    </div>
+    <div class="col-5 bg-dark text-white p-3">
+      <h2 class="text-center m-0 fs-5 p-3">Corrientes, Argentina. CP 3400.</h2>
+    </div>
+    <div class="col-2 bg-dark text-white p-3">
+      <h2 class="text-center m-0 fs-5 p-3">|</h2>
+    </div>
+    <div class="col-5 bg-dark text-white p-3">
+      <h2 class="text-center m-0 fs-5 p-3">Teléfono: +54 3794 123456</h2>
+    </div>
+  </div>
+</div>
 
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
