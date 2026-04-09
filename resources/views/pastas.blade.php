@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" href="{{ asset('Img/LogoOscuroRedondoTransparente.png') }}" type="image-png">
-    <title>The Good Taste - Milanesas</title>
+    <title>The Good Taste - Pastas</title>
 
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 <body>
     
-    <!--Barra de navegacion-->
+<!--Barra de navegacion-->
 <nav class="navbar navbar-expand-sm bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="#">The good taste</a>
@@ -28,7 +28,6 @@
     </div>
   </div>
 </nav>
-
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>

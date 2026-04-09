@@ -16,6 +16,10 @@ Route::get('/milanesas', function () {
     return view('milanesas');
 });
 
+Route::get('/pastas', function(){
+    return view('pastas');
+});
+
 Route::get('/pagina-principal', function ()
 { return view('pagina-principal');
 });
