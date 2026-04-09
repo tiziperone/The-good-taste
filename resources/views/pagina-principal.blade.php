@@ -24,7 +24,9 @@
 <!--Barra de navegacion-->
 <nav class="navbar navbar-expand-sm bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">The good taste</a>
+    <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
+    <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="50" height="50" alt="logo">
+    The good taste</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -78,16 +80,16 @@
 <div class="container-fluid px-0 mt-5">
   <div class="row g-0">
     <div class="col-12 bg-dark text-white p-3">
-      <h2 class="text-center m-0 fs-5 p-3">Acerca de nosotros</h2>
+      <h2 class="text-center m-0 fs-3 p-3">Acerca de nosotros</h2>
     </div>
     <div class="col-5 bg-dark text-white p-3">
-      <h2 class="text-center m-0 fs-5 p-3">Corrientes, Argentina. CP 3400.</h2>
+      <h2 class="text-center fs-5 p-3">Corrientes, Argentina. CP 3400.</h2>
     </div>
     <div class="col-2 bg-dark text-white p-3">
-      <h2 class="text-center m-0 fs-5 p-3">|</h2>
+      <h2 class="text-center fs-3 p-2">|</h2>
     </div>
     <div class="col-5 bg-dark text-white p-3">
-      <h2 class="text-center m-0 fs-5 p-3">Teléfono: +54 3794 123456</h2>
+      <h2 class="text-center fs-5 p-3">Teléfono: +54 3794 123456</h2>
     </div>
   </div>
 </div>
