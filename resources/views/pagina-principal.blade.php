@@ -49,15 +49,15 @@
   <div class="carousel-inner">
     <div class="carousel-item active" style="max-height: 580px">
         <!--Imagen de bondiola-->
-      <img src="https://i.ytimg.com/vi/ShJ7-HRHCeQ/maxresdefault.jpg" class="d-block w-100" alt="...">
+      <img src="{{ url('/Img/subir_calidad_4k_202604082227.png')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 30%;" alt="...">
     </div>
     <div class="carousel-item" style="max-height: 580px">
         <!--Imagen de milanesas-->
-      <img src="https://receitasobremesa.com.br/wp-content/uploads/2023/06/Frango-Americano-Super-Crocante-1-1024x683.jpg" class="d-block w-100" alt="...">
+      <img src="{{ url('/Img/MILANESA.jpg')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center;" alt="...">
     </div>
     <div class="carousel-item" style="max-height: 580px">
         <!--Imagen de pastas-->
-      <img src="https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2022/11/04/6364f9e82203a.r_d.662-502-0.jpeg" class="d-block w-100" alt="...">
+      <img src="{{ url('/Img/imagen_de_pastas_202604082218.png')}}" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
