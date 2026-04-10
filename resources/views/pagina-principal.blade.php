@@ -29,16 +29,32 @@
 
   /* Para que los links no se pierdan en el fondo oscuro */
   .navbar-personalizada .nav-link {
-    color: white !important;
+    color: white !important; /*links sean blancos */
   }
   
   .estilo-marca {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 900 !important;
-    font-size: 1.5rem !important;
-    text-transform: uppercase;
-    color: #ffffff !important; /* Aseguramos que el nombre sea blanco */
+    font-family: 'Montserrat', sans-serif !important; /* Aplicamos la fuente "Montserrat" */
+    font-weight: 900 !important; /* Aplicamos negrita */
+    font-size: 1.4rem !important; /* Aplicamos el tamaño de fuente */
+    text-transform: uppercase; /* Aplicamos transformación a mayúsculas */
+    color: #ffffff !important; /* Nombre blanco */
   }
+
+  <style>
+    /* Quita el recuadro/borde del botón y la sombra al hacer clic */
+    .navbar-toggler {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    }
+
+  /* Cambia el color del icono (las tres líneas) a blanco */
+  /* Usamos invert(1) para convertir el SVG negro original en blanco */
+  .navbar-toggler-icon {
+    filter: invert(1);
+  }
+  </style>
+
 </style>
 
 </head>
@@ -50,7 +66,7 @@
 <nav class="navbar navbar-expand-sm navbar-personalizada">
   <div class="container-fluid">
     <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
-    <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="50" height="50" alt="logo">
+    <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
     <span class="estilo-marca">The good taste</span></a> <!--<span>, te aseguras de que el estilo de fuente solo toque a las letras y no afecte a otros elementos que metas en el <a>-->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -88,11 +104,11 @@
     </div>
     <div class="carousel-item" style="max-height: 580px">
         <!--Imagen de milanesas-->
-      <img src="{{ url('/Img/MilanesaHome.jpg')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center;" alt="...">
+      <img src="{{ url('/Img/MilanesaHome.jpg')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 30%;" alt="...">
     </div>
     <div class="carousel-item" style="max-height: 580px">
         <!--Imagen de pastas-->
-      <img src="{{ url('/Img/PastaHome.png')}}" class="d-block w-100" alt="...">
+      <img src="{{ url('/Img/PastaHome.png')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 30%;" alt="...">
     </div>
   </div>
 
