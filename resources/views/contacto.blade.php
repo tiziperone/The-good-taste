@@ -36,8 +36,8 @@ formulario-->
 
    <div class="container text-center">
     <img src="{{ url('/Img/LogoOscuro.jpg')}}" 
-         class="rounded-circle bg-dark p-3 mx-auto d-block w-25" 
-         alt="logo">
+        class="rounded-circle bg-dark p-3 mx-auto d-block w-25" 
+        alt="logo">
     </div>
 
     <div class="row">
