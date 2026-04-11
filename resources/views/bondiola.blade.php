@@ -53,7 +53,15 @@
     filter: invert(1);
   }
   </style>
-
+  <style>
+  /* Esto es para que los emojis tengan el tamaño correcto junto al texto */
+  img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+  }
+  </style>
 </head>
 <body>
     
@@ -85,6 +93,35 @@
   </div>
 </nav>
 
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
+        <img src="{{ asset('Img/BondiolaTarjetaSinPimenton.png') }}" class="card-img-top" style="height: 200px;" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Bondiola 1kg. (un kilogramo).</h5>
+          <p class="card-text" style="text-align: justify;">Fiambre especial para compartir en picadas y comidas, acompañalo con lo que mas te guste, o con quien mas te guste 😉.</p>
+          <a href="#" class="btn btn-primary">Agregar al carrito</a>
+          <span class="ms-2">$30.000</span>
+        </div>
+      </div>
+      </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
+            <img src="{{ asset('Img/BondiolaTarjetaConPimenton.png') }}" class="card-img-top" style="height: 200px;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Bondiola 1kg. (un kilogramo).</h5>
+              <p class="card-text" style="text-align: justify;">Para aquellos que aman el pimentón, ésta es su elección ideal. El mismo y exquisito fiambre, pero con un toque especial 👌.</p>
+              <a href="#" class="btn btn-primary">Agregar al carrito</a>
+              <span class="ms-2">$30.000</span>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <script> twemoji.parse(document.body); </script>
 </body>
 </html>

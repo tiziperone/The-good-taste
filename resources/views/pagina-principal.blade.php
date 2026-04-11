@@ -98,17 +98,17 @@
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active" style="max-height: 580px">
+    <div class="carousel-item active" style="max-height: 530px">
         <!--Imagen de bondiola-->
-      <img src="{{ url('/Img/subir_calidad_4k_202604082227.png')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 30%;" alt="...">
+      <img src="{{ url('/Img/subir_calidad_4k_202604082227.png')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="...">
     </div>
-    <div class="carousel-item" style="max-height: 580px">
+    <div class="carousel-item" style="max-height: 530px">
         <!--Imagen de milanesas-->
-      <img src="{{ url('/Img/MilanesaHome.jpg')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 30%;" alt="...">
+      <img src="{{ url('/Img/MilanesaHome.jpg')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 60%;" alt="...">
     </div>
-    <div class="carousel-item" style="max-height: 580px">
+    <div class="carousel-item" style="max-height: 530px">
         <!--Imagen de pastas-->
-      <img src="{{ url('/Img/PastaHome.png')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 30%;" alt="...">
+      <img src="{{ url('/Img/PastaHome.png')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="...">
     </div>
   </div>
 
@@ -122,39 +122,10 @@
   </button>
 </div>
 
-<!-- Boton para ir al apartado de contacto creado anteriormente -->
-<div class="container mt-5 pt-5">
-  <div class="row justify-content-center">
-    <div class="col-auto">
-      <div class="btn-group" role="group"><!--role group es un atributo que se utiliza para indicar que los elementos dentro de este contenedor forman parte de un grupo de botones, lo que permite aplicar estilos y comportamientos específicos a todo el grupo en conjunto.-->
-
-        <a href="{{ url('/quienes-somos') }}" 
-          class="btn bg-dark text-white border-secondary rounded-bottom-0 p-3" 
-          style="border-bottom-0">
-          <h2 class="fs-6 mb-0">¿Quiénes somos?</h2>
-        </a>
-
-        <a href="{{ url('/contacto') }}" 
-          class="btn bg-dark text-white border-secondary rounded-bottom-0 p-3" 
-          style="border-bottom-0">
-          <h2 class="fs-6 mb-0">Contáctanos</h2>
-        </a>
-
-        <a href="{{ url('/quienes-somos') }}" 
-          class="btn bg-dark text-white border-secondary rounded-bottom-0 p-3" 
-          style="border-bottom-0">
-          <h2 class="fs-6 mb-0">¿Donde estamos?</h2>
-        </a>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid px-0 mt-0">
+<div class="container-fluid px-0 mt-5">
   <div class="row g-0">
     <div class="col-12 bg-black text-white p-3">
-      <h2 class="text-center m-0 fs-3 p-3">Acerca de nosotros</h2>
+      <h2 class="text-center m-0 fs-3 p-3">Encuentranos</h2>
     </div>
     <div class="col-5 bg-black text-white p-3">
       <h2 class="text-center fs-5 p-3">Corrientes, Argentina. CP 3400.</h2>
@@ -163,12 +134,12 @@
       <h2 class="text-center fs-3 p-2">|</h2>
     </div>
     <div class="col-5 bg-black text-white p-3">
-      <h2 class="text-center fs-5 p-3">Teléfono: +54 3794 123456</h2>
+      <h2 class="text-center fs-5 p-3"> Calle 9 de Julio 1234.</h2>
     </div>
   </div>
   <div class="row g-0">
     <div class="col-12 bg-black text-white p-3">
-      <h2 class="text-center m-0 fs-3 p-3">Redes sociales</h2>
+      <h2 class="text-center m-0 fs-3 p-3">Visita nuestras redes</h2>
     </div>
     <div class="col-5 bg-black text-white p-3">
       <h2 class="text-center fs-5 p-3">Instagram: @thegoodtaste</h2>
@@ -182,6 +153,27 @@
   <div class="row g-0">
     <div class="col-12 bg-black d-flex justify-content-center pt-5 pb-5">
       <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark img" width="300" height="300" alt="logo" style="object-fit: contain;">
+    </div>
+  </div>
+</div>
+
+<!-- Boton para ir al apartado de contacto creado anteriormente -->
+<div class="container-fluid px-0">
+  <div class="row g-0 bg-black">
+    <div class="col-12 text-white p-4 d-flex justify-content-center">
+      <div class="btn-group" role="group"><!--role group es un atributo que se utiliza para indicar que los elementos dentro de este contenedor forman parte de un grupo de botones, lo que permite aplicar estilos y comportamientos específicos a todo el grupo en conjunto.-->
+
+        <a href="{{ url('/quienes-somos') }}" 
+          class="btn bg-black text-white p-3">
+          <h2 class="fs-6 mb-0">¿Quienes somos?</h2>
+        </a>
+
+        <a href="{{ url('/contacto') }}" 
+          class="btn bg-black text-white p-3">
+          <h2 class="fs-6 mb-0 ms-5">Contáctanos</h2>
+        </a>
+
+      </div>
     </div>
   </div>
 </div>
