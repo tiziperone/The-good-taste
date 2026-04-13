@@ -178,7 +178,12 @@
 
         <a href="{{ url('/contacto') }}" 
           class="btn bg-black text-white p-3">
-          <h2 class="fs-6 mb-0 ms-5">Contáctanos</h2>
+          <h2 class="fs-6 mb-0">Contáctanos</h2>
+        </a>
+
+        <a href="{{ url('/terminos-y-usos') }}" 
+          class="btn bg-black text-white p-3">
+          <h2 class="fs-6 mb-0">Términos y Usos</h2>
         </a>
 
       </div>

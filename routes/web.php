@@ -36,3 +36,7 @@ Route::get('quienes-somos', function () {
 //para procesar el formulario
 Route::post('/contacto', [ContactoController::class, 'procesar']);
 //retorna la vista exito cuando se realiza una peticion POST a la ruta /contacto
+
+Route::get('terminos-y-usos', function () {
+    return view('terminos-y-usos');
+});
