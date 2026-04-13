@@ -85,6 +85,45 @@
   </div>
 </nav>
 
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
+        <img src="{{ asset('Img/RaviolesTarjeta.png') }}" class="card-img-top" style="height: 200px;" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"> Ravioles 1doc. (Una docena.).</h5>
+          <p class="card-text" style="text-align: justify;">Deliciosos ravioles rellenos de jamón y queso o carne,  ideales para compartir un domingo en familia.</p>
+          <a href="#" class="btn btn-primary">Agregar al carrito</a>
+          <span class="ms-2">$3.800</span>
+        </div>
+      </div>
+      </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
+            <img src="{{ asset('Img/SorrentinosTarjeta.png') }}" class="card-img-top" style="height: 200px;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Sorrentinos 1doc. (Una docena.).</h5>
+              <p class="card-text" style="text-align: justify;">Deliciosos sorrentinos rellenos de jamón y queso o carne,  ideales para compartir un domingo en familia.</p>
+              <a href="#" class="btn btn-primary">Agregar al carrito</a>
+              <span class="ms-2">$4.000</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
+            <img src="{{ asset('Img/FideosTarjeta.png') }}" class="card-img-top" style="height: 200px;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Fideos 500g. (Quinientos gramos.).</h5>
+              <p class="card-text" style="text-align: justify;">Deliciosos fideos de alta calidad, ideales para preparar platos sabrosos acompañados de una rica salsa.</p>
+              <a href="#" class="btn btn-primary">Agregar al carrito</a>
+              <span class="ms-2">$2.500</span>
+            </div>
+          </div>
+        </div>
+        
+  </div>
+</div>
+
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

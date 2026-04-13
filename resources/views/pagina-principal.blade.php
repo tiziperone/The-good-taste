@@ -123,6 +123,14 @@
 </div>
 
 <div class="container-fluid px-0 mt-5">
+  <div class="row">
+    <div class="col-12 bg-white mt-3 mb-5">
+      <h2 class="text-center fs-3">¡Bienvenidos a The Good Taste!, Su mejor eleccion. </h2>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid px-0 mt-5">
   <div class="row g-0">
     <div class="col-12 bg-black text-white p-3">
       <h2 class="text-center m-0 fs-3 p-3">Encuentranos</h2>
