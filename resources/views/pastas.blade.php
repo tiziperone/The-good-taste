@@ -114,7 +114,7 @@
             <img src="{{ asset('Img/FideosTarjeta.png') }}" class="card-img-top" style="height: 200px;" alt="...">
             <div class="card-body">
               <h5 class="card-title">Fideos 500g. (Quinientos gramos.).</h5>
-              <p class="card-text" style="text-align: justify;">Deliciosos fideos de alta calidad, ideales para preparar platos sabrosos acompañados de una rica salsa.</p>
+              <p class="card-text" style="text-align: justify;">Fideos de alta calidad, ideales para preparar platos sabrosos con una exquisita salsa.</p>
               <a href="#" class="btn btn-primary">Agregar al carrito</a>
               <span class="ms-2">$2.500</span>
             </div>
