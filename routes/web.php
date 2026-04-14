@@ -33,6 +33,14 @@ Route::get('quienes-somos', function () {
     return view('quienes-somos');
 });
 
+Route::get('catalogo', function () {
+    return view('catalogo');
+});
+
+Route::get('comercializacion', function() {
+    return view('comercializacion');
+});
+
 //para procesar el formulario
 Route::post('/contacto', [ContactoController::class, 'procesar']);
 //retorna la vista exito cuando se realiza una peticion POST a la ruta /contacto
