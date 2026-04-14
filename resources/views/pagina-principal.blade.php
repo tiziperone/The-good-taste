@@ -60,8 +60,6 @@
 </head>
 <body>
 
-
-
 <!--Barra de navegacion-->
 <nav class="navbar navbar-expand-sm navbar-personalizada">
   <div class="container-fluid">
@@ -74,16 +72,22 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
-          <h2 class="text-lg pt-1 fs-5">Inicio</h2>
+          <h2 class="text-lg pt-1 fs-6">Inicio</h2>
         </a>
-        <a class="nav-link mx-2 text-black" href="{{ url('/bondiola') }}">
-          <h2 class="text-lg pt-1 fs-5">Bondiola</h2>
+        <a class="nav-link mx-2 text-black" href="{{ url('/catalogo') }}">
+          <h2 class="text-lg pt-1 fs-6">Catálogo</h2>
         </a>
-        <a class="nav-link mx-2 text-black" href="{{ url('/milanesas') }}">
-          <h2 class="text-lg pt-1 fs-5">Milanesas</h2>
+        <a class="nav-link mx-2 text-black" href="{{ url('/comercializacion') }}">
+          <h2 class="text-lg pt-1 fs-6">Comercialización</h2>
         </a>
-        <a class="nav-link mx-2 text-black" href="{{ url('/pastas') }}">
-          <h2 class="text-lg pt-1 fs-5">Pastas</h2>
+        <a class="nav-link mx-2 text-black" href="{{ url('/contacto') }}">
+          <h2 class="text-lg pt-1 fs-6">Contáctanos</h2>
+        </a>
+        <a class="nav-link mx-2 text-black" href="{{ url('/quienes-somos') }}">
+          <h2 class="text-lg pt-1 fs-6">¿Quiénes somos?</h2>
+        </a>
+        <a class="nav-link mx-2 text-black" href="{{ url('/terminos-y-usos') }}">
+          <h2 class="text-lg pt-1 fs-6">Términos y Usos</h2>
         </a>
       </div>
     </div>
@@ -161,32 +165,6 @@
   <div class="row g-0">
     <div class="col-12 bg-black d-flex justify-content-center pt-5 pb-5">
       <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark img" width="300" height="300" alt="logo" style="object-fit: contain;">
-    </div>
-  </div>
-</div>
-
-<!-- Boton para ir al apartado de contacto creado anteriormente -->
-<div class="container-fluid px-0">
-  <div class="row g-0 bg-black">
-    <div class="col-12 text-white p-4 d-flex justify-content-center">
-      <div class="btn-group" role="group"><!--role group es un atributo que se utiliza para indicar que los elementos dentro de este contenedor forman parte de un grupo de botones, lo que permite aplicar estilos y comportamientos específicos a todo el grupo en conjunto.-->
-
-        <a href="{{ url('/quienes-somos') }}" 
-          class="btn bg-black text-white p-3">
-          <h2 class="fs-6 mb-0">¿Quienes somos?</h2>
-        </a>
-
-        <a href="{{ url('/contacto') }}" 
-          class="btn bg-black text-white p-3">
-          <h2 class="fs-6 mb-0">Contáctanos</h2>
-        </a>
-
-        <a href="{{ url('/terminos-y-usos') }}" 
-          class="btn bg-black text-white p-3">
-          <h2 class="fs-6 mb-0">Términos y Usos</h2>
-        </a>
-
-      </div>
     </div>
   </div>
 </div>

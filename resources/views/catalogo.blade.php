@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
-    <title>The Good Taste - Contacto </title>
-    
+    <title>The Good Taste - Catálogo</title>
+
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
 
-    <style>
+<style>
     .estilo-marca { /* Clase personalizada para el estilo de la marca en la barra de navegación */
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 900 !important; 
@@ -56,11 +56,12 @@
 </style>
 
 </style>
+
 </head>
 <body>
 
 <!--Barra de navegacion-->
-<nav class="navbar navbar-expand-sm mb-3 navbar-personalizada">
+<nav class="navbar navbar-expand-sm navbar-personalizada">
 <div class="container-fluid">
     <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
     <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
@@ -93,60 +94,6 @@
 </div>
 </nav>
 
-<!--En la siguiente porcion de codigo se crean columnas con margenes y dentro de ellas se colocan
-los campos de texto para ingresar nombre, correo y mensaje, ademas de un boton para enviar el
-formulario-->
-<div class="container-xl  text-center">
-
-<div class="container text-center">
-    <img src="{{ url('/Img/LogoOscuro.jpg')}}" 
-        class="rounded-circle bg-dark p-3 mx-auto d-block w-25" 
-        alt="logo">
-    </div>
-
-    <div class="row mt-4">
-        <div class="col-12 bg-dark p-4 text-white">
-
-            <label class="fw-bold fs-5">Nombre</label>
-
-            <form action="{{ url('/contacto') }}" method="POST">
-        @csrf <div class="mb-3">
-    <input type="text" name="nombre" class="form-control w-75 mx-auto" placeholder="Ingrese su nombre...">
-</div>
-</div>
-
-<div class="col-12  p-4 bg-dark text-white">
-    
-    <label class="fw-bold fs-5">Correo Electronico</label>
-
-    <div class="mb-3">
-        <input type="email" name="email" class="form-control w-75 mx-auto" placeholder="correo@ejemplo.com">
-    </div>
-</div>
-
-<div class="col-12 bg-dark text-white">
-    
-    <label class="fw-bold fs-5">Mensaje</label>
-
-    <div class="mb-3">
-        <textarea name="mensaje" class="form-control w-75 mx-auto" placeholder="Escriba su mensaje aquí..."
-        rows="3"></textarea>
-    </div>
-</div>
-
-    
-<div class="col-12 gap-3 mx-auto bg-dark">
-    <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-    </div>
-</div>
-
-
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-</form>
 </body>
 </html>
-
-
-
