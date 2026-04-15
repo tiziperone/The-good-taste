@@ -32,54 +32,56 @@
 <!--En la siguiente porcion de codigo se crean columnas con margenes y dentro de ellas se colocan
 los campos de texto para ingresar nombre, correo y mensaje, ademas de un boton para enviar el
 formulario-->
-<div class="container-xl mt-5 text-center">
+<div class="container-xl mt-5 bg-dark text-center">
 
-   <div class="container text-center">
-    <img src="{{ url('/Img/LogoOscuro.jpg')}}" 
-        class="rounded-circle bg-dark p-3 mx-auto d-block w-25" 
-        alt="logo">
-    </div>
+    <div class="container bg-dark text-center ">
+            <img src="{{ url('/Img/LogoOscuro.jpg')}}" 
+            class="rounded-circle bg-dark p-3 mx-auto d-block w-25" 
+            alt="logo">
+        </div>
 
     <div class="row">
+            <div class="col-12 bg-light p-4">
+
+                <label class="fw-bold fs-5">Nombre</label>
+
+                    <form action="{{ url('/contacto') }}" method="POST">
+                    @csrf <div class="mb-3">
+                <input type="text" name="nombre" class="form-control w-75 mx-auto" placeholder="Ingrese su nombre...">
+            </div>
+    </div>
+
         <div class="col-12 bg-light p-4">
-
-            <label class="fw-bold fs-5">Nombre</label>
-
-            <form action="{{ url('/contacto') }}" method="POST">
-        @csrf <div class="mb-3">
-    <input type="text" name="nombre" class="form-control w-75 mx-auto" placeholder="Ingrese su nombre...">
-</div>
-</div>
-
-<div class="col-12 bg-light p-4">
     
-    <label class="fw-bold fs-5">Correo Electronico</label>
+                <label class="fw-bold fs-5">Correo Electronico</label>
 
-    <div class="mb-3">
-        <input type="email" name="email" class="form-control w-75 mx-auto" placeholder="correo@ejemplo.com">
+            <div class="mb-3">
+            <input type="email" name="email" class="form-control w-75 mx-auto" placeholder="correo@ejemplo.com">
+        </div>
     </div>
-</div>
 
-<div class="col-12 bg-light p-">
+        <div class="col-12 bg-light p-">
     
-    <label class="fw-bold fs-5">Mensaje</label>
+            <label class="fw-bold fs-5">Mensaje</label>
 
-    <div class="mb-3">
-        <textarea name="mensaje" class="form-control w-75 mx-auto" placeholder="Escriba su mensaje aquí..."
-        rows="3"></textarea>
+        <div class="mb-3">
+            <textarea name="mensaje" class="form-control w-75 mx-auto" placeholder="Escriba su mensaje aquí..."
+            rows="3"></textarea>
+        </div>
     </div>
-</div>
 
     
-<div class="d-grid gap-3 col-6 mx-auto">
-  <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-    </div>
+        <div class="d-grid gap-3 col-6 mx-auto">
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            </div>
+        </div>
+
+
+        <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+        
 </div>
-
-
-<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
 </form>
 </body>
 </html>

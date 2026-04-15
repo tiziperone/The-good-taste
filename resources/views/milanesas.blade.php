@@ -21,23 +21,23 @@
   </style>
 
   <style>
-  .navbar-personalizada {
-    background-color: #1a1d20 !important; /* Un gris muy oscuro casi negro */
-    border-bottom: 2px solid #333; /* Opcional: una línea sutil abajo */
-  }
+    .navbar-personalizada {
+      background-color: #1a1d20 !important; /* Un gris muy oscuro casi negro */
+      border-bottom: 2px solid #333; /* Opcional: una línea sutil abajo */
+    }
 
-  /* Para que los links no se pierdan en el fondo oscuro */
-  .navbar-personalizada .nav-link {
-    color: white !important; /*links sean blancos */
-  }
+    /* Para que los links no se pierdan en el fondo oscuro */
+    .navbar-personalizada .nav-link {
+      color: white !important; /*links sean blancos */
+    }
   
-  .estilo-marca {
-    font-family: 'Montserrat', sans-serif !important; /* Aplicamos la fuente "Montserrat" */
-    font-weight: 900 !important; /* Aplicamos negrita */
-    font-size: 1.4rem !important; /* Aplicamos el tamaño de fuente */
-    text-transform: uppercase; /* Aplicamos transformación a mayúsculas */
-    color: #ffffff !important; /* Nombre blanco */
-  }
+    .estilo-marca {
+      font-family: 'Montserrat', sans-serif !important; /* Aplicamos la fuente "Montserrat" */
+      font-weight: 900 !important; /* Aplicamos negrita */
+      font-size: 1.4rem !important; /* Aplicamos el tamaño de fuente */
+      text-transform: uppercase; /* Aplicamos transformación a mayúsculas */
+      color: #ffffff !important; /* Nombre blanco */
+    }
 
   <style>
     /* Quita el recuadro/borde del botón y la sombra al hacer clic */
