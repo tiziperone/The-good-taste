@@ -94,15 +94,45 @@
 </div>
 </nav>
 
-<div class="container-fluid>
-    <div class="row">
+<div class="container-fluid p-0">
+    <div class="row g-0">
         <div class="col-12">
-            <button type="button" class="btn p-0 border-0 w-100">
-                <img src="{{ asset('Img/FotoBondiolaCatalogo.png') }}" class="img-fluid" alt="Foto de Bondiola" style="height: 570px; width: 100%; object-fit: cover;">
-            </button>
+            <a href="{{ url('/bondiola') }}">
+                <img src="{{ asset('Img/FotoBondiolaCatalogo.png') }}" 
+                    class="w-100 d-block" 
+                    alt="Foto de Bondiola" 
+                    style="height: 570px; object-fit: cover;">
+            </a>
+        </div>
+
+        <div class="col-12">
+            <a href="{{ url('/milanesas') }}">
+                <img src="{{ asset('Img/FotoMilanesaCatalogo.png') }}" 
+                    class="w-100 d-block" 
+                    alt="Foto de Milanesa" 
+                    style="height: 570px; object-fit: cover;">
+            </a>
+        </div>
+
+        <div class="col-12">
+            <a href="{{ url('/pastas') }}">
+                <img src="{{ asset('Img/FotoPastasCatalogo.png') }}" 
+                    class="w-100 d-block" 
+                    alt="Foto de Pastas" 
+                    style="height: 570px; object-fit: cover;">
+            </a>
         </div>
     </div>
 </div>
+
+<style>
+    /* Esto es lo único que necesitas para que en celular sea automático */
+    @media (max-width: 768px) {
+        img {
+            height: auto !important;
+        }
+    }
+</style>
 
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
