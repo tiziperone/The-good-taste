@@ -94,6 +94,16 @@
 </div>
 </nav>
 
+<div class="container-fluid>
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn p-0 border-0 w-100">
+                <img src="{{ asset('Img/FotoBondiolaCatalogo.png') }}" class="img-fluid" alt="Foto de Bondiola" style="height: 570px; width: 100%; object-fit: cover;">
+            </button>
+        </div>
+    </div>
+</div>
+
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
