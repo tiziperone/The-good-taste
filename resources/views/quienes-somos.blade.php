@@ -52,7 +52,6 @@
       /* Nombre blanco */
     }
 
-    <style>
 
     /* Quita el recuadro/borde del botón y la sombra al hacer clic */
     .navbar-toggler {
@@ -98,61 +97,66 @@
 
 <body>
 
-  <!--Barra de navegacion-->
-  <nav class="navbar navbar-expand-sm navbar-personalizada">
-    <div class="container-fluid">
-      <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
-        <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
-        <span class="estilo-marca">The good taste</span></a> <!--<span>, te aseguras de que el estilo de fuente solo toque a las letras y no afecte a otros elementos que metas en el <a>-->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
-            <h2 class="text-lg pt-1 fs-5">Inicio</h2>
-          </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/bondiola') }}">
-            <h2 class="text-lg pt-1 fs-5">Bondiola</h2>
-          </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/milanesas') }}">
-            <h2 class="text-lg pt-1 fs-5">Milanesas</h2>
-          </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/pastas') }}">
-            <h2 class="text-lg pt-1 fs-5">Pastas</h2>
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!--Contenedor de las tarjetas de quienes somos centrados-->
-  <div class="container-fluid bg-dark text-white py-5">
-    <!-- Título -->
-    <h1 class="text-center titulo">¿Quiénes Somos?</h1>
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="card card-hover ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/tizianoperone.png') }}" class="card-img-top" style="height: 400px;" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Tiziano Perone</h5>
-            <p class="card-text" style="text-align: justify;">Tengo 20 años, Estudiante de Lic. en Sistemas, Oriundo de Santa Fe, Florencia. Me especializo en hacer Bondiola casera.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="card card-hover ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/adrianobregon.png') }}" class="card-img-top" style="height: 400px;" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Adrián Obregón</h5>
-        <p class="card-text" style="text-align: justify;">Tengo 22 años, Soy Estudiante de Lic. en Sistemas , Vivo en Corrientes, San luis del Palmar. Me especializo en hacer las Milanesas de carne.</p>
-          </div>
-        </div>
+<!--Barra de navegacion-->
+<nav class="navbar navbar-expand-sm navbar-personalizada">
+  <div class="container-fluid">
+    <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
+    <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
+    <span class="estilo-marca">The good taste</span></a> <!--<span>, te aseguras de que el estilo de fuente solo toque a las letras y no afecte a otros elementos que metas en el <a>-->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
+          <h2 class="text-lg pt-1 fs-6">Inicio</h2>
+        </a>
+        <a class="nav-link mx-2 text-black" href="{{ url('/catalogo') }}">
+          <h2 class="text-lg pt-1 fs-6">Catálogo</h2>
+        </a>
+        <a class="nav-link mx-2 text-black" href="{{ url('/comercializacion') }}">
+          <h2 class="text-lg pt-1 fs-6">Comercialización</h2>
+        </a>
+        <a class="nav-link mx-2 text-black" href="{{ url('/contacto') }}">
+          <h2 class="text-lg pt-1 fs-6">Contáctanos</h2>
+        </a>
+        <a class="nav-link mx-2 text-black" href="{{ url('/quienes-somos') }}">
+          <h2 class="text-lg pt-1 fs-6">¿Quiénes somos?</h2>
+        </a>
+        <a class="nav-link mx-2 text-black" href="{{ url('/terminos-y-usos') }}">
+          <h2 class="text-lg pt-1 fs-6">Términos y Usos</h2>
+        </a>
       </div>
     </div>
   </div>
 
-  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!--Contenedor de las tarjetas de quienes somos centrados-->
+    <div class="container-fluid bg-dark text-white py-5">
+        <!-- Título -->
+        <h1 class="text-center titulo">¿Quiénes Somos?</h1>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+      <div class="card card-hover ms-5 mt-5 p-2" style="width: 20rem;">
+        <img src="{{ asset('Img/tizianoperone.png') }}" class="card-img-top" style="height: 400px;" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Tiziano Perone</h5>
+          <p class="card-text" style="text-align: justify;">Tengo 20 años, soy estudiante de Lic. en Sistemas, oriundo Florencia, Santa Fe. Me especializo en elaboracion artesanal de embutidos (bondiola).</p>
+        </div>
+      </div>
+      </div>
+        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+          <div class="card card-hover ms-5 mt-5 p-2" style="width: 20rem;">
+            <img src="{{ asset('Img/adrianobregon.png') }}" class="card-img-top" style="height: 400px;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Adrián Obregón</h5>
+              <p class="card-text" style="text-align: justify;">Tengo 22 años, Soy Estudiante de Lic. en Sistemas , Vivo en Corrientes, San luis del Palmar. Me especializo en hacer las Milanesas de carne.</p>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>
