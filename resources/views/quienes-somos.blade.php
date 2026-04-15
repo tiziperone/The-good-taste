@@ -41,7 +41,7 @@
     color: #ffffff !important; /* Nombre blanco */
   }
 
-  <style>
+  
     /* Quita el recuadro/borde del botón y la sombra al hacer clic */
     .navbar-toggler {
     border: none !important;
