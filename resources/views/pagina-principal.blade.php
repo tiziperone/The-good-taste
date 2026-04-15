@@ -11,50 +11,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet"> <!-- Importamos la fuente "Montserrat" desde Google Fonts -->
 
   <style>
-    .estilo-marca { /* Clase personalizada para el estilo de la marca en la barra de navegación */
+  .estilo-marca {
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 900 !important; 
     font-size: 1.5rem !important;
     letter-spacing: 1px;
-    text-transform: uppercase; /* Para que combine con el logo*/
+    text-transform: uppercase;
     vertical-align: middle;
+    color: #ffffff !important;
   }
-  </style>
 
-  <style>
   .navbar-personalizada {
-    background-color: #1a1d20 !important; /* Un gris muy oscuro casi negro */
-    border-bottom: 2px solid #333; /* Opcional: una línea sutil abajo */
+    background-color: #1a1d20 !important;
+    border-bottom: 2px solid #333;
   }
 
-  /* Para que los links no se pierdan en el fondo oscuro */
   .navbar-personalizada .nav-link {
-    color: white !important; /*links sean blancos */
-  }
-  
-  .estilo-marca {
-    font-family: 'Montserrat', sans-serif !important; /* Aplicamos la fuente "Montserrat" */
-    font-weight: 900 !important; /* Aplicamos negrita */
-    font-size: 1.4rem !important; /* Aplicamos el tamaño de fuente */
-    text-transform: uppercase; /* Aplicamos transformación a mayúsculas */
-    color: #ffffff !important; /* Nombre blanco */
+    color: white !important;
   }
 
-  <style>
-    /* Quita el recuadro/borde del botón y la sombra al hacer clic */
-    .navbar-toggler {
+  .navbar-toggler {
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
-    }
+  }
 
-  /* Cambia el color del icono (las tres líneas) a blanco */
-  /* Usamos invert(1) para convertir el SVG negro original en blanco */
   .navbar-toggler-icon {
     filter: invert(1);
   }
-  </style>
-
 </style>
 
 </head>
@@ -134,41 +118,40 @@
   </div>
 </div>
 
-<div class="container-fluid px-0 mt-5">
-  <div class="row g-0">
-    <div class="col-12 bg-black text-white p-3">
-      <h2 class="text-center m-0 fs-3 p-3">Encuentranos</h2>
+<div class="container-fluid px-0 mt-5 bg-black"> <div class="row g-0">
+    <div class="col-12 text-white p-3">
+      <h2 class="text-center m-0 fs-3 p-3">Encuéntranos</h2>
     </div>
-    <div class="col-5 bg-black text-white p-3">
+    <div class="col-5 text-white p-3">
       <h2 class="text-center fs-5 p-3">Corrientes, Argentina. CP 3400.</h2>
     </div>
-    <div class="col-2 bg-black text-white p-3">
+    <div class="col-2 text-white p-3">
       <h2 class="text-center fs-3 p-2">|</h2>
     </div>
-    <div class="col-5 bg-black text-white p-3">
+    <div class="col-5 text-white p-3">
       <h2 class="text-center fs-5 p-3"> Calle 9 de Julio 1234.</h2>
     </div>
   </div>
+
   <div class="row g-0">
-    <div class="col-12 bg-black text-white p-3">
+    <div class="col-12 text-white p-3">
       <h2 class="text-center m-0 fs-3 p-3">Visita nuestras redes</h2>
     </div>
-    <div class="col-5 bg-black text-white p-3">
+    <div class="col-5 text-white p-3">
       <h2 class="text-center fs-5 p-3">Instagram: @thegoodtaste</h2>
     </div>
-    <div class="col-2 bg-black text-white p-3">
+    <div class="col-2 text-white p-3">
       <h2 class="text-center fs-3 p-2">|</h2>
     </div>
-    <div class="col-5 bg-black text-white p-3">
+    <div class="col-5 text-white p-3">
       <h2 class="text-center fs-5 p-3">Facebook: @thegoodtaste</h2>
     </div>
-  <div class="row g-0">
-    <div class="col-12 bg-black d-flex justify-content-center pt-5 pb-5">
+  </div> <div class="row g-0">
+    <div class="col-12 d-flex justify-content-center pt-5 pb-5">
       <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark img" width="300" height="300" alt="logo" style="object-fit: contain;">
     </div>
   </div>
-</div>
-
+</div> 
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
