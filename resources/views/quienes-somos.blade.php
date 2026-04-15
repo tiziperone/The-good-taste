@@ -126,7 +126,6 @@
         <img src="{{ asset('Img/tizianoperone.png') }}" class="card-img-top" style="height: 400px;" alt="...">
         <div class="card-body">
           <h5 class="card-title">Tiziano Perone</h5>
-          <p class="card-text" style="text-align: justify;">Tengo 20 años, Estudiante de Lic. en Sistemas, Oriundo de Santa Fe, Florencia. Me especializo en hacer Bondiola casera.</p>
           <p class="card-text" style="text-align: justify;">Tengo 20 años, soy estudiante de Lic. en Sistemas, oriundo Florencia, Santa Fe. Me especializo en elaboracion artesanal de embutidos (bondiola).</p>
         </div>
       </div>
