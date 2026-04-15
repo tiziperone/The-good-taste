@@ -1,85 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
-    <title>The Good Taste - Nosotros</title>
+  <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
+  <title>The Good Taste - Nosotros</title>
 
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
-    <style>
-    .estilo-marca { /* Clase personalizada para el estilo de la marca en la barra de navegación */
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 900 !important; 
-    font-size: 1.5rem !important;
-    letter-spacing: 1px;
-    text-transform: uppercase; /* Para que combine con el logo*/
-    vertical-align: middle;
-  }
+  <style>
+    .estilo-marca {
+      /* Clase personalizada para el estilo de la marca en la barra de navegación */
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 900 !important;
+      font-size: 1.5rem !important;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      /* Para que combine con el logo*/
+      vertical-align: middle;
+    }
   </style>
 
   <style>
-  .navbar-personalizada {
-    background-color: #1a1d20 !important; /* Un gris muy oscuro casi negro */
-    border-bottom: 2px solid #333; /* Opcional: una línea sutil abajo */
-  }
-
-  /* Para que los links no se pierdan en el fondo oscuro */
-  .navbar-personalizada .nav-link {
-    color: white !important; /*links sean blancos */
-  }
-  
-  .estilo-marca {
-    font-family: 'Montserrat', sans-serif !important; /* Aplicamos la fuente "Montserrat" */
-    font-weight: 900 !important; /* Aplicamos negrita */
-    font-size: 1.4rem !important; /* Aplicamos el tamaño de fuente */
-    text-transform: uppercase; /* Aplicamos transformación a mayúsculas */
-    color: #ffffff !important; /* Nombre blanco */
-  }
-
-  <style>
-    /* Quita el recuadro/borde del botón y la sombra al hacer clic */
-    .navbar-toggler {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
+    .navbar-personalizada {
+      background-color: #1a1d20 !important;
+      /* Un gris muy oscuro casi negro */
+      border-bottom: 2px solid #333;
+      /* Opcional: una línea sutil abajo */
     }
 
+    /* Para que los links no se pierdan en el fondo oscuro */
+    .navbar-personalizada .nav-link {
+      color: white !important;
+      /*links sean blancos */
+    }
+
+    .estilo-marca {
+      font-family: 'Montserrat', sans-serif !important;
+      /* Aplicamos la fuente "Montserrat" */
+      font-weight: 900 !important;
+      /* Aplicamos negrita */
+      font-size: 1.4rem !important;
+      /* Aplicamos el tamaño de fuente */
+      text-transform: uppercase;
+      /* Aplicamos transformación a mayúsculas */
+      color: #ffffff !important;
+      /* Nombre blanco */
+    }
+
+
+    /* Quita el recuadro/borde del botón y la sombra al hacer clic */
+    .navbar-toggler {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  </style>
   /* Cambia el color del icono (las tres líneas) a blanco */
   /* Usamos invert(1) para convertir el SVG negro original en blanco */
   .navbar-toggler-icon {
-    filter: invert(1);
+  filter: invert(1);
   }
   </style>
 
-    <!--Estilo de Fuente Montserrat black para el titulo de quienes somos-->
+  <!--Estilo de Fuente Montserrat black para el titulo de quienes somos-->
   <style>
     .titulo {
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900; /* black */
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      /* black */
     }
-    </style>
+  </style>
 
-    <!--Pequeña animacion para las tarjetas de quienes somos-->
-    <style>
-        .card-hover {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+  <!--Pequeña animacion para las tarjetas de quienes somos-->
+  <style>
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .card-hover:hover {
-        transform: translateY(-10px); /* se levanta */
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* sombra */
-        }
-    </style>
+    .card-hover:hover {
+      transform: translateY(-10px);
+      /* se levanta */
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      /* sombra */
+    }
+  </style>
 
 
 
 </head>
+
 <body>
 
 <!--Barra de navegacion-->
@@ -114,7 +129,6 @@
       </div>
     </div>
   </div>
-</nav>
 
 <!--Contenedor de las tarjetas de quienes somos centrados-->
     <div class="container-fluid bg-dark text-white py-5">
@@ -144,4 +158,5 @@
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
+
 </html>

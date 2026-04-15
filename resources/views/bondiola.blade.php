@@ -21,25 +21,25 @@
   </style>
 
   <style>
-  .navbar-personalizada {
-    background-color: #1a1d20 !important; /* Un gris muy oscuro casi negro */
-    border-bottom: 2px solid #333; /* Opcional: una línea sutil abajo */
-  }
+    .navbar-personalizada {
+      background-color: #1a1d20 !important; /* Un gris muy oscuro casi negro */
+      border-bottom: 2px solid #333; /* Opcional: una línea sutil abajo */
+    }
 
-  /* Para que los links no se pierdan en el fondo oscuro */
-  .navbar-personalizada .nav-link {
-    color: white !important; /*links sean blancos */
-  }
+    /* Para que los links no se pierdan en el fondo oscuro */
+    .navbar-personalizada .nav-link {
+      color: white !important; /*links sean blancos */
+    }
   
-  .estilo-marca {
+    .estilo-marca {
     font-family: 'Montserrat', sans-serif !important; /* Aplicamos la fuente "Montserrat" */
     font-weight: 900 !important; /* Aplicamos negrita */
     font-size: 1.4rem !important; /* Aplicamos el tamaño de fuente */
     text-transform: uppercase; /* Aplicamos transformación a mayúsculas */
     color: #ffffff !important; /* Nombre blanco */
-  }
+    }
 
-  <style>
+
     /* Quita el recuadro/borde del botón y la sombra al hacer clic */
     .navbar-toggler {
     border: none !important;
@@ -47,21 +47,23 @@
     box-shadow: none !important;
     }
 
-  /* Cambia el color del icono (las tres líneas) a blanco */
-  /* Usamos invert(1) para convertir el SVG negro original en blanco */
-  .navbar-toggler-icon {
-    filter: invert(1);
-  }
+    /* Cambia el color del icono (las tres líneas) a blanco */
+    /* Usamos invert(1) para convertir el SVG negro original en blanco */
+    .navbar-toggler-icon {
+      filter: invert(1);
+    }
   </style>
+  
   <style>
   /* Esto es para que los emojis tengan el tamaño correcto junto al texto */
-  img.emoji {
+    img.emoji {
     height: 1em;
     width: 1em;
     margin: 0 .05em 0 .1em;
     vertical-align: -0.1em;
-  }
+    }
   </style>
+  
 </head>
 <body>
     

@@ -20,7 +20,7 @@
     vertical-align: middle;
 }
 </style>
-
+<!--Hola-->
 <style>
 .navbar-personalizada {
     background-color: #1a1d20 !important; /* Un gris muy oscuro casi negro */
@@ -117,22 +117,22 @@ formulario-->
 
 <div class="col-12  p-4 bg-dark text-white">
     
-    <label class="fw-bold fs-5">Correo Electronico</label>
+                <label class="fw-bold fs-5">Correo Electrónico</label>
 
-    <div class="mb-3">
-        <input type="email" name="email" class="form-control w-75 mx-auto" placeholder="correo@ejemplo.com">
+            <div class="mb-3">
+            <input type="email" name="email" class="form-control w-75 mx-auto" placeholder="correo@ejemplo.com">
+        </div>
     </div>
-</div>
 
 <div class="col-12 bg-dark text-white">
     
-    <label class="fw-bold fs-5">Mensaje</label>
+            <label class="fw-bold fs-5">Mensaje</label>
 
-    <div class="mb-3">
-        <textarea name="mensaje" class="form-control w-75 mx-auto" placeholder="Escriba su mensaje aquí..."
-        rows="3"></textarea>
+        <div class="mb-3">
+            <textarea name="mensaje" class="form-control w-75 mx-auto" placeholder="Escriba su mensaje aquí..."
+            rows="3"></textarea>
+        </div>
     </div>
-</div>
 
     
 <div class="col-12 gap-3 mx-auto bg-dark">
@@ -140,10 +140,6 @@ formulario-->
         <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
     </div>
 </div>
-
-
-<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
 </form>
 </body>
 </html>
