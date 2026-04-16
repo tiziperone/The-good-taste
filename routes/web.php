@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactoController;//para que laravel busque aca el controlador contacto
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pagina-principal');
 });
 
 Route::get('/bondiola', function () {
