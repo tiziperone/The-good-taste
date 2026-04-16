@@ -134,7 +134,7 @@ formulario-->
                     <!-- Mensaje -->
                     <div class="col-12 mb-3">
                         <label class="fw-bold fs-5">Mensaje</label>
-                        <textarea name="mensaje" class="form-control w-25 mx-auto" rows="3"></textarea>
+                        <textarea name="mensaje" class="form-control w-25 mx-auto"placeholder="Ingrese su mensaje..." rows="5"></textarea>
                     </div>
 
                     <!-- Botón -->
