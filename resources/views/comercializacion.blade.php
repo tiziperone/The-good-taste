@@ -64,6 +64,19 @@
         .navbar-toggler-icon {
             filter: invert(1);
         }
+
+        .card-animada {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: aparecer 0.8s ease forwards;
+        }
+
+        @keyframes aparecer {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 
 </head>
@@ -106,26 +119,29 @@
 
     <div class="container">
 
+        <h1 class="text-center display-3 mt-5 fw-bold">
+            Comercialización
+        </h1>
+
         <div class="row justify-content-center">
-            <div class="col-12 text-center mt-5">
-
-                <h3>En The Good Taste trabajamos para que disfrutes comida casera de calidad de forma simple y rápida.
-                    A continuación, te contamos cómo podés realizar tu pedido y recibirlo.</h3>
-
-            </div>
+            <p class="text-center display-6 mt-3 mb-5">
+                En The Good Taste trabajamos para que disfrutes comida casera...
+            </p>
 
         </div>
 
 
-        <div class="row">
+
+
+        <div class="row justify-content-center">
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card card-animada mt-3 p-3 shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
+                    <img src="{{ asset('Img/repartidor.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Formas de entrega</h5>
+                        <h5 class="card-title fw-bold">Formas de entrega</h5>
                         <p class="card-text">Ofrecemos distintas opciones para que elijas la que mejor se adapte a vos:</p>
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush fw-bold">
                         <li class="list-group-item">Retiro en el local: Podés pasar a buscar tu pedido en el horario acordado.</li>
                         <li class="list-group-item">Entrega a domicilio: Realizamos envíos dentro de la zona, coordinando día y horario previamente.</li>
                     </ul>
@@ -133,13 +149,13 @@
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card card-animada mt-3 p-3 shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
+                    <img src="{{ asset('Img/caja.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Tipos de envío</h5>
+                        <h5 class="card-title fw-bold">Tipos de envío</h5>
                         <p class="card-text">Nuestros envíos se realizan de manera cuidada para garantizar que los productos lleguen en perfectas condiciones:</p>
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush fw-bold">
                         <li class="list-group-item">Entregas programadas</li>
                         <li class="list-group-item">Pedidos preparados en el día</li>
                         <li class="list-group-item">Embalaje seguro para conservar la calidad de los alimentos</li>
@@ -147,19 +163,69 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card card-animada mt-4 p-3 shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
+                    <img src="{{ asset('Img/tarjeta-de-credito.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Formas de pago</h5>
+                        <h5 class="card-title fw-bold">Formas de pago</h5>
                         <p class="card-text">Aceptamos diferentes medios de pago para tu comodidad:</p>
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush fw-bold">
                         <li class="list-group-item">Efectivo</li>
                         <li class="list-group-item">Transferencia Bancaria</li>
                         <li class="list-group-item">Billeteras virtuales</li>
                     </ul>
                 </div>
             </div>
+        </div>
+
+
+
+        <div class="row justify-content-center mt-5">
+            <div class="col-12 col-md-6">
+                <div class="card p-4 shadow text-center">
+                    <h3 class="fw-bold">¿Cómo realizar un pedido?</h3>
+                    <p>Elegís los productos, nos contactás por redes y coordinamos pago y entrega.</p>
+                </div>
+            </div>
+
+
+            <div class="row justifi-content-center mt-5">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow h-100" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6">
+                    <div class="card p-4 shadow text-center">
+                        <h5 class="fw-bold">Información importante</h5>
+                        <p>Productos caseros. Se recomienda pedir con anticipación. Tiempos pueden variar.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 
