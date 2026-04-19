@@ -8,6 +8,7 @@
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Comercialización</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet"> <!-- Importamos la fuente "Montserrat" desde Google Fonts -->
 
@@ -77,6 +78,23 @@
                 transform: translateY(0);
             }
         }
+
+    #btnArriba {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #1a1d20;
+        color: white;
+        border: none;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        display: none;
+        z-index: 999;
+    }
+
     </style>
 
 </head>
@@ -221,7 +239,7 @@
                 <div class="col-md-6">
                     <div class="card p-4 shadow text-center">
                         <h5 class="fw-bold">Información importante</h5>
-                        <p>Productos caseros. Se recomienda pedir con anticipación. Tiempos pueden variar.</p>
+                        <p>Productos caseros. Se recomienda pedir con anticipación. Los tiempos pueden variar.</p>
                     </div>
                 </div>
             </div>
@@ -230,6 +248,17 @@
 
 
     </div>
+
+    <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script>
+        window.addEventListener('scroll', () => {
+        const btn = document.getElementById('btnArriba');
+        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+</script>
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>

@@ -51,6 +51,23 @@
     .navbar-toggler-icon {
       filter: invert(1);
     }
+
+    #btnArriba {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #1a1d20;
+      color: white;
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      z-index: 999;
+    }
+
   </style>
 
 </head>
@@ -193,6 +210,17 @@
 
   </div>
 
+  <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('btnArriba');
+      btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+  </script>
+  
   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
