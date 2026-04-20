@@ -52,3 +52,7 @@ Route::get('terminos-y-usos', function () {
 Route::get('compra', function () {
     return view('compra');
 });
+
+Route::get('carrito', function () {
+    return view('carrito');
+});

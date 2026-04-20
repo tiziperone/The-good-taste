@@ -9,6 +9,8 @@
   <title>The Good Taste - Bondiola</title>
 
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet"> <!-- Importamos la fuente "Montserrat" desde Google Fonts -->
 
   <style>
     .estilo-marca {
@@ -91,21 +93,33 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
-            <h2 class="text-lg pt-1 fs-5">Inicio</h2>
+            <h2 class="text-lg pt-1 fs-6">Inicio</h2>
           </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/bondiola') }}">
-            <h2 class="text-lg pt-1 fs-5">Bondiola</h2>
+          <a class="nav-link mx-2 text-black" href="{{ url('/catalogo') }}">
+            <h2 class="text-lg pt-1 fs-6">Catálogo</h2>
           </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/milanesas') }}">
-            <h2 class="text-lg pt-1 fs-5">Milanesas</h2>
+          <a class="nav-link mx-2 text-black" href="{{ url('/comercializacion') }}">
+            <h2 class="text-lg pt-1 fs-6">Comercialización</h2>
           </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/pastas') }}">
-            <h2 class="text-lg pt-1 fs-5">Pastas</h2>
+          <a class="nav-link mx-2 text-black" href="{{ url('/contacto') }}">
+            <h2 class="text-lg pt-1 fs-6">Contáctanos</h2>
+          </a>
+          <a class="nav-link mx-2 text-black" href="{{ url('/quienes-somos') }}">
+            <h2 class="text-lg pt-1 fs-6">¿Quiénes somos?</h2>
+          </a>
+          <a class="nav-link mx-2 text-black" href="{{ url('/terminos-y-usos') }}">
+            <h2 class="text-lg pt-1 fs-6">Términos y Usos</h2>
           </a>
         </div>
       </div>
     </div>
   </nav>
+
+  <div class="container mt-3">
+    <button onclick="history.back()" class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left"></i>
+    </button>
+  </div>
 
   <div class="container">
     <div class="row">
@@ -115,7 +129,10 @@
           <div class="card-body">
             <h5 class="card-title">Bondiola 1kg. (un kilogramo).</h5>
             <p class="card-text" style="text-align: justify;">Fiambre especial para compartir en picadas y comidas, acompañalo con lo que mas te guste, o con quien mas te guste 😉.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
+            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
+            <i class="bi bi-cart"></i>
+            </a>
             <span class="ms-2">$30.000</span>
           </div>
         </div>
@@ -126,7 +143,10 @@
           <div class="card-body">
             <h5 class="card-title">Bondiola 1kg. (un kilogramo).</h5>
             <p class="card-text" style="text-align: justify;">Para aquellos que aman el pimentón, ésta es su elección ideal. El mismo y exquisito fiambre, pero con un toque especial 👌.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
+            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
+            <i class="bi bi-cart"></i>
+            </a>
             <span class="ms-2">$30.000</span>
           </div>
         </div>
