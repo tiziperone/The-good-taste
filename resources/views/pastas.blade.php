@@ -104,7 +104,7 @@
           <div class="card-body">
             <h5 class="card-title"> Ravioles 1doc. (Una docena.).</h5>
             <p class="card-text" style="text-align: justify;">Deliciosos ravioles rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.</p>
-            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
             <span class="ms-2">$3.800</span>
           </div>
         </div>
@@ -115,7 +115,7 @@
           <div class="card-body">
             <h5 class="card-title">Sorrentinos 1doc. (Una docena.).</h5>
             <p class="card-text" style="text-align: justify;">Deliciosos sorrentinos rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.</p>
-            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
             <span class="ms-2">$4.000</span>
           </div>
         </div>
@@ -126,7 +126,7 @@
           <div class="card-body">
             <h5 class="card-title">Fideos 500g. (Quinientos gramos.).</h5>
             <p class="card-text" style="text-align: justify;">Fideos de alta calidad, ideales para preparar platos sabrosos con una exquisita salsa.</p>
-            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
             <span class="ms-2">$2.500</span>
           </div>
         </div>

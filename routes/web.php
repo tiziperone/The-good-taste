@@ -48,3 +48,7 @@ Route::post('/contacto', [ContactoController::class, 'procesar']);
 Route::get('terminos-y-usos', function () {
     return view('terminos-y-usos');
 });
+
+Route::get('compra', function () {
+    return view('compra');
+});

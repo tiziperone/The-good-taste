@@ -115,7 +115,7 @@
           <div class="card-body">
             <h5 class="card-title">Bondiola 1kg. (un kilogramo).</h5>
             <p class="card-text" style="text-align: justify;">Fiambre especial para compartir en picadas y comidas, acompañalo con lo que mas te guste, o con quien mas te guste 😉.</p>
-            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
             <span class="ms-2">$30.000</span>
           </div>
         </div>
@@ -126,7 +126,7 @@
           <div class="card-body">
             <h5 class="card-title">Bondiola 1kg. (un kilogramo).</h5>
             <p class="card-text" style="text-align: justify;">Para aquellos que aman el pimentón, ésta es su elección ideal. El mismo y exquisito fiambre, pero con un toque especial 👌.</p>
-            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
             <span class="ms-2">$30.000</span>
           </div>
         </div>
