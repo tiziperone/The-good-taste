@@ -84,25 +84,23 @@
         </div>
     </nav>
 
-    <div class="container-fluid bg-dark text-white text-center py-4 border-bottom border-warning">
-        <h1 class="fw-bold fs-2 mb-2 card-title">Nuestro Menú</h1>
-        <p class="fs-5 text-warning mb-0">Haz clic en la imagen de lo que quieras comer hoy</p>
+    <div class="container mt-4 mb-2">
+        <div class="d-flex gap-2">
+            <button onclick="history.back()" class="btn-navegacion shadow" title="Volver atrás">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+            <button onclick="history.forward()" class="btn-navegacion shadow" title="Ir adelante">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
     </div>
 
-    <div class="container-fluid p-0 position-relative">
+    <div class="container-fluidbg-dark text-white text-center py-1 border-bottom border-warning">
+        <h1 class="fw-bold fs-2 mb-2 card-title">Nuestro Menú</h1>
+        <p class="fs-5 text-warning mb-5">Haz clic en la imagen de lo que quieras comer hoy</p>
+    </div>
 
-        <div class="position-absolute" style="top: 20px; left: 20px; z-index: 1050;">
-            <div class="d-flex gap-2">
-                <button onclick="history.back()" class="btn-navegacion shadow" title="Volver atrás">
-                    <i class="bi bi-arrow-left"></i>
-                </button>
-                <button onclick="history.forward()" class="btn-navegacion shadow" title="Ir adelante">
-                    <i class="bi bi-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="row g-0">
+    <div class="row g-0">
             <div class="col-12 text-center">
                 <a href="{{ url('/bondiola') }}" class="text-decoration-none text-white d-block">
                     <img src="{{ asset('Img/FotoBondiolaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Bondiola" style="height: 570px; object-fit: cover;">
