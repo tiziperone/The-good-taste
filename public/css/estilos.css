@@ -118,18 +118,5 @@ img.emoji {
             overflow-x: hidden;
         }
 
-        .card:hover {
-            transform: scale(1.05);
-            transition: 0.3s;
-        }
-
-        .card-title { 
-            font-family: 'Montserrat';
-            font-weight: 900; 
-        }  /* fuerte */
         
-        .card-text { 
-            font-family: 'Montserrat';
-            font-weight: 400; 
-        }   /* más legible */
         
