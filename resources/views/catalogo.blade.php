@@ -101,24 +101,24 @@
     </div>
 
     <div class="row g-0">
-            <div class="col-12 text-center">
-                <a href="{{ url('/bondiola') }}" class="text-decoration-none text-white d-block">
-                    <img src="{{ asset('Img/FotoBondiolaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Bondiola" style="height: 570px; object-fit: cover;">
-                </a>
-            </div>
-
-            <div class="col-12 text-center mt-1">
-                <a href="{{ url('/milanesas') }}" class="text-decoration-none text-white d-block">
-                    <img src="{{ asset('Img/FotoMilanesaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Milanesa" style="height: 570px; object-fit: cover;">
-                </a>
-            </div>
-
-            <div class="col-12 text-center mt-1">
-                <a href="{{ url('/pastas') }}" class="text-decoration-none text-white d-block">
-                    <img src="{{ asset('Img/FotoPastasCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Pastas" style="height: 570px; object-fit: cover;">
-                </a>
-            </div>
+        <div class="col-12 text-center">
+            <a href="{{ url('/bondiola') }}" class="text-decoration-none text-white d-block">
+                <img src="{{ asset('Img/FotoBondiolaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Bondiola" style="height: 570px; object-fit: cover;">
+            </a>
         </div>
+
+        <div class="col-12 text-center mt-1">
+            <a href="{{ url('/milanesas') }}" class="text-decoration-none text-white d-block">
+                <img src="{{ asset('Img/FotoMilanesaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Milanesa" style="height: 570px; object-fit: cover;">
+            </a>
+        </div>
+
+        <div class="col-12 text-center mt-1">
+            <a href="{{ url('/pastas') }}" class="text-decoration-none text-white d-block">
+                <img src="{{ asset('Img/FotoPastasCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Pastas" style="height: 570px; object-fit: cover;">
+            </a>
+        </div>
+    </div>
     </div>
 
     <footer class="bg-dark text-white pt-5 pb-4 mt-5 border-top border-warning border-3 mb-0">
