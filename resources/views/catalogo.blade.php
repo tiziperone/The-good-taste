@@ -26,14 +26,18 @@
         .col-12 img {
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
-            z-index: 1; /* Todas empiezan en el mismo nivel */
+            z-index: 1;
+            /* Todas empiezan en el mismo nivel */
         }
 
         /* Efecto cuando pasas el cursor (Hover) */
         .col-12:hover img {
-            transform: scale(1.05); /* Lo baje un poquito a 1.05 para que no tape el footer */
-            z-index: 10; /* Se pone por encima de todas las demás */
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+            transform: scale(1.05);
+            /* Lo baje un poquito a 1.05 para que no tape el footer */
+            z-index: 10;
+            /* Se pone por encima de todas las demás */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            /* Sombra para dar profundidad */
         }
 
         /* En celular la altura es automática para que no se deforme */
@@ -86,7 +90,7 @@
     </div>
 
     <div class="container-fluid p-0 position-relative">
-        
+
         <div class="position-absolute" style="top: 20px; left: 20px; z-index: 1050;">
             <div class="d-flex gap-2">
                 <button onclick="history.back()" class="btn-navegacion shadow" title="Volver atrás">
@@ -105,7 +109,7 @@
                 </a>
             </div>
 
-            <div class="col-12 text-center mt-1"> 
+            <div class="col-12 text-center mt-1">
                 <a href="{{ url('/milanesas') }}" class="text-decoration-none text-white d-block">
                     <img src="{{ asset('Img/FotoMilanesaCatalogo.png') }}" class="w-100 d-block" alt="Foto de Milanesa" style="height: 570px; object-fit: cover;">
                 </a>
@@ -122,7 +126,7 @@
     <footer class="bg-dark text-white pt-5 pb-4 mt-5 border-top border-warning border-3 mb-0">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start justify-content-between">
-                
+
                 <div class="col-md-4 mx-auto mb-4 text-center">
                     <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-2 mb-3 shadow" width="100" height="100" alt="Logo" style="object-fit: contain;">
                     <h5 class="text-uppercase fw-bold text-warning estilo-marca">The Good Taste</h5>
@@ -151,7 +155,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <hr class="mb-4 text-secondary">
             <div class="row text-center">
                 <div class="col-12">
@@ -171,7 +175,7 @@
             btn.style.display = window.scrollY > 300 ? 'block' : 'none';
         });
     </script>
-    
+
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
