@@ -51,17 +51,17 @@
         </div>
     </nav>
 
-<div class="container mt-4 mb-2">
-    <div class="d-flex gap-2">
-        <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
-            <i class="bi bi-arrow-left"></i>
-        </button>
+    <div class="container mt-4 mb-2">
+        <div class="d-flex gap-2">
+            <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
+                <i class="bi bi-arrow-left"></i>
+            </button>
 
-        <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
-            <i class="bi bi-arrow-right"></i>
-        </button>
+            <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
     </div>
-</div>
 
     <div class="container">
 
@@ -126,53 +126,64 @@
 
 
 
-        <div class="row justify-content-center mt-5">
-            <div class="col-12 col-md-6">
-                <div class="card p-4 shadow text-center">
-                    <h3 class="fw-bold">¿Cómo realizar un pedido?</h3>
-                    <p>Elegís los productos, nos contactás por redes y coordinamos el pago y la entrega.</p>
+
+
+
+        <div class="row justify-content-center mt-5 text-center">
+
+            <h3 class="fw-bold mb-4">¿Cómo realizar un pedido?</h3>
+
+            <!-- Paso 1 -->
+            <div class="col-12 col-md-4">
+                <div class="card p-3 shadow h-100">
+                    <img src="{{ asset('Img/imagen 1.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
+                    <div class="card-body">
+                        <p class="fw-bold">Elegís los productos del menú</p>
+                    </div>
                 </div>
             </div>
 
-
-            <div class="row justifi-content-center mt-5">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card shadow h-100" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                        </div>
+            <!-- Paso 2 -->
+            <div class="col-12 col-md-4">
+                <div class="card p-3 shadow h-100">
+                    <img src="{{ asset('Img/imagen 2.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
+                    <div class="card-body">
+                        <p class="fw-bold">Le das click a Comprar</p>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-6">
-                    <div class="card p-4 shadow text-center">
-                        <h5 class="fw-bold">Información importante</h5>
-                        <p>Productos caseros. Se recomienda pedir con anticipación. Los tiempos pueden variar.</p>
+            <!-- Paso 3 -->
+            <div class="col-12 col-md-4">
+                <div class="card p-3 shadow h-100">
+                    <img src="{{ asset('Img/imagen 3.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
+                    <div class="card-body">
+                        <p class="fw-bold">Coordinamos pago y entrega</p>
                     </div>
                 </div>
             </div>
 
         </div>
+
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card p-4 shadow text-center bg-warning text-dark border border-3 border-dark">
+
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        Información importante
+                    </h5>
+
+                    <p class="fw-bold mb-0">
+                        Todos nuestros productos son caseros. Se recomienda pedir con anticipación.
+                        Los tiempos de entrega pueden variar según la demanda.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
     </div>
@@ -183,10 +194,10 @@
 
     <script>
         window.addEventListener('scroll', () => {
-        const btn = document.getElementById('btnArriba');
-        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-    });
-</script>
+            const btn = document.getElementById('btnArriba');
+            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+    </script>
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
