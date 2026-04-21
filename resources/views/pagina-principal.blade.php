@@ -114,7 +114,7 @@
                     <div class="card shadow-sm h-100 py-4 card-hover">
                         <i class="bi bi-journal-text display-3 text-success mb-2"></i>
                         <h4 class="fw-bold">Haz tu pedido</h4>
-                        <p class="text-muted">Si quieres celebrar tu cumpleaños con un menú especial y único, contáctanos y coordinamos todo.</p>
+                        <p class="text-muted">Si quieres celebrar tu cumpleaños con un menú especial y único, contáctanos y coordinamos.</p>
                     </div>
                 </a>
             </div>
