@@ -67,8 +67,8 @@
 los campos de texto para ingresar nombre, correo y mensaje, ademas de un boton para enviar el
 formulario-->
 
-            <!-- Contenido -->
-            <div class="container-xl text-center">
+            <!-- Contenido de conteiner -->
+            <div class="container-xl  text-center">
 
                 <img src="{{ url('/Img/LogoOscuro.jpg')}}"
                     class="rounded-circle p-3 mx-auto d-block w-25"
@@ -145,15 +145,15 @@ formulario-->
 
                     </div>
                     <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1050; border: none; background: transparent; color: #ffc107; font-size: 2rem;">
-        <i class="bi bi-arrow-up-circle-fill"></i>
-    </button>
+                        <i class="bi bi-arrow-up-circle-fill"></i>
+                    </button>
 
-    <script>
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('btnArriba');
-            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-        });
-    </script>
+                    <script>
+                        window.addEventListener('scroll', () => {
+                            const btn = document.getElementById('btnArriba');
+                            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+                        });
+                    </script>
 
                     <hr class="mb-4 text-secondary">
                     <div class="row text-center">
