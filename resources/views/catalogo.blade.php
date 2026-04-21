@@ -14,8 +14,9 @@
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
 
-    <style> <!-- Estilos necesarios para efectos en las fotos del catálogo -->
-        <!-- El contenedor debe permitir que la imagen "salga" -->
+    <!-- Estilos necesarios para efectos en las fotos del catálogo -->
+    <!-- El contenedor debe permitir que la imagen "salga" -->
+    <style>
         .col-12 {
             overflow: visible !important;
             position: relative;
@@ -39,7 +40,7 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             /* Sombra para dar profundidad de que "vuela" */
         }
-</style>
+    </style>
 
 </head>
 
@@ -79,33 +80,33 @@
         </div>
     </nav>
 
-<div class="container-fluid p-0 position-relative">
-    
-    <div class="position-absolute" style="top: 20px; left: 20px; z-index: 1050;">
-        <div class="d-flex gap-2">
-            <button onclick="history.back()" class="btn-navegacion shadow" title="Volver atrás">
-                <i class="bi bi-arrow-left"></i>
-            </button>
+    <div class="container-fluid p-0 position-relative">
 
-            <button onclick="history.forward()" class="btn-navegacion shadow" title="Ir adelante">
-                <i class="bi bi-arrow-right"></i>
-            </button>
-        </div>
-    </div>
+        <div class="position-absolute" style="top: 20px; left: 20px; z-index: 1050;">
+            <div class="d-flex gap-2">
+                <button onclick="history.back()" class="btn-navegacion shadow" title="Volver atrás">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
 
-    <div class="row g-0">
-        <div class="col-12">
-            <a href="{{ url('/bondiola') }}">
-                <img src="{{ asset('Img/FotoBondiolaCatalogo.png') }}"
-                class="w-100 d-block"
-                alt="Foto de Bondiola"
-                style="height: 570px; object-fit: cover;">
-            </a>
+                <button onclick="history.forward()" class="btn-navegacion shadow" title="Ir adelante">
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
         </div>
+
+        <div class="row g-0">
+            <div class="col-12">
+                <a href="{{ url('/bondiola') }}">
+                    <img src="{{ asset('Img/FotoBondiolaCatalogo.jpg') }}"
+                        class="w-100 d-block"
+                        alt="Foto de Bondiola"
+                        style="height: 570px; object-fit: cover;">
+                </a>
+            </div>
 
             <div class="col-12">
                 <a href="{{ url('/milanesas') }}">
-                    <img src="{{ asset('Img/FotoMilanesaCatalogo.png') }}"
+                    <img src="{{ asset('Img/FotoMilanesaCatalogo.jpg') }}"
                         class="w-100 d-block"
                         alt="Foto de Milanesa"
                         style="height: 570px; object-fit: cover;">
@@ -114,7 +115,7 @@
 
             <div class="col-12">
                 <a href="{{ url('/pastas') }}">
-                    <img src="{{ asset('Img/FotoPastasCatalogo.png') }}"
+                    <img src="{{ asset('Img/FotoPASTASCatalogo.jpg') }}"
                         class="w-100 d-block"
                         alt="Foto de Pastas"
                         style="height: 570px; object-fit: cover;">
@@ -138,8 +139,8 @@
 
     <script>
         window.addEventListener('scroll', () => {
-        const btn = document.getElementById('btnArriba');
-        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+            const btn = document.getElementById('btnArriba');
+            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
         });
     </script>
 
