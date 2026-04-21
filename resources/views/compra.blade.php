@@ -9,64 +9,7 @@
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet"> <!-- Importamos la fuente "Montserrat" desde Google Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-    <style>
-        .estilo-marca {
-        font-family: 'Montserrat', sans-serif !important;
-        font-weight: 900 !important;
-        font-size: 1.5rem !important;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        vertical-align: middle;
-        color: #ffffff !important;
-    }
-
-    .estilo-marca-2 {
-        font-family: 'Montserrat', sans-serif !important;
-        font-weight: 1000 !important;
-        font-size: 1.5rem !important;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        vertical-align: middle;
-            color: #000000 !important;
-    }
-
-    .navbar-personalizada {
-        background-color: #1a1d20 !important;
-        border-bottom: 2px solid #333;
-    }
-
-    .navbar-personalizada .nav-link {
-        color: white !important;
-    }
-
-    .navbar-toggler {
-        border: none !important;
-        outline: none !important;
-        box-shadow: none !important;
-    }
-
-    .navbar-toggler-icon {
-        filter: invert(1);
-    }
-
-    #btnArriba {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: #1a1d20;
-        color: white;
-        border: none;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        font-size: 20px;
-        cursor: pointer;
-        display: none;
-        z-index: 999;
-    }
-
-</style>
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
 </head>
 <body>
@@ -104,6 +47,19 @@
     </div>
     </div>
 </nav>
+
+<div style="position: relative;">
+    <div style="position: absolute; top: 20px; left: 20px; z-index: 100;" class="d-flex gap-2">
+        <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
+            <i class="bi bi-arrow-left"></i>
+        </button>
+
+        <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
+            <i class="bi bi-arrow-right"></i>
+        </button>
+    </div>
+</div>
+
 
     <div class="container mt-5">
         <h2 class="mb-4">Pronto estará disponible esta funcionalidad, gracias por su paciencia.</h2>

@@ -11,22 +11,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
-    <style>
-        .estilo-marca {
-            /* Clase personalizada para el estilo de la marca en la barra de navegación */
-            font-family: 'Montserrat', sans-serif !important;
-            font-weight: 900 !important;
-            font-size: 1.5rem !important;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            /* Para que combine con el logo*/
-            vertical-align: middle;
-        }
 
-        
-
-        /* El contenedor debe permitir que la imagen "salga" */
+    <style> <!-- Estilos necesarios para efectos en las fotos del catálogo -->
+        <!-- El contenedor debe permitir que la imagen "salga" -->
         .col-12 {
             overflow: visible !important;
             position: relative;
@@ -50,66 +39,7 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             /* Sombra para dar profundidad de que "vuela" */
         }
-
-
-
-        .navbar-personalizada {
-            background-color: #1a1d20 !important;
-            /* Un gris muy oscuro casi negro */
-            border-bottom: 2px solid #333;
-            /* Opcional: una línea sutil abajo */
-        }
-
-        /* Para que los links no se pierdan en el fondo oscuro */
-        .navbar-personalizada .nav-link {
-            color: white !important;
-            /*links sean blancos */
-        }
-
-        .estilo-marca {
-            font-family: 'Montserrat', sans-serif !important;
-            /* Aplicamos la fuente "Montserrat" */
-            font-weight: 900 !important;
-            /* Aplicamos negrita */
-            font-size: 1.4rem !important;
-            /* Aplicamos el tamaño de fuente */
-            text-transform: uppercase;
-            /* Aplicamos transformación a mayúsculas */
-            color: #ffffff !important;
-            /* Nombre blanco */
-        }
-
-
-
-        /* Quita el recuadro/borde del botón y la sombra al hacer clic */
-        .navbar-toggler {
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-        }
-
-        /* Cambia el color del icono (las tres líneas) a blanco */
-        /* Usamos invert(1) para convertir el SVG negro original en blanco */
-        .navbar-toggler-icon {
-            filter: invert(1);
-        }
-
-    #btnArriba {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: #1a1d20;
-        color: white;
-        border: none;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        font-size: 20px;
-        cursor: pointer;
-        display: none;
-        z-index: 999;
-    }
-    </style>
+</style>
 
 </head>
 
@@ -148,6 +78,18 @@
             </div>
         </div>
     </nav>
+
+<div style="position: relative;">
+    <div style="position: absolute; top: 20px; left: 20px; z-index: 100;" class="d-flex gap-2">
+        <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
+            <i class="bi bi-arrow-left"></i>
+        </button>
+
+        <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
+            <i class="bi bi-arrow-right"></i>
+        </button>
+    </div>
+</div>
 
     <div class="container-fluid p-0">
         <div class="row g-0">
