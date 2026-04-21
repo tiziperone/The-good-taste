@@ -12,19 +12,21 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('css/estilos.css') }}"> 
+  <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
   <!--Pequeña animacion para las tarjetas de quienes somos-->
-    <style>
-        .card-hover {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+  <style>
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .card-hover:hover {
-        transform: translateY(-10px); /* se levanta */
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* sombra */
-        }
-        
+    .card-hover:hover {
+      transform: translateY(-10px);
+      /* se levanta */
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      /* sombra */
+    }
+
     .card-hover {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -74,88 +76,88 @@
     </div>
   </nav>
 
-<div class="container-fluid bg-dark text-white py-4 position-relative">
-  <div class="container">
-    <div class="d-flex gap-2 mb-4">
-      <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
-        <i class="bi bi-arrow-left"></i>
-      </button>
-      <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
-        <i class="bi bi-arrow-right"></i>
-      </button>
-  </div>
-</div>
+  <div class="container-fluid bg-dark text-white py-4 position-relative">
+    <div class="container">
+      <div class="d-flex gap-2 mb-4">
+        <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
+          <i class="bi bi-arrow-left"></i>
+        </button>
+        <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </div>
+    </div>
 
-  <!--Contenedor de las tarjetas de quienes somos centrados-->
-  <div class="container-fluid bg-dark text-white py-5">
-    <!-- Título -->
-    <h1 class="text-center titulo">¿Quiénes Somos?</h1>
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="card card-hover ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/tizianoperone.png') }}" class="card-img-top" style="height: 400px;" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Tiziano Perone</h5>
-            <p class="card-text" style="text-align: justify;">Tengo 20 años, soy estudiante de Lic. en Sistemas, oriundo Florencia, Santa Fe. Me especializo en elaboracion artesanal de embutidos (bondiola).</p>
+    <!--Contenedor de las tarjetas de quienes somos centrados-->
+    <div class="container-fluid bg-dark text-white py-5">
+      <!-- Título -->
+      <h1 class="text-center card-title">¿Quiénes Somos?</h1>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+          <div class="card card-hover ms-5 mt-5 p-2" style="width: 20rem;">
+            <img src="{{ asset('Img/tizianoperone.png') }}" class="card-img-top" style="height: 400px;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Tiziano Perone</h5>
+              <p class="card-text" style="text-align: justify;">Tengo 20 años, soy estudiante de Lic. en Sistemas, oriundo Florencia, Santa Fe. Me especializo en elaboracion artesanal de embutidos (bondiola).</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="card card-hover ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/adrianobregon.png') }}" class="card-img-top" style="height: 400px;" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Adrián Obregón</h5>
-            <p class="card-text" style="text-align: justify;">Tengo 22 años, Soy Estudiante de Lic. en Sistemas , Vivo en Corrientes, San luis del Palmar. Me especializo en hacer las Milanesas de carne.</p>
+        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+          <div class="card card-hover ms-5 mt-5 p-2" style="width: 20rem;">
+            <img src="{{ asset('Img/adrianobregon.png') }}" class="card-img-top" style="height: 400px;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Adrián Obregón</h5>
+              <p class="card-text" style="text-align: justify;">Tengo 22 años, Soy Estudiante de Lic. en Sistemas , Vivo en Corrientes, San luis del Palmar. Me especializo en hacer las Milanesas de carne.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <footer class="bg-dark text-white pt-5 pb-3 mt-5 border-top border-warning border-3 mb-0">
-        <div class="container text-center text-md-start">
-            <div class="row text-center text-md-start justify-content-between">
-                
-                <div class="col-md-4 col-lg-4 col-xl-4 mx-auto text-center">
-                    <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-2 mb-3 shadow" width="120" height="120" alt="The Good Taste Logo" style="object-fit: contain;">
-                    <h5 class="text-uppercase fw-bold text-warning estilo-marca">The Good Taste</h5>
-                    <p>Comida de verdad, con ingredientes reales y mucho cariño.</p>
-                </div>
+    <footer class="bg-dark text-white pt-5 pb-3 mt-5 border-top border-warning border-3 mb-0">
+      <div class="container text-center text-md-start">
+        <div class="row text-center text-md-start justify-content-between">
 
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
-                    <h6 class="text-uppercase fw-bold mb-4 border-bottom border-warning pb-2">Encuéntranos</h6>
-                    <p><i class="bi bi-geo-alt-fill me-2 text-warning"></i> Calle 9 de Julio 1234.</p>
-                    <p><i class="bi bi-globe-americas me-2 text-warning"></i> Corrientes, Argentina. CP 3400.</p>
-                    <p><i class="bi bi-envelope-fill me-2 text-warning"></i> thegoodtaste@gmail.com</p>
-                </div>
+          <div class="col-md-4 col-lg-4 col-xl-4 mx-auto text-center">
+            <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-2 mb-3 shadow" width="120" height="120" alt="The Good Taste Logo" style="object-fit: contain;">
+            <h5 class="text-uppercase fw-bold text-warning estilo-marca">The Good Taste</h5>
+            <p>Comida de verdad, con ingredientes reales y mucho cariño.</p>
+          </div>
 
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center text-md-start">
-                    <h6 class="text-uppercase fw-bold mb-4 border-bottom border-warning pb-2">Nuestras Redes</h6>
-                    <div class="d-flex justify-content-center justify-content-md-start gap-4 fs-2 mt-3">
-                        <a href="https://instagram.com/elevate.dis" target="_blank" class="text-white text-decoration-none">
-                            <i class="bi bi-instagram hover-warning"></i>
-                        </a>
-                        <a href="https://facebook.com/adrian.obregon.3701/" target="_blank" class="text-white text-decoration-none">
-                            <i class="bi bi-facebook hover-warning"></i>
-                        </a>
-                        <a href="https://wa.me/5493794000000" target="_blank" class="text-white text-decoration-none">
-                            <i class="bi bi-whatsapp hover-warning"></i>
-                        </a>
-                    </div>
-                </div>
-                
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold mb-4 border-bottom border-warning pb-2">Encuéntranos</h6>
+            <p><i class="bi bi-geo-alt-fill me-2 text-warning"></i> Calle 9 de Julio 1234.</p>
+            <p><i class="bi bi-globe-americas me-2 text-warning"></i> Corrientes, Argentina. CP 3400.</p>
+            <p><i class="bi bi-envelope-fill me-2 text-warning"></i> thegoodtaste@gmail.com</p>
+          </div>
+
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center text-md-start">
+            <h6 class="text-uppercase fw-bold mb-4 border-bottom border-warning pb-2">Nuestras Redes</h6>
+            <div class="d-flex justify-content-center justify-content-md-start gap-4 fs-2 mt-3">
+              <a href="https://instagram.com/elevate.dis" target="_blank" class="text-white text-decoration-none">
+                <i class="bi bi-instagram hover-warning"></i>
+              </a>
+              <a href="https://facebook.com/adrian.obregon.3701/" target="_blank" class="text-white text-decoration-none">
+                <i class="bi bi-facebook hover-warning"></i>
+              </a>
+              <a href="https://wa.me/5493794000000" target="_blank" class="text-white text-decoration-none">
+                <i class="bi bi-whatsapp hover-warning"></i>
+              </a>
             </div>
-            
-            <hr class="mb-4 text-secondary">
-            <div class="row text-center">
-                <div class="col-12">
-                    <p class="mb-0 text-secondary">© 2026 The Good Taste. Todos los derechos reservados.</p>
-                </div>
-            </div>
+          </div>
+
         </div>
+
+        <hr class="mb-4 text-secondary">
+        <div class="row text-center">
+          <div class="col-12">
+            <p class="mb-0 text-secondary">© 2026 The Good Taste. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </div>
     </footer>
-    
-  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

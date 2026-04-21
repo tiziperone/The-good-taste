@@ -28,7 +28,7 @@
         <div class="container-fluid">
             <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
                 <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
-                <span class="estilo-marca">The good taste</span></a> 
+                <span class="estilo-marca">The good taste</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -88,9 +88,9 @@
     <div class="container-fluid px-0 mt-5 mb-5 text-center">
         <div class="row justify-content-center">
             <div class="col-10 col-md-8 bg-white mt-3">
-                <h2 class="estilo-marca-2 fs-2 fw-bold text-dark mb-3">Bondiola, milanesas y pastas caseras todos los días.</h2>
+                <h2 class="estilo-marca-2 fs-2 fw-bold text-dark mb-3 card-title">Bondiola, milanesas y pastas caseras todos los días.</h2>
                 <p class="fs-4 text-muted">Cocinamos con ingredientes reales para que disfrutes comida de verdad.</p>
-                
+
                 <a href="{{ url('/catalogo') }}" class="btn btn-warning btn-lg px-5 py-3 mt-3 shadow-sm rounded-pill fw-bold fs-4 text-dark">
                     <i class="bi bi-cart2 me-2"></i> ¡Mira nuestras delicias!
                 </a>
@@ -117,7 +117,7 @@
                         <p class="text-muted">Si quieres celebrar tu cumpleaños con un menú especial y único, contáctanos y coordinamos todo.</p>
                     </div>
                 </a>
-            </div> 
+            </div>
             <div class="col-12 col-md-4">
                 <a href="{{ url('/quienes-somos') }}" class="text-decoration-none text-dark">
                     <div class="card shadow-sm h-100 py-4 card-hover">
@@ -133,7 +133,7 @@
     <footer class="bg-dark text-white pt-5 pb-3 mt-5 border-top border-warning border-3 mb-0">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start justify-content-between">
-                
+
                 <div class="col-md-4 col-lg-4 col-xl-4 mx-auto text-center">
                     <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-2 mb-3 shadow" width="120" height="120" alt="The Good Taste Logo" style="object-fit: contain;">
                     <h5 class="text-uppercase fw-bold text-warning estilo-marca">The Good Taste</h5>
@@ -161,9 +161,9 @@
                         </a>
                     </div>
                 </div>
-                
+
             </div>
-            
+
             <hr class="mb-4 text-secondary">
             <div class="row text-center">
                 <div class="col-12">
@@ -173,7 +173,7 @@
         </div>
     </footer>
 
-<!--
+    <!--
     <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         <i class="bi bi-arrow-up"></i>
     </button>

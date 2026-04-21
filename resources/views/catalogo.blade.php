@@ -85,7 +85,7 @@
     </nav>
 
     <div class="container-fluid bg-dark text-white text-center py-4 border-bottom border-warning">
-        <h1 class="fw-bold fs-2 mb-2">Nuestro Menú</h1>
+        <h1 class="fw-bold fs-2 mb-2 card-title">Nuestro Menú</h1>
         <p class="fs-5 text-warning mb-0">Haz clic en la imagen de lo que quieras comer hoy</p>
     </div>
 

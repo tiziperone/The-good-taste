@@ -200,10 +200,10 @@
         });
     </script>
 
-<footer class="bg-dark text-white pt-5 pb-3 mt-5 border-top border-warning border-3 mb-0">
+    <footer class="bg-dark text-white pt-5 pb-3 mt-5 border-top border-warning border-3 mb-0">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start justify-content-between">
-                
+
                 <div class="col-md-4 col-lg-4 col-xl-4 mx-auto text-center">
                     <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-2 mb-3 shadow" width="120" height="120" alt="The Good Taste Logo" style="object-fit: contain;">
                     <h5 class="text-uppercase fw-bold text-warning estilo-marca">The Good Taste</h5>
@@ -231,9 +231,9 @@
                         </a>
                     </div>
                 </div>
-                
+
             </div>
-            
+
             <hr class="mb-4 text-secondary">
             <div class="row text-center">
                 <div class="col-12">
@@ -242,7 +242,7 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
