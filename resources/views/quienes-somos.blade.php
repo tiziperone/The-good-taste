@@ -74,16 +74,16 @@
     </div>
   </nav>
 
-<div style="position: relative;">
-    <div style="position: absolute; top: 20px; left: 20px; z-index: 100;" class="d-flex gap-2">
-        <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
-            <i class="bi bi-arrow-left"></i>
-        </button>
-
-        <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
-            <i class="bi bi-arrow-right"></i>
-        </button>
-    </div>
+<div class="container-fluid bg-dark text-white py-4 position-relative">
+  <div class="container">
+    <div class="d-flex gap-2 mb-4">
+      <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
+        <i class="bi bi-arrow-left"></i>
+      </button>
+      <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
+        <i class="bi bi-arrow-right"></i>
+      </button>
+  </div>
 </div>
 
   <!--Contenedor de las tarjetas de quienes somos centrados-->

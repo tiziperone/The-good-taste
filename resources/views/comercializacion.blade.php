@@ -87,9 +87,9 @@
                         <h5 class="card-title fw-bold">Formas de entrega</h5>
                         <p class="card-text">Ofrecemos distintas opciones para que elijas la que mejor se adapte a vos:</p>
                     </div>
-                    <ul class="list-group list-group-flush fw-bold">
+                    <ul class="list-group list-group-flush fw-bold text-justify">
                         <li class="list-group-item">Retiro en el local: Podés pasar a buscar tu pedido en el horario acordado.</li>
-                        <li class="list-group-item">Entrega a domicilio: Realizamos envíos dentro de la zona, coordinando día y horario previamente.</li>
+                        <li class="list-group-item text-justify">Entrega a domicilio: Realizamos envíos dentro de la zona, coordinando día y horario previamente.</li>
                     </ul>
                 </div>
             </div>
@@ -97,14 +97,14 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card card-animada mt-3 p-3 shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
                     <img src="{{ asset('Img/caja.png') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
+                    <div class="card-body text-justify">
                         <h5 class="card-title fw-bold">Tipos de envío</h5>
                         <p class="card-text">Nuestros envíos se realizan de manera cuidada para garantizar que los productos lleguen en perfectas condiciones:</p>
                     </div>
-                    <ul class="list-group list-group-flush fw-bold">
-                        <li class="list-group-item">Entregas programadas</li>
-                        <li class="list-group-item">Pedidos preparados en el día</li>
-                        <li class="list-group-item">Embalaje seguro para conservar la calidad de los alimentos</li>
+                    <ul class="list-group list-group-flush fw-bold text-justify">
+                        <li class="list-group-item">Entregas programadas.</li>
+                        <li class="list-group-item">Pedidos preparados en el día.</li>
+                        <li class="list-group-item">Embalaje seguro para conservar la calidad de los alimentos.</li>
                     </ul>
                 </div>
             </div>
@@ -116,9 +116,9 @@
                         <p class="card-text">Aceptamos diferentes medios de pago para tu comodidad:</p>
                     </div>
                     <ul class="list-group list-group-flush fw-bold">
-                        <li class="list-group-item">Efectivo</li>
-                        <li class="list-group-item">Transferencia Bancaria</li>
-                        <li class="list-group-item">Billeteras virtuales</li>
+                        <li class="list-group-item">Efectivo.</li>
+                        <li class="list-group-item">Transferencia Bancaria.</li>
+                        <li class="list-group-item">Billeteras virtuales.</li>
                     </ul>
                 </div>
             </div>
@@ -130,7 +130,7 @@
             <div class="col-12 col-md-6">
                 <div class="card p-4 shadow text-center">
                     <h3 class="fw-bold">¿Cómo realizar un pedido?</h3>
-                    <p>Elegís los productos, nos contactás por redes y coordinamos pago y entrega.</p>
+                    <p>Elegís los productos, nos contactás por redes y coordinamos el pago y la entrega.</p>
                 </div>
             </div>
 

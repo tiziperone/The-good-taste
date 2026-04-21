@@ -87,7 +87,7 @@
     <div class="row">
       <div class="col-12 bg-white mt-3 mb-5">
         <h2 class="estilo-marca-2 text-center fs-3">Bondiola, milanesas y pastas caseras hechas todos los días.</h2>
-        <h3 class="text-center fs-3"> Cocinamos todos los días con ingredientes reales para que disfrutes comida de verdad.</h3>
+        <h3 class="text-center fs-3"> Cocinamos siempre con ingredientes reales para que disfrutes comida de verdad.</h3>
       </div>
     </div>
   </div>
@@ -131,7 +131,7 @@
 
     <div class="text-center text-white py-4">
 
-      <h2 class="fw-bold mb-2">Seguinos en nuestras Redes Sociales</h2>
+      <h2 class="fw-bold mb-2">Seguinos en nuestras redes sociales...</h2>
 
       <div class="d-flex justify-content-center gap-4 mb-2"></div>
 

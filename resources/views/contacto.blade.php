@@ -19,7 +19,7 @@
 
     <body class="bg-dark text-white">
         <!--Barra de navegacion-->
-        <nav class="navbar navbar-expand-sm mb-3 navbar-personalizada">
+        <nav class="navbar navbar-expand-sm navbar-personalizada">
             <div class="container-fluid">
                 <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
                     <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
@@ -52,12 +52,12 @@
             </div>
         </nav>
 
-<div class="container mt-4 mb-2">
-    <div class="d-flex gap-2">
-        <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
+<div class="container-fluid bg-dark text-white py-4 position-relative">
+    <div class="container">
+        <div class="d-flex gap-2 mb-4">
+            <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
             <i class="bi bi-arrow-left"></i>
-        </button>
-
+            </button>
         <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
             <i class="bi bi-arrow-right"></i>
         </button>

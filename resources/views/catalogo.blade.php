@@ -79,28 +79,29 @@
         </div>
     </nav>
 
-<div style="position: relative;">
-    <div style="position: absolute; top: 20px; left: 20px; z-index: 100;" class="d-flex gap-2">
-        <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
-            <i class="bi bi-arrow-left"></i>
-        </button>
+<div class="container-fluid p-0 position-relative">
+    
+    <div class="position-absolute" style="top: 20px; left: 20px; z-index: 1050;">
+        <div class="d-flex gap-2">
+            <button onclick="history.back()" class="btn-navegacion shadow" title="Volver atrás">
+                <i class="bi bi-arrow-left"></i>
+            </button>
 
-        <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
-            <i class="bi bi-arrow-right"></i>
-        </button>
+            <button onclick="history.forward()" class="btn-navegacion shadow" title="Ir adelante">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
     </div>
-</div>
 
-    <div class="container-fluid p-0">
-        <div class="row g-0">
-            <div class="col-12">
-                <a href="{{ url('/bondiola') }}">
-                    <img src="{{ asset('Img/FotoBondiolaCatalogo.png') }}"
-                        class="w-100 d-block"
-                        alt="Foto de Bondiola"
-                        style="height: 570px; object-fit: cover;">
-                </a>
-            </div>
+    <div class="row g-0">
+        <div class="col-12">
+            <a href="{{ url('/bondiola') }}">
+                <img src="{{ asset('Img/FotoBondiolaCatalogo.png') }}"
+                class="w-100 d-block"
+                alt="Foto de Bondiola"
+                style="height: 570px; object-fit: cover;">
+            </a>
+        </div>
 
             <div class="col-12">
                 <a href="{{ url('/milanesas') }}">
