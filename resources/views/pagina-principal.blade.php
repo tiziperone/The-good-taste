@@ -19,17 +19,17 @@
             color: #ffc107 !important;
             transition: color 0.3s ease;
         }
-        
+
         /* Estilos para el botón de ir arriba */
         #btnArriba {
-            position: fixed; 
-            bottom: 20px; 
-            right: 20px; 
-            display: none; 
-            z-index: 1050; 
-            border: none; 
-            background: transparent; 
-            color: #ffc107; 
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 1050;
+            border: none;
+            background: transparent;
+            color: #ffc107;
             font-size: 2.5rem;
             cursor: pointer;
         }
@@ -44,11 +44,11 @@
                 <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
                 <span class="estilo-marca">The good taste</span>
             </a>
-            
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
@@ -80,7 +80,7 @@
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-        
+
         <div class="carousel-inner">
             <div class="carousel-item active" style="max-height: 530px">
                 <img src="{{ url('/Img/subir_calidad_4k_202604082227.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Imagen 1">
@@ -181,9 +181,9 @@
                 </div>
 
             </div>
-            
+
             <hr class="mb-4 text-secondary">
-            
+
             <div class="row text-center">
                 <div class="col-12">
                     <p class="mb-0 text-secondary">© 2026 The Good Taste. Todos los derechos reservados.</p>
@@ -206,4 +206,5 @@
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
+
 </html> <!--hola-->
