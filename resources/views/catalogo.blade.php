@@ -61,10 +61,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
+                    <a class="nav-link mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
                         <h2 class="text-lg pt-1 fs-6">Inicio</h2>
                     </a>
-                    <a class="nav-link mx-2 text-white" href="{{ url('/catalogo') }}">
+                    <a class="nav-link active mx-2 text-white" href="{{ url('/catalogo') }}">
                         <h2 class="text-lg pt-1 fs-6">Catálogo</h2>
                     </a>
                     <a class="nav-link mx-2 text-white" href="{{ url('/comercializacion') }}">

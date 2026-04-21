@@ -118,5 +118,34 @@ img.emoji {
             overflow-x: hidden;
         }
 
+        /* --- Estilo para el enlace ACTIVO de la navbar --- */
+.navbar-personalizada .nav-link.active h2 {
+    color: #ffc107 !important; /* Tu color amarillo/warning */
+    font-weight: 900;
+    border-bottom: 2px solid #ffc107; /* Línea por debajo */
+    padding-bottom: 2px;
+}
+
+/* --- El "cuadrito" resaltador para la página actual --- */
+.navbar-personalizada .nav-link.active {
+    background-color: #ffc107 !important; /* Fondo amarillo */
+    border-radius: 8px !important; /* Bordes un poco redondeados */
+    padding: 5px 15px !important; /* Espacio adentro del cuadrito */
+    transition: 0.3s ease;
+}
+
+/* El color de las letras adentro del cuadrito */
+.navbar-personalizada .nav-link.active h2 {
+    color: #212529 !important; /* Letra oscura para que contraste con el amarillo */
+    font-weight: 900 !important;
+    margin: 0 !important; 
+}
+
+/* Un toque visual al pasar el mouse por los que NO están activos */
+.navbar-personalizada .nav-link:not(.active):hover h2 {
+    color: #ffc107 !important;
+    transition: 0.3s ease;
+}
+
         
         

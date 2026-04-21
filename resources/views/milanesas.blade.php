@@ -31,19 +31,19 @@
           <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
             <h2 class="text-lg pt-1 fs-6">Inicio</h2>
           </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/catalogo') }}">
+          <a class="nav-link active mx-2 text-black" href="{{ url('/catalogo') }}">
             <h2 class="text-lg pt-1 fs-6">Catálogo</h2>
           </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/comercializacion') }}">
+          <a class="nav-link active mx-2 text-black" href="{{ url('/comercializacion') }}">
             <h2 class="text-lg pt-1 fs-6">Comercialización</h2>
           </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/contacto') }}">
+          <a class="nav-link active mx-2 text-black" href="{{ url('/contacto') }}">
             <h2 class="text-lg pt-1 fs-6">Contáctanos</h2>
           </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/quienes-somos') }}">
+          <a class="nav-link active mx-2 text-black" href="{{ url('/quienes-somos') }}">
             <h2 class="text-lg pt-1 fs-6">¿Quiénes somos?</h2>
           </a>
-          <a class="nav-link mx-2 text-black" href="{{ url('/terminos-y-usos') }}">
+          <a class="nav-link active mx-2 text-black" href="{{ url('/terminos-y-usos') }}">
             <h2 class="text-lg pt-1 fs-6">Términos y Usos</h2>
           </a>
         </div>
@@ -74,7 +74,7 @@
             <p class="card-text" style="text-align: justify;">Milanesa lista para freir, acompañalo con lo que mas te guste, o con quien mas te guste 😉.</p>
             <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
             <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i> 
+              <i class="bi bi-cart"></i>
             </a> $10.000
           </div>
         </div>
@@ -87,7 +87,7 @@
             <p class="card-text" style="text-align: justify;">Milanesa de carne frita con guarnicion, puede ser: con ensalada de lechuga y tomate, puré o ensalada rusa.</p>
             <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
             <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-            <i class="bi bi-cart"></i> 
+              <i class="bi bi-cart"></i>
             </a> $8000
           </div>
         </div>
