@@ -112,7 +112,7 @@
             <div class="col-12 col-md-4">
                 <a href="{{ url('/contacto') }}" class="text-decoration-none text-dark">
                     <div class="card shadow-sm h-100 py-4 card-hover">
-                        <i class="bi bi-whatsapp display-3 text-success mb-2"></i>
+                        <i class="bi bi-journal-text display-3 text-success mb-2"></i>
                         <h4 class="fw-bold">Haz tu pedido</h4>
                         <p class="text-muted">Si quieres celebrar tu cumpleaños con un menú especial y único, contáctanos y coordinamos todo.</p>
                     </div>
@@ -130,7 +130,6 @@
         </div>
     </div>
 
-    <!-- Footer nuevo
     <footer class="bg-dark text-white pt-5 pb-3 mt-5 border-top border-warning border-3 mb-0">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start justify-content-between">
@@ -172,8 +171,9 @@
                 </div>
             </div>
         </div>
-    </footer>-->
+    </footer>
 
+<!--
     <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         <i class="bi bi-arrow-up"></i>
     </button>
@@ -238,4 +238,4 @@
   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
-</html>
+</html>-->
