@@ -83,14 +83,50 @@
     </button>
   </div>
 
-  <div class="container-fluid px-0 mt-5">
-    <div class="row">
-      <div class="col-12 bg-white mt-3 mb-5">
-        <h2 class="estilo-marca-2 text-center fs-3">Bondiola, milanesas y pastas caseras hechas todos los días.</h2>
-        <h3 class="text-center fs-3"> Cocinamos siempre con ingredientes reales para que disfrutes comida de verdad.</h3>
-      </div>
+<div class="container-fluid px-0 mt-5 mb-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-8 bg-white mt-3">
+            <h2 class="estilo-marca-2 fs-2 fw-bold text-dark mb-3">Bondiola, milanesas y pastas caseras todos los días.</h2>
+            <p class="fs-4 text-muted">Cocinamos con ingredientes reales para que disfrutes comida de verdad.</p>
+            
+            <a href="{{ url('/catalogo') }}" class="btn btn-warning btn-lg px-5 py-3 mt-3 shadow-sm rounded-pill fw-bold fs-4 text-dark">
+                <i class="bi bi-cart2 me-2"></i> ¡Mira nuestras delicias!
+            </a>
+        </div>
     </div>
-  </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row text-center g-4">
+        <div class="col-12 col-md-4">
+            <a href="{{ url('/comercializacion') }}" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100 py-4 card-hover">
+                    <i class="bi bi-truck display-3 text-warning mb-2"></i>
+                    <h4 class="fw-bold">¿Cómo enviamos?</h4>
+                    <p class="text-muted">Conoce nuestras zonas y horarios.</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-md-4">
+            <a href="{{ url('/contacto') }}" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100 py-4 card-hover">
+                    <i class="bi bi-whatsapp display-3 text-success mb-2"></i>
+                    <h4 class="fw-bold">Haz tu pedido</h4>
+                    <p class="text-muted">Si quieres celebrar tu cumpleaños con un menú especial y único, contáctanos y coordinamos todo.</p>
+                </div>
+            </a>
+        </div> 
+        <div class="col-12 col-md-4">
+            <a href="{{ url('/quienes-somos') }}" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100 py-4 card-hover">
+                    <i class="bi bi-shop display-3 text-danger mb-2"></i>
+                    <h4 class="fw-bold">Nosotros</h4>
+                    <p class="text-muted">Conoce a los cocineros.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 
   <div class="container-fluid px-0 mt-5 bg-black">
     <div class="row g-0">
@@ -129,21 +165,15 @@
     </div>
   </div> -->
 
-    <div class="text-center text-white py-4">
-
-      <h2 class="fw-bold mb-2">Seguinos en nuestras redes sociales...</h2>
-
-      <div class="d-flex justify-content-center gap-4 mb-2"></div>
-
-      <a href="https://instagram.com/elevate.dis" target="_blank" class="text-white fs-1">
-        <i class="bi bi-instagram"></i>
-      </a>
-      <a
-        href="https://facebook.com/adrian.obregon.3701/" target="_blank" class="text-white fs-1">
-        <i class="bi bi-facebook"></i>
-      </a>
-
-    </div>
+<div class="d-flex justify-content-center gap-4 mb-4">
+    <a href="https://instagram.com/elevate.dis" target="_blank" class="text-white text-decoration-none transition-hover">
+        <i class="bi bi-instagram display-4"></i>
+        <p class="mt-2">Instagram</p> </a>
+    <a href="https://facebook.com/adrian.obregon.3701/" target="_blank" class="text-white text-decoration-none transition-hover">
+        <i class="bi bi-facebook display-4"></i>
+        <p class="mt-2">Facebook</p>
+    </a>
+</div>
 
     <div class="row g-0">
       <div class="col-12 d-flex justify-content-center pt-5 pb-5">
