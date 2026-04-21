@@ -165,7 +165,7 @@
 
         </div>
 
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center mt-5 mb-3">
             <div class="col-md-6">
                 <div class="card p-4 shadow text-center bg-warning text-dark border border-3 border-dark">
 
@@ -174,7 +174,7 @@
                         Información importante
                     </h5>
 
-                    <p class="fw-bold mb-0">
+                    <p class="fw-bold mb-3">
                         Todos nuestros productos son caseros. Se recomienda pedir con anticipación.
                         Los tiempos de entrega pueden variar según la demanda.
                     </p>
