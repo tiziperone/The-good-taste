@@ -163,17 +163,17 @@
                 </div>
 
             </div>
-<button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1050; border: none; background: transparent; color: #ffc107; font-size: 2rem;">
-        <i class="bi bi-arrow-up-circle-fill"></i>
-    </button>
+            <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1050; border: none; background: transparent; color: #ffc107; font-size: 2rem;">
+                <i class="bi bi-arrow-up-circle-fill"></i>
+            </button>
 
-    <script>
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('btnArriba');
-            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-        });
-    </script>
-    
+            <script>
+                window.addEventListener('scroll', () => {
+                    const btn = document.getElementById('btnArriba');
+                    btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+                });
+            </script>
+
             <hr class="mb-4 text-secondary">
             <div class="row text-center">
                 <div class="col-12">
@@ -245,7 +245,8 @@
     });
   </script>
   
-  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+-->
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
-</html>-->
+</html>
