@@ -72,8 +72,10 @@
           <div class="card-body">
             <h5 class="card-title"> Ravioles 1doc. (Una docena.).</h5>
             <p class="card-text" style="text-align: justify;">Deliciosos ravioles rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
-            <span class="ms-2">$3.800</span>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
+            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
+              <i class="bi bi-cart"></i> 
+            </a> $3.800
           </div>
         </div>
       </div>
@@ -83,8 +85,10 @@
           <div class="card-body">
             <h5 class="card-title">Sorrentinos 1doc. (Una docena.).</h5>
             <p class="card-text" style="text-align: justify;">Deliciosos sorrentinos rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
-            <span class="ms-2">$4.000</span>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
+            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
+              <i class="bi bi-cart"></i> 
+            </a> $4.000
           </div>
         </div>
       </div>
@@ -94,8 +98,10 @@
           <div class="card-body">
             <h5 class="card-title">Fideos 500g. (Quinientos gramos.).</h5>
             <p class="card-text" style="text-align: justify;">Fideos de alta calidad, ideales para preparar platos sabrosos con una exquisita salsa.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
-            <span class="ms-2">$2.500</span>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
+            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
+              <i class="bi bi-cart"></i> 
+            </a> $2.500
           </div>
         </div>
       </div>

@@ -72,8 +72,10 @@
           <div class="card-body">
             <h5 class="card-title">Milanesa de Carne 1kg sin Freir. (un kilogramo).</h5>
             <p class="card-text" style="text-align: justify;">Milanesa lista para freir, acompañalo con lo que mas te guste, o con quien mas te guste 😉.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
-            <span class="ms-2">$10.000</span>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
+            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
+              <i class="bi bi-cart"></i> 
+            </a> $10.000
           </div>
         </div>
       </div>
@@ -83,8 +85,10 @@
           <div class="card-body">
             <h5 class="card-title">1 Milanesa de Carne Frita con Guarnicion. (una Unidad).</h5>
             <p class="card-text" style="text-align: justify;">Milanesa de carne frita con guarnicion, puede ser: con ensalada de lechuga y tomate, puré o ensalada rusa.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Agregar al carrito</a>
-            <span class="ms-2">$8000</span>
+            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
+            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
+            <i class="bi bi-cart"></i> 
+            </a> $8000
           </div>
         </div>
       </div>
