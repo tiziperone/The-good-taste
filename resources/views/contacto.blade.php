@@ -68,7 +68,7 @@ los campos de texto para ingresar nombre, correo y mensaje, ademas de un boton p
 formulario-->
 
             <!-- Contenido de conteiner -->
-            <div class="container-xl  text-center">
+            <div class="container-xl container-sm-3  text-center">
 
                 <img src="{{ url('/Img/LogoOscuro.jpg')}}"
                     class="rounded-circle p-3 mx-auto d-block w-25"
@@ -83,19 +83,19 @@ formulario-->
                         <!-- Nombre -->
                         <div class="col-12 mb-3">
                             <label class="fw-bold fs-5">Nombre</label>
-                            <input type="text" name="nombre" class="form-control w-25 mx-auto" placeholder="Ingrese su nombre...">
+                            <input type="text" name="nombre" class="form-control w-auto mx-auto" placeholder="Ingrese su nombre...">
                         </div>
 
                         <!-- Email -->
                         <div class="col-12 mb-3">
                             <label class="fw-bold fs-5">Correo Electrónico</label>
-                            <input type="email" name="email" class="form-control w-25 mx-auto" placeholder="correo@ejemplo.com">
+                            <input type="email" name="email" class="form-control w-auto mx-auto" placeholder="correo@ejemplo.com">
                         </div>
 
                         <!-- Mensaje -->
                         <div class="col-12 mb-3">
                             <label class="fw-bold fs-5">Mensaje</label>
-                            <textarea name="mensaje" class="form-control w-25 mx-auto" placeholder="Ingrese su mensaje..." rows="5"></textarea>
+                            <textarea name="mensaje" class="form-control w-auto mx-auto" placeholder="Ingrese su mensaje..." rows="5"></textarea>
                         </div>
 
                         <!-- Botón -->
