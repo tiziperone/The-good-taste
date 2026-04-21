@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,53 +13,54 @@
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
 </head>
+
 <body>
-    
+
     <!--Barra de navegacion-->
-<nav class="navbar navbar-expand-sm navbar-personalizada">
-    <div class="container-fluid">
-    <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
-        <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
-        <span class="estilo-marca">The good taste</span></a> <!--<span>, te aseguras de que el estilo de fuente solo toque a las letras y no afecte a otros elementos que metas en el <a>-->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-        <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
-            <h2 class="text-lg pt-1 fs-6">Inicio</h2>
-        </a>
-        <a class="nav-link mx-2 text-black" href="{{ url('/catalogo') }}">
-            <h2 class="text-lg pt-1 fs-6">Catálogo</h2>
-        </a>
-        <a class="nav-link mx-2 text-black" href="{{ url('/comercializacion') }}">
-            <h2 class="text-lg pt-1 fs-6">Comercialización</h2>
-        </a>
-        <a class="nav-link mx-2 text-black" href="{{ url('/contacto') }}">
-            <h2 class="text-lg pt-1 fs-6">Contáctanos</h2>
-        </a>
-    <a class="nav-link mx-2 text-black" href="{{ url('/quienes-somos') }}">
-            <h2 class="text-lg pt-1 fs-6">¿Quiénes somos?</h2>
-        </a>
-        <a class="nav-link mx-2 text-black" href="{{ url('/terminos-y-usos') }}">
-            <h2 class="text-lg pt-1 fs-6">Términos y Usos</h2>
-        </a>
+    <nav class="navbar navbar-expand-sm navbar-personalizada">
+        <div class="container-fluid">
+            <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
+                <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
+                <span class="estilo-marca">The good taste</span></a> <!--<span>, te aseguras de que el estilo de fuente solo toque a las letras y no afecte a otros elementos que metas en el <a>-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
+                        <h2 class="text-lg pt-1 fs-6">Inicio</h2>
+                    </a>
+                    <a class="nav-link mx-2 text-black" href="{{ url('/catalogo') }}">
+                        <h2 class="text-lg pt-1 fs-6">Catálogo</h2>
+                    </a>
+                    <a class="nav-link mx-2 text-black" href="{{ url('/comercializacion') }}">
+                        <h2 class="text-lg pt-1 fs-6">Comercialización</h2>
+                    </a>
+                    <a class="nav-link mx-2 text-black" href="{{ url('/contacto') }}">
+                        <h2 class="text-lg pt-1 fs-6">Contáctanos</h2>
+                    </a>
+                    <a class="nav-link mx-2 text-black" href="{{ url('/quienes-somos') }}">
+                        <h2 class="text-lg pt-1 fs-6">¿Quiénes somos?</h2>
+                    </a>
+                    <a class="nav-link mx-2 text-black" href="{{ url('/terminos-y-usos') }}">
+                        <h2 class="text-lg pt-1 fs-6">Términos y Usos</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div style="position: relative;">
+        <div style="position: absolute; top: 20px; left: 20px; z-index: 100;" class="d-flex gap-2">
+            <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+
+            <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
+                <i class="bi bi-arrow-right"></i>
+            </button>
         </div>
     </div>
-    </div>
-</nav>
-
-<div style="position: relative;">
-    <div style="position: absolute; top: 20px; left: 20px; z-index: 100;" class="d-flex gap-2">
-        <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
-            <i class="bi bi-arrow-left"></i>
-        </button>
-
-        <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
-            <i class="bi bi-arrow-right"></i>
-        </button>
-    </div>
-</div>
 
 
     <div class="container mt-5">
@@ -67,7 +69,7 @@
     <footer class="bg-dark text-white pt-5 pb-3 mt-5 border-top border-warning border-3 mb-0">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start justify-content-between">
-                
+
                 <div class="col-md-4 col-lg-4 col-xl-4 mx-auto text-center">
                     <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-2 mb-3 shadow" width="120" height="120" alt="The Good Taste Logo" style="object-fit: contain;">
                     <h5 class="text-uppercase fw-bold text-warning estilo-marca">The Good Taste</h5>
@@ -95,9 +97,9 @@
                         </a>
                     </div>
                 </div>
-                
+
             </div>
-            
+
             <hr class="mb-4 text-secondary">
             <div class="row text-center">
                 <div class="col-12">
@@ -107,4 +109,5 @@
         </div>
     </footer>
 </body>
+
 </html>

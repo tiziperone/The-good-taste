@@ -12,14 +12,16 @@
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
-    
+
     <style>
         /* Eliminamos márgenes del body para que el footer ocupe el 100% abajo */
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
         }
+
         .hover-warning:hover {
             color: #ffc107 !important;
             transition: color 0.3s ease;
@@ -80,7 +82,7 @@
                     <p class="text-secondary small mb-1">Versión vigente: 14 de abril de 2026</p>
                     <h1 class="mb-4 fw-bold" style="color: #f8f9fa;">Términos y condiciones de uso del sitio</h1>
                     <p class="lead border-bottom pb-3 mb-4 text-info">Resumen de Términos y Condiciones</p>
-                    
+
                     <div class="lh-base" style="text-align: justify;">
                         <p>The Good Taste es un emprendimiento artesanal dedicado a la fabricación y comercialización de productos alimenticios de alta calidad, incluyendo bondiolas, milanesas y pastas. Al utilizar nuestro sitio web, aceptas las condiciones de navegación y los procedimientos de venta detallados a continuación.</p>
 
@@ -129,11 +131,11 @@
             btn.style.display = window.scrollY > 300 ? 'block' : 'none';
         });
     </script>
-    
+
     <footer class="bg-dark text-white pt-5 pb-3 border-top border-warning border-3 mb-0">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start justify-content-between">
-                
+
                 <div class="col-md-4 col-lg-4 col-xl-4 mx-auto text-center">
                     <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-2 mb-3 shadow" width="120" height="120" alt="The Good Taste Logo" style="object-fit: contain;">
                     <h5 class="text-uppercase fw-bold text-warning estilo-marca">The Good Taste</h5>
@@ -161,9 +163,9 @@
                         </a>
                     </div>
                 </div>
-                
+
             </div>
-            
+
             <hr class="mb-4 text-secondary">
             <div class="row text-center">
                 <div class="col-12">
@@ -172,8 +174,8 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
- 
+
 </html>
