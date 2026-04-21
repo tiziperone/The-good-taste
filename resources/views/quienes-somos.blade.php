@@ -76,6 +76,7 @@
     </div>
   </nav>
 
+  
   <div class="container-fluid bg-dark text-white py-4 position-relative">
     <div class="container">
       <div class="d-flex gap-2 mb-4">
@@ -147,6 +148,16 @@
           </div>
 
         </div>
+        <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1050; border: none; background: transparent; color: #ffc107; font-size: 2rem;">
+        <i class="bi bi-arrow-up-circle-fill"></i>
+    </button>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('btnArriba');
+            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+    </script>
 
         <hr class="mb-4 text-secondary">
         <div class="row text-center">
