@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -19,6 +19,20 @@
             color: #ffc107 !important;
             transition: color 0.3s ease;
         }
+        
+        /* Estilos para el botón de ir arriba */
+        #btnArriba {
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px; 
+            display: none; 
+            z-index: 1050; 
+            border: none; 
+            background: transparent; 
+            color: #ffc107; 
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -28,10 +42,13 @@
         <div class="container-fluid">
             <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
                 <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
-                <span class="estilo-marca">The good taste</span></a>
+                <span class="estilo-marca">The good taste</span>
+            </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
@@ -57,31 +74,32 @@
         </div>
     </nav>
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+    <div id="carouselExampleIndicators" class="carousel slide border-bottom border-warning border-3" data-bs-ride="carousel" data-bs-interval="3500">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
+        
         <div class="carousel-inner">
             <div class="carousel-item active" style="max-height: 530px">
-                <img src="{{ url('/Img/subir_calidad_4k_202604082227.png')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="...">
+                <img src="{{ url('/Img/subir_calidad_4k_202604082227.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Imagen 1">
             </div>
             <div class="carousel-item" style="max-height: 530px">
-                <img src="{{ url('/Img/MilanesaHome.jpg')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 60%;" alt="...">
+                <img src="{{ url('/Img/MilanesaHome.jpg') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 60%;" alt="Milanesas">
             </div>
             <div class="carousel-item" style="max-height: 530px">
-                <img src="{{ url('/Img/PastaHome.png')}}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="...">
+                <img src="{{ url('/Img/PastaHome.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Pastas">
             </div>
         </div>
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span class="visually-hidden">Anterior</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="visually-hidden">Siguiente</span>
         </button>
     </div>
 
@@ -163,18 +181,9 @@
                 </div>
 
             </div>
-<button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1050; border: none; background: transparent; color: #ffc107; font-size: 2rem;">
-        <i class="bi bi-arrow-up-circle-fill"></i>
-    </button>
-
-    <script>
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('btnArriba');
-            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-        });
-    </script>
-    
+            
             <hr class="mb-4 text-secondary">
+            
             <div class="row text-center">
                 <div class="col-12">
                     <p class="mb-0 text-secondary">© 2026 The Good Taste. Todos los derechos reservados.</p>
@@ -183,69 +192,18 @@
         </div>
     </footer>
 
-    <!--
-    <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <i class="bi bi-arrow-up"></i>
+    <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Volver arriba">
+        <i class="bi bi-arrow-up-circle-fill"></i>
     </button>
 
     <script>
+        // Lógica para mostrar/ocultar el botón flotante
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('btnArriba');
             btn.style.display = window.scrollY > 300 ? 'block' : 'none';
         });
     </script>
-    
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
 </body>
 </html>
-
-<div class="container-fluid px-0 mt-5 bg-black">
-    <div class="row g-0">
-      <div class="col-12 text-white p-3">
-        <h2 class="text-center m-0 fs-3 p-3">Encuéntranos</h2>
-      </div>
-      <div class="col-5 text-white p-3">
-        <h2 class="text-center fs-5 p-3">Corrientes, Argentina. CP 3400.</h2>
-      </div>
-      <div class="col-2 text-white p-3">
-        <h2 class="text-center fs-3 p-2">|</h2>
-      </div>
-      <div class="col-5 text-white p-3">
-        <h2 class="text-center fs-5 p-3"> Calle 9 de Julio 1234.</h2>
-      </div>
-    </div>
-
-<div class="d-flex justify-content-center gap-4 mb-4">
-    <a href="https://instagram.com/elevate.dis" target="_blank" class="text-white text-decoration-none transition-hover">
-        <i class="bi bi-instagram display-4"></i>
-        <p class="mt-2">Instagram</p> </a>
-    <a href="https://facebook.com/adrian.obregon.3701/" target="_blank" class="text-white text-decoration-none transition-hover">
-        <i class="bi bi-facebook display-4"></i>
-        <p class="mt-2">Facebook</p>
-    </a>
-</div>
-
-    <div class="row g-0">
-      <div class="col-12 d-flex justify-content-center pt-5 pb-5">
-        <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark img" width="300" height="300" alt="logo" style="object-fit: contain;">
-      </div>
-    </div>
-
-  </div>
-
-  
-  <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-    <i class="bi bi-arrow-up"></i>
-  </button>
-
-  <script>
-    window.addEventListener('scroll', () => {
-      const btn = document.getElementById('btnArriba');
-      btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-    });
-  </script>
-  
-  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-</body>
-
-</html>-->
