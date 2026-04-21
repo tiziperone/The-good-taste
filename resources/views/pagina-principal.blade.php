@@ -131,7 +131,7 @@
                 <a href="{{ url('/contacto') }}" class="text-decoration-none text-dark">
                     <div class="card shadow-sm h-100 py-4 card-hover">
                         <i class="bi bi-journal-text display-3 text-success mb-2"></i>
-                        <h4 class="fw-bold">!Celebra tu cumpleaños!</h4>
+                        <h4 class="fw-bold">¡Celebra tu cumpleaños!</h4>
                         <p class="text-muted">Si quieres celebrar tu cumpleaños con un menú especial y único, contáctanos y coordinamos.</p>
                     </div>
                 </a>
