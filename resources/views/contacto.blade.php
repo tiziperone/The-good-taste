@@ -37,76 +37,66 @@
 <body class="bg-dark text-white">
 
     @include('componentes.navbar')
+    @include('componentes.botonesAtrasAdelante')
 
-    <div class="container-fluid bg-dark text-white py-4 position-relative">
-        <div class="container">
-            <div class="d-flex gap-2 mb-4">
-                <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
-                    <i class="bi bi-arrow-left"></i>
-                </button>
-                <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
-                    <i class="bi bi-arrow-right"></i>
-                </button>
-            </div>
-        </div>
 
-        <div class="container-xl mt-2">
-            <div class="row">
+    <div class="container-xl mt-2">
+        <div class="row">
+            <div class="col-lg-6 text-center mb-5 mb-lg-0 pe-lg-4 divisor-naranja">
+                <img src="{{ url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo">
 
-                <div class="col-lg-6 text-center mb-5 mb-lg-0 pe-lg-4 divisor-naranja">
-                    <img src="{{ url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo">
-
-                    <form action="{{ url('/contacto') }}" method="POST">
-                        @csrf
-                        <div class="row mt-4 justify-content-center">
-                            <div class="col-12 mb-3">
-                                <label class="fw-bold fs-5">Nombre</label>
-                                <input type="text" name="nombre" class="form-control w-50 mx-auto" placeholder="Ingrese su nombre...">
-                            </div>
-
-                            <div class="col-12 mb-3">
-                                <label class="fw-bold fs-5">Correo Electrónico</label>
-                                <input type="email" name="email" class="form-control w-50 mx-auto" placeholder="correo@ejemplo.com">
-                            </div>
-
-                            <div class="col-12 mb-3">
-                                <label class="fw-bold fs-5">Mensaje</label>
-                                <textarea name="mensaje" class="form-control w-50 mx-auto" rows="4" placeholder="Ingrese su mensaje..."></textarea>
-                            </div>
-
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary mt-3">
-                                    Enviar Mensaje
-                                </button>
-                            </div>
+                <form action="{{ url('/contacto') }}" method="POST">
+                    @csrf
+                    <div class="row mt-4 justify-content-center">
+                        <div class="col-12 mb-3">
+                            <label class="fw-bold fs-5">Nombre</label>
+                            <input type="text" name="nombre" class="form-control w-50 mx-auto" placeholder="Ingrese su nombre...">
                         </div>
-                    </form>
-                </div>
 
-                <div class="col-lg-6 ps-lg-4 text-center d-flex flex-column align-items-center">
+                        <div class="col-12 mb-3">
+                            <label class="fw-bold fs-5">Correo Electrónico</label>
+                            <input type="email" name="email" class="form-control w-50 mx-auto" placeholder="correo@ejemplo.com">
+                        </div>
 
-                    <h2 class="mt-3">Nos podés encontrar en:</h2>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d8419.543246690719!2d-58.84103688347966!3d-27.46982387836354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1776819298618!5m2!1ses-419!2sar" class="w-100 rounded-3 shadow-sm mt-2" height="200" style="border:0; max-width: 450px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="col-12 mb-3">
+                            <label class="fw-bold fs-5">Mensaje</label>
+                            <textarea name="mensaje" class="form-control w-50 mx-auto" rows="4" placeholder="Ingrese su mensaje..."></textarea>
+                        </div>
 
-                    <h2 class="mt-4">Comunicate con nosotros:</h2>
-                    <a href="https://wa.me/5493794000000" target="_blank" class="text-white text-decoration-none mt-2">
-                        <i class="bi bi-whatsapp hover-warning" style="font-size: 4rem;"></i>
-                    </a>
-
-                    <div class="mt-5 p-3 border-top border-warning w-75">
-                        <h3 class="fs-5 fw-bold text-warning mb-3">Información Legal</h3>
-                        <ul class="list-unstyled text-white-50">
-                            <li class="mb-2"><strong class="text-white">Titular:</strong> Obregón Adrian, Perone Tiziano.</li>
-                            <li class="mb-2"><strong class="text-white">Razón Social:</strong> The Good Taste S.R.L.</li>
-                            <li class="mb-2"><strong class="text-white">Domicilio Legal:</strong> Calle 9 de Julio 392, Corrientes </li>
-                        </ul>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary mt-3">
+                                Enviar Mensaje
+                            </button>
+                        </div>
                     </div>
+                </form>
+            </div>
 
+            <div class="col-lg-6 ps-lg-4 text-center d-flex flex-column align-items-center">
+
+                <h2 class="mt-3">Nos podés encontrar en:</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d8419.543246690719!2d-58.84103688347966!3d-27.46982387836354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1776819298618!5m2!1ses-419!2sar" class="w-100 rounded-3 shadow-sm mt-2" height="200" style="border:0; max-width: 450px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                <h2 class="mt-4">Comunicate con nosotros:</h2>
+                <a href="https://wa.me/5493794000000" target="_blank" class="text-white text-decoration-none mt-2">
+                    <i class="bi bi-whatsapp hover-warning" style="font-size: 4rem;"></i>
+                </a>
+
+                <div class="mt-5 p-3 border-top border-warning w-75">
+                    <h3 class="fs-5 fw-bold text-warning mb-3">Información Legal</h3>
+                    <ul class="list-unstyled text-white-50">
+                        <li class="mb-2"><strong class="text-white">Titular:</strong> Obregón Adrian, Perone Tiziano.</li>
+                        <li class="mb-2"><strong class="text-white">Razón Social:</strong> The Good Taste S.R.L.</li>
+                        <li class="mb-2"><strong class="text-white">Domicilio Legal:</strong> Calle 9 de Julio 392, Corrientes </li>
+                    </ul>
                 </div>
+
             </div>
         </div>
+    </div>
 
-        @include('componentes.footer')
+    @include('componentes.botonHaciaArriba')
+    @include('componentes.footer')
 
 </body>
 

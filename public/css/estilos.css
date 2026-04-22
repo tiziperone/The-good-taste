@@ -1,151 +1,134 @@
-.estilo-marca {
-            /* Clase personalizada para el estilo de la marca en la barra de navegación */
-            font-family: 'Montserrat', sans-serif !important;
-            font-weight: 900 !important;
-            font-size: 1.5rem !important;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            /* Para que combine con el logo*/
-            vertical-align: middle;
-        }
+/* --- VARIABLES GLOBALES --- */
+:root {
+    --color-primario: #ffc107;      /* Amarillo Warning */
+    --color-fondo-oscuro: #1a1d20;  /* Gris casi negro */
+    --color-texto-blanco: #ffffff;
+    --fuente-principal: 'Montserrat', sans-serif;
+    --transicion: all 0.3s ease;
+}
 
-        .navbar-personalizada {
-            background-color: #1a1d20 !important;
-            /* Un gris muy oscuro casi negro */
-            border-bottom: 2px solid #333;
-            /* Opcional: una línea sutil abajo */
-        }
+/* --- REGLAS BASE --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 
-        /* Para que los links no se pierdan en el fondo oscuro */
-        .navbar-personalizada .nav-link {
-            color: white !important;
-            /*links sean blancos */
-        }
+/* --- COMPONENTES REUTILIZABLES --- */
 
-        .estilo-marca {
-            font-family: 'Montserrat', sans-serif !important;
-            /* Aplicamos la fuente "Montserrat" */
-            font-weight: 900 !important;
-            /* Aplicamos negrita */
-            font-size: 1.4rem !important;
-            /* Aplicamos el tamaño de fuente */
-            text-transform: uppercase;
-            /* Aplicamos transformación a mayúsculas */
-            color: #ffffff !important;
-            /* Nombre blanco */
-        }
+/* Títulos con estilo marca (Nuestra Esencia, Quiénes Somos, etc.) */
+.titulo-seccion-especial {
+    font-family: var(--fuente-principal);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+    color: var(--color-texto-blanco);
+}
 
+.titulo-seccion-especial::after {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 4px;
+    background-color: var(--color-primario);
+    bottom: 0;
+    left: 20%;
+    border-radius: 2px;
+}
 
-
-        /* Quita el recuadro/borde del botón y la sombra al hacer clic */
-        .navbar-toggler {
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-        }
-
-        /* Cambia el color del icono (las tres líneas) a blanco */
-        /* Usamos invert(1) para convertir el SVG negro original en blanco */
-        .navbar-toggler-icon {
-            filter: invert(1);
-        }
-
-    #btnArriba {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: #1a1d20;
-        color: white;
-        border: none;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        font-size: 20px;
-        cursor: pointer;
-        display: none;
-        z-index: 999;
-    }
-
-    .btn-navegacion {
+/* Botones de Navegación (Atrás/Adelante y Volver Arriba) */
+.btn-circular {
     background-color: rgba(26, 29, 32, 0.8);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    width: 45px;
-    height: 45px;
+    color: var(--color-texto-blanco);
+    border: 1px solid var(--color-primario); /* Ahora todos son amarillos por defecto */
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
     cursor: pointer;
-    
-    /* ESTO ES LO IMPORTANTE */
-    position: relative; 
-    z-index: 999; 
+    z-index: 999;
 }
 
-.btn-navegacion:hover {
-    background-color: #1a1d20;
+.btn-circular:hover {
+    background-color: var(--color-primario);
+    color: #212529; /* Letra oscura al hover para contraste */
     transform: scale(1.1);
-    z-index: 1000; /* Se asegura de estar arriba incluso al agrandarse */
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
 }
 
-    .btn-navegacion i {
-    font-size: 1.2rem;
-    }
+/* Específico para el de Volver Arriba (posicionamiento) */
+#btnArriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none; /* Se activa por JS */
+}
 
-    /* Esto obliga a los emojis a medir lo mismo que la letra que los rodea */
+/* --- NAVBAR PERSONALIZADA --- */
+.navbar-personalizada {
+    background-color: var(--color-fondo-oscuro) !important;
+    border-bottom: 2px solid #333;
+}
+
+.estilo-marca {
+    font-family: var(--fuente-principal) !important;
+    font-weight: 900 !important;
+    font-size: 1.4rem !important;
+    text-transform: uppercase;
+    color: var(--color-texto-blanco) !important;
+    letter-spacing: 1px;
+}
+
+.navbar-personalizada .nav-link {
+    color: var(--color-texto-blanco) !important;
+    transition: var(--transicion);
+}
+
+/* Estado Activo de la Navbar (El cuadrito resaltador) */
+.navbar-personalizada .nav-link.active {
+    background-color: var(--color-primario) !important;
+    border-radius: 8px !important;
+    padding: 5px 15px !important;
+}
+
+.navbar-personalizada .nav-link.active h2 {
+    color: #212529 !important;
+    font-weight: 900 !important;
+    margin: 0 !important;
+}
+
+/* Hover para links no activos */
+.navbar-personalizada .nav-link:not(.active):hover h2 {
+    color: var(--color-primario) !important;
+}
+
+/* Navbar Toggler (Hamburgesa) */
+.navbar-toggler {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* --- FOOTER Y REDES --- */
+.hover-warning:hover {
+    color: var(--color-primario) !important;
+    transition: var(--transicion);
+}
+
+/* --- UTILIDADES --- */
 img.emoji {
     height: 1.1em !important;
     width: 1.1em !important;
     display: inline-block !important;
-    margin: 0 .05em 0 .1em !important;
     vertical-align: -0.1em !important;
-    border: none !important;
-    box-shadow: none !important; /* Por si las moscas */
 }
-
- /* Efecto Hover para las redes en el footer */
-        .hover-warning:hover {
-            color: #ffc107 !important;
-            transition: color 0.3s ease;
-        }
-
-        /* Eliminar márgenes en el body para el footer */
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        /* --- Estilo para el enlace ACTIVO de la navbar --- */
-.navbar-personalizada .nav-link.active h2 {
-    color: #ffc107 !important; /* Tu color amarillo/warning */
-    font-weight: 900;
-    border-bottom: 2px solid #ffc107; /* Línea por debajo */
-    padding-bottom: 2px;
-}
-
-/* --- El "cuadrito" resaltador para la página actual --- */
-.navbar-personalizada .nav-link.active {
-    background-color: #ffc107 !important; /* Fondo amarillo */
-    border-radius: 8px !important; /* Bordes un poco redondeados */
-    padding: 5px 15px !important; /* Espacio adentro del cuadrito */
-    transition: 0.3s ease;
-}
-
-/* El color de las letras adentro del cuadrito */
-.navbar-personalizada .nav-link.active h2 {
-    color: #212529 !important; /* Letra oscura para que contraste con el amarillo */
-    font-weight: 900 !important;
-    margin: 0 !important; 
-}
-
-/* Un toque visual al pasar el mouse por los que NO están activos */
-.navbar-personalizada .nav-link:not(.active):hover h2 {
-    color: #ffc107 !important;
-    transition: 0.3s ease;
-}
-
-        
-        

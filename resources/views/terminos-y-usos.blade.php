@@ -33,73 +33,56 @@
 
     @include('componentes.navbar')
 
-    <div class="container-fluid bg-white py-4 position-relative">
-        <div class="container">
-            <div class="d-flex gap-2 mb-4">
-                <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
-                    <i class="bi bi-arrow-left"></i>
-                </button>
-                <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
-                    <i class="bi bi-arrow-right"></i>
-                </button>
-            </div>
-        </div>
+    @include('componentes.botonesAtrasAdelante')
 
-        <div class="container bg-dark text-white py-5 my-5 rounded-3 shadow">
-            <div class="row justify-content-center">
-                <div class="col-11 col-md-10 col-lg-8">
-                    <p class="text-secondary small mb-1">Versión vigente: 14 de abril de 2026</p>
-                    <h1 class="mb-4 fw-bold" style="color: #f8f9fa;">Términos y condiciones de uso del sitio</h1>
-                    <p class="lead border-bottom pb-3 mb-4 text-info">Resumen de Términos y Condiciones</p>
+    <div class="container bg-dark text-white py-5 my-5 rounded-3 shadow">
+        <div class="row justify-content-center">
+            <div class="col-11 col-md-10 col-lg-8">
+                <p class="text-secondary small mb-1">Versión vigente: 14 de abril de 2026</p>
+                <h1 class="mb-0 fw-bold" style="color: #f8f9fa;">Términos y condiciones de uso del sitio</h1>
+                <p class="lead border-bottom pb-3 mb-4 text-info">Resumen de Términos y Condiciones</p>
 
-                    <div class="lh-base" style="text-align: justify;">
-                        <p>The Good Taste es un emprendimiento artesanal dedicado a la fabricación y comercialización de productos alimenticios de alta calidad, incluyendo bondiolas, milanesas y pastas. Al utilizar nuestro sitio web, aceptas las condiciones de navegación y los procedimientos de venta detallados a continuación.</p>
+                <div class="lh-base" style="text-align: justify;">
+                    <p>The Good Taste es un emprendimiento artesanal dedicado a la fabricación y comercialización de productos alimenticios de alta calidad, incluyendo bondiolas, milanesas y pastas. Al utilizar nuestro sitio web, aceptas las condiciones de navegación y los procedimientos de venta detallados a continuación.</p>
 
-                        <h3 class="mt-5 mb-3 text-warning">1. Capacidad</h3>
-                        <p>Para realizar consultas o registros en nuestro sitio, debes ser mayor de edad con capacidad legal para contratar. Los menores de edad deberán contar con la supervisión de un adulto responsable.</p>
+                    <h3 class="mt-5 mb-3 text-warning">1. Capacidad</h3>
+                    <p>Para realizar consultas o registros en nuestro sitio, debes ser mayor de edad con capacidad legal para contratar. Los menores de edad deberán contar con la supervisión de un adulto responsable.</p>
 
-                        <h3 class="mt-5 mb-3 text-warning">2. Registro y Privacidad de Datos</h3>
-                        <p>Quien desee utilizar nuestros servicios opcionales de registro o formularios de consulta, deberá completar los datos requeridos de manera exacta y verdadera.</p>
-                        <p><strong>Privacidad:</strong> Hacemos un uso responsable de tu información personal. Los datos recolectados se utilizan exclusivamente para gestionar tus pedidos y mejorar tu experiencia de compra.</p>
+                    <h3 class="mt-5 mb-3 text-warning">2. Registro y Privacidad de Datos</h3>
+                    <p>Quien desee utilizar nuestros servicios opcionales de registro o formularios de consulta, deberá completar los datos requeridos de manera exacta y verdadera.</p>
+                    <p><strong>Privacidad:</strong> Hacemos un uso responsable de tu información personal. Los datos recolectados se utilizan exclusivamente para gestionar tus pedidos y mejorar tu experiencia de compra.</p>
 
-                        <h3 class="mt-5 mb-3 text-warning">3. Catálogo de Productos y Comercialización</h3>
-                        <p>Los productos visualizados en nuestro catálogo (como nuestras milanesas, bondiolas y pastas) se presentan de manera estática para fines informativos.</p>
-                        <p><strong>Precios:</strong> Nos reservamos el derecho de modificar los precios y la disponibilidad de los productos sin previo aviso.</p>
-                        <p><strong>Fabricación:</strong> Todos los productos son de fabricación propia y artesanal, garantizando la frescura de la materia prima.</p>
+                    <h3 class="mt-5 mb-3 text-warning">3. Catálogo de Productos y Comercialización</h3>
+                    <p>Los productos visualizados en nuestro catálogo (como nuestras milanesas, bondiolas y pastas) se presentan de manera estática para fines informativos.</p>
+                    <p><strong>Precios:</strong> Nos reservamos el derecho de modificar los precios y la disponibilidad de los productos sin previo aviso.</p>
+                    <p><strong>Fabricación:</strong> Todos los productos son de fabricación propia y artesanal, garantizando la frescura de la materia prima.</p>
 
-                        <h3 class="mt-5 mb-3 text-warning">4. Envíos y Retiros</h3>
-                        <p>De acuerdo con nuestra política de comercialización, ofrecemos dos modalidades para que recibas tus productos:</p>
-                        <ul class="list-unstyled ps-3 border-start border-secondary">
-                            <li class="mb-2"><strong>Retiro en Local (Take Away):</strong> El cliente podrá retirar su pedido directamente en nuestro domicilio legal una vez confirmada la preparación.</li>
-                            <li><strong>Envío a Domicilio:</strong> Realizamos repartos en zonas seleccionadas. Los tiempos de entrega y costos de envío se coordinarán al momento de la consulta.</li>
-                        </ul>
+                    <h3 class="mt-5 mb-3 text-warning">4. Envíos y Retiros</h3>
+                    <p>De acuerdo con nuestra política de comercialización, ofrecemos dos modalidades para que recibas tus productos:</p>
+                    <ul class="list-unstyled ps-3 border-start border-secondary">
+                        <li class="mb-2"><strong>Retiro en Local (Take Away):</strong> El cliente podrá retirar su pedido directamente en nuestro domicilio legal una vez confirmada la preparación.</li>
+                        <li><strong>Envío a Domicilio:</strong> Realizamos repartos en zonas seleccionadas. Los tiempos de entrega y costos de envío se coordinarán al momento de la consulta.</li>
+                    </ul>
 
-                        <h3 class="mt-5 mb-3 text-warning">5. Propiedad Intelectual</h3>
-                        <p>The Good Taste es propietario de todos los derechos de propiedad intelectual sobre el contenido del sitio, incluyendo logos, diseños de tarjetas de productos, imágenes y códigos de programación. Queda prohibida la reproducción total o parcial del contenido sin autorización previa.</p>
+                    <h3 class="mt-5 mb-3 text-warning">5. Propiedad Intelectual</h3>
+                    <p>The Good Taste es propietario de todos los derechos de propiedad intelectual sobre el contenido del sitio, incluyendo logos, diseños de tarjetas de productos, imágenes y códigos de programación. Queda prohibida la reproducción total o parcial del contenido sin autorización previa.</p>
 
-                        <h3 class="mt-5 mb-3 text-warning">6. Garantía y Soporte</h3>
-                        <p>Al tratarse de productos alimenticios perecederos, garantizamos la calidad de los mismos hasta el momento de la entrega. Ante cualquier inconveniente, el cliente debe comunicarse inmediatamente a través de nuestra sección de "Contáctanos".</p>
+                    <h3 class="mt-5 mb-3 text-warning">6. Garantía y Soporte</h3>
+                    <p>Al tratarse de productos alimenticios perecederos, garantizamos la calidad de los mismos hasta el momento de la entrega. Ante cualquier inconveniente, el cliente debe comunicarse inmediatamente a través de nuestra sección de "Contáctanos".</p>
 
-                        <h3 class="mt-5 mb-3 text-warning">7. Jurisdicción y Ley Aplicable</h3>
-                        <p>Estos términos se rigen por las leyes de la República Argentina. Para cualquier controversia, las partes se someten a los tribunales ordinarios de la ciudad de Corrientes, Argentina.</p>
-                    </div>
+                    <h3 class="mt-5 mb-3 text-warning">7. Jurisdicción y Ley Aplicable</h3>
+                    <p>Estos términos se rigen por las leyes de la República Argentina. Para cualquier controversia, las partes se someten a los tribunales ordinarios de la ciudad de Corrientes, Argentina.</p>
+                </div>
 
-                    <div class="mt-5 pt-4 border-top text-center">
-                        <p class="text-secondary small">© 2026 The Good Taste - Corrientes, Argentina.</p>
-                    </div>
+                <div class="mt-5 pt-4 border-top text-center">
+                    <p class="text-secondary small">© 2026 The Good Taste - Corrientes, Argentina.</p>
                 </div>
             </div>
         </div>
-    </div> <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1050; border: none; background: transparent; color: #ffc107; font-size: 2rem;">
-        <i class="bi bi-arrow-up-circle-fill"></i>
-    </button>
+    </div>
+    </div>
 
-    <script>
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('btnArriba');
-            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-        });
-    </script>
+    @include('componentes.botonHaciaArriba')
 
     @include('componentes.footer')
 

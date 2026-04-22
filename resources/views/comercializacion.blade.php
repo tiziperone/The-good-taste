@@ -41,17 +41,7 @@
 
     @include('componentes.navbar')
 
-    <div class="container mt-4 mb-2">
-        <div class="d-flex gap-2">
-            <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
-                <i class="bi bi-arrow-left"></i>
-            </button>
-
-            <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
-                <i class="bi bi-arrow-right"></i>
-            </button>
-        </div>
-    </div>
+    @include('componentes.botonesAtrasAdelante')
 
     <div class="container">
 
@@ -179,17 +169,7 @@
 
     </div>
 
-    <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <i class="bi bi-arrow-up"></i>
-    </button>
-
-    <script>
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('btnArriba');
-            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-        });
-    </script>
-
+    @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

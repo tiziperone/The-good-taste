@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -15,32 +15,23 @@
 
     <style>
         /* Estilos necesarios para efectos en las fotos del catálogo */
-        /* El contenedor debe permitir que la imagen "salga" */
         .col-12 {
             overflow: visible !important;
             position: relative;
-            /* Necesario para que el z-index funcione */
         }
 
-        /* Estilo base de la imagen */
         .col-12 img {
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             z-index: 1;
-            /* Todas empiezan en el mismo nivel */
         }
 
-        /* Efecto cuando pasas el cursor (Hover) */
         .col-12:hover img {
             transform: scale(1.05);
-            /* Lo baje un poquito a 1.05 para que no tape el footer */
             z-index: 10;
-            /* Se pone por encima de todas las demás */
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            /* Sombra para dar profundidad */
         }
 
-        /* En celular la altura es automática para que no se deforme */
         @media (max-width: 768px) {
             .col-12 img {
                 height: auto !important;
@@ -53,18 +44,9 @@
 
     @include('componentes.navbar')
 
-    <div class="container mt-4 mb-2">
-        <div class="d-flex gap-2">
-            <button onclick="history.back()" class="btn-navegacion shadow" title="Volver atrás">
-                <i class="bi bi-arrow-left"></i>
-            </button>
-            <button onclick="history.forward()" class="btn-navegacion shadow" title="Ir adelante">
-                <i class="bi bi-arrow-right"></i>
-            </button>
-        </div>
-    </div>
+    @include('componentes.botonesAtrasAdelante')
 
-    <div class="container-fluidbg-dark text-white text-center py-1 border-bottom border-warning">
+    <div class="container-fluid bg-dark text-white text-center py-1 border-bottom border-warning">
         <h1 class="fw-bold fs-2 mb-2 card-title">Nuestro Menú</h1>
         <p class="fs-5 text-warning mb-5">Haz clic en la imagen de lo que quieras comer hoy</p>
     </div>
@@ -88,9 +70,7 @@
             </a>
         </div>
     </div>
-    </div>
 
-    <!-- No se invoca al footer porque aqui tiene detalles especificos de catalogo-->
     <footer class="bg-dark text-white pt-5 pb-4 mt-1 border-top border-warning border-3 mb-0">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start justify-content-between">
@@ -133,16 +113,7 @@
         </div>
     </footer>
 
-    <button id="btnArriba" class="btn btn-warning shadow rounded-circle" style="position: fixed; bottom: 20px; right: 20px; z-index: 1050; display: none;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <i class="bi bi-arrow-up fs-4"></i>
-    </button>
-
-    <script>
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('btnArriba');
-            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-        });
-    </script>
+    @include('componentes.botonHaciaArriba')
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
