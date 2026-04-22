@@ -28,22 +28,22 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
+          <a class="nav-link mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
             <h2 class="text-lg pt-1 fs-6">Inicio</h2>
           </a>
-          <a class="nav-link active mx-2 text-black" href="{{ url('/catalogo') }}">
+          <a class="nav-link mx-2 text-black" href="{{ url('/catalogo') }}">
             <h2 class="text-lg pt-1 fs-6">Catálogo</h2>
           </a>
-          <a class="nav-link active mx-2 text-black" href="{{ url('/comercializacion') }}">
+          <a class="nav-link mx-2 text-black" href="{{ url('/comercializacion') }}">
             <h2 class="text-lg pt-1 fs-6">Comercialización</h2>
           </a>
-          <a class="nav-link active mx-2 text-black" href="{{ url('/contacto') }}">
+          <a class="nav-link mx-2 text-black" href="{{ url('/contacto') }}">
             <h2 class="text-lg pt-1 fs-6">Contáctanos</h2>
           </a>
-          <a class="nav-link active mx-2 text-black" href="{{ url('/quienes-somos') }}">
+          <a class="nav-link mx-2 text-black" href="{{ url('/quienes-somos') }}">
             <h2 class="text-lg pt-1 fs-6">¿Quiénes somos?</h2>
           </a>
-          <a class="nav-link active mx-2 text-black" href="{{ url('/terminos-y-usos') }}">
+          <a class="nav-link mx-2 text-black" href="{{ url('/terminos-y-usos') }}">
             <h2 class="text-lg pt-1 fs-6">Términos y Usos</h2>
           </a>
         </div>

@@ -28,7 +28,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
+          <a class="nav-link mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
             <h2 class="text-lg pt-1 fs-6">Inicio</h2>
           </a>
           <a class="nav-link mx-2 text-black" href="{{ url('/catalogo') }}">
@@ -74,7 +74,7 @@
             <p class="card-text" style="text-align: justify;">Deliciosos ravioles rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.</p>
             <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
             <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i> 
+              <i class="bi bi-cart"></i>
             </a> $3.800
           </div>
         </div>
@@ -87,7 +87,7 @@
             <p class="card-text" style="text-align: justify;">Deliciosos sorrentinos rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.</p>
             <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
             <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i> 
+              <i class="bi bi-cart"></i>
             </a> $4.000
           </div>
         </div>
@@ -100,7 +100,7 @@
             <p class="card-text" style="text-align: justify;">Fideos de alta calidad, ideales para preparar platos sabrosos con una exquisita salsa.</p>
             <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
             <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i> 
+              <i class="bi bi-cart"></i>
             </a> $2.500
           </div>
         </div>
