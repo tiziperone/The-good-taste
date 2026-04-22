@@ -90,6 +90,7 @@
     </div>
     </div>
 
+    <!-- No se invoca al footer porque aqui tiene detalles especificos de catalogo-->
     <footer class="bg-dark text-white pt-5 pb-4 mt-1 border-top border-warning border-3 mb-0">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start justify-content-between">
