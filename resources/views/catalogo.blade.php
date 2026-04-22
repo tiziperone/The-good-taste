@@ -51,38 +51,7 @@
 
 <body class="bg-dark">
 
-    <nav class="navbar navbar-expand-sm navbar-personalizada bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand mx-4 text-danger-emphasis estilo-marca" href="{{ url('/pagina-principal') }}">
-                <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
-                <span class="estilo-marca">The good taste</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link mx-2" aria-current="page" href="{{ url('/pagina-principal') }}">
-                        <h2 class="text-lg pt-1 fs-6">Inicio</h2>
-                    </a>
-                    <a class="nav-link active mx-2 text-white" href="{{ url('/catalogo') }}">
-                        <h2 class="text-lg pt-1 fs-6">Catálogo</h2>
-                    </a>
-                    <a class="nav-link mx-2 text-white" href="{{ url('/comercializacion') }}">
-                        <h2 class="text-lg pt-1 fs-6">Comercialización</h2>
-                    </a>
-                    <a class="nav-link mx-2 text-white" href="{{ url('/contacto') }}">
-                        <h2 class="text-lg pt-1 fs-6">Contáctanos</h2>
-                    </a>
-                    <a class="nav-link mx-2 text-white" href="{{ url('/quienes-somos') }}">
-                        <h2 class="text-lg pt-1 fs-6">¿Quiénes somos?</h2>
-                    </a>
-                    <a class="nav-link mx-2 text-white" href="{{ url('/terminos-y-usos') }}">
-                        <h2 class="text-lg pt-1 fs-6">Términos y Usos</h2>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    @include('componentes.navbar')
 
     <div class="container mt-4 mb-2">
         <div class="d-flex gap-2">
