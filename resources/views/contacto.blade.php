@@ -86,14 +86,11 @@
             <div class="row">
 
                 <div class="col-lg-6 text-center mb-5 mb-lg-0 pe-lg-4 divisor-naranja">
-
                     <img src="{{ url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo">
 
                     <form action="{{ url('/contacto') }}" method="POST">
                         @csrf
-
                         <div class="row mt-4 justify-content-center">
-
                             <div class="col-12 mb-3">
                                 <label class="fw-bold fs-5">Nombre</label>
                                 <input type="text" name="nombre" class="form-control w-50 mx-auto" placeholder="Ingrese su nombre...">
@@ -118,17 +115,24 @@
                     </form>
                 </div>
 
-                <div class="col-lg-6 ps-lg-4 text-center d-flex flex-column justify-content-center">
+                <div class="col-lg-6 ps-lg-4 text-center d-flex flex-column align-items-center">
 
                     <h2 class="mt-3">Nos podés encontrar en:</h2>
-                    <h5 class="mt-1"> Calle 9 de Julio 392, Corrientes, Argentina.</h5>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d885.0277078065811!2d-58.84630042275717!3d-27.465808728610114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94456d8e714a69f1%3A0x4501b0f8b1afef41!2sEdificio%20Bacara%20III!5e0!3m2!1ses-419!2sar!4v1776820073876!5m2!1ses-419!2sar" class="w-100 rounded-3 shadow-sm mx-auto mt-2" height="250" style="border:0; max-width: 450px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d8419.543246690719!2d-58.84103688347966!3d-27.46982387836354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1776819298618!5m2!1ses-419!2sar" class="w-100 rounded-3 shadow-sm mt-2" height="200" style="border:0; max-width: 450px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-                    <h2 class="mt-5">Comunícate con nosotros:</h2>
-
+                    <h2 class="mt-4">Comunicate con nosotros:</h2>
                     <a href="https://wa.me/5493794000000" target="_blank" class="text-white text-decoration-none mt-2">
-                        <i class="bi bi-whatsapp hover-warning" style="font-size: 4.5rem; transition: transform 0.2s;"></i>
+                        <i class="bi bi-whatsapp hover-warning" style="font-size: 4rem;"></i>
                     </a>
+
+                    <div class="mt-5 p-3 border-top border-warning w-75">
+                        <h3 class="fs-5 fw-bold text-warning mb-3">Información Legal</h3>
+                        <ul class="list-unstyled text-white-50">
+                            <li class="mb-2"><strong class="text-white">Titular:</strong> Obregón Adrian, Perone Tiziano.</li>
+                            <li class="mb-2"><strong class="text-white">Razón Social:</strong> The Good Taste S.R.L.</li>
+                            <li class="mb-2"><strong class="text-white">Domicilio Legal:</strong> Calle 9 de Julio 392, Corrientes </li>
+                        </ul>
+                    </div>
 
                 </div>
             </div>
@@ -179,9 +183,10 @@
                 </script>
 
                 <hr class="mb-4 text-secondary">
-                <div class="row text-center">
+                <div class="row text-center text-secondary" style="font-size: 0.9rem;">
                     <div class="col-12">
-                        <p class="mb-0 text-secondary">© 2026 The Good Taste. Todos los derechos reservados.</p>
+                        <p class="mb-1">© 2026 The Good Taste. Todos los derechos reservados.</p>
+                        <p class="mb-0">Titular: Obregón Adrian, Perone Tiziano. | Razón Social: The Good Taste S.R.L. | Domicilio Legal: Calle 9 de Julio 392, Corrientes</p>
                     </div>
                 </div>
             </div>
