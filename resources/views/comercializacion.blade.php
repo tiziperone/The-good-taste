@@ -71,7 +71,7 @@
 
         <div class="row justify-content-center">
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-animada mt-3 p-3 shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
+                <div class="card card-animada mt-3 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
                     <img src="{{ asset('Img/repartidor.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Formas de entrega</h5>
@@ -85,7 +85,7 @@
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-animada mt-3 p-3 shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
+                <div class="card card-animada mt-3 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
                     <img src="{{ asset('Img/caja.png') }}" class="card-img-top" alt="...">
                     <div class="card-body text-justify">
                         <h5 class="card-title fw-bold">Tipos de envío</h5>
@@ -98,8 +98,9 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-animada mt-4 p-3 shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
+                <div class="card card-animada mt-4 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
                     <img src="{{ asset('Img/tarjeta-de-credito.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Formas de pago</h5>
