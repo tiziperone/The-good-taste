@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -9,51 +9,84 @@
   <title>The Good Taste - Nosotros</title>
 
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
   <style>
+    /* Efecto de elevación en las tarjetas */
     .card-hover {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
     }
 
     .card-hover:hover {
       transform: translateY(-10px);
-      /* se levanta */
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      /* sombra */
+    }
+
+    /* Estilo llamativo para el título */
+    .titulo-nosotros {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+      color: #fff;
+    }
+
+    .titulo-nosotros::after {
+      content: "";
+      position: absolute;
+      width: 60%;
+      height: 4px;
+      background-color: #ffc107;
+      /* Color warning */
+      bottom: 0;
+      left: 20%;
+      border-radius: 2px;
+    }
+
+    .subtitulo-esencia {
+      display: block;
+      color: #ffc107;
+      font-size: 0.85rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
     }
   </style>
 </head>
 
-<body>
+<body class="bg-dark">
 
   @include('componentes.navbar')
 
-
-  <div class="container-fluid bg-dark text-white py-4 position-relative">
+  <div class="container-fluid bg-dark text-white py-4">
     <div class="container">
       <div class="d-flex gap-2 mb-4">
-        <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
+        <button onclick="history.back()" class="btn btn-outline-warning rounded-circle" title="Volver atrás">
           <i class="bi bi-arrow-left"></i>
         </button>
-        <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
+        <button onclick="history.forward()" class="btn btn-outline-warning rounded-circle" title="Ir adelante">
           <i class="bi bi-arrow-right"></i>
         </button>
       </div>
     </div>
 
-    <div class="container-fluid bg-dark text-white py-5">
+    <div class="container py-5">
 
-      <h1 class="text-center card-title mb-5">¿Quiénes Somos?</h1>
+      <div class="text-center mb-5">
+        <span class="subtitulo-esencia">Nuestra Esencia</span>
+        <h1 class="titulo-nosotros">¿Quiénes Somos?</h1>
+      </div>
 
       <div class="row justify-content-center mb-5 px-3">
         <div class="col-12 col-md-10 col-lg-8">
-
-          <p class="lead text-center mb-5" style="font-family: 'Montserrat', sans-serif;">
-            En The Good Taste, fusionamos nuestra dedicación como estudiantes universitarios con la elaboración de comida casera. Lo que comenzó como un proyecto productivo escolar y como un emprendimiento familiar, hoy es nuestra forma de llevar sabores auténticos y caseros a tu mesa.
+          <p class="lead text-center mb-5" style="font-family: 'Montserrat', sans-serif; font-weight: 400;">
+            En <strong>The Good Taste</strong>, fusionamos nuestra dedicación como estudiantes universitarios con la elaboración de comida casera. Lo que comenzó como un proyecto productivo escolar y como un emprendimiento familiar, hoy es nuestra forma de llevar sabores auténticos y caseros a tu mesa.
           </p>
 
           <div class="row mt-4">
@@ -61,8 +94,8 @@
               <h3 class="h5 text-warning fw-bold mb-3">
                 <i class="bi bi-clock-history me-2"></i>Nuestra Historia
               </h3>
-              <p style="text-align: justify;">
-                Nuestra trayectoria comenzó antes de estudiar la carrera de Licenciatura en Sistemas, realizando comida artesanal. Luego, fuimos perfeccionando nuestras recetas de bondiolas, pastas y milanesas hasta darle vida a este proyecto con el impulso de un proyecto facultativo.
+              <p class="text-secondary" style="text-align: justify; color: #ccc !important;">
+                Nuestra trayectoria comenzó en nuestra adolescencia, realizando comida artesanal como un microemprendimiento. Luego, fuimos perfeccionando nuestras recetas de bondiolas, pastas y milanesas hasta darle vida a este proyecto con el impulso de un trabajo facultativo.
               </p>
             </div>
 
@@ -70,8 +103,8 @@
               <h3 class="h5 text-warning fw-bold mb-3">
                 <i class="bi bi-bullseye me-2"></i>Nuestros Objetivos
               </h3>
-              <p style="text-align: justify;">
-                Buscamos ofrecer <em>"comida de verdad"</em>, elaborada con el mismo cuidado y calidad con el que desarrollamos nuestros proyectos. Nuestro objetivo es seguir creciendo como marca, mantener siempre la frescura de nuestros ingredientes y asegurarnos de que cada bocado te haga sentir como en casa.
+              <p class="text-secondary" style="text-align: justify; color: #ccc !important;">
+                Buscamos ofrecer <em>"comida de verdad"</em>, elaborada con el mismo cuidado y calidad con el que desarrollamos nuestros proyectos. Nuestro objetivo es seguir creciendo como marca, mantener siempre la frescura de nuestros ingredientes y asegurarnos de que cada plato te haga sentir como en casa.
               </p>
             </div>
           </div>
@@ -79,22 +112,24 @@
           <hr class="border-warning mt-5 mb-2" style="opacity: 0.3;">
         </div>
       </div>
-      <div class="row justify-content-center">
+
+      <div class="row justify-content-center g-4">
         <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-          <div class="card card-hover ms-md-5 mt-5 p-2 text-dark" style="width: 20rem;">
-            <img src="{{ asset('Img/tizianoperone.png') }}" class="card-img-top" style="height: 400px; object-fit: cover;" alt="...">
+          <div class="card card-hover p-2 text-dark" style="width: 20rem;">
+            <img src="{{ asset('Img/tizianoperone.png') }}" class="card-img-top" style="height: 400px; object-fit: cover;" alt="Tiziano Perone">
             <div class="card-body">
-              <h5 class="card-title">Tiziano Perone</h5>
-              <p class="card-text" style="text-align: justify;">Tengo 20 años, soy estudiante de Lic. en Sistemas, oriundo de Florencia, Santa Fe. Me especializo en elaboración artesanal de embutidos (bondiola).</p>
+              <h5 class="card-title fw-bold">Tiziano Perone</h5>
+              <p class="card-text text-muted" style="text-align: justify;">Tengo 20 años, soy de Florencia Sta. Fe, actual estudiante de Lic. en Sistemas en la ciudad de Corrientes. Me especializo en la elaboración artesanal de embutidos (bondiola).</p>
             </div>
           </div>
         </div>
+
         <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-          <div class="card card-hover ms-md-5 mt-5 p-2 text-dark" style="width: 20rem;">
-            <img src="{{ asset('Img/adrianobregon.png') }}" class="card-img-top" style="height: 400px; object-fit: cover;" alt="...">
+          <div class="card card-hover p-2 text-dark" style="width: 20rem;">
+            <img src="{{ asset('Img/adrianobregon.png') }}" class="card-img-top" style="height: 400px; object-fit: cover;" alt="Adrián Obregón">
             <div class="card-body">
-              <h5 class="card-title">Adrián Obregón</h5>
-              <p class="card-text" style="text-align: justify;">Tengo 22 años, soy estudiante de Lic. en Sistemas, vivo en San Luis del Palmar, Corrientes. Me especializo en hacer las milanesas de carne.</p>
+              <h5 class="card-title fw-bold">Adrián Obregón</h5>
+              <p class="card-text text-muted" style="text-align: justify;">Tengo 22 años, soy estudiante de Lic. en Sistemas, vivo en San Luis del Palmar, Corrientes. Me especializo en hacer las milanesas de carne.</p>
             </div>
           </div>
         </div>
@@ -102,7 +137,6 @@
     </div>
 
     @include('componentes.footer')
-
   </div>
 
   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
