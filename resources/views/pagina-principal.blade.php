@@ -82,7 +82,7 @@
                 </a>
             </div>
             <div class="col-12 col-md-4">
-                <a href="{{ url('/contacto') }}" class="text-decoration-none text-dark">
+                <a href="https://wa.me/5493794000000" target="_blank" class="text-white text-decoration-none mt-2">
                     <div class="card shadow-sm h-100 py-4 card-hover">
                         <i class="bi bi-journal-text display-3 text-success mb-2"></i>
                         <h4 class="fw-bold">¡Celebra tu cumpleaños!</h4>
