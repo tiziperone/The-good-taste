@@ -114,19 +114,9 @@
         </div>
     </div>
 
+    @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <button id="btnArriba" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Volver arriba">
-        <i class="bi bi-arrow-up-circle-fill"></i>
-    </button>
-
-    <script>
-        // Lógica para mostrar/ocultar el botón flotante
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('btnArriba');
-            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-        });
-    </script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
