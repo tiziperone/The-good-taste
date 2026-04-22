@@ -70,18 +70,16 @@
 
   <div class="container py-5">
 
-    <div class="text-center mb-5">
+    <div class="text-center mb-4">
       <span class="subtitulo-esencia">Nuestra Esencia</span>
       <h1 class="titulo-nosotros">¿Quiénes Somos?</h1>
     </div>
 
-    <div class="row justify-content-center mb-5 px-3">
+    <div class="row justify-content-center px-3">
       <div class="col-12 col-md-10 col-lg-8">
-        <p class="lead text-center mb-5" style="font-family: 'Montserrat', sans-serif; font-weight: 400;">
-          En <strong>The Good Taste</strong>, fusionamos nuestra dedicación como estudiantes universitarios con la elaboración de comida casera. Lo que comenzó como un proyecto productivo escolar y como un emprendimiento familiar, hoy es nuestra forma de llevar sabores auténticos y caseros a tu mesa.
-        </p>
 
-        <div class="row mt-4">
+        <div class="row mt-0">
+
           <div class="col-md-6 mb-4 mb-md-0 px-md-4 text-start border-md-end border-warning">
             <h3 class="h5 text-warning fw-bold mb-3">
               <i class="bi bi-clock-history me-2"></i>Nuestra Historia
@@ -99,9 +97,10 @@
               Buscamos ofrecer <em>"comida de verdad"</em>, elaborada con el mismo cuidado y calidad con el que desarrollamos nuestros proyectos. Nuestro objetivo es seguir creciendo como marca, mantener siempre la frescura de nuestros ingredientes y asegurarnos de que cada plato te haga sentir como en casa.
             </p>
           </div>
+
         </div>
 
-        <hr class="border-warning mt-5 mb-2" style="opacity: 0.3;">
+        <hr class="border-warning mt-5 mb-4" style="opacity: 0.3;">
       </div>
     </div>
 
