@@ -20,15 +20,7 @@
     @include('componentes.navbar')
 
     <div class="container mt-4 mb-2">
-        <div class="d-flex gap-2">
-            <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
-                <i class="bi bi-arrow-left"></i>
-            </button>
-
-            <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
-                <i class="bi bi-arrow-right"></i>
-            </button>
-        </div>
+        @include('componentes.botonesAtrasAdelante')
     </div>
 
     <!--Se realiza una estructura de columnas para mostrar que el mensaje se envio con exito
@@ -45,7 +37,7 @@ tambien se da la posibilidad de volver al inicio del sitio web (pagina principal
             </div>
         </div>
     </div>
-
+    @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
 </body>
