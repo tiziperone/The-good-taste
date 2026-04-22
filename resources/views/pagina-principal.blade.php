@@ -20,19 +20,7 @@
             transition: color 0.3s ease;
         }
 
-        /* Estilos para el botón de ir arriba */
-        #btnArriba {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: none;
-            z-index: 1050;
-            border: none;
-            background: transparent;
-            color: #ffc107;
-            font-size: 2.5rem;
-            cursor: pointer;
-        }
+        /* ELIMINAMOS los estilos de #btnArriba de aquí porque el componente ya tiene los suyos */
     </style>
 </head>
 
