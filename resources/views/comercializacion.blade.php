@@ -41,7 +41,9 @@
 
     @include('componentes.navbar')
 
-    @include('componentes.botonesAtrasAdelante')
+    <div class="container mt-4 mb-2">
+        @include('componentes.botonesAtrasAdelante')
+    </div>
 
     <div class="container">
 

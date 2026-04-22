@@ -33,7 +33,9 @@
 
     @include('componentes.navbar')
 
-    @include('componentes.botonesAtrasAdelante')
+    <div class="container mt-4 mb-2">
+        @include('componentes.botonesAtrasAdelante')
+    </div>
 
     <div class="container bg-dark text-white py-5 my-5 rounded-3 shadow">
         <div class="row justify-content-center">

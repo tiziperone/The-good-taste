@@ -44,7 +44,9 @@
 
     @include('componentes.navbar')
 
-    @include('componentes.botonesAtrasAdelante')
+    <div class="container mt-4 mb-2">
+        @include('componentes.botonesAtrasAdelante')
+    </div>
 
     <div class="container-fluid bg-dark text-white text-center py-1 border-bottom border-warning">
         <h1 class="fw-bold fs-2 mb-2 card-title">Nuestro Menú</h1>
