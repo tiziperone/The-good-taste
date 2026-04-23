@@ -25,34 +25,47 @@
 
   <hr class="border-warning border-2 opacity-100">
 
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/milanesa sola ejemplo.png') }}" class="card-img-top" style="height: 200px;" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Milanesa de Carne 1kg sin Freir. (un kilogramo).</h5>
-            <p class="card-text" style="text-align: justify;">Milanesa lista para freir, acompañalo con lo que mas te guste, o con quien mas te guste 😉.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
-            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i>
-            </a> $10.000
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center gap-4">
+
+      <div class="col-12 col-md-5 col-lg-4">
+        <div class="card text-bg-dark border-warning shadow-sm h-100">
+          <img src="{{ asset('Img/milanesa sola ejemplo.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Milanesa para freír">
+
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold text-warning">Milanesa de Carne sin Freír (1kg.)</h5>
+            <p class="card-text text-light">Milanesa lista para freír, acompañala con lo que más te guste, o con quien más te guste 😉.</p>
+
+            <div class="mt-auto">
+              <h4 class="fw-bold mb-3">$10.000</h4>
+              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
+              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
+                Agregar <i class="bi bi-cart"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/milanesaconguarnicion.png') }}" class="card-img-top" style="height: 200px;" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">1 Milanesa de Carne Frita con Guarnicion. (una Unidad).</h5>
-            <p class="card-text" style="text-align: justify;">Milanesa de carne frita con guarnicion, puede ser: con ensalada de lechuga y tomate, puré o ensalada rusa.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
-            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i>
-            </a> $8000
+
+      <div class="col-12 col-md-5 col-lg-4">
+        <div class="card text-bg-dark border-warning shadow-sm h-100">
+          <img src="{{ asset('Img/milanesaconguarnicion.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Milanesa con guarnición">
+
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold text-warning">Milanesa Frita con Guarnición (1 una)</h5>
+            <p class="card-text text-light">Milanesa de carne frita con guarnición, puede ser: ensalada de lechuga y tomate, puré o ensalada rusa.</p>
+
+            <div class="mt-auto">
+              <h4 class="fw-bold mb-3">$8.000</h4>
+              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
+              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
+                Agregar <i class="bi bi-cart"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 

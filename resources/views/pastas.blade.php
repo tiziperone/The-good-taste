@@ -26,49 +26,65 @@
   <hr class="border-warning border-2 opacity-100">
 
 
-  <div class="container">
-    <div class="row">
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center g-4">
+
       <div class="col-12 col-md-6 col-lg-4">
-        <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/RaviolesTarjeta.png') }}" class="card-img-top" style="height: 200px;" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"> Ravioles 1doc. (Una docena.).</h5>
-            <p class="card-text" style="text-align: justify;">Deliciosos ravioles rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
-            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i>
-            </a> $3.800
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/SorrentinosTarjeta.png') }}" class="card-img-top" style="height: 200px;" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Sorrentinos 1doc. (Una docena.).</h5>
-            <p class="card-text" style="text-align: justify;">Deliciosos sorrentinos rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
-            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i>
-            </a> $4.000
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/FideosTarjeta.png') }}" class="card-img-top" style="height: 200px;" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Fideos 500g. (Quinientos gramos.).</h5>
-            <p class="card-text" style="text-align: justify;">Fideos de alta calidad, ideales para preparar platos sabrosos con una exquisita salsa.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
-            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i>
-            </a> $2.500
+        <div class="card text-bg-dark border-warning shadow-sm h-100">
+          <img src="{{ asset('Img/RaviolesTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Ravioles">
+
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold text-warning">Ravioles (1 docena)</h5>
+            <p class="card-text text-light">Deliciosos ravioles rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.</p>
+
+            <div class="mt-auto">
+              <h4 class="fw-bold mb-3">$3.800</h4>
+              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
+              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
+                Agregar <i class="bi bi-cart"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card text-bg-dark border-warning shadow-sm h-100">
+          <img src="{{ asset('Img/SorrentinosTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Sorrentinos">
 
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold text-warning">Sorrentinos (1 docena)</h5>
+            <p class="card-text text-light">Deliciosos sorrentinos rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.</p>
+
+            <div class="mt-auto">
+              <h4 class="fw-bold mb-3">$4.000</h4>
+              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
+              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
+                Agregar <i class="bi bi-cart"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card text-bg-dark border-warning shadow-sm h-100">
+          <img src="{{ asset('Img/FideosTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Fideos">
+
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold text-warning">Fideos (500g)</h5>
+            <p class="card-text text-light">Fideos de alta calidad, ideales para preparar platos sabrosos con una exquisita salsa.</p>
+
+            <div class="mt-auto">
+              <h4 class="fw-bold mb-3">$2.500</h4>
+              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
+              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
+                Agregar <i class="bi bi-cart"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
