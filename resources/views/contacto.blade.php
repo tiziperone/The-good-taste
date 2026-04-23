@@ -54,17 +54,20 @@
                     <div class="row mt-4 justify-content-center">
                         <div class="col-12 mb-3">
                             <label class="fw-bold fs-5">Nombre</label>
-                            <input type="text" name="nombre" class="form-control w-50 mx-auto" placeholder="Ingrese su nombre...">
+                            <input type="text" name="nombre" class="form-control w-50 mx-auto" placeholder="Ingrese su nombre..."
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+                                title="Por favor, ingrese solo letras. No se permiten números."
+                                required>
                         </div>
 
                         <div class="col-12 mb-3">
                             <label class="fw-bold fs-5">Correo Electrónico</label>
-                            <input type="email" name="email" class="form-control w-50 mx-auto" placeholder="correo@ejemplo.com">
+                            <input type="email" name="email" class="form-control w-50 mx-auto" placeholder="correo@ejemplo.com" required>
                         </div>
 
                         <div class="col-12 mb-3">
                             <label class="fw-bold fs-5">Mensaje</label>
-                            <textarea name="mensaje" class="form-control w-50 mx-auto" rows="4" placeholder="Ingrese su mensaje..."></textarea>
+                            <textarea name="mensaje" class="form-control w-50 mx-auto" rows="4" placeholder="Ingrese su mensaje..." required></textarea>
                         </div>
 
                         <div class="col-12">
