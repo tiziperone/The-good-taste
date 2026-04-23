@@ -25,36 +25,45 @@
 
   <hr class="border-warning border-2 opacity-100">
 
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/BondiolaTarjetaSinPimenton.png') }}" class="card-img-top" style="height: 200px;" alt="...">
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center gap-4">
+
+      <div class="col-12 col-md-5 col-lg-4">
+        <div class="card text-bg-dark border-warning shadow-sm">
+          <img src="{{ asset('Img/BondiolaTarjetaSinPimenton.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Bondiola Clásica">
+
           <div class="card-body">
-            <h5 class="card-title">Bondiola 1kg. (un kilogramo).</h5>
-            <p class="card-text" style="text-align: justify;">Fiambre especial para compartir en picadas y comidas, acompañalo con lo que mas te guste, o con quien mas te guste 😉.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
-            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i>
+            <h5 class="card-title fw-bold text-warning">Bondiola Clásica (1kg)</h5>
+            <p class="card-text text-light">Fiambre especial para compartir en picadas y comidas, acompañalo con lo que más te guste, o con quien más te guste 😉.</p>
+
+            <h4 class="fw-bold mb-3">$30.000</h4>
+
+            <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
+            <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
+              Agregar <i class="bi bi-cart"></i>
             </a>
-            <span class="ms-2">$30.000</span>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card ms-5 mt-5 p-2" style="width: 20rem;">
-          <img src="{{ asset('Img/BondiolaTarjetaConPimenton.png') }}" class="card-img-top" style="height: 200px;" alt="...">
+
+      <div class="col-12 col-md-5 col-lg-4">
+        <div class="card text-bg-dark border-warning shadow-sm">
+          <img src="{{ asset('Img/BondiolaTarjetaConPimenton.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Bondiola con Pimentón">
+
           <div class="card-body">
-            <h5 class="card-title">Bondiola 1kg. (un kilogramo).</h5>
-            <p class="card-text" style="text-align: justify;">Para aquellos que aman el pimentón, ésta es su elección ideal. El mismo y exquisito fiambre, pero con un toque especial 👌.</p>
-            <a href="{{ url('/compra') }}" class="btn btn-primary">Comprar</a>
-            <a href="{{ url('/carrito') }}" class="btn btn-primary ms-2">Agregar
-              <i class="bi bi-cart"></i>
+            <h5 class="card-title fw-bold text-warning">Bondiola al Pimentón (1kg)</h5>
+            <p class="card-text text-light">Para aquellos que aman el pimentón, ésta es su elección ideal. El mismo y exquisito fiambre, pero con un toque especial 👌.</p>
+
+            <h4 class="fw-bold mb-3">$30.000</h4>
+
+            <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
+            <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
+              Agregar <i class="bi bi-cart"></i>
             </a>
-            <span class="ms-2">$30.000</span>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 

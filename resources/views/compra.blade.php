@@ -14,27 +14,22 @@
 
 </head>
 
-<body>
+<body class="bg-dark">
 
     @include('componentes.navbar')
 
-    <div style="position: relative;">
-        <div style="position: absolute; top: 20px; left: 20px; z-index: 100;" class="d-flex gap-2">
-            <button onclick="history.back()" class="btn-navegacion" title="Volver atrás">
-                <i class="bi bi-arrow-left"></i>
-            </button>
-
-            <button onclick="history.forward()" class="btn-navegacion" title="Ir adelante">
-                <i class="bi bi-arrow-right"></i>
-            </button>
-        </div>
+    <div class="container mt-4 mb-4">
+        @include('componentes.botonesAtrasAdelante')
     </div>
+
+    <hr class="border-warning border-2 opacity-100">
 
 
     <div class="container mt-5">
-        <h2 class="mb-4">Pronto estará disponible esta funcionalidad, gracias por su paciencia.</h2>
+        <h2 class="text-white mb-2">Pronto estará disponible esta funcionalidad, gracias por su paciencia.</h2>
     </div>
 
+    @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
 </body>
