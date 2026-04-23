@@ -20,13 +20,33 @@
             transition: color 0.3s ease;
         }
 
-        /* ELIMINAMOS los estilos de #btnArriba de aquí porque el componente ya tiene los suyos */
+        .tarjeta-completa {
+            background-color: #2b3035;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            /* Borde amarillo warning muy sutil (30% opacidad) */
+            color: white;
+            /* Asegura texto blanco */
+            transition: all 0.3s ease;
+            /* Transición suave para todos los efectos */
+        }
+
+        .tarjeta-completa:hover {
+            background-color: #343a40;
+            /* Fondo un poco más claro */
+            border-color: rgba(255, 193, 7, 1);
+            /* Borde amarillo warning sólido */
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+            /* Glow amarillo warning sutil */
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
 <body class="bg-dark">
 
     @include('componentes.navbar')
+
+    <hr class="border-warning border-2 opacity-100 mt-0 mb-0">
 
     <div id="carouselExampleIndicators" class="carousel slide border-bottom border-warning border-3" data-bs-ride="carousel" data-bs-interval="3500">
         <div class="carousel-indicators">
@@ -57,48 +77,56 @@
         </button>
     </div>
 
-    <div class="container-fluid px-0 mt-5 mb-5 text-center">
+    <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
-            <div class="col-10 col-md-8 bg-dark mt-3">
-                <h2 class="estilo-marca-2 fs-2 fw-bold text-white mb-3 card-title">Bondiola, milanesas y pastas caseras todos los días.</h2>
-                <p class="fs-4 text-white">Cocinamos con ingredientes reales para que disfrutes comida de verdad.</p>
+            <div class="col-12 col-md-10">
+                <div class="p-5 rounded-4 border border-warning border-opacity-25 shadow text-center" style="background-color: rgba(255, 255, 255, 0.03);">
+                    <h2 class="estilo-marca-2 display-6 fw-bold text-white mb-3">
+                        Bondiola, milanesas y pastas caseras.
+                    </h2>
+                    <p class="fs-4 text-light mb-4">Cocinamos con ingredientes reales para que disfrutes comida de verdad, todos los días.</p>
 
-                <a href="{{ url('/catalogo') }}" class="btn btn-warning btn-lg px-5 py-3 mt-3 shadow-sm rounded-pill fw-bold fs-4 text-dark">
-                    <i class="bi bi-cart2 me-2"></i> ¡Mira nuestras delicias!
-                </a>
+                    <a href="{{ url('/catalogo') }}" class="btn btn-warning btn-lg px-5 py-3 shadow rounded-pill fw-bold fs-4 text-dark">
+                        <i class="bi bi-cart2 me-2"></i> ¡Mira nuestras delicias!
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="container mb-5">
         <div class="row text-center g-4">
+
             <div class="col-12 col-md-4">
-                <a href="{{ url('/comercializacion') }}" class="text-decoration-none text-dark">
-                    <div class="card shadow-sm h-100 py-4 card-hover">
+                <a href="{{ url('/comercializacion') }}" class="text-decoration-none">
+                    <div class="card tarjeta-completa shadow-sm h-100 py-4">
                         <i class="bi bi-truck display-3 text-warning mb-2"></i>
                         <h4 class="fw-bold">¿Cómo enviamos?</h4>
-                        <p class="text-muted">Conoce nuestras zonas y horarios.</p>
+                        <p class="text-light">Conoce nuestras zonas y horarios.</p>
                     </div>
                 </a>
             </div>
+
             <div class="col-12 col-md-4">
-                <a href="https://wa.me/5493794000000" target="_blank" class="text-white text-decoration-none mt-2">
-                    <div class="card shadow-sm h-100 py-4 card-hover">
+                <a href="https://wa.me/5493794000000" target="_blank" class="text-decoration-none mt-2">
+                    <div class="card tarjeta-completa shadow-sm h-100 py-4">
                         <i class="bi bi-journal-text display-3 text-success mb-2"></i>
                         <h4 class="fw-bold">¡Celebra tu cumpleaños!</h4>
-                        <p class="text-muted">Si quieres celebrar tu cumpleaños con un menú especial y único, contáctanos y coordinamos.</p>
+                        <p class="text-light">Si quieres celebrar tu cumpleaños con un menú especial y único, contáctanos y coordinamos.</p>
                     </div>
                 </a>
             </div>
+
             <div class="col-12 col-md-4">
-                <a href="{{ url('/quienes-somos') }}" class="text-decoration-none text-dark">
-                    <div class="card shadow-sm h-100 py-4 card-hover">
+                <a href="{{ url('/quienes-somos') }}" class="text-decoration-none">
+                    <div class="card tarjeta-completa shadow-sm h-100 py-4">
                         <i class="bi bi-shop display-3 text-danger mb-2"></i>
                         <h4 class="fw-bold">Nosotros</h4>
-                        <p class="text-muted">Conoce a los cocineros.</p>
+                        <p class="text-light">Conoce a los cocineros.</p>
                     </div>
                 </a>
             </div>
+
         </div>
     </div>
 
