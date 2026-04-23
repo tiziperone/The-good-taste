@@ -24,7 +24,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-dark">
 
     @include('componentes.navbar')
 
@@ -59,9 +59,9 @@
 
     <div class="container-fluid px-0 mt-5 mb-5 text-center">
         <div class="row justify-content-center">
-            <div class="col-10 col-md-8 bg-white mt-3">
-                <h2 class="estilo-marca-2 fs-2 fw-bold text-dark mb-3 card-title">Bondiola, milanesas y pastas caseras todos los días.</h2>
-                <p class="fs-4 text-muted">Cocinamos con ingredientes reales para que disfrutes comida de verdad.</p>
+            <div class="col-10 col-md-8 bg-dark mt-3">
+                <h2 class="estilo-marca-2 fs-2 fw-bold text-white mb-3 card-title">Bondiola, milanesas y pastas caseras todos los días.</h2>
+                <p class="fs-4 text-white">Cocinamos con ingredientes reales para que disfrutes comida de verdad.</p>
 
                 <a href="{{ url('/catalogo') }}" class="btn btn-warning btn-lg px-5 py-3 mt-3 shadow-sm rounded-pill fw-bold fs-4 text-dark">
                     <i class="bi bi-cart2 me-2"></i> ¡Mira nuestras delicias!

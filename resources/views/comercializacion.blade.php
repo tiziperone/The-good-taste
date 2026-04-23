@@ -37,22 +37,24 @@
 
 </head>
 
-<body>
+<body class="bg-dark">
 
     @include('componentes.navbar')
 
-    <div class="container mt-4 mb-2">
+    <div class="container mt-4 mb-4">
         @include('componentes.botonesAtrasAdelante')
     </div>
 
+    <hr class="border-warning border-2 opacity-100">
+
     <div class="container">
 
-        <h1 class="text-center display-3 mt-5 fw-bold">
+        <h1 class="text-center text-light display-3 mt-5 fw-bold">
             Comercialización
         </h1>
 
         <div class="row justify-content-center">
-            <p class="text-center display-6 mt-3 mb-5">
+            <p class="text-center text-light display-6 mt-3 mb-5">
                 En The Good Taste trabajamos para que disfrutes comida casera...
             </p>
 
@@ -83,7 +85,7 @@
                         <h5 class="card-title fw-bold">Tipos de envío</h5>
                         <p class="card-text">Nuestros envíos se realizan de manera cuidada para garantizar que los productos lleguen en perfectas condiciones:</p>
                     </div>
-                    <ul class="list-group list-group-flush fw-bold text-justify">
+                    <ul class="list-group list-group-flush fw-bold text-justify text-white">
                         <li class="list-group-item">Entregas programadas.</li>
                         <li class="list-group-item">Pedidos preparados en el día.</li>
                         <li class="list-group-item">Embalaje seguro para conservar la calidad de los alimentos.</li>
@@ -153,11 +155,15 @@
                 <div class="card p-4 shadow text-center bg-warning text-dark border border-3 border-dark">
 
                     <h5 class="fw-bold mb-3">
-                        <i class="bi bi-exclamation-triangle-fill"></i>
-                        Información importante
+                        <i class="bi bi-exclamation-triangle-fill">
+                            <p class="text-white">Información importante
+
+                            </p>
+                        </i>
+
                     </h5>
 
-                    <p class="fw-bold mb-3">
+                    <p class="fw-bold mb-3 text-white">
                         Todos nuestros productos son caseros. Se recomienda pedir con anticipación.
                         Los tiempos de entrega pueden variar según la demanda.
                     </p>

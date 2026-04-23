@@ -37,14 +37,16 @@
 <body class="bg-dark text-white">
 
     @include('componentes.navbar')
-    <div class="container mt-4 mb-2">
+
+    <div class="container mt-4 mb-4">
         @include('componentes.botonesAtrasAdelante')
     </div>
 
+    <hr class="border-warning border-2 opacity-100">
 
     <div class="container-xl mt-2">
         <div class="row">
-            <div class="col-lg-6 text-center mb-5 mb-lg-0 pe-lg-4 divisor-naranja">
+            <div class="col-lg-6 text-center mt-4 mb-5 mb-lg-0 pe-lg-4 divisor-naranja">
                 <img src="{{ url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo">
 
                 <form action="{{ url('/contacto') }}" method="POST">

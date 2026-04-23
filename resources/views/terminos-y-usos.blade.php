@@ -29,13 +29,15 @@
     </style>
 </head>
 
-<body class="bg-light">
+<body class="bg-dark">
 
     @include('componentes.navbar')
 
-    <div class="container mt-4 mb-2">
+    <div class="container mt-4 mb-4">
         @include('componentes.botonesAtrasAdelante')
     </div>
+
+    <hr class="border-warning border-2 opacity-100">
 
     <div class="container bg-dark text-white py-5 my-5 rounded-3 shadow">
         <div class="row justify-content-center">

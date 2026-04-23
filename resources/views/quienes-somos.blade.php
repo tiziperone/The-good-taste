@@ -64,9 +64,10 @@
 
   @include('componentes.navbar')
 
-  <div class="container mt-4 mb-2">
+  <div class="container mt-4 mb-4">
     @include('componentes.botonesAtrasAdelante')
   </div>
+  <hr class="border-warning border-2 opacity-100">
 
   <div class="container py-5">
 
