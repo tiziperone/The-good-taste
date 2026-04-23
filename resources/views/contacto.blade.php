@@ -105,6 +105,7 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>
