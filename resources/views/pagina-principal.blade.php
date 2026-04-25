@@ -57,7 +57,7 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active" style="max-height: 530px">
-                <img src="{{ url('/Img/subir_calidad_4k_202604082227.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Imagen 1">
+                <img src="{{ url('/Img/subir_calidad_4k_202604082227.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Bondiolas">
             </div>
             <div class="carousel-item" style="max-height: 530px">
                 <img src="{{ url('/Img/MilanesaHome.jpg') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 60%;" alt="Milanesas">
@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"> <!-- Botones de los costados-->
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Anterior</span>
         </button>
