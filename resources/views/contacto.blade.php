@@ -14,18 +14,18 @@
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
     <style>
-        /* Línea divisoria naranja responsiva */
+        /* Línea divisoria naranja*/
         @media (min-width: 992px) {
             .divisor-naranja {
                 border-right: 2px solid #ffc107;
-                /* Color warning de Bootstrap */
+                /* Color warnign que se utiliza en casi toda la pagina*/
             }
         }
 
         @media (max-width: 991px) {
             .divisor-naranja {
                 border-bottom: 2px solid #ffc107;
-                /* En celulares se hace horizontal */
+                /* Para que en celulares se haga horizontal */
                 padding-bottom: 2rem;
                 margin-bottom: 2rem;
             }
@@ -46,20 +46,20 @@
 
     <div class="container-xl mt-2">
         <div class="row">
-            <div class="col-lg-6 text-center mt-4 mb-5 mb-lg-0 pe-lg-4 divisor-naranja">
-                <img src="{{ url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo">
+            <div class="col-lg-6 text-center mt-4 mb-5 mb-lg-0 pe-lg-4 divisor-naranja"> <!-- Como no tiene instruccion para pantallas chicas, por defecto cada columna va a ocupar todo el ancho (12)-->
+                <img src="{{ url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo"> <!-- Imagen como un circulo, padding, se la centra horizaontalmente, se la transforma en un "bloque"-->
 
                 <form action="{{ url('/contacto') }}" method="POST">
                     @csrf
-                    <div class="row mt-4 justify-content-center">
+                    <div class="row mt-4 justify-content-center"><!--si la columna de adentro es mas chica que el total, la centra-->
                         <div class="col-12 mb-3">
                             <label class="fw-bold fs-5">Nombre</label>
                             <input type="text" name="nombre" class="form-control w-50 mx-auto" placeholder="Ingrese su nombre..."
                                 pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
                                 title="Por favor, ingrese solo letras. No se permiten números."
                                 required>
-                        </div>
-
+                        </div> <!-- El conjunto de letras es la validacion para ingresar nombre (solo letras may, min con tildes, la ñ tambien)-->
+                        <!-- required no permite que se envie el formulario si ese campo esta vacio-->
                         <div class="col-12 mb-3">
                             <label class="fw-bold fs-5">Correo Electrónico</label>
                             <input type="email" name="email" class="form-control w-50 mx-auto" placeholder="correo@ejemplo.com" required>
@@ -79,7 +79,7 @@
                 </form>
             </div>
 
-            <div class="col-lg-6 ps-lg-4 text-center d-flex flex-column align-items-center">
+            <div class="col-lg-6 ps-lg-4 text-center d-flex flex-column align-items-center"><!--Para que los elementos se posicionen debajo del otro y no al costado-->
 
                 <h2 class="mt-3">Nos podés encontrar en:</h2>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m11!1m3!1d4839.240813812648!2d-58.84026212363989!3d-27.46429264908025!2m2!1f0!2f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94456caff77859e5%3A0xcb23b15bb4f6d241!2sPlaza%2025%20de%20Mayo!5e1!3m2!1ses-419!2sar!4v1777133397398!5m2!1ses-419!2sar" width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

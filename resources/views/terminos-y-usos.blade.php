@@ -44,9 +44,9 @@
             <div class="col-11 col-md-10 col-lg-8">
                 <p class="text-secondary small mb-1">Versión vigente: 14 de abril de 2026</p>
                 <h1 class="mb-0 fw-bold" style="color: #f8f9fa;">Términos y condiciones de uso del sitio</h1>
-                <p class="lead border-bottom pb-3 mb-4 text-info">Resumen de Términos y Condiciones</p>
+                <p class="lead border-bottom pb-3 mb-4 text-info">Resumen de Términos y Condiciones</p><!-- Hace que destaque el texto-->
 
-                <div class="lh-base" style="text-align: justify;">
+                <div class="lh-base" style="text-align: justify;"><!--Interlineado base (1,5)-->
                     <p>The Good Taste es un emprendimiento artesanal dedicado a la fabricación y comercialización de productos alimenticios de alta calidad, incluyendo bondiolas, milanesas y pastas. Al utilizar nuestro sitio web, aceptas las condiciones de navegación y los procedimientos de venta detallados a continuación.</p>
 
                     <h3 class="mt-5 mb-3 text-warning">1. Capacidad</h3>

@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
   <style>
-    /* Efecto de elevación en las tarjetas */
+    /* Efecto para que se "levanten" las tarjetas con nuestras fotos*/
     .card-hover {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border: none;
@@ -25,7 +25,7 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
-    /* Estilo llamativo para el título */
+    /* Estilo para el título */
     .titulo-nosotros {
       font-family: 'Montserrat', sans-serif;
       font-weight: 800;
@@ -67,12 +67,13 @@
   <div class="container mt-4 mb-4">
     @include('componentes.botonesAtrasAdelante')
   </div>
+
   <hr class="border-warning border-2 opacity-100">
 
   <div class="container py-5">
 
     <div class="text-center mb-4">
-      <span class="subtitulo-esencia">Nuestra Esencia</span>
+      <span class="subtitulo-esencia">Nuestra Esencia</span><!-- Aqui y en la linea de abajo se aplican estilos predefinidos en el <style> de arriba-->
       <h1 class="titulo-nosotros">¿Quiénes Somos?</h1>
     </div>
 
@@ -102,6 +103,7 @@
         </div>
 
         <hr class="border-warning mt-5 mb-4" style="opacity: 0.3;">
+
       </div>
     </div>
 
