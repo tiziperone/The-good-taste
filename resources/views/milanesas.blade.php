@@ -33,11 +33,11 @@
           <img src="{{ asset('Img/milanesa sola ejemplo.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Milanesa para freír">
 
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold text-warning">Milanesa de Carne sin Freír (1kg.)</h5>
-            <p class="card-text text-light">Milanesa lista para freír, acompañala con lo que más te guste, o con quien más te guste 😉.</p>
+            <h5 class="card-title fw-bold text-warning">Milanesa de Carne (1kg.)</h5>
+            <p class="card-text text-light">Milanesa lista para freír, fresca y hecha en el dia, acompañala con lo que más te guste.</p>
 
             <div class="mt-auto">
-              <h4 class="fw-bold mb-3">$10.000</h4>
+              <h4 class="fw-bold mb-3">$11.000</h4>
               <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
               <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
                 Agregar <i class="bi bi-cart"></i>
@@ -52,11 +52,11 @@
           <img src="{{ asset('Img/milanesaconguarnicion.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Milanesa con guarnición">
 
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold text-warning">Milanesa Frita con Guarnición (1 una)</h5>
-            <p class="card-text text-light">Milanesa de carne frita con guarnición, puede ser: ensalada de lechuga y tomate, puré o ensalada rusa.</p>
+            <h5 class="card-title fw-bold text-warning">Milanesa de Pollo (1 kg)</h5>
+            <p class="card-text text-light">Milanesa de pollo lista para freir, fresca y hecha en el dia.</p>
 
             <div class="mt-auto">
-              <h4 class="fw-bold mb-3">$8.000</h4>
+              <h4 class="fw-bold mb-3">$11.000</h4>
               <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
               <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
                 Agregar <i class="bi bi-cart"></i>

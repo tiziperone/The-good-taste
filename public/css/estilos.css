@@ -132,3 +132,14 @@ img.emoji {
     display: inline-block !important;
     vertical-align: -0.1em !important;
 }
+
+/* --- Fuentes --- */
+.titulo-black {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; /* BLACK */
+}
+
+.texto-bold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; /* BOLD */
+}

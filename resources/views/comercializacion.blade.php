@@ -10,8 +10,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet"> <!-- Importamos la fuente "Montserrat" desde Google Fonts -->
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+    <!-- Importamos la fuente "Montserrat" desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
 
@@ -137,14 +137,12 @@
 
                     <h5 class="fw-bold mb-3">
                         <i class="bi bi-exclamation-triangle-fill">
-                            <p class="text-dark">Información importante
-
-                            </p>
+                            <p class="titulo-black text-dark">Información importante</p>
                         </i>
 
                     </h5>
 
-                    <p class="fw-bold mb-3 text-dark">
+                    <p class="texto-bold fw-bold mb-3 text-dark">
                         Todos nuestros productos son caseros. Se recomienda pedir con anticipación.
                         Los tiempos de entrega pueden variar según la demanda.
                     </p>
