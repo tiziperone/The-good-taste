@@ -53,69 +53,28 @@
         <p class="fs-5 text-warning mb-5">Haz clic en la imagen de lo que quieras comer hoy</p>
     </div>
 
-    <div class="row g-0">
+    <div class="row g-0 mt-5">
         <div class="col-12 text-center">
-            <a href="{{ url('/bondiola') }}" class="text-decoration-none text-white d-block">
+            <a href="{{ url('/bondiola') }}" class="text-decoration-none">
                 <img src="{{ asset('Img/FotoBondiolaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Bondiola" style="height: 570px; object-fit: cover;">
             </a>
         </div>
 
-        <div class="col-12 text-center mt-1">
-            <a href="{{ url('/milanesas') }}" class="text-decoration-none text-white d-block">
+        <div class="col-12 text-center">
+            <a href="{{ url('/milanesas') }}" class="text-decoration-none">
                 <img src="{{ asset('Img/FotoMilanesaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Milanesa" style="height: 570px; object-fit: cover;">
             </a>
         </div>
 
-        <div class="col-12 text-center mt-1">
-            <a href="{{ url('/pastas') }}" class="text-decoration-none text-white d-block">
+        <div class="col-12 text-center">
+            <a href="{{ url('/pastas') }}" class="text-decoration-none">
                 <img src="{{ asset('Img/FotoPastasCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Pastas" style="height: 570px; object-fit: cover;">
             </a>
         </div>
     </div>
 
-    <footer class="bg-dark text-white pt-5 pb-4 mt-1 border-top border-warning border-3 mb-0">
-        <div class="container text-center text-md-start">
-            <div class="row text-center text-md-start justify-content-between">
-
-                <div class="col-md-4 mx-auto mb-4 text-center">
-                    <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-2 mb-3 shadow" width="100" height="100" alt="Logo" style="object-fit: contain;">
-                    <h5 class="text-uppercase fw-bold text-warning estilo-marca">The Good Taste</h5>
-                    <p>Comida de verdad, hecha con cariño.</p>
-                </div>
-
-                <div class="col-md-4 mx-auto mb-4">
-                    <h6 class="text-uppercase fw-bold mb-4 border-bottom border-warning pb-2">Encuéntranos</h6>
-                    <p><i class="bi bi-geo-alt-fill me-2 text-warning"></i> Calle 9 de Julio 1234, Corrientes.</p>
-                    <p><i class="bi bi-telephone-fill me-2 text-warning"></i> +54 3794 12-3456</p>
-                    <p><i class="bi bi-envelope-fill me-2 text-warning"></i> thegoodtaste@gmail.com</p>
-                </div>
-
-                <div class="col-md-4 mx-auto mb-md-0 mb-4 text-center text-md-start">
-                    <h6 class="text-uppercase fw-bold mb-4 border-bottom border-warning pb-2">Nuestras Redes</h6>
-                    <div class="d-flex justify-content-center justify-content-md-start gap-4 fs-1 mt-2">
-                        <a href="https://instagram.com/elevate.dis" target="_blank" class="text-white text-decoration-none">
-                            <i class="bi bi-instagram hover-warning"></i>
-                        </a>
-                        <a href="https://facebook.com/adrian.obregon.3701/" target="_blank" class="text-white text-decoration-none">
-                            <i class="bi bi-facebook hover-warning"></i>
-                        </a>
-                        <a href="https://wa.me/543794123456" target="_blank" class="text-white text-decoration-none">
-                            <i class="bi bi-whatsapp hover-warning"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <hr class="mb-4 text-secondary">
-            <div class="row text-center">
-                <div class="col-12">
-                    <p class="mb-0 text-secondary small">© 2026 The Good Taste. Todos los derechos reservados.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     @include('componentes.botonHaciaArriba')
+    @include('componentes.footer')
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
