@@ -26,7 +26,7 @@
     <hr class="border-warning border-2 opacity-100">
 
     <div class="container mt-5">
-        <h2 class="mb-4">Pronto estará disponible esta funcionalidad, gracias por su paciencia.</h2>
+        <h2 class="text-white mb-4">Pronto estará disponible esta funcionalidad, gracias por su paciencia.</h2>
     </div>
 
     @include('componentes.botonHaciaArriba')
