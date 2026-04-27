@@ -104,7 +104,7 @@
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 1.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
-                        <p class="fw-bold">Elegís los productos del menú</p>
+                        <p class="fw-bold">1. Vas a catalogo, le das click a la imagen de lo que quieras comer.</p>
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 2.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
-                        <p class="fw-bold">Le das click a Comprar</p>
+                        <p class="fw-bold">2. Le das click a Comprar</p>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 3.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
-                        <p class="fw-bold">Coordinamos pago y entrega</p>
+                        <p class="fw-bold">3. Por ultimo coordinamos pago y entrega.</p>
                     </div>
                 </div>
             </div>
@@ -137,14 +137,14 @@
 
                     <h5 class="fw-bold mb-3">
                         <i class="bi bi-exclamation-triangle-fill">
-                            <p class="text-white">Información importante
+                            <p class="text-dark">Información importante
 
                             </p>
                         </i>
 
                     </h5>
 
-                    <p class="fw-bold mb-3 text-white">
+                    <p class="fw-bold mb-3 text-dark">
                         Todos nuestros productos son caseros. Se recomienda pedir con anticipación.
                         Los tiempos de entrega pueden variar según la demanda.
                     </p>
