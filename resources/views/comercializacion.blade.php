@@ -14,26 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
-    <style>
-        .card:hover {
-            transform: scale(1.05);
-            transition: 0.3s;
-        }
 
-        .card-title {
-            font-family: 'Montserrat';
-            font-weight: 900;
-        }
-
-        /* fuerte */
-
-        .card-text {
-            font-family: 'Montserrat';
-            font-weight: 400;
-        }
-
-        /* más legible */
-    </style>
 
 </head>
 
