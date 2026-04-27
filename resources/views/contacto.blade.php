@@ -84,7 +84,7 @@
                 <h2 class="mt-3">Nos podés encontrar en:</h2>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m11!1m3!1d4839.240813812648!2d-58.84026212363989!3d-27.46429264908025!2m2!1f0!2f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94456caff77859e5%3A0xcb23b15bb4f6d241!2sPlaza%2025%20de%20Mayo!5e1!3m2!1ses-419!2sar!4v1777133397398!5m2!1ses-419!2sar" width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-                <h2 class="mt-4">Comunicate con nosotros:</h2>
+                <h2 class="mt-4">Comunícate con nosotros:</h2>
                 <a href="https://wa.me/5493794000000" target="_blank" class="text-white text-decoration-none mt-2">
                     <i class="bi bi-whatsapp hover-warning" style="font-size: 4rem;"></i>
                 </a>

@@ -26,7 +26,7 @@
 
 
     <div class="container mt-5">
-        <h2 class="text-white mb-2">Pronto estará disponible esta funcionalidad, gracias por su paciencia.</h2>
+        <h2 class="text-white mb-2">Pronto estará disponible ésta funcionalidad, gracias por su paciencia.</h2>
     </div>
 
     @include('componentes.botonHaciaArriba')
