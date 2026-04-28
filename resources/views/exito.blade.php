@@ -37,17 +37,15 @@ tambien se da la posibilidad de volver al inicio del sitio web (pagina principal
 
                     <h2 class="fw-bold text-white mb-3 estilo-marca-2 display-6">¡Mensaje enviado con éxito!</h2>
 
-                    <hr class="border-secondary mx-auto w-25 mb-4">
-
                     <p class="text-light fs-5">
                         Hola <strong class="text-warning">{{ $nombre }}</strong>, gracias por contactarnos.
                     </p>
 
-                    <p class="text-white-50 fs-5 mb-5">
-                        Hemos recibido tu mensaje. Pronto te responderemos a <strong class="text-white">{{ $email }}</strong>.
+                    <p class="text-white fs-5 mb-5">
+                        Hemos recibido tu mensaje. Pronto te responderemos a <strong class="text-warning">{{ $email }}</strong>.
                     </p>
 
-                    <a href="{{ url('/pagina-principal') }}" class="btn btn-warning btn-lg px-5 py-3 shadow-sm rounded-pill fw-bold fs-5 text-dark">
+                    <a href="{{ url('/pagina-principal') }}" class="btn btn-warning btn-lg px-5 py-3 shadow-sm rounded fw-bold fs-5 text-dark">
                         <i class="bi bi-house-door me-2"></i> Volver al Inicio
                     </a>
                 </div>

@@ -14,8 +14,6 @@
     <!-- Importamos la fuente "Montserrat" desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
-
-
 </head>
 
 <body class="bg-dark">
@@ -38,16 +36,12 @@
             <p class="text-center text-light display-6 mt-3 mb-5">
                 En The Good Taste trabajamos para que disfrutes comida casera...
             </p>
-
         </div>
-
-
-
 
         <div class="row justify-content-center">
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-animada mt-3 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
-                    <img src="{{ asset('Img/repartidor.png') }}" class="card-img-top" alt="...">
+                <div class="card mt-3 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
+                    <img src="{{ asset('Img/repartidor.png') }}" class="card-img-top" alt="Formas de entrega">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Formas de entrega</h5>
                         <p class="card-text">Ofrecemos distintas opciones para que elijas la que mejor se adapte a vos:</p>
@@ -60,8 +54,8 @@
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-animada mt-3 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
-                    <img src="{{ asset('Img/caja.png') }}" class="card-img-top" alt="...">
+                <div class="card mt-3 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
+                    <img src="{{ asset('Img/caja.png') }}" class="card-img-top" alt="Tipos de envío">
                     <div class="card-body text-justify">
                         <h5 class="card-title fw-bold">Tipos de envío</h5>
                         <p class="card-text">Nuestros envíos se realizan de manera cuidada para garantizar que los productos lleguen en perfectas condiciones:</p>
@@ -75,7 +69,7 @@
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-animada mt-4 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
+                <div class="card mt-4 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
                     <img src="{{ asset('Img/tarjeta-de-credito.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Formas de pago</h5>

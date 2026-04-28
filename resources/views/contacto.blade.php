@@ -47,7 +47,7 @@
     <div class="container-xl mt-2">
         <div class="row">
             <div class="col-lg-6 text-center mt-4 mb-5 mb-lg-0 pe-lg-4 divisor-naranja"> <!-- Como no tiene instruccion para pantallas chicas, por defecto cada columna va a ocupar todo el ancho (12)-->
-                <img src="{{ url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo"> <!-- Imagen como un circulo, padding, se la centra horizaontalmente, se la transforma en un "bloque"-->
+                <img src="{{ url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo"> <!-- Imagen como un circulo, padding, se la centra horizontalmente, se la transforma en un "bloque"-->
 
                 <form action="{{ url('/contacto') }}" method="POST">
                     @csrf
@@ -106,6 +106,7 @@
     @include('componentes.footer')
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
 </body>
 
 </html>

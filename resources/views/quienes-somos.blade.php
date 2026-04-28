@@ -82,7 +82,7 @@
 
         <div class="row mt-0">
 
-          <div class="col-md-6 mb-4 mb-md-0 px-md-4 text-start border-md-end border-warning">
+          <div class="col-md-6 mb-4 mb-md-0 px-md-4 text-start">
             <h3 class="h5 text-warning fw-bold mb-3">
               <i class="bi bi-clock-history me-2"></i>Nuestra Historia
             </h3>

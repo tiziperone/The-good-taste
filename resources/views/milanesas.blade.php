@@ -34,7 +34,7 @@
 
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold text-warning">Milanesa de Carne (1kg.)</h5>
-            <p class="card-text text-light">Milanesa lista para freír, fresca y hecha en el dia, acompañala con lo que más te guste.</p>
+            <p class="card-text text-light">Milanesa lista para freír, fresca y hecha en el día, acompañala con lo que más te guste.</p>
 
             <div class="mt-auto">
               <h4 class="fw-bold mb-3">$11.000</h4>
@@ -53,7 +53,7 @@
 
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold text-warning">Milanesa de Pollo (1 kg)</h5>
-            <p class="card-text text-light">Milanesa de pollo lista para freir, fresca y hecha en el dia.</p>
+            <p class="card-text text-light">Milanesa de pollo lista para freir, fresca y hecha en el día.</p>
 
             <div class="mt-auto">
               <h4 class="fw-bold mb-3">$11.000</h4>
