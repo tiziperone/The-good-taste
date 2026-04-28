@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-personalizada">
+<nav class="navbar navbar-expand-lg navbar-personalizada">
     <div class="container-fluid">
 
         <a class="navbar-brand ms-2 mx-sm-4 text-danger-emphasis estilo-marca d-flex align-items-center" href="{{ url('/pagina-principal') }}">
