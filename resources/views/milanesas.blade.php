@@ -30,7 +30,7 @@
 
       <div class="col-12 col-md-5 col-lg-4">
         <div class="card text-bg-dark border-warning shadow-sm h-100">
-          <img src="{{ asset('Img/milanesa sola ejemplo.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Milanesa para freír">
+          <img src="{{ asset('Img/milanesa de carne sin freir.jpeg') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Milanesa para freír">
 
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold text-warning">Milanesa de Carne (1kg.)</h5>
@@ -49,7 +49,7 @@
 
       <div class="col-12 col-md-5 col-lg-4">
         <div class="card text-bg-dark border-warning shadow-sm h-100">
-          <img src="{{ asset('Img/milanesaconguarnicion.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Milanesa con guarnición">
+          <img src="{{ asset('Img/milanesa de pollo 2.jpg') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Milanesa con guarnición">
 
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold text-warning">Milanesa de Pollo (1 kg)</h5>
