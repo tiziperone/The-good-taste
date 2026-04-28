@@ -104,7 +104,7 @@
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 1.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
-                        <p class="fw-bold">1. Vas a catalogo, le das click a la imagen de lo que quieras comer.</p>
+                        <p class="fw-bold">1. Vas a catálogo, le das click a la imágen de lo que quieras comer.</p>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 3.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
-                        <p class="fw-bold">3. Por ultimo coordinamos pago y entrega.</p>
+                        <p class="fw-bold">3. Por último coordinamos pago y entrega.</p>
                     </div>
                 </div>
             </div>
