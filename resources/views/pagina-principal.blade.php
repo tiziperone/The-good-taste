@@ -102,7 +102,7 @@
                     <div class="card tarjeta-completa shadow-sm h-100 py-4">
                         <i class="bi bi-truck display-3 text-warning mb-2"></i>
                         <h4 class="fw-bold">¿Cómo enviamos?</h4>
-                        <p class="text-light">Conoce nuestras zonas y horarios.</p>
+                        <p class="text-light">Información sobre pedidos: entrega, envíos, pagos y como comprar nuestra comida casera.</p>
                     </div>
                 </a>
             </div>
