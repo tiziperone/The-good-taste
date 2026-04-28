@@ -113,7 +113,7 @@
           <img src="{{ asset('Img/tizianoperone.png') }}" class="card-img-top" style="height: 400px; object-fit: cover;" alt="Tiziano Perone">
           <div class="card-body">
             <h5 class="card-title fw-bold">Tiziano Perone</h5>
-            <p class="card-text text-muted" style="text-align: justify;">Tengo 20 años, soy de Florencia Sta. Fe, actual estudiante de Lic. en Sistemas en la ciudad de Corrientes. Me especializo en la elaboración artesanal de embutidos (bondiola).</p>
+            <p class="card-text text-muted fw-bold" style="text-align: justify;">Tengo 20 años, soy de Florencia Sta. Fe, actual estudiante de Lic. en Sistemas en la ciudad de Corrientes. Me especializo en la elaboración artesanal de embutidos (bondiola).</p>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
           <img src="{{ asset('Img/adrianobregon.png') }}" class="card-img-top" style="height: 400px; object-fit: cover;" alt="Adrián Obregón">
           <div class="card-body">
             <h5 class="card-title fw-bold">Adrián Obregón</h5>
-            <p class="card-text text-muted" style="text-align: justify;">Tengo 22 años, soy estudiante de Lic. en Sistemas, vivo en San Luis del Palmar, Corrientes. Me especializo en hacer las milanesas de carne.</p>
+            <p class="card-text text-muted fw-bold" style="text-align: justify;">Tengo 22 años, soy estudiante de Lic. en Sistemas, vivo en San Luis del Palmar, Corrientes. Me especializo en hacer las milanesas de carne.</p>
           </div>
         </div>
       </div>
