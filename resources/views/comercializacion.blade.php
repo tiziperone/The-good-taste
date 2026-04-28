@@ -54,7 +54,7 @@
                     </div>
                     <ul class="list-group list-group-flush fw-bold text-justify">
                         <li class="list-group-item">Retiro en el local: Podés pasar a buscar tu pedido en el horario acordado.</li>
-                        <li class="list-group-item text-justify">Entrega a domicilio: Realizamos envíos dentro de la zona, coordinando día y horario previamente.</li>
+                        <li class="list-group-item text-justify">Entrega a domicilio: Realizamos envíos dentro de la ciudad, coordinando día y horario previamente.</li>
                     </ul>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 1.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
-                        <p class="fw-bold">1. Vas a catálogo, le das click a la imágen de lo que quieras comer.</p>
+                        <p class="fw-bold fs-5">1. Vas a catálogo, le das click a la imágen de lo que quieras comer.</p>
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 2.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
-                        <p class="fw-bold">2. Le das click a Comprar</p>
+                        <p class="fw-bold fs-5">2. Le das click a Comprar.</p>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 3.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
-                        <p class="fw-bold">3. Por último coordinamos pago y entrega.</p>
+                        <p class="fw-bold fs-5">3. Por último coordinamos pago y entrega.</p>
                     </div>
                 </div>
             </div>
