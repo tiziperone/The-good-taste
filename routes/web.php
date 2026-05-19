@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ContactoController; //para que laravel busque aca el controlador contacto
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('pagina-principal');
