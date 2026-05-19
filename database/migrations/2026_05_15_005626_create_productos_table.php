@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('url_imagen')->nullable();
             $table->boolean('activo')->default(true);
             $table->timestamps();
+            $table->softDeletes();
+            $table->unsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }
 
