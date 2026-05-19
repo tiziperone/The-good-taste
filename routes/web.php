@@ -64,3 +64,20 @@ Route::get('inicio-sesion', function () {
 Route::get('registro', function () {
     return view('registro');
 });
+Route::post('registro', function () {
+
+    return view('validacion-cuenta');
+});
+
+Route::get('validacion-cuenta', function () {
+    return view('validacion-cuenta');
+});
+Route::post('registro', function () {
+    return redirect('/validacion-cuenta');
+});
+
+
+// Esto hace que si aprietan "Reenviar", la página se recargue sin dar error
+Route::post('/validacion-cuenta', function () {
+    return back()->with('message', '¡Enlace de validación reenviado! (Simulado)');
+});

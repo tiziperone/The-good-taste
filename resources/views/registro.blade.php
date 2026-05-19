@@ -83,7 +83,7 @@
 
                 <div class="card register-card p-4">
                     <div class="text-center my-2">
-                        <img src="{{ url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-1 mx-auto d-block mb-3" width="70" height="70" alt="logo">
+                        <img src="{{ url('/Img/LogoOscuro.jpg') }}" class="rounded-circle p-1 mx-auto d-block mb-3" width="70" height="70" alt="logo">
                         <h2 class="fw-bold tracking-tight">Crea tu Cuenta</h2>
                         <p class="text-white-50 small">Regístrate para disfrutar de "The Good Taste"</p>
                     </div>
@@ -134,7 +134,7 @@
                         </div>
 
                         <div class="mb-4 form-check">
-                            <input type="checkbox" class="checkbox form-check-input" id="terminos" name="terminos" required>
+                            <input type="checkbox" class="form-check-input" id="terminos" name="terminos" required>
                             <label class="form-check-label small text-white-50" for="terminos">
                                 Acepto los <a href="{{ url('/terminos-y-usos') }}" class="text-link" target="_blank">Términos y Usos</a> de la plataforma.
                             </label>
@@ -167,10 +167,8 @@
             const confirmation = document.getElementById("password_confirmation");
 
             if (password.value !== confirmation.value) {
-                // Si no coinciden, seteamos el mensaje de error personalizado que mostrará el navegador
                 confirmation.setCustomValidity("Las contraseñas no coinciden.");
             } else {
-                // Si coinciden, limpiamos el error para que deje enviar el formulario
                 confirmation.setCustomValidity("");
             }
         }
