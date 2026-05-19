@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\VerificarCuentaNotification;
@@ -11,7 +12,7 @@ use App\Notifications\VerificarCuentaNotification;
 class AuthController extends Controller
 {
     // 1. PROCESAR REGISTRO
-    public function registrar(Request $request)
+    public function registrar(Request $request): RedirectResponse
     {
         // Validamos los datos de entrada respetando los límites de tu base de datos
         $request->validate([
@@ -48,7 +49,8 @@ class AuthController extends Controller
     }
 
     // 2. VERIFICAR EL CLIC DESDE GMAIL
-    public function verificarCorreo($id, Request $request)
+    // Agregamos 'int' para solucionar la advertencia de Intelephense
+    public function verificarCorreo(int $id, Request $request): RedirectResponse
     {
         // Buscamos al usuario por su ID único que viene en la URL firmada
         $user = User::findOrFail($id);
@@ -68,7 +70,7 @@ class AuthController extends Controller
     }
 
     // 3. REENVIAR EL CORREO SI NO LLEGÓ
-    public function reenviarCorreo()
+    public function reenviarCorreo(): RedirectResponse
     {
         $email = session('email_registro');
 
@@ -84,7 +86,7 @@ class AuthController extends Controller
     }
 
     // 4. PROCESAR INICIO DE SESIÓN
-    public function login(Request $request)
+    public function login(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
             'email'    => 'required|email',

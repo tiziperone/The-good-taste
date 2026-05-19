@@ -13,12 +13,24 @@ class VerificarCuentaNotification extends Notification
 
     public function __construct() {}
 
-    public function via($notifiable): array
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @param mixed $notifiable
+     * @return array<int, string>
+     */
+    public function via(mixed $notifiable): array
     {
         return ['mail'];
     }
 
-    public function toMail($notifiable): MailMessage
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param mixed $notifiable
+     * @return MailMessage
+     */
+    public function toMail(mixed $notifiable): MailMessage
     {
         // Generamos una URL firmada temporal (expira en 60 minutos) para que nadie pueda alterarla
         $urlVerificacion = URL::temporarySignedRoute(
