@@ -59,25 +59,18 @@ Route::get('carrito', function () {
 
 Route::get('inicio-sesion', function () {
     return view('inicio-sesion');
-});
+})->name('login');
 
 Route::get('registro', function () {
     return view('registro');
 });
-Route::post('registro', function () {
-
-    return view('validacion-cuenta');
-});
 
 Route::get('validacion-cuenta', function () {
     return view('validacion-cuenta');
-});
-Route::post('registro', function () {
-    return redirect('/validacion-cuenta');
-});
+})->name('validacion');
 
+Route::post('registro', [AuthController::class, 'registrar']);
 
-// Esto hace que si aprietan "Reenviar", la página se recargue sin dar error
-Route::post('/validacion-cuenta', function () {
-    return back()->with('message', '¡Enlace de validación reenviado! (Simulado)');
-});
+Route::post('validacion-cuenta', [AuthController::class, 'reenviarCorreo']);
+
+Route::post('inicio-sesion', [AuthController::class, 'login']);
