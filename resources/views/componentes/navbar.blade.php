@@ -11,30 +11,21 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+            <div class="navbar-nav w-100">
 
-                <a class="nav-link mx-2 {{ request()->is('pagina-principal') ? 'active text-black' : 'text-black' }}" href="{{ url('/pagina-principal') }}">
-                    <h2 class="text-lg pt-1 fs-6">Inicio</h2>
-                </a>
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('pagina-principal') ? 'active text-black' : 'text-black' }}" href="{{ url('/pagina-principal') }}">Inicio</a>
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('catalogo') ? 'active text-black' : 'text-black' }}" href="{{ url('/catalogo') }}">Catálogo</a>
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('comercializacion') ? 'active text-black' : 'text-black' }}" href="{{ url('/comercializacion') }}">Comercialización</a>
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('contacto') ? 'active text-black' : 'text-black' }}" href="{{ url('/contacto') }}">Contáctanos</a>
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('quienes-somos') ? 'active text-black' : 'text-black' }}" href="{{ url('/quienes-somos') }}">¿Quiénes somos?</a>
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('terminos-y-usos') ? 'active text-black' : 'text-black' }}" href="{{ url('/terminos-y-usos') }}">Términos y Usos</a>
 
-                <a class="nav-link mx-2 {{ request()->is('catalogo') ? 'active text-black' : 'text-black' }}" href="{{ url('/catalogo') }}">
-                    <h2 class="text-lg pt-1 fs-6">Catálogo</h2>
-                </a>
-
-                <a class="nav-link mx-2 {{ request()->is('comercializacion') ? 'active text-black' : 'text-black' }}" href="{{ url('/comercializacion') }}">
-                    <h2 class="text-lg pt-1 fs-6">Comercialización</h2>
-                </a>
-
-                <a class="nav-link mx-2 {{ request()->is('contacto') ? 'active text-black' : 'text-black' }}" href="{{ url('/contacto') }}">
-                    <h2 class="text-lg pt-1 fs-6">Contáctanos</h2>
-                </a>
-
-                <a class="nav-link mx-2 {{ request()->is('quienes-somos') ? 'active text-black' : 'text-black' }}" href="{{ url('/quienes-somos') }}">
-                    <h2 class="text-lg pt-1 fs-6">¿Quiénes somos?</h2>
-                </a>
-
-                <a class="nav-link mx-2 {{ request()->is('terminos-y-usos') ? 'active text-black' : 'text-black' }}" href="{{ url('/terminos-y-usos') }}">
-                    <h2 class="text-lg pt-1 fs-6">Términos y Usos</h2>
+                <a class="nav-link mx-2 ms-lg-auto text-lg pt-1 fs-6 d-flex align-items-center {{ request()->is('inicio-sesion') ? 'active text-black' : 'text-black' }}" href="{{ url('/inicio-sesion') }}">
+                    <span>Iniciar Sesión</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person-circle ms-2" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                    </svg>
                 </a>
 
             </div>
