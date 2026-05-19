@@ -74,3 +74,9 @@ Route::post('registro', [AuthController::class, 'registrar']);
 Route::post('validacion-cuenta', [AuthController::class, 'reenviarCorreo']);
 
 Route::post('inicio-sesion', [AuthController::class, 'login']);
+
+
+// Ruta que se activa cuando el usuario hace clic en el botón de su Gmail
+Route::get('/verificar-correo/{id}', [AuthController::class, 'verificarCorreo'])
+    ->middleware('signed')
+    ->name('verificar.correo');
