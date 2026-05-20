@@ -49,7 +49,6 @@ class AuthController extends Controller
     }
 
     // 2. VERIFICAR EL CLIC DESDE GMAIL
-    // Agregamos 'int' para solucionar la advertencia de Intelephense
     public function verificarCorreo(int $id, Request $request): RedirectResponse
     {
         // Buscamos al usuario por su ID único que viene en la URL firmada
@@ -93,12 +92,19 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Buscamos si existe el usuario
+        // Buscamos si existe el usuario por su email
         $user = User::where('email', $request->email)->first();
 
+        // CASO A: El usuario no existe en la BD
         if (!$user) {
-            // Si el correo no existe, activa tu tarjeta amarilla de Bootstrap
+            // Activa tu tarjeta amarilla de "No encontramos ninguna cuenta con ese correo"
             return back()->withErrors(['email_no_existe' => true])->withInput();
+        }
+
+        // CASO B: El usuario existe pero la CONTRASEÑA ES ERRÓNEA
+        if (!Hash::check($request->password, $user->password)) {
+            // Activa la nueva alerta roja: "La contraseña ingresada es incorrecta"
+            return back()->withErrors(['password_incorrecta' => true])->withInput();
         }
 
         // Verificamos si la cuenta está validada por Gmail
@@ -120,19 +126,18 @@ class AuthController extends Controller
             return redirect('/pagina-principal');
         }
 
-        // Si la contraseña es incorrecta
-        return back()->withErrors([
-            'password' => 'La contraseña ingresada es incorrecta.',
-        ])->withInput();
+        // Caso de respaldo por si falla el Auth::attempt por otra razón interna
+        return back()->withErrors(['auth_failed' => true])->withInput();
     }
-    // En tu Controlador
-    public function logout(Request $request)
+
+    // 5. PROCESAR CIERRE DE SESIÓN
+    public function logout(Request $request): RedirectResponse
     {
         Auth::logout(); // Desloguea al usuario
 
         $request->session()->invalidate(); // Invalida la sesión actual
         $request->session()->regenerateToken(); // Regenera el token CSRF por seguridad
 
-        return redirect('/pagina-principal'); // Lo mandás de vuelta al inicio
+        return redirect('/pagina-principal'); // Redirige al inicio limpio
     }
 }

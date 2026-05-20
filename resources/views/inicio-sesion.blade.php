@@ -17,14 +17,11 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #1a1d20;
-            /* Fondo oscuro unificado con la marca */
         }
 
         .login-card {
             background-color: #212529;
-            /* Un gris un poco más claro para la tarjeta */
             border: 1px solid #ffc107;
-            /* Borde sutil amarillo/dorado */
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             color: #ffffff;
@@ -32,7 +29,6 @@
 
         .btn-custom {
             background-color: #ffc107;
-            /* El amarillo/dorado de tu marca */
             color: #000000;
             font-weight: 700;
             border: none;
@@ -80,6 +76,23 @@
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
                     ¡Vaya! No encontramos ninguna cuenta con ese correo.
                     <a href="{{ url('/registro') }}" class="alert-link text-decoration-underline">¿Quieres registrarte ahora?</a>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+
+                @if($errors->has('password_incorrecta'))
+                <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+                    <i class="bi bi-shield-slash-fill me-2"></i>
+                    La contraseña ingresada es incorrecta. ¡Vuelve a intentarlo!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+
+                {{-- Esto sirve por si mandás un error general desde el controlador con ->with('error', '...') o si falla Auth::attempt() --}}
+                @if(session('error') || $errors->has('auth_failed'))
+                <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+                    <i class="bi bi-x-circle-fill me-2"></i>
+                    {{ session('error') ?? 'Las credenciales ingresadas no coinciden con nuestros registros.' }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
