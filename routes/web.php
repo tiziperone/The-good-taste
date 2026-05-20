@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ContactoController; //para que laravel busque aca el controlador contacto
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductoController;
 
 Route::get('/', function () {
     return view('pagina-principal');
@@ -84,3 +85,5 @@ Route::get('/verificar-correo/{id}', [AuthController::class, 'verificarCorreo'])
 
 
 Route::post('/cerrar-sesion', [App\Http\Controllers\AuthController::class, 'logout']);
+
+Route::get('/bondiola', [ProductoController::class, 'mostrarBondiolas']);
