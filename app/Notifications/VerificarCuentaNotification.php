@@ -32,7 +32,6 @@ class VerificarCuentaNotification extends Notification
      */
     public function toMail(mixed $notifiable): MailMessage
     {
-        // Generamos una URL firmada temporal (expira en 60 minutos) para que nadie pueda alterarla
         $urlVerificacion = URL::temporarySignedRoute(
             'verificar.correo',
             now()->addMinutes(60),
