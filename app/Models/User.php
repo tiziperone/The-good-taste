@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail; // <-- Descomentado para habilitar la verificación
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -13,7 +13,7 @@ use Illuminate\Notifications\Notifiable;
 // Agregamos 'apellido', 'role' y 'active' a los atributos permitidos
 #[Fillable(['name', 'apellido', 'email', 'password', 'role', 'active'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail // <-- Agregamos el "implements MustVerifyEmail"
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
