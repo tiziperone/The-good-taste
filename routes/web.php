@@ -81,3 +81,6 @@ Route::post('inicio-sesion', [AuthController::class, 'login']);
 Route::get('/verificar-correo/{id}', [AuthController::class, 'verificarCorreo'])
     ->middleware('signed')
     ->name('verificar.correo');
+
+
+Route::post('/cerrar-sesion', [App\Http\Controllers\AuthController::class, 'logout']);

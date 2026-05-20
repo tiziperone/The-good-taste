@@ -125,4 +125,14 @@ class AuthController extends Controller
             'password' => 'La contraseña ingresada es incorrecta.',
         ])->withInput();
     }
+    // En tu Controlador
+    public function logout(Request $request)
+    {
+        Auth::logout(); // Desloguea al usuario
+
+        $request->session()->invalidate(); // Invalida la sesión actual
+        $request->session()->regenerateToken(); // Regenera el token CSRF por seguridad
+
+        return redirect('/pagina-principal'); // Lo mandás de vuelta al inicio
+    }
 }
