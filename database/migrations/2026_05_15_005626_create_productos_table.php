@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->decimal('precio', 10, 2);
             $table->integer('stock')->default(0);
+            $table->integer('stock_minimo')->default(10);
+            $table->string('tipo', 20);
             $table->string('url_imagen')->nullable();
             $table->boolean('activo')->default(true);
             $table->timestamps();
