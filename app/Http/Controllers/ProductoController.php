@@ -46,9 +46,14 @@ class ProductoController extends Controller
         // Traemos solo los productos activos que sean milanesas
         $productos = Producto::where('activo', true)->where('categoria_id', 2)->get();
 
-        // Acá podés buscar tus tarjetas específicas de milanesas (ej: de carne, de pollo)
-        $milaCarne = $productos->where('nombre', 'Milanesa de Carne (1kg)')->first();
-        $milaPollo = $productos->where('nombre', 'Milanesa de Pollo (1kg)')->first();
+        // Busqueda flexible: detecta las palabras clave sin importar mayúsculas, minúsculas o puntos
+        $milaCarne = $productos->filter(function ($item) {
+            return false !== stripos($item->nombre, 'carne');
+        })->first();
+
+        $milaPollo = $productos->filter(function ($item) {
+            return false !== stripos($item->nombre, 'pollo');
+        })->first();
 
         return view('milanesas', compact('milaCarne', 'milaPollo')); // Tu vista de milanesas
     }
@@ -116,7 +121,6 @@ class ProductoController extends Controller
     }
 
     //(Sirve para cualquier producto de cualquier categoría)
-    // Al poner "int", le aclarás a PHP e Intelephense el tipo de dato exacto
     public function destroy(int $id)
     {
         $producto = Producto::findOrFail($id);
