@@ -79,3 +79,4 @@ Route::post('/cerrar-sesion', [App\Http\Controllers\AuthController::class, 'logo
 // ==========================================
 Route::get('/bondiola', [ProductoController::class, 'mostrarBondiolas']);
 Route::post('/productos/guardar', [ProductoController::class, 'store'])->name('productos.store');
+Route::post('/productos/eliminar/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');

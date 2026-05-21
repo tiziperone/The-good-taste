@@ -45,7 +45,19 @@
     <div class="row justify-content-center gap-4">
 
       <div class="col-12 col-md-5 col-lg-4">
-        <div class="card text-bg-dark border-warning shadow-sm h-100">
+        <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
+
+          @auth
+          @if(auth()->user()->role === 'admin' && $bondiolaClasica)
+          <form action="{{ route('productos.destroy', $bondiolaClasica->id) }}" method="POST" class="position-absolute top-0 end-0 m-2" onsubmit="return confirm('¿Seguro querés eliminar este producto del catálogo?');">
+            @csrf
+            <button type="submit" class="btn btn-danger btn-sm rounded-circle shadow" title="Eliminar Producto">
+              <i class="bi bi-trash"></i>
+            </button>
+          </form>
+          @endif
+          @endauth
+
           <img src="{{ asset('Img/BondiolaTarjetaSinPimenton.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Bondiola Clásica">
 
           <div class="card-body d-flex flex-column">
@@ -62,7 +74,11 @@
                 <span class="badge bg-success p-2">Disponible (Stock: {{ $bondiolaClasica->stock }})</span>
                 @endif
                 @else
-                <span class="badge bg-secondary p-2">Stock no inicializado</span>
+                @auth
+                @if(auth()->user()->role === 'admin')
+                <span class="badge bg-secondary p-2"><i class="bi bi-exclamation-triangle me-1"></i> Stock no inicializado</span>
+                @endif
+                @endauth
                 @endif
             </div>
 
@@ -81,7 +97,19 @@
       </div>
 
       <div class="col-12 col-md-5 col-lg-4">
-        <div class="card text-bg-dark border-warning shadow-sm h-100">
+        <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
+
+          @auth
+          @if(auth()->user()->role === 'admin' && $bondiolaPimenton)
+          <form action="{{ route('productos.destroy', $bondiolaPimenton->id) }}" method="POST" class="position-absolute top-0 end-0 m-2" onsubmit="return confirm('¿Seguro querés eliminar este producto del catálogo?');">
+            @csrf
+            <button type="submit" class="btn btn-danger btn-sm rounded-circle shadow" title="Eliminar Producto">
+              <i class="bi bi-trash"></i>
+            </button>
+          </form>
+          @endif
+          @endauth
+
           <img src="{{ asset('Img/BondiolaTarjetaConPimenton.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Bondiola con Pimentón">
 
           <div class="card-body d-flex flex-column">
@@ -98,7 +126,11 @@
                 <span class="badge bg-success p-2">Disponible (Stock: {{ $bondiolaPimenton->stock }})</span>
                 @endif
                 @else
-                <span class="badge bg-secondary p-2">Stock no inicializado</span>
+                @auth
+                @if(auth()->user()->role === 'admin')
+                <span class="badge bg-secondary p-2"><i class="bi bi-exclamation-triangle me-1"></i> Stock no inicializado</span>
+                @endif
+                @endauth
                 @endif
             </div>
 
@@ -130,25 +162,18 @@
         <form action="{{ route('productos.store') }}" method="POST">
           @csrf
           <div class="modal-body">
-
             <div class="mb-3">
               <label for="nombre" class="form-label text-warning small fw-bold">Nombre Exacto del Producto</label>
               <input type="text" class="form-control bg-secondary text-white border-0" id="nombre" name="nombre" placeholder="Ej: Bondiola Clásica (1kg)" required>
-              <span class="text-white-50 xs" style="font-size: 0.75rem;">Debe coincidir con el nombre de la tarjeta para mapear el stock.</span>
             </div>
-
             <div class="mb-3">
               <label for="descripcion" class="form-label text-warning small fw-bold">Descripción Corta</label>
               <textarea class="form-control bg-secondary text-white border-0" id="descripcion" name="descripcion" rows="2" placeholder="Contanos qué trae este fiambre artesanal..."></textarea>
             </div>
-
-            <div class="row">
-              <div class="col-12 mb-3">
-                <label for="precio" class="form-label text-warning small fw-bold">Precio de Venta ($)</label>
-                <input type="number" class="form-control bg-secondary text-white border-0" id="precio" name="precio" placeholder="30000" required>
-              </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label text-warning small fw-bold">Precio de Venta ($)</label>
+              <input type="number" class="form-control bg-secondary text-white border-0" id="precio" name="precio" placeholder="30000" required>
             </div>
-
             <div class="row">
               <div class="col-6 mb-3">
                 <label for="stock" class="form-label text-warning small fw-bold">Stock Disponible</label>
@@ -159,19 +184,16 @@
                 <input type="number" class="form-control bg-secondary text-white border-0" id="stock_minimo" name="stock_minimo" value="10" required>
               </div>
             </div>
-
             <div class="mb-3">
-              <label for="url_imagen" class="form-label text-warning small fw-bold">Ruta del Archivo de Imagen (Opcional)</label>
+              <label for="url_imagen" class="form-label text-warning small fw-bold">Ruta de Imagen (Opcional)</label>
               <input type="text" class="form-control bg-secondary text-white border-0" id="url_imagen" name="url_imagen" placeholder="Img/BondiolaTarjetaSinPimenton.png">
             </div>
-
           </div>
           <div class="modal-footer border-0 pt-0">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             <button type="submit" class="btn btn-warning fw-bold text-dark">Guardar Producto</button>
           </div>
         </form>
-
       </div>
     </div>
   </div>
@@ -181,10 +203,8 @@
   <script>
     twemoji.parse(document.body);
   </script>
-
   @include('componentes.botonHaciaArriba')
   @include('componentes.footer')
-
 </body>
 
 </html>
