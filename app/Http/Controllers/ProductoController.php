@@ -82,11 +82,27 @@ class ProductoController extends Controller
 
     public function mostrarPastas()
     {
-        $productos = Producto::where('activo', true)->where('categoria_id', 3)->get();
-        $tallarines = $productos->where('nombre', 'Tallarines Caseros (1kg)')->first();
-        $ravioles = $productos->where('nombre', 'Ravioles Artesanales (1kg)')->first();
+        // 1. Traemos todos los productos activos de la categoría 3 (Pastas)
+        $productos = Producto::where('activo', true)
+            ->where('categoria_id', 3)
+            ->get();
 
-        return view('pastas', compact('tallarines', 'ravioles')); // Tu vista de pastas
+        // 2. Filtramos de forma flexible buscando palabras clave individuales
+        $ravioles = $productos->filter(function ($item) {
+            return false !== stripos($item->nombre, 'raviole');
+        })->first();
+
+        $sorrentinos = $productos->filter(function ($item) {
+            return false !== stripos($item->nombre, 'sorrento');
+        })->first();
+
+        // Buscamos 'tallari' o 'fideo' para que enganche la tercera tarjeta
+        $fideos = $productos->filter(function ($item) {
+            return false !== stripos($item->nombre, 'tallari') || false !== stripos($item->nombre, 'fideo');
+        })->first();
+
+        // 3. Enviamos las tres variables exactas que usa tu Blade
+        return view('pastas', compact('ravioles', 'sorrentinos', 'fideos'));
     }
 
     public function storePasta(Request $request)
