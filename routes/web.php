@@ -10,14 +10,6 @@ Route::get('/', function () {
     return view('pagina-principal');
 });
 
-Route::get('/milanesas', function () {
-    return view('milanesas');
-});
-
-Route::get('/pastas', function () {
-    return view('pastas');
-});
-
 Route::get('/pagina-principal', function () {
     return view('pagina-principal');
 });
@@ -74,9 +66,18 @@ Route::get('/verificar-correo/{id}', [AuthController::class, 'verificarCorreo'])
 
 Route::post('/cerrar-sesion', [App\Http\Controllers\AuthController::class, 'logout']);
 
-// ==========================================
-// CONTROL DE RUTAS PARA PRODUCTOS 
-// ==========================================
+
+//Sección Bondiolas (Categoría 1)
 Route::get('/bondiola', [ProductoController::class, 'mostrarBondiolas']);
-Route::post('/productos/guardar', [ProductoController::class, 'store'])->name('productos.store');
+Route::post('/productos/guardar-bondiola', [ProductoController::class, 'storeBondiola'])->name('productos.storeBondiola');
+
+//Sección Milanesas (Categoría 2)
+Route::get('/milanesas', [ProductoController::class, 'mostrarMilanesas']);
+Route::post('/productos/guardar-milanesa', [ProductoController::class, 'storeMilanesa'])->name('productos.storeMilanesa');
+
+//Sección Pastas (Categoría 3)
+Route::get('/pastas', [ProductoController::class, 'mostrarPastas']);
+Route::post('/productos/guardar-pasta', [ProductoController::class, 'storePasta'])->name('productos.storePasta');
+
+//Eliminación Común (Borrado Lógico)
 Route::post('/productos/eliminar/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
