@@ -64,6 +64,8 @@
             <h5 class="card-title fw-bold text-warning">Bondiola Clásica (1kg)</h5>
             <p class="card-text text-light flex-grow-1">Fiambre especial para compartir en picadas y comidas, acompañalo con lo que más te guste, o con quien más te guste 😉.</p>
 
+            @auth
+            @if(auth()->user()->role === 'admin')
             <div class="mb-3">
               @if($bondiolaClasica)
               @if($bondiolaClasica->stock == 0)
@@ -74,13 +76,11 @@
                 <span class="badge bg-success p-2">Disponible (Stock: {{ $bondiolaClasica->stock }})</span>
                 @endif
                 @else
-                @auth
-                @if(auth()->user()->role === 'admin')
                 <span class="badge bg-secondary p-2"><i class="bi bi-exclamation-triangle me-1"></i> Stock no inicializado</span>
                 @endif
-                @endauth
-                @endif
             </div>
+            @endif
+            @endauth
 
             <h4 class="fw-bold mb-3">
               {{ $bondiolaClasica ? '$' . number_format($bondiolaClasica->precio, 0, ',', '.') : '$30.000' }}
@@ -88,9 +88,7 @@
 
             <div class="mt-auto">
               <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
-              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
-                Agregar <i class="bi bi-cart"></i>
-              </a>
+              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">Agregar <i class="bi bi-cart"></i></a>
             </div>
           </div>
         </div>
@@ -116,6 +114,8 @@
             <h5 class="card-title fw-bold text-warning">Bondiola al Pimentón (1kg)</h5>
             <p class="card-text text-light flex-grow-1">Para aquellos que aman el pimentón, ésta es su elección ideal. El mismo y exquisito fiambre, pero con un toque especial 👌.</p>
 
+            @auth
+            @if(auth()->user()->role === 'admin')
             <div class="mb-3">
               @if($bondiolaPimenton)
               @if($bondiolaPimenton->stock == 0)
@@ -126,13 +126,11 @@
                 <span class="badge bg-success p-2">Disponible (Stock: {{ $bondiolaPimenton->stock }})</span>
                 @endif
                 @else
-                @auth
-                @if(auth()->user()->role === 'admin')
                 <span class="badge bg-secondary p-2"><i class="bi bi-exclamation-triangle me-1"></i> Stock no inicializado</span>
                 @endif
-                @endauth
-                @endif
             </div>
+            @endif
+            @endauth
 
             <h4 class="fw-bold mb-3">
               {{ $bondiolaPimenton ? '$' . number_format($bondiolaPimenton->precio, 0, ',', '.') : '$30.000' }}
@@ -140,9 +138,7 @@
 
             <div class="mt-auto">
               <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
-              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">
-                Agregar <i class="bi bi-cart"></i>
-              </a>
+              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">Agregar <i class="bi bi-cart"></i></a>
             </div>
           </div>
         </div>

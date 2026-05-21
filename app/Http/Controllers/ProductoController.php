@@ -20,7 +20,7 @@ class ProductoController extends Controller
         return view('bondiola', compact('bondiolaClasica', 'bondiolaPimenton'));
     }
 
-    // NUEVO MÉTODO: Procesa el formulario del menú flotante
+    // PROCESAR FORMULARIO (MÉTODO CREAR)
     public function store(Request $request)
     {
         // Validamos que los datos requeridos no vengan vacíos
@@ -31,18 +31,34 @@ class ProductoController extends Controller
             'stock_minimo' => 'required|integer|min:0',
         ]);
 
-        // Insertamos el producto de forma masiva aprovechando el $fillable del modelo
+        // Insertamos el producto vinculándolo automáticamente a la categoría 1 de DBeaver
         Producto::create([
             'nombre'       => $request->nombre,
             'descripcion'  => $request->descripcion,
             'precio'       => $request->precio,
             'stock'        => $request->stock,
             'stock_minimo' => $request->stock_minimo,
+            'tipo'         => 'Bondiola', // Mapea con la columna de tu migración
             'url_imagen'   => $request->url_imagen ?? 'Img/BondiolaTarjetaSinPimenton.png',
+            'categoria_id' => 1, // Conexión automática con el ID 1 de tu categoría en DBeaver
             'activo'       => true,
         ]);
 
         // Volvemos a la pantalla de bondiolas con un mensaje temporal de éxito
-        return back()->with('success', '¡Producto añadido exitosamente a MariaDB!');
+        return back()->with('success', '¡Producto añadido exitosamente!');
+    }
+
+    // ELIMINAR PRODUCTO (BORRADO LÓGICO DE LA CÁTEDRA)
+    public function destroy($id)
+    {
+        // Buscamos el producto por su ID
+        $producto = Producto::findOrFail($id);
+
+        // En lugar de borrar la fila físicamente, la desactivamos
+        $producto->update([
+            'activo' => false
+        ]);
+
+        return back()->with('success', '¡Producto removido del catálogo exitosamente!');
     }
 }
