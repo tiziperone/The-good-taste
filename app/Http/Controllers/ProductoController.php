@@ -7,58 +7,120 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
+
+    //SECCIÓN BONDIOLAS (Categoría ID 1)
+
     public function mostrarBondiolas()
     {
-        // Traemos todos los productos activos de la base de datos
-        $productos = Producto::where('activo', true)->get();
-
-        // Filtramos cada tarjeta por su nombre exacto
+        $productos = Producto::where('activo', true)->where('categoria_id', 1)->get();
         $bondiolaClasica = $productos->where('nombre', 'Bondiola Clásica (1kg)')->first();
         $bondiolaPimenton = $productos->where('nombre', 'Bondiola al Pimentón (1kg)')->first();
 
-        // Enviamos las variables de forma correcta a la vista
         return view('bondiola', compact('bondiolaClasica', 'bondiolaPimenton'));
     }
 
-    // PROCESAR FORMULARIO (MÉTODO CREAR)
-    public function store(Request $request)
+    public function storeBondiola(Request $request)
     {
-        // Validamos que los datos requeridos no vengan vacíos
-        $request->validate([
-            'nombre'       => 'required|string|max:255',
-            'precio'       => 'required|numeric|min:0',
-            'stock'        => 'required|integer|min:0',
-            'stock_minimo' => 'required|integer|min:0',
-        ]);
+        $this->validarProducto($request);
 
-        // Insertamos el producto vinculándolo automáticamente a la categoría 1 de DBeaver
         Producto::create([
             'nombre'       => $request->nombre,
             'descripcion'  => $request->descripcion,
             'precio'       => $request->precio,
             'stock'        => $request->stock,
             'stock_minimo' => $request->stock_minimo,
-            'tipo'         => 'Bondiola', // Mapea con la columna de tu migración
+            'tipo'         => 'Bondiola',
             'url_imagen'   => $request->url_imagen ?? 'Img/BondiolaTarjetaSinPimenton.png',
-            'categoria_id' => 1, // Conexión automática con el ID 1 de tu categoría en DBeaver
+            'categoria_id' => 1,
             'activo'       => true,
         ]);
 
-        // Volvemos a la pantalla de bondiolas con un mensaje temporal de éxito
-        return back()->with('success', '¡Producto añadido exitosamente!');
+        return back()->with('success', '¡Bondiola añadida exitosamente!');
     }
 
-    // ELIMINAR PRODUCTO (BORRADO LÓGICO DE LA CÁTEDRA)
-    public function destroy($id)
-    {
-        // Buscamos el producto por su ID
-        $producto = Producto::findOrFail($id);
 
-        // En lugar de borrar la fila físicamente, la desactivamos
-        $producto->update([
-            'activo' => false
+    //SECCIÓN MILANESAS (Categoría ID 2 en DBeaver)
+
+    public function mostrarMilanesas()
+    {
+        // Traemos solo los productos activos que sean milanesas
+        $productos = Producto::where('activo', true)->where('categoria_id', 2)->get();
+
+        // Acá podés buscar tus tarjetas específicas de milanesas (ej: de carne, de pollo)
+        $milaCarne = $productos->where('nombre', 'Milanesa de Carne (1kg)')->first();
+        $milaPollo = $productos->where('nombre', 'Milanesa de Pollo (1kg)')->first();
+
+        return view('milanesas', compact('milaCarne', 'milaPollo')); // Tu vista de milanesas
+    }
+
+    public function storeMilanesa(Request $request)
+    {
+        $this->validarProducto($request);
+
+        Producto::create([
+            'nombre'       => $request->nombre,
+            'descripcion'  => $request->descripcion,
+            'precio'       => $request->precio,
+            'stock'        => $request->stock,
+            'stock_minimo' => $request->stock_minimo,
+            'tipo'         => 'Milanesa',
+            'url_imagen'   => $request->url_imagen ?? 'Img/MilaTarjetaCarne.png',
+            'categoria_id' => 2,
+            'activo'       => true,
         ]);
 
+        return back()->with('success', '¡Milanesa añadida exitosamente!');
+    }
+
+
+    //SECCIÓN PASTAS (Categoría ID 3 en DBeaver)
+
+    public function mostrarPastas()
+    {
+        $productos = Producto::where('activo', true)->where('categoria_id', 3)->get();
+        $tallarines = $productos->where('nombre', 'Tallarines Caseros (1kg)')->first();
+        $ravioles = $productos->where('nombre', 'Ravioles Artesanales (1kg)')->first();
+
+        return view('pastas', compact('tallarines', 'ravioles')); // Tu vista de pastas
+    }
+
+    public function storePasta(Request $request)
+    {
+        $this->validarProducto($request);
+
+        Producto::create([
+            'nombre'       => $request->nombre,
+            'descripcion'  => $request->descripcion,
+            'precio'       => $request->precio,
+            'stock'        => $request->stock,
+            'stock_minimo' => $request->stock_minimo,
+            'tipo'         => 'Pasta',
+            'url_imagen'   => $request->url_imagen ?? 'Img/PastasTarjeta.png',
+            'categoria_id' => 3,
+            'activo'       => true,
+        ]);
+
+        return back()->with('success', '¡Pasta añadida exitosamente!');
+    }
+
+    //Para no repetir las validaciones
+
+    private function validarProducto(Request $request)
+    {
+        $request->validate([
+            'nombre'       => 'required|string|max:255',
+            'precio'       => 'required|numeric|min:0',
+            'stock'        => 'required|integer|min:0',
+            'stock_minimo' => 'required|integer|min:0',
+        ]);
+    }
+
+    //(Sirve para cualquier producto de cualquier categoría)
+    // Al poner "int", le aclarás a PHP e Intelephense el tipo de dato exacto
+    public function destroy(int $id)
+    {
+        $producto = Producto::findOrFail($id);
+        $producto->update(['activo' => false]);
         return back()->with('success', '¡Producto removido del catálogo exitosamente!');
     }
 }
