@@ -111,7 +111,7 @@
           <img src="{{ asset('Img/BondiolaTarjetaConPimenton.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Bondiola con Pimentón">
 
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold text-warning">Bondiola al Pimentón (1kg)</h5>
+            <h5 class="card-title fw-bold text-warning">Bondiola con Pimentón (1kg)</h5>
             <p class="card-text text-light flex-grow-1">Para aquellos que aman el pimentón, ésta es su elección ideal. El mismo y exquisito fiambre, pero con un toque especial 👌.</p>
 
             @auth
