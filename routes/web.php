@@ -107,3 +107,4 @@ Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('ca
 
 Route::post('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar')->middleware('auth');
 Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar')->middleware('auth');
+Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar')->middleware('auth');

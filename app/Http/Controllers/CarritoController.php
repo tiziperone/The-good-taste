@@ -3,34 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Producto; // Asegúrate de que el modelo sea el correcto
+use App\Models\Producto;
 
 class CarritoController extends Controller
 {
     public function agregar(Request $request)
     {
         $productoId = $request->input('producto_id');
-
-        // Buscamos el producto en la base de datos
         $producto = Producto::find($productoId);
 
         if (!$producto) {
             return response()->json(['success' => false, 'message' => 'Producto no encontrado.'], 404);
         }
 
-        // Validamos si hay stock disponible antes de agregar
         if ($producto->stock <= 0) {
             return response()->json(['success' => false, 'message' => 'Lo sentimos, este producto no tiene stock disponible.'], 400);
         }
 
-        // Obtenemos el carrito actual de la sesión o creamos uno vacío
         $carrito = session()->get('carrito', []);
 
-        // Si el producto ya está en el carrito, sumamos la cantidad
         if (isset($carrito[$productoId])) {
             $carrito[$productoId]['cantidad']++;
         } else {
-            // Si es nuevo, lo agregamos con sus detalles básicos
             $carrito[$productoId] = [
                 "nombre" => $producto->nombre,
                 "cantidad" => 1,
@@ -39,16 +33,65 @@ class CarritoController extends Controller
             ];
         }
 
-        // Guardamos el nuevo estado del carrito en la sesión
         session()->put('carrito', $carrito);
 
         return response()->json([
             'success' => true,
             'message' => '¡Producto agregado al carrito con éxito!',
-            'cart_count' => count($carrito) // Útil si querés actualizar un contador en la navbar
+            'cart_count' => count($carrito)
         ]);
     }
-    // Eliminar un solo producto del carrito
+
+    public function actualizar(Request $request)
+    {
+        $id = $request->input('id');
+        $accion = $request->input('accion'); // 'incrementar' o 'decrementar'
+
+        $carrito = session()->get('carrito', []);
+
+        if (isset($carrito[$id])) {
+            $producto = Producto::find($id);
+
+            if ($accion === 'incrementar') {
+                // Validación estricta de stock en Base de Datos
+                if ($producto && $carrito[$id]['cantidad'] >= $producto->stock) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'No hay más stock disponible de este producto.'
+                    ], 400);
+                }
+                $carrito[$id]['cantidad']++;
+            } elseif ($accion === 'decrementar') {
+                if ($carrito[$id]['cantidad'] > 1) {
+                    $carrito[$id]['cantidad']--;
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'La cantidad mínima es 1 kg. Si no lo deseás, podés eliminarlo.'
+                    ], 400);
+                }
+            }
+
+            session()->put('carrito', $carrito);
+
+            // Cálculos dinámicos para retornar
+            $subtotal = $carrito[$id]['precio'] * $carrito[$id]['cantidad'];
+            $totalGeneral = 0;
+            foreach ($carrito as $item) {
+                $totalGeneral += $item['precio'] * $item['cantidad'];
+            }
+
+            return response()->json([
+                'success' => true,
+                'cantidad' => $carrito[$id]['cantidad'],
+                'subtotal' => '$ ' . number_format($subtotal, 0, ',', '.'),
+                'totalGeneral' => '$ ' . number_format($totalGeneral, 0, ',', '.')
+            ]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Producto no encontrado.'], 404);
+    }
+
     public function eliminar(int $id)
     {
         $carrito = session()->get('carrito', []);
@@ -61,7 +104,6 @@ class CarritoController extends Controller
         return redirect()->back()->with('success', 'Producto removido del carrito.');
     }
 
-    // Vaciar por completo la sesión
     public function vaciar()
     {
         session()->forget('carrito');

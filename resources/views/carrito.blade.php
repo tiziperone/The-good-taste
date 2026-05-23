@@ -102,10 +102,6 @@
                             <span class="fw-bold text-warning">$ {{ number_format($total, 0, ',', '.') }}</span>
                         </div>
 
-                        <div class="alert alert-dark border-secondary text-light small mb-4" role="alert">
-                            <i class="bi bi-info-circle-fill text-warning me-2"></i> Los pedidos de fiambres y pastas artesanales se retiran o coordinan según stock.
-                        </div>
-
                         <div class="mt-auto">
                             <a href="{{ url('/compra') }}" class="btn btn-warning btn-lg w-100 fw-bold text-dark shadow">
                                 Finalizar Compra <i class="bi bi-arrow-right ms-2"></i>
