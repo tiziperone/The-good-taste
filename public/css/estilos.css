@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
+
 /* --- VARIABLES GLOBALES --- */
 :root {
     --color-primario: #ffc107;      /* Amarillo Warning */
@@ -70,7 +72,7 @@ body, html {
     display: none; /* Se activa por JS */
 }
 
-/* --- NAVBAR PERSONALIZADA --- */
+/* --- NAVBAR PERSONALIZADA (SECCIÓN CORREGIDA) --- */
 .navbar-personalizada {
     background-color: var(--color-fondo-oscuro) !important;
     border-bottom: 2px solid #333;
@@ -85,7 +87,11 @@ body, html {
     letter-spacing: 1px;
 }
 
-.navbar-personalizada .nav-link {
+/* Forzamos la tipografía en todos los links e iconos de la navbar */
+.navbar-personalizada .nav-link,
+.navbar-personalizada .nav-link span {
+    font-family: var(--fuente-principal) !important;
+    font-weight: 700 !important; /* Estilo bold para que resalte */
     color: var(--color-texto-blanco) !important;
     transition: var(--transicion);
 }
@@ -93,18 +99,20 @@ body, html {
 /* Estado Activo de la Navbar (El cuadrito resaltador) */
 .navbar-personalizada .nav-link.active {
     background-color: var(--color-primario) !important;
+    color: #212529 !important; /* Texto oscuro para contraste */
     border-radius: 8px !important;
     padding: 5px 15px !important;
 }
 
-.navbar-personalizada .nav-link.active h2 {
+.navbar-personalizada .nav-link.active span {
     color: #212529 !important;
-    font-weight: 900 !important;
-    margin: 0 !important;
 }
 
-/* Hover para links no activos */
-.navbar-personalizada .nav-link:not(.active):hover h2 {
+/* Hover general para los links que NO están activos */
+.navbar-personalizada .nav-link:not(.active):hover,
+.navbar-personalizada .nav-link:not(.active):hover span,
+.navbar-personalizada .nav-link:not(.active):hover i,
+.navbar-personalizada .nav-link:not(.active):hover svg {
     color: var(--color-primario) !important;
 }
 

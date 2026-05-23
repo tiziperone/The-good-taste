@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
 <nav class="navbar navbar-expand-lg navbar-personalizada">
     <div class="container-fluid">
 
@@ -33,6 +35,18 @@
                         <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
                         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
                     </svg>
+                </a>
+
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 d-flex align-items-center text-black position-relative"
+                    href="{{ url('/carrito') }}"
+                    title="Ver mi carrito"
+                    style="margin-left: 5px;">
+                    <i class="bi bi-cart3 fs-5 align-middle"></i>
+                    @if(session('carrito') && count(session('carrito')) > 0)
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem; padding: 0.25em 0.5em;">
+                        {{ count(session('carrito')) }}
+                    </span>
+                    @endif
                 </a>
                 @endauth
 
