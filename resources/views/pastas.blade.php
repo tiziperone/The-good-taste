@@ -44,12 +44,14 @@
   <div class="container mt-5 mb-5">
     <div class="row justify-content-center g-4">
 
+      @if(isset($pastas) && $pastas->count() > 0)
+      @foreach($pastas as $pasta)
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
 
           @auth
-          @if(auth()->user()->role === 'admin' && isset($ravioles))
-          <form action="{{ route('productos.destroy', $ravioles->id) }}" method="POST" class="position-absolute top-0 end-0 m-2" onsubmit="return confirm('¿Seguro querés eliminar este producto?');">
+          @if(auth()->user()->role === 'admin')
+          <form action="{{ route('productos.destroy', $pasta->id) }}" method="POST" class="position-absolute top-0 end-0 m-2" onsubmit="return confirm('¿Seguro querés eliminar este producto?');">
             @csrf
             <button type="submit" class="btn btn-danger btn-sm rounded-circle shadow">
               <i class="bi bi-trash"></i>
@@ -58,38 +60,36 @@
           @endif
           @endauth
 
-          <img src="{{ asset(isset($ravioles) && $ravioles->url_imagen ? $ravioles->url_imagen : 'Img/RaviolesTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Ravioles">
+          <img src="{{ asset($pasta->url_imagen ? $pasta->url_imagen : 'Img/SorrentinosTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $pasta->nombre }}">
 
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold text-warning">{{ isset($ravioles) ? $ravioles->nombre : 'Ravioles (1 docena)' }}</h5>
-            <p class="card-text text-light flex-grow-1">{{ isset($ravioles) && $ravioles->descripcion ? $ravioles->descripcion : 'Deliciosos ravioles rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.' }}</p>
+            <h5 class="card-title fw-bold text-warning">{{ $pasta->nombre }}</h5>
+            <p class="card-text text-light flex-grow-1">{{ $pasta->descripcion ?? 'Sin descripción disponible.' }}</p>
 
             @auth
             @if(auth()->user()->role === 'admin')
             <div class="mb-3">
-              @if(isset($ravioles))
-              @if($ravioles->stock == 0)
+              @if($pasta->stock === null)
+              <span class="badge bg-secondary p-2"><i class="bi bi-exclamation-triangle me-1"></i> Stock no inicializado</span>
+              @elif($pasta->stock == 0)
               <span class="badge bg-danger p-2">Sin Stock</span>
-              @elif($ravioles->stock <= $ravioles->stock_minimo)
-                <span class="badge bg-warning text-dark p-2">¡Últimos en stock! (Quedan: {{ $ravioles->stock }})</span>
+              @elif($pasta->stock <= $pasta->stock_minimo)
+                <span class="badge bg-warning text-dark p-2">¡Últimos en stock! (Quedan: {{ $pasta->stock }})</span>
                 @else
-                <span class="badge bg-success p-2">Disponible (Stock: {{ $ravioles->stock }})</span>
-                @endif
-                @else
-                <span class="badge bg-secondary p-2"><i class="bi bi-exclamation-triangle me-1"></i> Stock no inicializado</span>
+                <span class="badge bg-success p-2">Disponible (Stock: {{ $pasta->stock }})</span>
                 @endif
             </div>
             @endif
             @endauth
 
             <h4 class="fw-bold mb-3">
-              {{ isset($ravioles) ? '$' . number_format($ravioles->precio, 0, ',', '.') : '$3.800' }}
+              ${{ number_format($pasta->precio, 0, ',', '.') }}
             </h4>
 
             <div class="mt-auto">
               <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
               @auth
-              <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ isset($ravioles) ? $ravioles->id : '' }}">
+              <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ $pasta->id }}">
                 Agregar <i class="bi bi-cart"></i>
               </button>
               @else
@@ -101,122 +101,12 @@
           </div>
         </div>
       </div>
-
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
-
-          @auth
-          @if(auth()->user()->role === 'admin' && isset($sorrentinos))
-          <form action="{{ route('productos.destroy', $sorrentinos->id) }}" method="POST" class="position-absolute top-0 end-0 m-2" onsubmit="return confirm('¿Seguro querés eliminar este producto?');">
-            @csrf
-            <button type="submit" class="btn btn-danger btn-sm rounded-circle shadow">
-              <i class="bi bi-trash"></i>
-            </button>
-          </form>
-          @endif
-          @endauth
-
-          <img src="{{ asset(isset($sorrentinos) && $sorrentinos->url_imagen ? $sorrentinos->url_imagen : 'Img/SorrentinosTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Sorrentinos">
-
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold text-warning">{{ isset($sorrentinos) ? $sorrentinos->nombre : 'Sorrentinos (1 docena)' }}</h5>
-            <p class="card-text text-light flex-grow-1">{{ isset($sorrentinos) && $sorrentinos->descripcion ? $sorrentinos->descripcion : 'Deliciosos sorrentinos rellenos de jamón y queso o carne, ideales para compartir un domingo en familia.' }}</p>
-
-            @auth
-            @if(auth()->user()->role === 'admin')
-            <div class="mb-3">
-              @if(isset($sorrentinos))
-              @if($sorrentinos->stock == 0)
-              <span class="badge bg-danger p-2">Sin Stock</span>
-              @elif($sorrentinos->stock <= $sorrentinos->stock_minimo)
-                <span class="badge bg-warning text-dark p-2">¡Últimos en stock! (Quedan: {{ $sorrentinos->stock }})</span>
-                @else
-                <span class="badge bg-success p-2">Disponible (Stock: {{ $sorrentinos->stock }})</span>
-                @endif
-                @else
-                <span class="badge bg-secondary p-2"><i class="bi bi-exclamation-triangle me-1"></i> Stock no inicializado</span>
-                @endif
-            </div>
-            @endif
-            @endauth
-
-            <h4 class="fw-bold mb-3">
-              {{ isset($sorrentinos) ? '$' . number_format($sorrentinos->precio, 0, ',', '.') : '$4.000' }}
-            </h4>
-
-            <div class="mt-auto">
-              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
-              @auth
-              <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ isset($sorrentinos) ? $sorrentinos->id : '' }}">
-                Agregar <i class="bi bi-cart"></i>
-              </button>
-              @else
-              <a href="{{ route('login') }}" class="btn btn-outline-light ms-2">
-                Agregar <i class="bi bi-cart"></i>
-              </a>
-              @endauth
-            </div>
-          </div>
-        </div>
+      @endforeach
+      @else
+      <div class="col-12 text-center text-light">
+        <p class="fs-5">No hay pastas cargadas en el catálogo en este momento.</p>
       </div>
-
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
-
-          @auth
-          @if(auth()->user()->role === 'admin' && isset($fideos))
-          <form action="{{ route('productos.destroy', $fideos->id) }}" method="POST" class="position-absolute top-0 end-0 m-2" onsubmit="return confirm('¿Seguro querés eliminar este producto?');">
-            @csrf
-            <button type="submit" class="btn btn-danger btn-sm rounded-circle shadow">
-              <i class="bi bi-trash"></i>
-            </button>
-          </form>
-          @endif
-          @endauth
-
-          <img src="{{ asset(isset($fideos) && $fideos->url_imagen ? $fideos->url_imagen : 'Img/FideosTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Fideos">
-
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold text-warning">{{ isset($fideos) ? $fideos->nombre : 'Fideos (500g)' }}</h5>
-            <p class="card-text text-light flex-grow-1">{{ isset($fideos) && $fideos->descripcion ? $fideos->descripcion : 'Fideos de alta calidad, ideales para preparar platos sabrosos con una exquisita salsa.' }}</p>
-
-            @auth
-            @if(auth()->user()->role === 'admin')
-            <div class="mb-3">
-              @if(isset($fideos))
-              @if($fideos->stock == 0)
-              <span class="badge bg-danger p-2">Sin Stock</span>
-              @elif($fideos->stock <= $fideos->stock_minimo)
-                <span class="badge bg-warning text-dark p-2">¡Últimos en stock! (Quedan: {{ $fideos->stock }})</span>
-                @else
-                <span class="badge bg-success p-2">Disponible (Stock: {{ $fideos->stock }})</span>
-                @endif
-                @else
-                <span class="badge bg-secondary p-2"><i class="bi bi-exclamation-triangle me-1"></i> Stock no inicializado</span>
-                @endif
-            </div>
-            @endif
-            @endauth
-
-            <h4 class="fw-bold mb-3">
-              {{ isset($fideos) ? '$' . number_format($fideos->precio, 0, ',', '.') : '$2.500' }}
-            </h4>
-
-            <div class="mt-auto">
-              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
-              @auth
-              <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ isset($fideos) ? $fideos->id : '' }}">
-                Agregar <i class="bi bi-cart"></i>
-              </button>
-              @else
-              <a href="{{ route('login') }}" class="btn btn-outline-light ms-2">
-                Agregar <i class="bi bi-cart"></i>
-              </a>
-              @endauth
-            </div>
-          </div>
-        </div>
-      </div>
+      @endif
 
     </div>
   </div>
@@ -255,7 +145,7 @@
             </div>
             <div class="mb-3">
               <label for="url_imagen" class="form-label text-warning small fw-bold">Ruta de Imagen (Opcional)</label>
-              <input type="text" class="form-control bg-secondary text-white border-0" id="url_imagen" name="url_imagen" placeholder="Img/RaviolesTarjeta.png">
+              <input type="text" class="form-control bg-secondary text-white border-0" id="url_imagen" name="url_imagen" placeholder="Img/SorrentinosTarjeta.png">
             </div>
           </div>
           <div class="modal-footer border-0 pt-0">
@@ -297,7 +187,7 @@
           const productoId = this.getAttribute('data-id');
 
           if (!productoId) {
-            toastMensaje.innerHTML = "Error: ID de producto no válido.";
+            toastMensaje.innerHTML = "❌ Error: ID de producto no válido.";
             toastElement.classList.replace('text-bg-success', 'text-bg-danger');
             toast.show();
             return;
@@ -327,7 +217,7 @@
             })
             .catch(error => {
               console.error('Error:', error);
-              toastMensaje.innerHTML = "Hubo un problema al procesar la solicitud.";
+              toastMensaje.innerHTML = "❌ Hubo un problema al procesar la solicitud.";
               toastElement.classList.replace('text-bg-success', 'text-bg-danger');
               toast.show();
             });

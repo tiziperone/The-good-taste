@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ProductoController extends Controller
 {
 
-    //SECCIÓN BONDIOLAS (Categoría ID 1)
+    // SECCIÓN BONDIOLAS (Categoría ID 1)
 
     public function mostrarBondiolas()
     {
@@ -39,14 +39,12 @@ class ProductoController extends Controller
     }
 
 
-    //SECCIÓN MILANESAS (Categoría ID 2 en DBeaver)
+    // SECCIÓN MILANESAS (Categoría ID 2 en DBeaver)
 
     public function mostrarMilanesas()
     {
-        // Traemos solo los productos activos que sean milanesas
         $productos = Producto::where('activo', true)->where('categoria_id', 2)->get();
 
-        // Busqueda flexible: detecta las palabras clave sin importar mayúsculas, minúsculas o puntos
         $milaCarne = $productos->filter(function ($item) {
             return false !== stripos($item->nombre, 'carne');
         })->first();
@@ -55,7 +53,7 @@ class ProductoController extends Controller
             return false !== stripos($item->nombre, 'pollo');
         })->first();
 
-        return view('milanesas', compact('milaCarne', 'milaPollo')); // Tu vista de milanesas
+        return view('milanesas', compact('milaCarne', 'milaPollo'));
     }
 
     public function storeMilanesa(Request $request)
@@ -78,31 +76,18 @@ class ProductoController extends Controller
     }
 
 
-    //SECCIÓN PASTAS (Categoría ID 3 en DBeaver)
+    // SECCIÓN PASTAS (Categoría ID 3 en DBeaver)
 
     public function mostrarPastas()
     {
-        // 1. Traemos todos los productos activos de la categoría 3 (Pastas)
-        $productos = Producto::where('activo', true)
+        // CORREGIDO: Traemos TODOS los productos activos de la categoría 3 (Pastas)
+        // Ya no filtramos por "first()", mandamos la lista entera a la vista
+        $pastas = Producto::where('activo', true)
             ->where('categoria_id', 3)
             ->get();
 
-        // 2. Filtramos de forma flexible buscando palabras clave individuales
-        $ravioles = $productos->filter(function ($item) {
-            return false !== stripos($item->nombre, 'raviole');
-        })->first();
-
-        $sorrentinos = $productos->filter(function ($item) {
-            return false !== stripos($item->nombre, 'sorrento');
-        })->first();
-
-        // Buscamos 'tallari' o 'fideo' para que enganche la tercera tarjeta
-        $fideos = $productos->filter(function ($item) {
-            return false !== stripos($item->nombre, 'tallari') || false !== stripos($item->nombre, 'fideo');
-        })->first();
-
-        // 3. Enviamos las tres variables exactas que usa tu Blade
-        return view('pastas', compact('ravioles', 'sorrentinos', 'fideos'));
+        // Enviamos la variable $pastas que es la que recorre el @foreach en el Blade
+        return view('pastas', compact('pastas'));
     }
 
     public function storePasta(Request $request)
@@ -124,7 +109,7 @@ class ProductoController extends Controller
         return back()->with('success', '¡Pasta añadida exitosamente!');
     }
 
-    //Para no repetir las validaciones
+    // Para no repetir las validaciones
 
     private function validarProducto(Request $request)
     {
@@ -136,7 +121,7 @@ class ProductoController extends Controller
         ]);
     }
 
-    //(Sirve para cualquier producto de cualquier categoría)
+    // (Sirve para cualquier producto de cualquier categoría)
     public function destroy(int $id)
     {
         $producto = Producto::findOrFail($id);
