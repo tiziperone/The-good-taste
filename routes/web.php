@@ -64,7 +64,7 @@ Route::get('/verificar-correo/{id}', [AuthController::class, 'verificarCorreo'])
     ->middleware('signed')
     ->name('verificar.correo');
 
-Route::post('/cerrar-sesion', [App\Http\Controllers\AuthController::class, 'logout']);
+Route::post('/cerrar-sesion', [AuthController::class, 'logout']);
 
 
 //Sección Bondiolas (Categoría 1)
@@ -81,3 +81,20 @@ Route::post('/productos/guardar-pasta', [ProductoController::class, 'storePasta'
 
 //Eliminación Común (Borrado Lógico)
 Route::post('/productos/eliminar/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+
+
+
+
+// 1. Muestra el formulario para ingresar el mail (archivo suelto recuperar-contrasena.blade.php)
+Route::get('/recuperar-contrasena', function () {
+    return view('recuperar-contrasena');
+})->name('password.request');
+
+// 2. Recibe el formulario POST para generar el token
+Route::post('/recuperar-contrasena', [AuthController::class, 'enviarEnlaceRecuperacion'])->name('password.email');
+
+// 3. Muestra el formulario para escribir la NUEVA contraseña (archivo suelto nueva-password.blade.php)
+Route::get('/restablecer-password/{token}', [AuthController::class, 'mostrarFormoRestablecer'])->name('password.reset');
+
+// 4. Procesa el cambio definitivo en la base de datos
+Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword'])->name('password.update');

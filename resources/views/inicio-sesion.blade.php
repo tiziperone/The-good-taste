@@ -122,7 +122,7 @@
                                 <input type="password" name="password" id="password" class="form-control bg-dark text-white border-secondary" placeholder="********" required>
                             </div>
                             <div class="text-end mt-2">
-                                <a href="#" class="text-link small text-white-50">¿Olvidaste tu contraseña?</a>
+                                <a href="{{ url('/recuperar-contrasena') }}" class="text-decoration-none" style="color: #6c757d;">¿Olvidaste tu contraseña?</a>
                             </div>
                         </div>
 
