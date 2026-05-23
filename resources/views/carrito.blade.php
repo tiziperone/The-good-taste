@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between mt-3">
-                    <a href="{{ url('/') }}" class="btn btn-outline-light fw-bold">
+                    <a href="{{ session('url_seguir_comprando', url('/')) }}" class="btn btn-outline-light fw-bold">
                         <i class="bi bi-arrow-left me-2"></i> Seguir Comprando
                     </a>
                     <form action="{{ route('carrito.vaciar') }}" method="POST" onsubmit="return confirm('¿Seguro querés vaciar todo el carrito?');">
@@ -118,7 +118,7 @@
 
                         <div class="mt-auto">
                             <a href="{{ url('/compra') }}" class="btn btn-warning btn-lg w-100 fw-bold text-dark shadow">
-                                Finalizar Comra <i class="bi bi-arrow-right ms-2"></i>
+                                Finalizar Compra <i class="bi bi-arrow-right ms-2"></i>
                             </a>
                         </div>
                     </div>
@@ -135,8 +135,8 @@
                 ¡Todavía no agregaste ninguna de nuestras bondiolas caseras, milanesas o pastas artesanales! Date un gusto visitando nuestro catálogo.
             </p>
             <div>
-                <a href="{{ url('/') }}" class="btn btn-warning fw-bold text-dark px-4 py-2 shadow">
-                    Ver Menú de Productos
+                <a href="{{ session('url_seguir_comprando', url('/')) }}" class="btn btn-warning fw-bold text-dark px-4 py-2 shadow">
+                    Volver al Catálogo
                 </a>
             </div>
         </div>
@@ -169,16 +169,10 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                // Actualiza dinámicamente la cantidad textual en la fila
                                 document.querySelector(`.cantidad-val[data-id="${id}"]`).innerText = `${data.cantidad} kg`;
-
-                                // Actualiza el subtotal calculado de esa fila
                                 document.querySelector(`.subtotal-val[data-id="${id}"]`).innerText = data.subtotal;
-
-                                // Actualiza la tarjeta del total de la orden
                                 document.querySelector('.total-general-val').innerText = data.totalGeneral;
                             } else {
-                                // Muestra de manera limpia el mensaje de falta de stock o límites
                                 alert(`⚠️ ${data.message}`);
                             }
                         })

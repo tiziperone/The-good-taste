@@ -7,6 +7,19 @@ use App\Models\Producto;
 
 class CarritoController extends Controller
 {
+    // NUEVO: Guarda el origen exacto antes de renderizar la vista del carrito
+    public function index(Request $request)
+    {
+        $urlAnterior = url()->previous();
+
+        // Evitamos capturar las URLs del propio carrito o sus acciones internas de borrado/vaciado
+        if (!str_contains($urlAnterior, '/carrito')) {
+            session()->put('url_seguir_comprando', $urlAnterior);
+        }
+
+        return view('carrito');
+    }
+
     public function agregar(Request $request)
     {
         $productoId = $request->input('producto_id');
@@ -45,7 +58,7 @@ class CarritoController extends Controller
     public function actualizar(Request $request)
     {
         $id = $request->input('id');
-        $accion = $request->input('accion'); // 'incrementar' o 'decrementar'
+        $accion = $request->input('accion');
 
         $carrito = session()->get('carrito', []);
 
@@ -53,7 +66,6 @@ class CarritoController extends Controller
             $producto = Producto::find($id);
 
             if ($accion === 'incrementar') {
-                // Validación estricta de stock en Base de Datos
                 if ($producto && $carrito[$id]['cantidad'] >= $producto->stock) {
                     return response()->json([
                         'success' => false,
@@ -74,7 +86,6 @@ class CarritoController extends Controller
 
             session()->put('carrito', $carrito);
 
-            // Cálculos dinámicos para retornar
             $subtotal = $carrito[$id]['precio'] * $carrito[$id]['cantidad'];
             $totalGeneral = 0;
             foreach ($carrito as $item) {

@@ -41,9 +41,8 @@ Route::get('compra', function () {
     return view('compra');
 });
 
-Route::get('carrito', function () {
-    return view('carrito');
-});
+// CORREGIDO: Ahora pasa por el controlador para guardar la URL de origen
+Route::get('carrito', [CarritoController::class, 'index'])->name('carrito.index')->middleware('auth');
 
 Route::get('inicio-sesion', function () {
     return view('inicio-sesion');
@@ -84,27 +83,18 @@ Route::post('/productos/guardar-pasta', [ProductoController::class, 'storePasta'
 Route::post('/productos/eliminar/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
 
-
-
-// 1. Muestra el formulario para ingresar el mail (archivo suelto recuperar-contrasena.blade.php)
+// Recuperación de Contraseña
 Route::get('/recuperar-contrasena', function () {
     return view('recuperar-contrasena');
 })->name('password.request');
 
-// 2. Recibe el formulario POST para generar el token
 Route::post('/recuperar-contrasena', [AuthController::class, 'enviarEnlaceRecuperacion'])->name('password.email');
-
-// 3. Muestra el formulario para escribir la NUEVA contraseña (archivo suelto nueva-password.blade.php)
 Route::get('/restablecer-password/{token}', [AuthController::class, 'mostrarFormoRestablecer'])->name('password.reset');
-
-// 4. Procesa el cambio definitivo en la base de datos
 Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword'])->name('password.update');
 
 
-
-
+// Operaciones del Carrito
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar')->middleware('auth');
-
 Route::post('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar')->middleware('auth');
 Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar')->middleware('auth');
 Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar')->middleware('auth');
