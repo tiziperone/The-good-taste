@@ -10,7 +10,7 @@
 
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
@@ -37,7 +37,7 @@
                                 <tr>
                                     <th scope="col" class="ps-3">Producto</th>
                                     <th scope="col" class="text-center">Precio</th>
-                                    <th scope="col" class="text-center">Cantidad</th>
+                                    <th scope="col" class="text-center">Cantidad (1kg = 1 unidad)</th>
                                     <th scope="col" class="text-center">Subtotal</th>
                                     <th scope="col" class="text-center pe-3">Acciones</th>
                                 </tr>
@@ -57,10 +57,24 @@
                                         </div>
                                     </td>
                                     <td class="text-center">$ {{ number_format($detalles['precio'], 0, ',', '.') }}</td>
+
                                     <td class="text-center">
-                                        <span class="badge bg-secondary px-3 py-2 fs-6">{{ $detalles['cantidad'] }} kg</span>
+                                        <div class="d-inline-flex align-items-center bg-secondary rounded overflow-hidden shadow-sm" style="border: 1px solid #6c757d;">
+                                            <button type="button" class="btn btn-sm btn-dark border-0 px-2 btn-actualizar" data-id="{{ $id }}" data-accion="decrementar">
+                                                <i class="bi bi-minus-lg text-warning"></i>
+                                            </button>
+
+                                            <span class="px-3 fw-bold text-white cantidad-val" data-id="{{ $id }}">
+                                                {{ $detalles['cantidad'] }} kg
+                                            </span>
+
+                                            <button type="button" class="btn btn-sm btn-dark border-0 px-2 btn-actualizar" data-id="{{ $id }}" data-accion="incrementar">
+                                                <i class="bi bi-plus-lg text-warning"></i>
+                                            </button>
+                                        </div>
                                     </td>
-                                    <td class="text-center fw-bold text-warning">$ {{ number_format($subtotal, 0, ',', '.') }}</td>
+
+                                    <td class="text-center fw-bold text-warning subtotal-val" data-id="{{ $id }}">$ {{ number_format($subtotal, 0, ',', '.') }}</td>
                                     <td class="text-center pe-3">
                                         <form action="{{ route('carrito.eliminar', $id) }}" method="POST" onsubmit="return confirm('¿Querés quitar este producto del carrito?');">
                                             @csrf
@@ -99,12 +113,12 @@
 
                         <div class="d-flex justify-content-between mb-4 fs-4 border-top border-secondary pt-3">
                             <span class="fw-bold text-warning">Total:</span>
-                            <span class="fw-bold text-warning">$ {{ number_format($total, 0, ',', '.') }}</span>
+                            <span class="fw-bold text-warning total-general-val">$ {{ number_format($total, 0, ',', '.') }}</span>
                         </div>
 
                         <div class="mt-auto">
                             <a href="{{ url('/compra') }}" class="btn btn-warning btn-lg w-100 fw-bold text-dark shadow">
-                                Finalizar Compra <i class="bi bi-arrow-right ms-2"></i>
+                                Finalizar Comra <i class="bi bi-arrow-right ms-2"></i>
                             </a>
                         </div>
                     </div>
@@ -133,6 +147,49 @@
     @include('componentes.footer')
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.btn-actualizar').forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const accion = this.getAttribute('data-accion');
+
+                    fetch("{{ route('carrito.actualizar') }}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: JSON.stringify({
+                                id: id,
+                                accion: accion
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Actualiza dinámicamente la cantidad textual en la fila
+                                document.querySelector(`.cantidad-val[data-id="${id}"]`).innerText = `${data.cantidad} kg`;
+
+                                // Actualiza el subtotal calculado de esa fila
+                                document.querySelector(`.subtotal-val[data-id="${id}"]`).innerText = data.subtotal;
+
+                                // Actualiza la tarjeta del total de la orden
+                                document.querySelector('.total-general-val').innerText = data.totalGeneral;
+                            } else {
+                                // Muestra de manera limpia el mensaje de falta de stock o límites
+                                alert(`⚠️ ${data.message}`);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('❌ Hubo un error al procesar el cambio de cantidad.');
+                        });
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
