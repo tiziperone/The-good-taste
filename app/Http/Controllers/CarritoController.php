@@ -48,4 +48,23 @@ class CarritoController extends Controller
             'cart_count' => count($carrito) // Útil si querés actualizar un contador en la navbar
         ]);
     }
+    // Eliminar un solo producto del carrito
+    public function eliminar(int $id)
+    {
+        $carrito = session()->get('carrito', []);
+
+        if (isset($carrito[$id])) {
+            unset($carrito[$id]);
+            session()->put('carrito', $carrito);
+        }
+
+        return redirect()->back()->with('success', 'Producto removido del carrito.');
+    }
+
+    // Vaciar por completo la sesión
+    public function vaciar()
+    {
+        session()->forget('carrito');
+        return redirect()->back()->with('success', 'El carrito se vació correctamente.');
+    }
 }
