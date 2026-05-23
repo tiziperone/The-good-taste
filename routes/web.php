@@ -104,3 +104,6 @@ Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword
 
 
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar')->middleware('auth');
+
+Route::post('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar')->middleware('auth');
+Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar')->middleware('auth');
