@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\CarritoController;
 
 Route::get('/', function () {
     return view('pagina-principal');
@@ -98,3 +99,8 @@ Route::get('/restablecer-password/{token}', [AuthController::class, 'mostrarForm
 
 // 4. Procesa el cambio definitivo en la base de datos
 Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword'])->name('password.update');
+
+
+
+
+Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar')->middleware('auth');
