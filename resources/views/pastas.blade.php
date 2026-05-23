@@ -88,7 +88,15 @@
 
             <div class="mt-auto">
               <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
-              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">Agregar <i class="bi bi-cart"></i></a>
+              @auth
+              <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ isset($ravioles) ? $ravioles->id : '' }}">
+                Agregar <i class="bi bi-cart"></i>
+              </button>
+              @else
+              <a href="{{ route('login') }}" class="btn btn-outline-light ms-2">
+                Agregar <i class="bi bi-cart"></i>
+              </a>
+              @endauth
             </div>
           </div>
         </div>
@@ -138,7 +146,15 @@
 
             <div class="mt-auto">
               <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
-              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">Agregar <i class="bi bi-cart"></i></a>
+              @auth
+              <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ isset($sorrentinos) ? $sorrentinos->id : '' }}">
+                Agregar <i class="bi bi-cart"></i>
+              </button>
+              @else
+              <a href="{{ route('login') }}" class="btn btn-outline-light ms-2">
+                Agregar <i class="bi bi-cart"></i>
+              </a>
+              @endauth
             </div>
           </div>
         </div>
@@ -188,7 +204,15 @@
 
             <div class="mt-auto">
               <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
-              <a href="{{ url('/carrito') }}" class="btn btn-outline-light ms-2">Agregar <i class="bi bi-cart"></i></a>
+              @auth
+              <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ isset($fideos) ? $fideos->id : '' }}">
+                Agregar <i class="bi bi-cart"></i>
+              </button>
+              @else
+              <a href="{{ route('login') }}" class="btn btn-outline-light ms-2">
+                Agregar <i class="bi bi-cart"></i>
+              </a>
+              @endauth
             </div>
           </div>
         </div>
@@ -196,7 +220,6 @@
 
     </div>
   </div>
-
   <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content bg-dark text-white border-warning" style="border-radius: 15px;">
@@ -244,10 +267,74 @@
     </div>
   </div>
 
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+    <div id="toastCarrito" class="toast align-items-center text-bg-success border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+      <div class="d-flex p-2 align-items-center">
+        <div class="toast-body flex-grow-1" id="toastMensaje"></div>
+        <a href="{{ url('/carrito') }}" class="btn btn-light btn-sm fw-bold me-2 shadow-sm text-success">Ver Carrito</a>
+        <button type="button" class="btn-close btn-close-white m-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
   @include('componentes.botonHaciaArriba')
   @include('componentes.footer')
 
   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+  <script>
+    twemoji.parse(document.body);
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toastElement = document.getElementById('toastCarrito');
+      const toast = new bootstrap.Toast(toastElement);
+      const toastMensaje = document.getElementById('toastMensaje');
+
+      document.querySelectorAll('.btn-agregar-carrito').forEach(boton => {
+        boton.addEventListener('click', function() {
+          const productoId = this.getAttribute('data-id');
+
+          if (!productoId) {
+            toastMensaje.innerHTML = "Error: ID de producto no válido.";
+            toastElement.classList.replace('text-bg-success', 'text-bg-danger');
+            toast.show();
+            return;
+          }
+
+          fetch("{{ route('carrito.agregar') }}", {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+              },
+              body: JSON.stringify({
+                producto_id: productoId
+              })
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                toastMensaje.innerHTML = `🛒 ${data.message}`;
+                toastElement.classList.replace('text-bg-danger', 'text-bg-success');
+                toast.show();
+              } else {
+                toastMensaje.innerHTML = `⚠️ ${data.message}`;
+                toastElement.classList.replace('text-bg-success', 'text-bg-danger');
+                toast.show();
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              toastMensaje.innerHTML = "Hubo un problema al procesar la solicitud.";
+              toastElement.classList.replace('text-bg-success', 'text-bg-danger');
+              toast.show();
+            });
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
