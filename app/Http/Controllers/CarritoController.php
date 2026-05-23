@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CarritoItem;
 use App\Models\Producto;
+use Illuminate\Support\Facades\Auth; // Fachada lista y activa
 
 class CarritoController extends Controller
 {
-    // NUEVO: Guarda el origen exacto antes de renderizar la vista del carrito
+    // Carga la vista de la tabla leyendo los registros permanentes desde la BD
     public function index(Request $request)
     {
         $urlAnterior = url()->previous();
@@ -17,9 +19,13 @@ class CarritoController extends Controller
             session()->put('url_seguir_comprando', $urlAnterior);
         }
 
-        return view('carrito');
+        // CORREGIDO: Cambiado a Auth::id() para eliminar error del editor
+        $carrito = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
+
+        return view('carrito', compact('carrito'));
     }
 
+    // Agrega o incrementa un producto de forma permanente usando Eloquent (AJAX Fetch)
     public function agregar(Request $request)
     {
         $productoId = $request->input('producto_id');
@@ -33,91 +39,98 @@ class CarritoController extends Controller
             return response()->json(['success' => false, 'message' => 'Lo sentimos, este producto no tiene stock disponible.'], 400);
         }
 
-        $carrito = session()->get('carrito', []);
+        // CORREGIDO: Cambiado a Auth::id() para eliminar error del editor
+        $item = CarritoItem::where('user_id', Auth::id())
+            ->where('producto_id', $productoId)
+            ->first();
 
-        if (isset($carrito[$productoId])) {
-            $carrito[$productoId]['cantidad']++;
+        if ($item) {
+            $item->increment('cantidad');
         } else {
-            $carrito[$productoId] = [
-                "nombre" => $producto->nombre,
-                "cantidad" => 1,
-                "precio" => $producto->precio,
-                "imagen" => $producto->url_imagen ?? 'Img/BondiolaTarjetaSinPimenton.png'
-            ];
+            CarritoItem::create([
+                'user_id' => Auth::id(), // CORREGIDO
+                'producto_id' => $productoId,
+                'cantidad' => 1
+            ]);
         }
 
-        session()->put('carrito', $carrito);
+        // CORREGIDO: Cambiado a Auth::id() para eliminar error del editor
+        $conteoUnico = CarritoItem::where('user_id', Auth::id())->count();
 
         return response()->json([
             'success' => true,
             'message' => '¡Producto agregado al carrito con éxito!',
-            'cart_count' => count($carrito)
+            'cart_count' => $conteoUnico
         ]);
     }
 
+    // Procesa los botones + y - de la tabla directamente en la BD (AJAX Fetch)
     public function actualizar(Request $request)
     {
-        $id = $request->input('id');
+        $id = $request->input('id'); // ID de la fila en carrito_items
         $accion = $request->input('accion');
 
-        $carrito = session()->get('carrito', []);
+        // CORREGIDO: Cambiado a Auth::id() para eliminar error del editor
+        $item = CarritoItem::with('producto')->where('user_id', Auth::id())->find($id);
 
-        if (isset($carrito[$id])) {
-            $producto = Producto::find($id);
-
-            if ($accion === 'incrementar') {
-                if ($producto && $carrito[$id]['cantidad'] >= $producto->stock) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'No hay más stock disponible de este producto.'
-                    ], 400);
-                }
-                $carrito[$id]['cantidad']++;
-            } elseif ($accion === 'decrementar') {
-                if ($carrito[$id]['cantidad'] > 1) {
-                    $carrito[$id]['cantidad']--;
-                } else {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'La cantidad mínima es 1 kg. Si no lo deseás, podés eliminarlo.'
-                    ], 400);
-                }
-            }
-
-            session()->put('carrito', $carrito);
-
-            $subtotal = $carrito[$id]['precio'] * $carrito[$id]['cantidad'];
-            $totalGeneral = 0;
-            foreach ($carrito as $item) {
-                $totalGeneral += $item['precio'] * $item['cantidad'];
-            }
-
-            return response()->json([
-                'success' => true,
-                'cantidad' => $carrito[$id]['cantidad'],
-                'subtotal' => '$ ' . number_format($subtotal, 0, ',', '.'),
-                'totalGeneral' => '$ ' . number_format($totalGeneral, 0, ',', '.')
-            ]);
+        if (!$item) {
+            return response()->json(['success' => false, 'message' => 'Producto no encontrado en tu carrito.'], 404);
         }
 
-        return response()->json(['success' => false, 'message' => 'Producto no encontrado.'], 404);
+        if ($accion === 'incrementar') {
+            if ($item->producto && $item->cantidad >= $item->producto->stock) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No hay más stock disponible de este producto.'
+                ], 400);
+            }
+            $item->increment('cantidad');
+        } elseif ($accion === 'decrementar') {
+            if ($item->cantidad > 1) {
+                $item->decrement('cantidad');
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'La cantidad mínima es 1 kg. Si no lo deseás, podés eliminarlo.'
+                ], 400);
+            }
+        }
+
+        // Calculamos los subtotales usando los datos relacionales de la BD
+        $subtotal = $item->producto->precio * $item->cantidad;
+
+        // CORREGIDO: Cambiado a Auth::id() para eliminar error del editor
+        $todoElCarrito = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
+
+        $totalGeneral = 0;
+        foreach ($todoElCarrito as $row) {
+            $totalGeneral += $row->producto->precio * $row->cantidad;
+        }
+
+        return response()->json([
+            'success' => true,
+            'amount' => $item->cantidad,
+            'cantidad' => $item->cantidad,
+            'subtotal' => '$ ' . number_format($subtotal, 0, ',', '.'),
+            'totalGeneral' => '$ ' . number_format($totalGeneral, 0, ',', '.')
+        ]);
     }
 
+    // Remueve un registro físico por id (Formulario convencional)
     public function eliminar(int $id)
     {
-        $carrito = session()->get('carrito', []);
+        // Manteniendo Auth::id() limpio
+        CarritoItem::where('user_id', Auth::id())->where('id', $id)->delete();
 
-        if (isset($carrito[$id])) {
-            unset($carrito[$id]);
-            session()->put('carrito', $carrito);
-        }
-
-        return redirect()->back()->with('success', 'Producto removido del carrito.');
+        return redirect()->back()->with('with', 'Producto removido del carrito.');
     }
 
+    // Limpia todas las filas del usuario en la BD
     public function vaciar()
     {
-        session()->forget('carrito');
+        // Manteniendo Auth::id() limpio
+        CarritoItem::where('user_id', Auth::id())->delete();
+
         return redirect()->back()->with('success', 'El carrito se vació correctamente.');
     }
 }

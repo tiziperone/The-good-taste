@@ -27,7 +27,7 @@
     <div class="container mt-5 mb-5">
         <h2 class="fw-bold text-warning mb-4" style="font-family: 'Montserrat', sans-serif;">🛒 Tu Carrito de Compras</h2>
 
-        @if(session('carrito') && count(session('carrito')) > 0)
+        @if(isset($carrito) && $carrito->count() > 0)
         <div class="row g-4">
             <div class="col-12 col-lg-8">
                 <div class="card bg-dark border-secondary shadow">
@@ -44,39 +44,40 @@
                             </thead>
                             <tbody>
                                 @php $total = 0; @endphp
-                                @foreach(session('carrito') as $id => $detalles)
+                                @foreach($carrito as $item)
                                 @php
-                                $subtotal = $detalles['precio'] * $detalles['cantidad'];
+                                // Calculamos en base al precio real de la tabla productos relacionada
+                                $subtotal = $item->producto->precio * $item->cantidad;
                                 $total += $subtotal;
                                 @endphp
                                 <tr>
                                     <td class="ps-3">
                                         <div class="d-flex align-items-center gap-3">
-                                            <img src="{{ asset($detalles['imagen']) }}" alt="{{ $detalles['nombre'] }}" class="rounded shadow-sm" style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #ffc107;">
-                                            <span class="fw-bold text-light">{{ $detalles['nombre'] }}</span>
+                                            <img src="{{ asset($item->producto->url_imagen ?? 'Img/BondiolaTarjetaSinPimenton.png') }}" alt="{{ $item->producto->nombre }}" class="rounded shadow-sm" style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #ffc107;">
+                                            <span class="fw-bold text-light">{{ $item->producto->nombre }}</span>
                                         </div>
                                     </td>
-                                    <td class="text-center">$ {{ number_format($detalles['precio'], 0, ',', '.') }}</td>
+                                    <td class="text-center">$ {{ number_format($item->producto->precio, 0, ',', '.') }}</td>
 
                                     <td class="text-center">
                                         <div class="d-inline-flex align-items-center bg-secondary rounded overflow-hidden shadow-sm" style="border: 1px solid #6c757d;">
-                                            <button type="button" class="btn btn-sm btn-dark border-0 px-2 btn-actualizar" data-id="{{ $id }}" data-accion="decrementar">
+                                            <button type="button" class="btn btn-sm btn-dark border-0 px-2 btn-actualizar" data-id="{{ $item->id }}" data-accion="decrementar">
                                                 <i class="bi bi-minus-lg text-warning"></i>
                                             </button>
 
-                                            <span class="px-3 fw-bold text-white cantidad-val" data-id="{{ $id }}">
-                                                {{ $detalles['cantidad'] }} kg
+                                            <span class="px-3 fw-bold text-white cantidad-val" data-id="{{ $item->id }}">
+                                                {{ $item->cantidad }} kg
                                             </span>
 
-                                            <button type="button" class="btn btn-sm btn-dark border-0 px-2 btn-actualizar" data-id="{{ $id }}" data-accion="incrementar">
+                                            <button type="button" class="btn btn-sm btn-dark border-0 px-2 btn-actualizar" data-id="{{ $item->id }}" data-accion="incrementar">
                                                 <i class="bi bi-plus-lg text-warning"></i>
                                             </button>
                                         </div>
                                     </td>
 
-                                    <td class="text-center fw-bold text-warning subtotal-val" data-id="{{ $id }}">$ {{ number_format($subtotal, 0, ',', '.') }}</td>
+                                    <td class="text-center fw-bold text-warning subtotal-val" data-id="{{ $item->id }}">$ {{ number_format($subtotal, 0, ',', '.') }}</td>
                                     <td class="text-center pe-3">
-                                        <form action="{{ route('carrito.eliminar', $id) }}" method="POST" onsubmit="return confirm('¿Querés quitar este producto del carrito?');">
+                                        <form action="{{ route('carrito.eliminar', $item->id) }}" method="POST" onsubmit="return confirm('¿Querés quitar este producto del carrito?');">
                                             @csrf
                                             <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle" title="Eliminar ítem">
                                                 <i class="bi bi-trash-fill"></i>
@@ -108,7 +109,7 @@
 
                         <div class="d-flex justify-content-between mb-3 fs-5">
                             <span class="text-secondary">Productos:</span>
-                            <span class="fw-bold text-light">{{ count(session('carrito')) }}</span>
+                            <span class="fw-bold text-light">{{ $carrito->count() }}</span>
                         </div>
 
                         <div class="d-flex justify-content-between mb-4 fs-4 border-top border-secondary pt-3">

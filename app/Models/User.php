@@ -30,4 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail // <-- Agregamos e
             'password' => 'hashed',
         ];
     }
+    public function carritoItems()
+    {
+        return $this->hasMany(CarritoItem::class, 'user_id');
+    }
 }
