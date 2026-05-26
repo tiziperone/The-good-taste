@@ -70,7 +70,6 @@ class CarritoController extends Controller
         $id = $request->input('id'); // ID de la fila en carrito_items
         $accion = $request->input('accion');
 
-        // CORREGIDO: Cambiado a Auth::id() para eliminar error del editor
         $item = CarritoItem::with('producto')->where('user_id', Auth::id())->find($id);
 
         if (!$item) {
@@ -96,10 +95,9 @@ class CarritoController extends Controller
             }
         }
 
-        // Calculamos los subtotales usando los datos relacionales de la BD
+        // Calculamos los subtotales usando los datos de la BD
         $subtotal = $item->producto->precio * $item->cantidad;
 
-        // CORREGIDO: Cambiado a Auth::id() para eliminar error del editor
         $todoElCarrito = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
 
         $totalGeneral = 0;
@@ -119,7 +117,7 @@ class CarritoController extends Controller
     // Remueve un registro físico por id (Formulario convencional)
     public function eliminar(int $id)
     {
-        // Manteniendo Auth::id() limpio
+
         CarritoItem::where('user_id', Auth::id())->where('id', $id)->delete();
 
         return redirect()->back()->with('with', 'Producto removido del carrito.');
@@ -128,7 +126,7 @@ class CarritoController extends Controller
     // Limpia todas las filas del usuario en la BD
     public function vaciar()
     {
-        // Manteniendo Auth::id() limpio
+
         CarritoItem::where('user_id', Auth::id())->delete();
 
         return redirect()->back()->with('success', 'El carrito se vació correctamente.');
