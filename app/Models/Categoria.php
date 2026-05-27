@@ -19,11 +19,11 @@ class Categoria extends Model
         'actualizacio',
     ];
 
-    // 3. EL SECRETO: Le avisamos a Laravel cómo se llaman tus columnas de fecha
+    // 3.  Le avisamos a Laravel cómo se llaman tus columnas de fecha
     const CREATED_AT = 'fechacreacion';
     const UPDATED_AT = 'actualizacio';
 
-    // 4. OPCIONAL PERO RECOMENDADO: Relación uno a muchos con Productos
+    // 4. Relación uno a muchos con Productos
     // Esto te va a servir más adelante si querés hacer por ejemplo: $categoria->productos
     public function productos()
     {

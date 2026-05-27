@@ -65,8 +65,11 @@
 
                                 @foreach($carrito as $item)
                                 @php
-                                // Verificamos si el producto existe antes de calcular subtotales
-                                if (!$item->producto) {
+                                // Verificamos si el producto existe Y su borrado lógico indica que está activo
+                                // REEMPLAZAR 'estado' por tu columna real (ej: 'activo')
+                                $productoValido = $item->producto && $item->producto->estado == 1;
+
+                                if (!$productoValido) {
                                 $carritoInvalido = true;
                                 } else {
                                 $subtotal = $item->producto->precio * $item->cantidad;
@@ -74,8 +77,8 @@
                                 }
                                 @endphp
 
-                                @if($item->producto)
-                                {{-- El producto EXISTE en el catálogo --}}
+                                @if($productoValido)
+                                {{-- Fila normal: El producto EXISTE Y ESTÁ ACTIVO --}}
                                 <tr>
                                     <td class="ps-3">
                                         <div class="d-flex align-items-center gap-3">
@@ -112,7 +115,7 @@
                                     </td>
                                 </tr>
                                 @else
-                                {{-- El producto FUE ELIMINADO del catálogo --}}
+                                {{-- Fila de Alerta: El producto NO EXISTE o FUE ELIMINADO LÓGICAMENTE --}}
                                 <tr class="table-danger text-dark fw-bold">
                                     <td class="ps-3" colspan="4">
                                         <div class="d-flex align-items-center gap-2">
@@ -169,7 +172,7 @@
                             </button>
                             <small class="text-danger d-block text-center fw-bold">Hay ítems no disponibles en tu lista.</small>
                             @else
-                            <a href="{{ url('/compra') }}" class="btn btn-warning btn-lg w-100 fw-bold text-dark shadow">
+                            <a href="{{ route('compra.index') }}" class="btn btn-warning btn-lg w-100 fw-bold text-dark shadow">
                                 Finalizar Compra <i class="bi bi-arrow-right ms-2"></i>
                             </a>
                             @endif

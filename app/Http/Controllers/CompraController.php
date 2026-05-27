@@ -23,18 +23,20 @@ class CompraController extends Controller
 
         // 3. VALIDACIÓN DE SEGURIDAD: Recorremos ítem por ítem
         foreach ($carrito as $item) {
-            // ¿El producto fue eliminado físicamente de la base de datos?
-            if (!$item->producto) {
-                return redirect()->to('/carrito')->with('error', 'Tu carrito contiene productos que ya no están disponibles. Por favor, eliminalos para continuar.');
+
+            // ¿El producto fue borrado físicamente o por borrado lógico?
+            // REEMPLAZAR 'estado' por tu columna real (ej: 'activo')
+            if (!$item->producto || $item->producto->estado == 0) {
+                return redirect()->route('carrito.index')->with('error', 'Tu carrito contiene productos que ya no están disponibles. Por favor, eliminalos para continuar.');
             }
 
             // ¿Se quedó sin stock a último momento?
             if ($item->producto->stock < $item->cantidad) {
-                return redirect()->to('/carrito')->with('error', 'El producto "' . $item->producto->nombre . '" ya no cuenta con el stock solicitado.');
+                return redirect()->route('carrito.index')->with('error', 'El producto "' . $item->producto->nombre . '" ya no cuenta con el stock solicitado.');
             }
         }
 
-        // 4. AQUÍ ESTABA EL DETALLE: Enviamos la variable $carrito de manera explícita a la vista
+        // 4. Enviamos la variable $carrito de manera explícita a la vista de pago
         return view('compra', compact('carrito'));
     }
 }

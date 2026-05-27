@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ProductoController extends Controller
 {
 
-    // SECCIÓN BONDIOLAS (Categoría ID 1)
+    // SECCIÓN BONDIOLAS (Categoría 1)
 
     public function mostrarBondiolas()
     {
@@ -39,7 +39,7 @@ class ProductoController extends Controller
     }
 
 
-    // SECCIÓN MILANESAS (Categoría ID 2 en DBeaver)
+    // SECCIÓN MILANESAS (Categoría 2)
 
     public function mostrarMilanesas()
     {
@@ -76,17 +76,14 @@ class ProductoController extends Controller
     }
 
 
-    // SECCIÓN PASTAS (Categoría ID 3 en DBeaver)
+    // SECCIÓN PASTAS (Categoría 3)
 
     public function mostrarPastas()
     {
-        // CORREGIDO: Traemos TODOS los productos activos de la categoría 3 (Pastas)
-        // Ya no filtramos por "first()", mandamos la lista entera a la vista
         $pastas = Producto::where('activo', true)
             ->where('categoria_id', 3)
             ->get();
 
-        // Enviamos la variable $pastas que es la que recorre el @foreach en el Blade
         return view('pastas', compact('pastas'));
     }
 
