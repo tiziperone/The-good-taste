@@ -87,15 +87,16 @@
             </h4>
 
             <div class="mt-auto">
-              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
               @auth
+              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
               <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ $milaCarne ? $milaCarne->id : '' }}">
                 Agregar <i class="bi bi-cart"></i>
               </button>
               @else
-              <a href="{{ route('login') }}" class="btn btn-outline-light ms-2">
+              <button type="button" class="btn btn-warning fw-bold text-dark btn-requiere-auth">Comprar</button>
+              <button type="button" class="btn btn-outline-light ms-2 btn-requiere-auth">
                 Agregar <i class="bi bi-cart"></i>
-              </a>
+              </button>
               @endauth
             </div>
           </div>
@@ -145,15 +146,16 @@
             </h4>
 
             <div class="mt-auto">
-              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
               @auth
+              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
               <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ $milaPollo ? $milaPollo->id : '' }}">
                 Agregar <i class="bi bi-cart"></i>
               </button>
               @else
-              <a href="{{ route('login') }}" class="btn btn-outline-light ms-2">
+              <button type="button" class="btn btn-warning fw-bold text-dark btn-requiere-auth">Comprar</button>
+              <button type="button" class="btn btn-outline-light ms-2 btn-requiere-auth">
                 Agregar <i class="bi bi-cart"></i>
-              </a>
+              </button>
               @endauth
             </div>
           </div>
@@ -214,7 +216,7 @@
     <div id="toastCarrito" class="toast align-items-center text-bg-success border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
       <div class="d-flex p-2 align-items-center">
         <div class="toast-body flex-grow-1" id="toastMensaje"></div>
-        <a href="{{ url('/carrito') }}" class="btn btn-light btn-sm fw-bold me-2 shadow-sm text-success">Ver Carrito</a>
+        <a href="{{ url('/carrito') }}" id="btnVerCarritoToast" class="btn btn-light btn-sm fw-bold me-2 shadow-sm text-success">Ver Carrito</a>
         <button type="button" class="btn-close btn-close-white m-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
@@ -234,14 +236,28 @@
       const toastElement = document.getElementById('toastCarrito');
       const toast = new bootstrap.Toast(toastElement);
       const toastMensaje = document.getElementById('toastMensaje');
+      const btnVerCarritoToast = document.getElementById('btnVerCarritoToast');
 
+      // 1. Mostrar cartel para usuarios no registrados
+      document.querySelectorAll('.btn-requiere-auth').forEach(boton => {
+        boton.addEventListener('click', function(e) {
+          e.preventDefault();
+          toastMensaje.innerHTML = '⚠️ Debes iniciar sesión para realizar una compra.';
+          toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
+          btnVerCarritoToast.classList.add('d-none'); // Ocultamos el botón "Ver Carrito"
+          toast.show();
+        });
+      });
+
+      // 2. Lógica para usuarios logueados que agregan al carrito
       document.querySelectorAll('.btn-agregar-carrito').forEach(boton => {
         boton.addEventListener('click', function() {
           const productoId = this.getAttribute('data-id');
 
           if (!productoId) {
             toastMensaje.innerHTML = "❌ Error: ID de producto no válido.";
-            toastElement.classList.replace('text-bg-success', 'text-bg-danger');
+            toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
+            btnVerCarritoToast.classList.add('d-none');
             toast.show();
             return;
           }
@@ -260,18 +276,21 @@
             .then(data => {
               if (data.success) {
                 toastMensaje.innerHTML = `🛒 ${data.message}`;
-                toastElement.classList.replace('text-bg-danger', 'text-bg-success');
+                toastElement.className = 'toast align-items-center text-bg-success border-0 shadow';
+                btnVerCarritoToast.classList.remove('d-none'); // Mostramos "Ver carrito"
                 toast.show();
               } else {
                 toastMensaje.innerHTML = `⚠️ ${data.message}`;
-                toastElement.classList.replace('text-bg-success', 'text-bg-danger');
+                toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
+                btnVerCarritoToast.classList.add('d-none');
                 toast.show();
               }
             })
             .catch(error => {
               console.error('Error:', error);
               toastMensaje.innerHTML = "❌ Hubo un problema al procesar la solicitud.";
-              toastElement.classList.replace('text-bg-success', 'text-bg-danger');
+              toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
+              btnVerCarritoToast.classList.add('d-none');
               toast.show();
             });
         });
