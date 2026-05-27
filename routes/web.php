@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\AdminController; // IMPORTAMOS EL NUEVO CONTROLADOR ADMIN
 
 Route::get('/', function () {
     return view('pagina-principal');
@@ -39,12 +40,22 @@ Route::get('terminos-y-usos', function () {
 });
 
 
-// ✅ CORREGIDO: Ahora la ruta pasa por el CompraController y está protegida por auth
-Route::get('compra', [CompraController::class, 'index'])->name('compra.index')->middleware('auth');
+// Rutas protegidas por autenticación general
+Route::middleware(['auth'])->group(function () {
 
+    // Rutas de Compra y Carrito
+    Route::get('compra', [CompraController::class, 'index'])->name('compra.index');
+    Route::get('carrito', [CarritoController::class, 'index'])->name('carrito.index');
+    Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::post('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+    Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
+    Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
 
-// CORREGIDO: Ahora pasa por el controlador para guardar la URL de origen
-Route::get('carrito', [CarritoController::class, 'index'])->name('carrito.index')->middleware('auth');
+    // NUEVAS RUTAS: Panel de Administración
+    Route::get('/administracion', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/administracion/producto', [AdminController::class, 'store'])->name('admin.store');
+});
+
 
 Route::get('inicio-sesion', function () {
     return view('inicio-sesion');
@@ -71,17 +82,12 @@ Route::post('/cerrar-sesion', [AuthController::class, 'logout']);
 
 //Sección Bondiolas (Categoría 1)
 Route::get('/bondiola', [ProductoController::class, 'mostrarBondiolas']);
-Route::post('/productos/guardar-bondiola', [ProductoController::class, 'storeBondiola'])->name('productos.storeBondiola');
-
 //Sección Milanesas (Categoría 2)
 Route::get('/milanesas', [ProductoController::class, 'mostrarMilanesas']);
-Route::post('/productos/guardar-milanesa', [ProductoController::class, 'storeMilanesa'])->name('productos.storeMilanesa');
-
 //Sección Pastas (Categoría 3)
 Route::get('/pastas', [ProductoController::class, 'mostrarPastas']);
-Route::post('/productos/guardar-pasta', [ProductoController::class, 'storePasta'])->name('productos.storePasta');
 
-//Eliminación Común (Borrado Lógico)
+//Eliminación Común (Borrado Lógico) - Ahora se usará mayormente desde el Admin Panel
 Route::post('/productos/eliminar/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
 
@@ -93,10 +99,3 @@ Route::get('/recuperar-contrasena', function () {
 Route::post('/recuperar-contrasena', [AuthController::class, 'enviarEnlaceRecuperacion'])->name('password.email');
 Route::get('/restablecer-password/{token}', [AuthController::class, 'mostrarFormoRestablecer'])->name('password.reset');
 Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword'])->name('password.update');
-
-
-// Operaciones del Carrito
-Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar')->middleware('auth');
-Route::post('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar')->middleware('auth');
-Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar')->middleware('auth');
-Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar')->middleware('auth');
