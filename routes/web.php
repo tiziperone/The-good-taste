@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\CompraController;
 
 Route::get('/', function () {
     return view('pagina-principal');
@@ -37,9 +38,10 @@ Route::get('terminos-y-usos', function () {
     return view('terminos-y-usos');
 });
 
-Route::get('compra', function () {
-    return view('compra');
-});
+
+// ✅ CORREGIDO: Ahora la ruta pasa por el CompraController y está protegida por auth
+Route::get('compra', [CompraController::class, 'index'])->name('compra.index')->middleware('auth');
+
 
 // CORREGIDO: Ahora pasa por el controlador para guardar la URL de origen
 Route::get('carrito', [CarritoController::class, 'index'])->name('carrito.index')->middleware('auth');
