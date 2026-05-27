@@ -5,41 +5,40 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CarritoItem;
 use App\Models\Producto;
-use Illuminate\Support\Facades\Auth; // Fachada lista y activa
+use Illuminate\Support\Facades\Auth;
 
 class CarritoController extends Controller
 {
-    // Carga la vista de la tabla leyendo los registros permanentes desde la BD
+    // Carga la vista de la tabla leyendo los registros desde la BD
     public function index(Request $request)
     {
         $urlAnterior = url()->previous();
 
-        // Evitamos capturar las URLs del propio carrito o sus acciones internas de borrado/vaciado
+        // Evitamos capturar las URLs del propio carrito o sus acciones internas
         if (!str_contains($urlAnterior, '/carrito')) {
             session()->put('url_seguir_comprando', $urlAnterior);
         }
 
-        // CORREGIDO: Cambiado a Auth::id() para eliminar error del editor
+        // Cargamos el carrito con su relación de producto
         $carrito = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
 
         return view('carrito', compact('carrito'));
     }
 
-    // Agrega o incrementa un producto de forma permanente usando Eloquent (AJAX Fetch)
+    // Agrega o incrementa un producto usando Eloquent (AJAX Fetch)
     public function agregar(Request $request)
     {
         $productoId = $request->input('producto_id');
         $producto = Producto::find($productoId);
 
         if (!$producto) {
-            return response()->json(['success' => false, 'message' => 'Producto no encontrado.'], 404);
+            return response()->json(['success' => false, 'message' => 'El producto ya no existe en el catálogo.'], 404);
         }
 
         if ($producto->stock <= 0) {
             return response()->json(['success' => false, 'message' => 'Lo sentimos, este producto no tiene stock disponible.'], 400);
         }
 
-        // CORREGIDO: Cambiado a Auth::id() para eliminar error del editor
         $item = CarritoItem::where('user_id', Auth::id())
             ->where('producto_id', $productoId)
             ->first();
@@ -48,13 +47,12 @@ class CarritoController extends Controller
             $item->increment('cantidad');
         } else {
             CarritoItem::create([
-                'user_id' => Auth::id(), // CORREGIDO
+                'user_id' => Auth::id(),
                 'producto_id' => $productoId,
                 'cantidad' => 1
             ]);
         }
 
-        // CORREGIDO: Cambiado a Auth::id() para eliminar error del editor
         $conteoUnico = CarritoItem::where('user_id', Auth::id())->count();
 
         return response()->json([
@@ -67,7 +65,7 @@ class CarritoController extends Controller
     // Procesa los botones + y - de la tabla directamente en la BD (AJAX Fetch)
     public function actualizar(Request $request)
     {
-        $id = $request->input('id'); // ID de la fila en carrito_items
+        $id = $request->input('id');
         $accion = $request->input('accion');
 
         $item = CarritoItem::with('producto')->where('user_id', Auth::id())->find($id);
@@ -76,8 +74,13 @@ class CarritoController extends Controller
             return response()->json(['success' => false, 'message' => 'Producto no encontrado en tu carrito.'], 404);
         }
 
+        // Si intentan actualizar un ítem cuyo producto ya no existe en la BD física
+        if (!$item->producto) {
+            return response()->json(['success' => false, 'message' => 'Este producto ya no está disponible en nuestro catálogo.'], 422);
+        }
+
         if ($accion === 'incrementar') {
-            if ($item->producto && $item->cantidad >= $item->producto->stock) {
+            if ($item->cantidad >= $item->producto->stock) {
                 return response()->json([
                     'success' => false,
                     'message' => 'No hay más stock disponible de este producto.'
@@ -95,14 +98,15 @@ class CarritoController extends Controller
             }
         }
 
-        // Calculamos los subtotales usando los datos de la BD
+        // Calculamos los subtotales de forma segura
         $subtotal = $item->producto->precio * $item->cantidad;
-
         $todoElCarrito = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
 
         $totalGeneral = 0;
         foreach ($todoElCarrito as $row) {
-            $totalGeneral += $row->producto->precio * $row->cantidad;
+            if ($row->producto) { // Solo sumamos productos que existan
+                $totalGeneral += $row->producto->precio * $row->cantidad;
+            }
         }
 
         return response()->json([
@@ -114,19 +118,17 @@ class CarritoController extends Controller
         ]);
     }
 
-    // Remueve un registro físico por id (Formulario convencional)
+    // Remueve un registro físico por id
     public function eliminar(int $id)
     {
-
         CarritoItem::where('user_id', Auth::id())->where('id', $id)->delete();
 
-        return redirect()->back()->with('with', 'Producto removido del carrito.');
+        return redirect()->back()->with('success', 'Producto removido del carrito.');
     }
 
     // Limpia todas las filas del usuario en la BD
     public function vaciar()
     {
-
         CarritoItem::where('user_id', Auth::id())->delete();
 
         return redirect()->back()->with('success', 'El carrito se vació correctamente.');
