@@ -13,7 +13,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav w-100">
+            <div class="navbar-nav w-100 align-items-center">
 
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('pagina-principal') ? 'active text-black' : 'text-black' }}" href="{{ url('/pagina-principal') }}">Inicio</a>
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('catalogo') ? 'active text-black' : 'text-black' }}" href="{{ url('/catalogo') }}">Catálogo</a>
@@ -23,6 +23,22 @@
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('terminos-y-usos') ? 'active text-black' : 'text-black' }}" href="{{ url('/terminos-y-usos') }}">Términos y Usos</a>
 
                 @auth
+                {{-- MENÚ DE ADMINISTRACIÓN (SOLO PARA ADMINS) --}}
+                @if(auth()->user()->role === 'admin')
+                <li class="nav-item dropdown mx-2" style="list-style: none;">
+                    <a class="nav-link dropdown-toggle text-warning fw-bold pt-1 fs-6 d-flex align-items-center" href="#" id="adminMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-shield-lock-fill me-1"></i> Admin
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark border-warning shadow" aria-labelledby="adminMenu">
+                        <li>
+                            <a class="dropdown-item fw-bold text-light" href="{{ route('admin.index') }}">
+                                <i class="bi bi-gear-fill text-warning me-2"></i> Panel de Control
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+
                 <form method="POST" action="{{ url('/cerrar-sesion') }}" id="logout-form" class="d-none">
                     @csrf
                 </form>
