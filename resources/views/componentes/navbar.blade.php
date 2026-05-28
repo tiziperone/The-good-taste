@@ -32,7 +32,7 @@
                     <ul class="dropdown-menu dropdown-menu-dark border-warning shadow" aria-labelledby="adminMenu">
                         <li>
                             <a class="dropdown-item fw-bold text-light" href="{{ route('admin.index') }}">
-                                <i class="bi bi-gear-fill text-warning me-2"></i> Panel de Control
+                                <i class="bi bi-gear-fill text-warning me-2"></i> Gestionar Productos
                             </a>
                         </li>
                     </ul>
