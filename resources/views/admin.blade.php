@@ -6,14 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Gestión de Productos</title>
+
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
 <body class="bg-dark text-white">
 
     @include('componentes.navbar')
+
+    <!-- Navegación Atras/Adelante -->
+    <div class="container mt-4 mb-4 d-flex justify-content-between align-items-center">
+        @include('componentes.botonesAtrasAdelante')
+    </div>
+
+    <hr class="border-warning border-2 opacity-100">
 
     <div class="container mt-5 mb-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -143,7 +152,66 @@
         </div>
     </div>
 
+    <!-- Modal para Agregar Productos -->
+    <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-warning" style="border-radius: 15px;">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title fw-bold text-warning">Añadir Nuevo Producto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('admin.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label text-warning small fw-bold">Categoría del Producto</label>
+                            <select class="form-select bg-secondary text-white border-0" name="categoria_id" required>
+                                <option value="" disabled selected>Seleccioná en dónde va a aparecer...</option>
+                                <option value="1">Bondiolas</option>
+                                <option value="2">Milanesas</option>
+                                <option value="3">Pastas</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small fw-bold">Nombre Exacto</label>
+                            <input type="text" class="form-control bg-secondary text-white border-0" name="nombre" placeholder="Ej: Ravioles de Verdura" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small fw-bold">Descripción Corta</label>
+                            <textarea class="form-control bg-secondary text-white border-0" name="descripcion" rows="2" placeholder="Describí qué tiene el producto..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small fw-bold">Precio de Venta ($)</label>
+                            <input type="number" class="form-control bg-secondary text-white border-0" name="precio" placeholder="Ej: 5000" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="form-label text-warning small fw-bold">Stock Inicial</label>
+                                <input type="number" class="form-control bg-secondary text-white border-0" name="stock" placeholder="Ej: 20" required>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label text-warning small fw-bold">Aviso de Stock Bajo</label>
+                                <input type="number" class="form-control bg-secondary text-white border-0" name="stock_minimo" value="5" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small fw-bold">Ruta de la Imagen (Opcional)</label>
+                            <input type="text" class="form-control bg-secondary text-white border-0" name="url_imagen" placeholder="Ej: Img/Ravioles.png">
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 pt-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-warning fw-bold text-dark">Guardar Producto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    @include('componentes.botonHaciaArriba')
+    @include('componentes.footer')
 </body>
 
 </html>

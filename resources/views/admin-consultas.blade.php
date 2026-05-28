@@ -6,14 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Consultas</title>
+
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
 <body class="bg-dark text-white">
 
     @include('componentes.navbar')
+
+    <!-- Navegación Atras/Adelante -->
+    <div class="container mt-4 mb-4 d-flex justify-content-between align-items-center">
+        @include('componentes.botonesAtrasAdelante')
+    </div>
+
+    <hr class="border-warning border-2 opacity-100">
 
     <div class="container mt-5 mb-5">
         <h2 class="fw-bold text-warning mb-4"><i class="bi bi-envelope-fill me-2"></i> Bandeja de Consultas</h2>
@@ -57,6 +66,9 @@
     </div>
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    @include('componentes.botonHaciaArriba')
+    @include('componentes.footer')
 </body>
 
 </html>
