@@ -9,20 +9,16 @@ class ProductoController extends Controller
 {
 
     // SECCIÓN BONDIOLAS (Categoría 1)
-
     public function mostrarBondiolas()
     {
-        $productos = Producto::where('activo', true)->where('categoria_id', 1)->get();
-        $bondiolaClasica = $productos->where('nombre', 'Bondiola Clásica (1kg)')->first();
-        $bondiolaPimenton = $productos->where('nombre', 'Bondiola al Pimentón (1kg)')->first();
-
-        return view('bondiola', compact('bondiolaClasica', 'bondiolaPimenton'));
+        // Trae TODAS las bondiolas activas, sin importar su nombre
+        $bondiolas = Producto::where('activo', true)->where('categoria_id', 1)->get();
+        return view('bondiola', compact('bondiolas'));
     }
 
     public function storeBondiola(Request $request)
     {
         $this->validarProducto($request);
-
         Producto::create([
             'nombre'       => $request->nombre,
             'descripcion'  => $request->descripcion,
@@ -34,32 +30,21 @@ class ProductoController extends Controller
             'categoria_id' => 1,
             'activo'       => true,
         ]);
-
         return back()->with('success', '¡Bondiola añadida exitosamente!');
     }
 
 
     // SECCIÓN MILANESAS (Categoría 2)
-
     public function mostrarMilanesas()
     {
-        $productos = Producto::where('activo', true)->where('categoria_id', 2)->get();
-
-        $milaCarne = $productos->filter(function ($item) {
-            return false !== stripos($item->nombre, 'carne');
-        })->first();
-
-        $milaPollo = $productos->filter(function ($item) {
-            return false !== stripos($item->nombre, 'pollo');
-        })->first();
-
-        return view('milanesas', compact('milaCarne', 'milaPollo'));
+        // Trae TODAS las milanesas activas, sin importar su nombre
+        $milanesas = Producto::where('activo', true)->where('categoria_id', 2)->get();
+        return view('milanesas', compact('milanesas'));
     }
 
     public function storeMilanesa(Request $request)
     {
         $this->validarProducto($request);
-
         Producto::create([
             'nombre'       => $request->nombre,
             'descripcion'  => $request->descripcion,
@@ -71,26 +56,20 @@ class ProductoController extends Controller
             'categoria_id' => 2,
             'activo'       => true,
         ]);
-
         return back()->with('success', '¡Milanesa añadida exitosamente!');
     }
 
 
     // SECCIÓN PASTAS (Categoría 3)
-
     public function mostrarPastas()
     {
-        $pastas = Producto::where('activo', true)
-            ->where('categoria_id', 3)
-            ->get();
-
+        $pastas = Producto::where('activo', true)->where('categoria_id', 3)->get();
         return view('pastas', compact('pastas'));
     }
 
     public function storePasta(Request $request)
     {
         $this->validarProducto($request);
-
         Producto::create([
             'nombre'       => $request->nombre,
             'descripcion'  => $request->descripcion,
@@ -102,12 +81,10 @@ class ProductoController extends Controller
             'categoria_id' => 3,
             'activo'       => true,
         ]);
-
         return back()->with('success', '¡Pasta añadida exitosamente!');
     }
 
-    // Para no repetir las validaciones
-
+    // Validación unificada
     private function validarProducto(Request $request)
     {
         $request->validate([
@@ -118,7 +95,7 @@ class ProductoController extends Controller
         ]);
     }
 
-    // (Sirve para cualquier producto de cualquier categoría)
+    // Borrado Lógico
     public function destroy(int $id)
     {
         $producto = Producto::findOrFail($id);

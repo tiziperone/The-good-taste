@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image/png">
+  <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
   <title>The Good Taste - Pastas</title>
 
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -34,7 +34,7 @@
           <img src="{{ asset($pasta->url_imagen ? $pasta->url_imagen : 'Img/SorrentinosTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $pasta->nombre }}">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold text-warning">{{ $pasta->nombre }}</h5>
-            <p class="card-text text-light flex-grow-1">{{ $pasta->descripcion ?? 'Sin descripción disponible.' }}</p>
+            <p class="card-text text-light flex-grow-1">{{ $pasta->descripcion ?? 'Exquisitas pastas artesanales hechas con mucha dedicación.' }}</p>
 
             <h4 class="fw-bold mb-3">
               ${{ number_format($pasta->precio, 0, ',', '.') }}
@@ -59,7 +59,8 @@
       @endforeach
       @else
       <div class="col-12 text-center text-light">
-        <p class="fs-5">No hay pastas cargadas en el catálogo en este momento.</p>
+        <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary"></i>
+        <p class="fs-5">Por el momento no tenemos pastas disponibles en el catálogo. ¡Vuelve pronto!</p>
       </div>
       @endif
 
@@ -75,9 +76,6 @@
       </div>
     </div>
   </div>
-
-  @include('componentes.botonHaciaArriba')
-  @include('componentes.footer')
 
   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -145,6 +143,9 @@
       });
     });
   </script>
+
+  @include('componentes.botonHaciaArriba')
+  @include('componentes.footer')
 </body>
 
 </html>

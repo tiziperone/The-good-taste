@@ -27,21 +27,23 @@
   <div class="container mt-5 mb-5">
     <div class="row justify-content-center gap-4">
 
+      @if(isset($milanesas) && $milanesas->count() > 0)
+      @foreach($milanesas as $mila)
       <div class="col-12 col-md-5 col-lg-4">
         <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
-          <img src="{{ asset($milaCarne && $milaCarne->url_imagen ? $milaCarne->url_imagen : 'Img/milanesa de carne sin freir.jpeg') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Milanesa de carne">
+          <img src="{{ asset($mila->url_imagen ? $mila->url_imagen : 'Img/milanesa de carne sin freir.jpeg') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $mila->nombre }}">
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold text-warning">{{ $milaCarne ? $milaCarne->nombre : 'Milanesa de Carne (1kg.)' }}</h5>
-            <p class="card-text text-light flex-grow-1">{{ $milaCarne && $milaCarne->descripcion ? $milaCarne->descripcion : 'Milanesa lista para freír, fresca y hecha en el día, acompañala con lo que más te guste.' }}</p>
+            <h5 class="card-title fw-bold text-warning">{{ $mila->nombre }}</h5>
+            <p class="card-text text-light flex-grow-1">{{ $mila->descripcion ?? 'Milanesa lista para freír, fresca y hecha en el día.' }}</p>
 
             <h4 class="fw-bold mb-3">
-              {{ $milaCarne ? '$' . number_format($milaCarne->precio, 0, ',', '.') : '$11.000' }}
+              ${{ number_format($mila->precio, 0, ',', '.') }}
             </h4>
 
             <div class="mt-auto">
               @auth
               <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
-              <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ $milaCarne ? $milaCarne->id : '' }}">
+              <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ $mila->id }}">
                 Agregar <i class="bi bi-cart"></i>
               </button>
               @else
@@ -54,34 +56,13 @@
           </div>
         </div>
       </div>
-
-      <div class="col-12 col-md-5 col-lg-4">
-        <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
-          <img src="{{ asset($milaPollo && $milaPollo->url_imagen ? $milaPollo->url_imagen : 'Img/milanesa de pollo 2.jpg') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Milanesa de pollo">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold text-warning">{{ $milaPollo ? $milaPollo->nombre : 'Milanesa de Pollo (1 kg)' }}</h5>
-            <p class="card-text text-light flex-grow-1">{{ $milaPollo && $milaPollo->descripcion ? $milaPollo->descripcion : 'Milanesa de pollo lista para freir, fresca y hecha en el día.' }}</p>
-
-            <h4 class="fw-bold mb-3">
-              {{ $milaPollo ? '$' . number_format($milaPollo->precio, 0, ',', '.') : '$11.000' }}
-            </h4>
-
-            <div class="mt-auto">
-              @auth
-              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
-              <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ $milaPollo ? $milaPollo->id : '' }}">
-                Agregar <i class="bi bi-cart"></i>
-              </button>
-              @else
-              <button type="button" class="btn btn-warning fw-bold text-dark btn-requiere-auth">Comprar</button>
-              <button type="button" class="btn btn-outline-light ms-2 btn-requiere-auth">
-                Agregar <i class="bi bi-cart"></i>
-              </button>
-              @endauth
-            </div>
-          </div>
-        </div>
+      @endforeach
+      @else
+      <div class="col-12 text-center text-light">
+        <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary"></i>
+        <p class="fs-5">Por el momento no tenemos milanesas disponibles. ¡Vuelve pronto!</p>
       </div>
+      @endif
 
     </div>
   </div>
@@ -95,9 +76,6 @@
       </div>
     </div>
   </div>
-
-  @include('componentes.botonHaciaArriba')
-  @include('componentes.footer')
 
   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -165,6 +143,9 @@
       });
     });
   </script>
+
+  @include('componentes.botonHaciaArriba')
+  @include('componentes.footer')
 </body>
 
 </html>
