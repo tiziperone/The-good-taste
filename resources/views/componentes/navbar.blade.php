@@ -35,6 +35,11 @@
                                 <i class="bi bi-gear-fill text-warning me-2"></i> Gestionar Productos
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item fw-bold text-light" href="{{ route('admin.consultas') }}">
+                                <i class="bi bi-envelope-fill text-warning me-2"></i> Bandeja de Consultas
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @endif

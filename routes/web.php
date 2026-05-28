@@ -99,3 +99,5 @@ Route::get('/recuperar-contrasena', function () {
 Route::post('/recuperar-contrasena', [AuthController::class, 'enviarEnlaceRecuperacion'])->name('password.email');
 Route::get('/restablecer-password/{token}', [AuthController::class, 'mostrarFormoRestablecer'])->name('password.reset');
 Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword'])->name('password.update');
+//ruta para las consultas
+Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');

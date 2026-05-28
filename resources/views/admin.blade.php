@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
-    <title>The Good Taste - Gestionar Productos</title>
+    <title>The Good Taste - Gestión de Productos</title>
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
@@ -31,16 +30,18 @@
         </div>
         @endif
 
-        @if(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show border-0 shadow mb-4" role="alert">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ session('error') }}
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
+        <div class="card bg-dark border-secondary shadow mb-5">
+            <div class="card-header border-secondary bg-secondary text-white fw-bold d-flex justify-content-between align-items-center">
+                <span>Catálogo Actual</span>
+                <form action="{{ route('admin.index') }}" method="GET" class="d-flex align-items-center gap-2 m-0">
+                    <input type="hidden" name="orden_eliminados" value="{{ $ordenEliminados }}">
 
-        <div class="card bg-dark border-secondary shadow ">
-            <div class="card-header border-secondary bg-secondary text-white fw-bold">
-                Catálogo Actual
+                    <label class="text-white small mb-0 fw-normal">Ordenar:</label>
+                    <select name="orden_activos" class="form-select form-select-sm bg-dark text-white border-0" onchange="this.form.submit()">
+                        <option value="desc" {{ $ordenActivos == 'desc' ? 'selected' : '' }}>Más nuevos</option>
+                        <option value="asc" {{ $ordenActivos == 'asc' ? 'selected' : '' }}>Más antiguos</option>
+                    </select>
+                </form>
             </div>
             <div class="table-responsive">
                 <table class="table table-dark table-hover align-middle mb-0">
@@ -81,6 +82,7 @@
                             <td class="text-center pe-3">
                                 <form action="{{ route('productos.destroy', $prod->id) }}" method="POST" onsubmit="return confirm('¿Seguro querés eliminar este producto de la tienda?');">
                                     @csrf
+                                    @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle" title="Eliminar producto">
                                         <i class="bi bi-trash-fill"></i>
                                     </button>
@@ -90,8 +92,7 @@
                         @empty
                         <tr>
                             <td colspan="6" class="text-center py-5 text-secondary">
-                                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-                                No hay productos cargados. ¡Agregá el primero!
+                                <i class="bi bi-inbox fs-1 d-block mb-2"></i> No hay productos cargados.
                             </td>
                         </tr>
                         @endforelse
@@ -99,98 +100,45 @@
                 </table>
             </div>
         </div>
-    </div>
 
-    <div class="card bg-dark border-secondary shadow mt-5 w-75 mx-auto">
-        <div class="card-header border-secondary bg-secondary text-white fw-bold d-flex justify-content-between align-items-center ">
-            <span><i class="bi bi-envelope-fill me-2"></i> Consultas de Usuarios</span>
-            <span class="badge bg-warning text-dark">{{ $consultas->count() }} nuevos</span>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle mb-0">
-                <thead>
-                    <tr class="text-warning">
-                        <th class="ps-3">Remitente</th>
-                        <th>Asunto</th>
-                        <th>Mensaje</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($consultas as $c)
-                    <tr>
-                        <td class="ps-3 fw-bold">
-                            {{ $c->user ? $c->user->name : $c->nombre }}
-                            <br>
-                            <small class="text-white-50 fw-normal">{{ $c->email }}</small>
-                        </td>
-                        <td>{{ $c->asunto }}</td>
-                        <td>{{ Str::limit($c->mensaje, 50) }}</td>
-                        <td class="text-white-50">{{ $c->created_at->format('d/m/Y') }}</td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="4" class="text-center py-4 text-secondary">No hay consultas pendientes.</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-    </div>
-    </div>
+        <div class="card bg-dark border-danger shadow mb-5">
+            <div class="card-header border-danger bg-danger text-white fw-bold d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-trash3-fill me-2"></i> Historial de Eliminados</span>
+                <form action="{{ route('admin.index') }}" method="GET" class="d-flex align-items-center gap-2 m-0">
+                    <input type="hidden" name="orden_activos" value="{{ $ordenActivos }}">
 
-    <!-- Modal para Agregar Productos -->
-    <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-white border-warning" style="border-radius: 15px;">
-                <div class="modal-header border-secondary">
-                    <h5 class="modal-title fw-bold text-warning">Añadir Nuevo Producto</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ route('admin.store') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label text-warning small fw-bold">Categoría del Producto</label>
-                            <select class="form-select bg-secondary text-white border-0" name="categoria_id" required>
-                                <option value="" disabled selected>Seleccioná en dónde va a aparecer...</option>
-                                <option value="1">Bondiolas</option>
-                                <option value="2">Milanesas</option>
-                                <option value="3">Pastas</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-warning small fw-bold">Nombre Exacto</label>
-                            <input type="text" class="form-control bg-secondary text-white border-0" name="nombre" placeholder="Ej: Ravioles de Verdura" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-warning small fw-bold">Descripción Corta</label>
-                            <textarea class="form-control bg-secondary text-white border-0" name="descripcion" rows="2" placeholder="Describí qué tiene el producto..."></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-warning small fw-bold">Precio de Venta ($)</label>
-                            <input type="number" class="form-control bg-secondary text-white border-0" name="precio" placeholder="Ej: 5000" required>
-                        </div>
-                        <div class="row">
-                            <div class="col-6 mb-3">
-                                <label class="form-label text-warning small fw-bold">Stock Inicial</label>
-                                <input type="number" class="form-control bg-secondary text-white border-0" name="stock" placeholder="Ej: 20" required>
-                            </div>
-                            <div class="col-6 mb-3">
-                                <label class="form-label text-warning small fw-bold">Aviso de Stock Bajo</label>
-                                <input type="number" class="form-control bg-secondary text-white border-0" name="stock_minimo" value="5" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-warning small fw-bold">Ruta de la Imagen (Opcional)</label>
-                            <input type="text" class="form-control bg-secondary text-white border-0" name="url_imagen" placeholder="Ej: Img/Ravioles.png">
-                        </div>
-                    </div>
-                    <div class="modal-footer border-0 pt-0">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-warning fw-bold text-dark">Guardar Producto</button>
-                    </div>
+                    <label class="text-white small mb-0 fw-normal">Ordenar por baja:</label>
+                    <select name="orden_eliminados" class="form-select form-select-sm bg-dark text-white border-0" onchange="this.form.submit()">
+                        <option value="desc" {{ $ordenEliminados == 'desc' ? 'selected' : '' }}>Eliminados recientes</option>
+                        <option value="asc" {{ $ordenEliminados == 'asc' ? 'selected' : '' }}>Eliminados antiguos</option>
+                    </select>
                 </form>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle mb-0 text-muted">
+                    <thead>
+                        <tr class="text-danger">
+                            <th class="ps-3">ID</th>
+                            <th>Producto</th>
+                            <th>Agregado el</th>
+                            <th>Eliminado el</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($productosEliminados as $eliminado)
+                        <tr>
+                            <td class="ps-3">#{{ $eliminado->id }}</td>
+                            <td>{{ $eliminado->nombre }}</td>
+                            <td>{{ $eliminado->created_at->format('d/m/Y H:i') }}</td>
+                            <td class="text-danger fw-bold">{{ $eliminado->deleted_at->format('d/m/Y H:i') }}</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="4" class="text-center py-4">No hay productos en el historial de eliminados.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

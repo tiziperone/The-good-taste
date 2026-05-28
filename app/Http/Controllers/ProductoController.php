@@ -99,7 +99,10 @@ class ProductoController extends Controller
     public function destroy(int $id)
     {
         $producto = Producto::findOrFail($id);
-        $producto->update(['activo' => false]);
+
+        // Esto activa el SoftDelete y guarda la fecha en 'deleted_at'
+        $producto->delete();
+
         return back()->with('success', '¡Producto removido del catálogo exitosamente!');
     }
 }

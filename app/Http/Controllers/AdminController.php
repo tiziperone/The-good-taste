@@ -9,22 +9,36 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Seguridad: Solo admins
         if (Auth::user()->role !== 'admin') {
             return redirect('/')->with('error', 'Acceso denegado.');
         }
 
-        // CORREGIDO: Como usas SoftDeletes (deleted_at), Laravel ya oculta los eliminados solo.
-        // Simplemente traemos todos los productos ordenados por los más nuevos.
-        $productos = Producto::orderBy('id', 'desc')->get();
+        // Recibimos los parámetros de orden por separado (por defecto 'desc')
+        $ordenActivos = $request->query('orden_activos', 'desc');
+        $ordenEliminados = $request->query('orden_eliminados', 'desc');
 
-        //Traemos todas las consultas
+        // Filtramos cada tabla según su propio parámetro
+        $productos = Producto::orderBy('created_at', $ordenActivos)->get();
+        $productosEliminados = Producto::onlyTrashed()->orderBy('deleted_at', $ordenEliminados)->get();
+
+        // Mandamos las variables a la vista de productos
+        return view('admin', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados'));
+    }
+
+    // NUEVO MÉTODO PARA LAS CONSULTAS
+    public function consultas()
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+
+        // Traemos las consultas ordenadas por las más recientes
         $consultas = Consulta::orderBy('created_at', 'desc')->get();
 
-        // PASA AMBAS VARIABLES A LA VISTA
-        return view('admin', compact('productos', 'consultas'));
+        // Retorna a la nueva vista de consultas
+        return view('admin-consultas', compact('consultas'));
     }
 
     public function store(Request $request)
@@ -33,7 +47,16 @@ class AdminController extends Controller
             return redirect('/')->with('error', 'Acceso denegado.');
         }
 
-        // CORREGIDO: Quitamos el campo 'estado' porque tu tabla no lo usa
+        // VALIDACIÓN: Aquí le decimos que la descripción puede ser nula (nullable)
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'precio' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'stock_minimo' => 'required|integer|min:0',
+            'categoria_id' => 'required|integer'
+        ]);
+
         Producto::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
