@@ -42,7 +42,9 @@
 
             <div class="mt-auto">
               @auth
-              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
+              <!-- Botón Comprar Ahora -->
+              <button type="button" class="btn btn-warning fw-bold text-dark btn-comprar-ahora" data-id="{{ $mila->id }}">Comprar</button>
+
               <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ $mila->id }}">
                 Agregar <i class="bi bi-cart"></i>
               </button>
@@ -139,6 +141,23 @@
               btnVerCarritoToast.classList.add('d-none');
               toast.show();
             });
+        });
+      });
+
+      // LÓGICA CORREGIDA: Botón "Comprar Ahora" (Estilo Mercado Libre)
+      document.querySelectorAll('.btn-comprar-ahora').forEach(boton => {
+        boton.addEventListener('click', function() {
+          const productoId = this.getAttribute('data-id');
+
+          if (!productoId) {
+            toastMensaje.innerHTML = "❌ Error: ID de producto no válido.";
+            toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
+            toast.show();
+            return;
+          }
+
+          // Redirige directamente a la pantalla de pago enviando el ID por la URL, sin tocar el carrito
+          window.location.href = "{{ route('compra.index') }}?comprar_ahora=" + productoId;
         });
       });
     });
