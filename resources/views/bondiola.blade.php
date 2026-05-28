@@ -42,6 +42,7 @@
 
             <div class="mt-auto">
               @auth
+              <!-- Botón Comprar Ahora -->
               <button type="button" class="btn btn-warning fw-bold text-dark btn-comprar-ahora" data-id="{{ $bondiola->id }}">Comprar</button>
 
               <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ $bondiola->id }}">
@@ -143,7 +144,7 @@
         });
       });
 
-      // NUEVA LÓGICA: Botón "Comprar Ahora"
+      // LÓGICA CORREGIDA: Botón "Comprar Ahora" (Estilo Mercado Libre)
       document.querySelectorAll('.btn-comprar-ahora').forEach(boton => {
         boton.addEventListener('click', function() {
           const productoId = this.getAttribute('data-id');
@@ -155,35 +156,8 @@
             return;
           }
 
-          fetch("{{ route('carrito.agregar') }}", {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-              },
-              body: JSON.stringify({
-                producto_id: productoId
-              })
-            })
-            .then(response => response.json())
-            .then(data => {
-              if (data.success) {
-                // Redirigir a la compra inmediatamente
-                window.location.href = "{{ route('compra.index') }}";
-              } else {
-                toastMensaje.innerHTML = `⚠️ ${data.message}`;
-                toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
-                btnVerCarritoToast.classList.add('d-none');
-                toast.show();
-              }
-            })
-            .catch(error => {
-              console.error('Error:', error);
-              toastMensaje.innerHTML = "❌ Hubo un problema al procesar la compra rápida.";
-              toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
-              btnVerCarritoToast.classList.add('d-none');
-              toast.show();
-            });
+          // Redirige directamente a la pantalla de pago enviando el ID por la URL, sin tocar el carrito
+          window.location.href = "{{ route('compra.index') }}?comprar_ahora=" + productoId;
         });
       });
     });
