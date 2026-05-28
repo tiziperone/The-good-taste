@@ -24,9 +24,8 @@ class CompraController extends Controller
         // 3. VALIDACIÓN DE SEGURIDAD: Recorremos ítem por ítem
         foreach ($carrito as $item) {
 
-            // ¿El producto fue borrado físicamente o por borrado lógico?
-            // REEMPLAZAR 'estado' por tu columna real (ej: 'activo')
-            if (!$item->producto || $item->producto->estado == 0) {
+            // CORREGIDO: Cambiamos 'estado' por 'activo'
+            if (!$item->producto || $item->producto->activo == 0) {
                 return redirect()->route('carrito.index')->with('error', 'Tu carrito contiene productos que ya no están disponibles. Por favor, eliminalos para continuar.');
             }
 

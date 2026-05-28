@@ -42,7 +42,8 @@
 
             <div class="mt-auto">
               @auth
-              <a href="{{ url('/compra') }}" class="btn btn-warning fw-bold text-dark">Comprar</a>
+              <button type="button" class="btn btn-warning fw-bold text-dark btn-comprar-ahora" data-id="{{ $bondiola->id }}">Comprar</button>
+
               <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ $bondiola->id }}">
                 Agregar <i class="bi bi-cart"></i>
               </button>
@@ -135,6 +136,50 @@
             .catch(error => {
               console.error('Error:', error);
               toastMensaje.innerHTML = "❌ Hubo un problema al procesar la solicitud.";
+              toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
+              btnVerCarritoToast.classList.add('d-none');
+              toast.show();
+            });
+        });
+      });
+
+      // NUEVA LÓGICA: Botón "Comprar Ahora"
+      document.querySelectorAll('.btn-comprar-ahora').forEach(boton => {
+        boton.addEventListener('click', function() {
+          const productoId = this.getAttribute('data-id');
+
+          if (!productoId) {
+            toastMensaje.innerHTML = "❌ Error: ID de producto no válido.";
+            toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
+            toast.show();
+            return;
+          }
+
+          fetch("{{ route('carrito.agregar') }}", {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+              },
+              body: JSON.stringify({
+                producto_id: productoId
+              })
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                // Redirigir a la compra inmediatamente
+                window.location.href = "{{ route('compra.index') }}";
+              } else {
+                toastMensaje.innerHTML = `⚠️ ${data.message}`;
+                toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
+                btnVerCarritoToast.classList.add('d-none');
+                toast.show();
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              toastMensaje.innerHTML = "❌ Hubo un problema al procesar la compra rápida.";
               toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
               btnVerCarritoToast.classList.add('d-none');
               toast.show();
