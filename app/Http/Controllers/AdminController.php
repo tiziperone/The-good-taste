@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
+use App\Models\Consulta;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -19,7 +20,11 @@ class AdminController extends Controller
         // Simplemente traemos todos los productos ordenados por los más nuevos.
         $productos = Producto::orderBy('id', 'desc')->get();
 
-        return view('admin', compact('productos'));
+        //Traemos todas las consultas
+        $consultas = Consulta::orderBy('created_at', 'desc')->get();
+
+        // PASA AMBAS VARIABLES A LA VISTA
+        return view('admin', compact('productos', 'consultas'));
     }
 
     public function store(Request $request)

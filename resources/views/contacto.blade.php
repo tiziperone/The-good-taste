@@ -51,18 +51,27 @@
 
                 <form action="{{ url('/contacto') }}" method="POST">
                     @csrf
-                    <div class="row mt-4 justify-content-center"><!--si la columna de adentro es mas chica que el total, la centra-->
+                    <div class="row mt-4 justify-content-center">
+
+                        @guest
                         <div class="col-12 mb-3">
                             <label class="fw-bold fs-5">Nombre</label>
                             <input type="text" name="nombre" class="form-control w-50 mx-auto" placeholder="Ingrese su nombre..."
-                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
-                                title="Por favor, ingrese solo letras. No se permiten números."
-                                required>
-                        </div> <!-- El conjunto de letras es la validacion para ingresar nombre (solo letras may, min con tildes, la ñ tambien)-->
-                        <!-- required no permite que se envie el formulario si ese campo esta vacio-->
+                                pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" title="Solo letras." required>
+                        </div>
                         <div class="col-12 mb-3">
                             <label class="fw-bold fs-5">Correo Electrónico</label>
                             <input type="email" name="email" class="form-control w-50 mx-auto" placeholder="correo@ejemplo.com" required>
+                        </div>
+                        @else
+                        <div class="col-12 mb-3 text-warning">
+                            <p>Hola, <strong>{{ auth()->user()->name }}</strong>. ¿En qué podemos ayudarte?</p>
+                        </div>
+                        @endguest
+
+                        <div class="col-12 mb-3">
+                            <label class="fw-bold fs-5">Asunto</label>
+                            <input type="text" name="asunto" class="form-control w-50 mx-auto" placeholder="Motivo de su consulta..." required>
                         </div>
 
                         <div class="col-12 mb-3">
@@ -71,9 +80,7 @@
                         </div>
 
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary mt-3">
-                                Enviar Mensaje
-                            </button>
+                            <button type="submit" class="btn btn-primary mt-3">Enviar Mensaje</button>
                         </div>
                     </div>
                 </form>

@@ -38,7 +38,7 @@
         </div>
         @endif
 
-        <div class="card bg-dark border-secondary shadow">
+        <div class="card bg-dark border-secondary shadow ">
             <div class="card-header border-secondary bg-secondary text-white fw-bold">
                 Catálogo Actual
             </div>
@@ -99,6 +99,44 @@
                 </table>
             </div>
         </div>
+    </div>
+
+    <div class="card bg-dark border-secondary shadow mt-5 w-75 mx-auto">
+        <div class="card-header border-secondary bg-secondary text-white fw-bold d-flex justify-content-between align-items-center ">
+            <span><i class="bi bi-envelope-fill me-2"></i> Consultas de Usuarios</span>
+            <span class="badge bg-warning text-dark">{{ $consultas->count() }} nuevos</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0">
+                <thead>
+                    <tr class="text-warning">
+                        <th class="ps-3">Remitente</th>
+                        <th>Asunto</th>
+                        <th>Mensaje</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($consultas as $c)
+                    <tr>
+                        <td class="ps-3 fw-bold">
+                            {{ $c->user ? $c->user->name : $c->nombre }}
+                            <br>
+                            <small class="text-white-50 fw-normal">{{ $c->email }}</small>
+                        </td>
+                        <td>{{ $c->asunto }}</td>
+                        <td>{{ Str::limit($c->mensaje, 50) }}</td>
+                        <td class="text-white-50">{{ $c->created_at->format('d/m/Y') }}</td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-secondary">No hay consultas pendientes.</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
     </div>
 
     <!-- Modal para Agregar Productos -->
