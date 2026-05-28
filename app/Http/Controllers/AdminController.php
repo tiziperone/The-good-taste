@@ -63,13 +63,14 @@ class AdminController extends Controller
             'stock_minimo' => $request->stock_minimo,
             'url_imagen' => $request->url_imagen,
             'categoria_id' => $request->categoria_id,
-            'tipo' => $tipo // Lo guardamos automáticamente
+            'tipo' => $tipo,
+            'activo' => true // ¡AQUÍ ESTÁ LA MAGIA! Lo activamos por defecto
         ]);
 
         return redirect()->route('admin.index')->with('success', 'Producto agregado correctamente al catálogo.');
     }
 
-    // NUEVO MÉTODO PARA EDITAR PRODUCTOS
+    // MÉTODO PARA EDITAR PRODUCTOS
     public function update(Request $request, $id)
     {
         if (Auth::user()->role !== 'admin') {
@@ -101,7 +102,8 @@ class AdminController extends Controller
             'stock_minimo' => $request->stock_minimo,
             'url_imagen' => $request->url_imagen,
             'categoria_id' => $request->categoria_id,
-            'tipo' => $tipo
+            'tipo' => $tipo,
+            'activo' => true // Aseguramos que siga activo al editarse
         ]);
 
         return redirect()->route('admin.index')->with('success', 'Producto actualizado correctamente.');

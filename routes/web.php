@@ -33,6 +33,7 @@ Route::get('comercializacion', function () {
     return view('comercializacion');
 });
 
+
 Route::post('/contacto', [ContactoController::class, 'procesar']);
 
 Route::get('terminos-y-usos', function () {

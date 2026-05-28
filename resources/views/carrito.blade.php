@@ -65,9 +65,8 @@
 
                                 @foreach($carrito as $item)
                                 @php
-                                // Verificamos si el producto existe Y su borrado lógico indica que está activo
-                                // REEMPLAZAR 'estado' por tu columna real (ej: 'activo')
-                                $productoValido = $item->producto && $item->producto->estado == 1;
+                                // CORREGIDO: Ahora busca la columna 'activo' que es la correcta
+                                $productoValido = $item->producto && $item->producto->activo == 1;
 
                                 if (!$productoValido) {
                                 $carritoInvalido = true;
