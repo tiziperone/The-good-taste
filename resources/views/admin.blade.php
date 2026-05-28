@@ -17,7 +17,6 @@
 
     @include('componentes.navbar')
 
-    <!-- Navegación Atras/Adelante -->
     <div class="container mt-4 mb-4 d-flex justify-content-between align-items-center">
         @include('componentes.botonesAtrasAdelante')
     </div>
@@ -61,6 +60,7 @@
                             <th>Categoría</th>
                             <th>Stock</th>
                             <th>Precio</th>
+                            <th>Agregado el</th>
                             <th class="text-center pe-3">Acciones</th>
                         </tr>
                     </thead>
@@ -88,19 +88,81 @@
                                     @endif
                             </td>
                             <td class="fw-bold">$ {{ number_format($prod->precio, 0, ',', '.') }}</td>
+                            <td class="text-white-50">{{ $prod->created_at->format('d/m/Y H:i') }}</td>
                             <td class="text-center pe-3">
-                                <form action="{{ route('productos.destroy', $prod->id) }}" method="POST" onsubmit="return confirm('¿Seguro querés eliminar este producto de la tienda?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle" title="Eliminar producto">
-                                        <i class="bi bi-trash-fill"></i>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button type="button" class="btn btn-outline-warning btn-sm rounded-circle" data-bs-toggle="modal" data-bs-target="#modalEditarProducto{{ $prod->id }}" title="Editar producto">
+                                        <i class="bi bi-pencil-fill"></i>
                                     </button>
-                                </form>
+
+                                    <form action="{{ route('productos.destroy', $prod->id) }}" method="POST" onsubmit="return confirm('¿Seguro querés eliminar este producto de la tienda?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle" title="Eliminar producto">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
+
+                        <div class="modal fade" id="modalEditarProducto{{ $prod->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content bg-dark text-white border-warning" style="border-radius: 15px;">
+                                    <div class="modal-header border-secondary">
+                                        <h5 class="modal-title fw-bold text-warning">Editar Producto #{{ $prod->id }}</h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ route('admin.update', $prod->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="modal-body text-start">
+                                            <div class="mb-3">
+                                                <label class="form-label text-warning small fw-bold">Categoría del Producto</label>
+                                                <select class="form-select bg-secondary text-white border-0" name="categoria_id" required>
+                                                    <option value="1" {{ $prod->categoria_id == 1 ? 'selected' : '' }}>Bondiolas</option>
+                                                    <option value="2" {{ $prod->categoria_id == 2 ? 'selected' : '' }}>Milanesas</option>
+                                                    <option value="3" {{ $prod->categoria_id == 3 ? 'selected' : '' }}>Pastas</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label text-warning small fw-bold">Nombre Exacto</label>
+                                                <input type="text" class="form-control bg-secondary text-white border-0" name="nombre" value="{{ $prod->nombre }}" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label text-warning small fw-bold">Descripción Corta</label>
+                                                <textarea class="form-control bg-secondary text-white border-0" name="descripcion" rows="2">{{ $prod->descripcion }}</textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label text-warning small fw-bold">Precio de Venta ($)</label>
+                                                <input type="number" class="form-control bg-secondary text-white border-0" name="precio" value="{{ $prod->precio }}" required>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6 mb-3">
+                                                    <label class="form-label text-warning small fw-bold">Stock Actual</label>
+                                                    <input type="number" class="form-control bg-secondary text-white border-0" name="stock" value="{{ $prod->stock }}" required>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <label class="form-label text-warning small fw-bold">Aviso de Stock Bajo</label>
+                                                    <input type="number" class="form-control bg-secondary text-white border-0" name="stock_minimo" value="{{ $prod->stock_minimo }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label text-warning small fw-bold">Ruta de la Imagen</label>
+                                                <input type="text" class="form-control bg-secondary text-white border-0" name="url_imagen" value="{{ $prod->url_imagen }}">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer border-0 pt-0">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-warning fw-bold text-dark">Guardar Cambios</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center py-5 text-secondary">
+                            <td colspan="7" class="text-center py-5 text-secondary">
                                 <i class="bi bi-inbox fs-1 d-block mb-2"></i> No hay productos cargados.
                             </td>
                         </tr>
@@ -152,56 +214,54 @@
         </div>
     </div>
 
-    <!-- Modal para Agregar Productos -->
     <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-white border-warning" style="border-radius: 15px;">
+            <div class="modal-content bg-dark text-white border-success" style="border-radius: 15px;">
                 <div class="modal-header border-secondary">
-                    <h5 class="modal-title fw-bold text-warning">Añadir Nuevo Producto</h5>
+                    <h5 class="modal-title fw-bold text-success">Añadir Nuevo Producto</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('admin.store') }}" method="POST">
                     @csrf
-                    <div class="modal-body">
+                    <div class="modal-body text-start">
                         <div class="mb-3">
-                            <label class="form-label text-warning small fw-bold">Categoría del Producto</label>
+                            <label class="form-label text-success small fw-bold">Categoría del Producto</label>
                             <select class="form-select bg-secondary text-white border-0" name="categoria_id" required>
-                                <option value="" disabled selected>Seleccioná en dónde va a aparecer...</option>
                                 <option value="1">Bondiolas</option>
                                 <option value="2">Milanesas</option>
                                 <option value="3">Pastas</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label text-warning small fw-bold">Nombre Exacto</label>
+                            <label class="form-label text-success small fw-bold">Nombre Exacto</label>
                             <input type="text" class="form-control bg-secondary text-white border-0" name="nombre" placeholder="Ej: Ravioles de Verdura" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label text-warning small fw-bold">Descripción Corta</label>
+                            <label class="form-label text-success small fw-bold">Descripción Corta</label>
                             <textarea class="form-control bg-secondary text-white border-0" name="descripcion" rows="2" placeholder="Describí qué tiene el producto..."></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label text-warning small fw-bold">Precio de Venta ($)</label>
+                            <label class="form-label text-success small fw-bold">Precio de Venta ($)</label>
                             <input type="number" class="form-control bg-secondary text-white border-0" name="precio" placeholder="Ej: 5000" required>
                         </div>
                         <div class="row">
                             <div class="col-6 mb-3">
-                                <label class="form-label text-warning small fw-bold">Stock Inicial</label>
+                                <label class="form-label text-success small fw-bold">Stock Inicial</label>
                                 <input type="number" class="form-control bg-secondary text-white border-0" name="stock" placeholder="Ej: 20" required>
                             </div>
                             <div class="col-6 mb-3">
-                                <label class="form-label text-warning small fw-bold">Aviso de Stock Bajo</label>
+                                <label class="form-label text-success small fw-bold">Aviso de Stock Bajo</label>
                                 <input type="number" class="form-control bg-secondary text-white border-0" name="stock_minimo" value="5" required>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label text-warning small fw-bold">Ruta de la Imagen (Opcional)</label>
+                            <label class="form-label text-success small fw-bold">Ruta de la Imagen (Opcional)</label>
                             <input type="text" class="form-control bg-secondary text-white border-0" name="url_imagen" placeholder="Ej: Img/Ravioles.png">
                         </div>
                     </div>
                     <div class="modal-footer border-0 pt-0">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-warning fw-bold text-dark">Guardar Producto</button>
+                        <button type="submit" class="btn btn-success fw-bold text-white">Guardar Producto</button>
                     </div>
                 </form>
             </div>

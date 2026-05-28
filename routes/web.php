@@ -7,7 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CompraController;
-use App\Http\Controllers\AdminController; // IMPORTAMOS EL NUEVO CONTROLADOR ADMIN
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('pagina-principal');
@@ -51,9 +51,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
     Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
 
-    // NUEVAS RUTAS: Panel de Administración
+    // RUTAS: Panel de Administración
     Route::get('/administracion', [AdminController::class, 'index'])->name('admin.index');
     Route::post('/administracion/producto', [AdminController::class, 'store'])->name('admin.store');
+
+    // RUTA NUEVA: Para guardar los cambios al editar un producto
+    Route::put('/administracion/producto/{id}', [AdminController::class, 'update'])->name('admin.update');
 });
 
 
@@ -80,15 +83,15 @@ Route::get('/verificar-correo/{id}', [AuthController::class, 'verificarCorreo'])
 Route::post('/cerrar-sesion', [AuthController::class, 'logout']);
 
 
-//Sección Bondiolas (Categoría 1)
+// Sección Bondiolas (Categoría 1)
 Route::get('/bondiola', [ProductoController::class, 'mostrarBondiolas']);
-//Sección Milanesas (Categoría 2)
+// Sección Milanesas (Categoría 2)
 Route::get('/milanesas', [ProductoController::class, 'mostrarMilanesas']);
-//Sección Pastas (Categoría 3)
+// Sección Pastas (Categoría 3)
 Route::get('/pastas', [ProductoController::class, 'mostrarPastas']);
 
-//Eliminación Común (Borrado Lógico) - Ahora se usará mayormente desde el Admin Panel
-Route::post('/productos/eliminar/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+// Eliminación (Borrado Lógico) - CORREGIDO A MÉTODO DELETE
+Route::delete('/productos/eliminar/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
 
 // Recuperación de Contraseña
@@ -99,5 +102,6 @@ Route::get('/recuperar-contrasena', function () {
 Route::post('/recuperar-contrasena', [AuthController::class, 'enviarEnlaceRecuperacion'])->name('password.email');
 Route::get('/restablecer-password/{token}', [AuthController::class, 'mostrarFormoRestablecer'])->name('password.reset');
 Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword'])->name('password.update');
-//ruta para las consultas
+
+// Ruta para las consultas del panel de administrador
 Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
