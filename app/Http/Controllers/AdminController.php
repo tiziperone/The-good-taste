@@ -145,4 +145,16 @@ class AdminController extends Controller
 
         return back()->with('success', 'Respuesta enviada y registrada correctamente.');
     }
+
+    public function eliminar(int $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+
+        $consulta = Consulta::findOrFail($id);
+        $consulta->delete();
+
+        return back()->with('success', 'Consulta eliminada correctamente.');
+    }
 }

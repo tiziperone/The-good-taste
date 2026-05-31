@@ -82,6 +82,14 @@
                                         </button>
                                     </div>
                                 </form>
+                                <form action="{{ route('consultas.eliminar', $c->id) }}" method="POST"
+                                    onsubmit="return confirm('¿Estás seguro de eliminar esta consulta?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger mt-2 w-100">
+                                        <i class="bi bi-trash"></i> Eliminar
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @empty

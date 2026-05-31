@@ -111,3 +111,5 @@ Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('adm
 Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');
 // Ruta para responder consultas
 Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responder'])->name('consultas.responder');
+
+Route::delete('/admin/consultas/{id}/eliminar', [AdminController::class, 'eliminar'])->name('consultas.eliminar');
