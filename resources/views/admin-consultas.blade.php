@@ -54,13 +54,23 @@
                             <td>{{ $c->asunto }}</td>
                             <td>{{ Str::limit($c->mensaje, 50) }}</td>
                             <td class="text-white-50">{{ $c->created_at->format('d/m/Y') }}</td>
-                            <td class="text-center">
-                                <form action="{{ route('consultas.marcarLeido', $c->id) }}" method="POST">
+
+                            <td class="text-center" style="min-width: 250px;">
+                                <form action="{{ route('consultas.responder', $c->id) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm {{ $c->estado ? 'btn-success' : 'btn-warning' }}">
-                                        <i class="bi {{ $c->estado ? 'bi-check-all' : 'bi-clock' }}"></i>
-                                        {{ $c->estado ? 'Leído' : 'Pendiente' }}
-                                    </button>
+                                    <textarea name="respuesta" class="form-control bg-secondary text-white border-0 mb-2"
+                                        rows="2" placeholder="Escribe tu respuesta aquí...">{{ $c->respuesta }}</textarea>
+
+                                    <div class="d-flex justify-content-between">
+                                        <button type="submit" class="btn btn-sm btn-primary">
+                                            <i class="bi bi-send"></i> Enviar
+                                        </button>
+
+                                        <button formaction="{{ route('consultas.marcarLeido', $c->id) }}" type="submit"
+                                            class="btn btn-sm {{ $c->estado ? 'btn-success' : 'btn-warning' }}">
+                                            <i class="bi {{ $c->estado ? 'bi-check-all' : 'bi-clock' }}"></i>
+                                        </button>
+                                    </div>
                                 </form>
                             </td>
                         </tr>

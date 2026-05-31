@@ -109,3 +109,5 @@ Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('adm
 
 // NUEVA RUTA PARA EL BOTÓN
 Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');
+// Ruta para responder consultas
+Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responder'])->name('consultas.responder');

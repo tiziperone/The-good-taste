@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Consulta extends Model
 {
-    protected $fillable = ['users_id', 'nombre', 'email', 'asunto', 'mensaje', 'estado'];
+    protected $fillable = ['users_id', 'nombre', 'email', 'asunto', 'mensaje', 'estado', 'respuesta'];
 
     //Permite acceder a $c->user->name
     public function user()

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Consulta;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RespuestaConsulta;
 
 class AdminController extends Controller
 {
@@ -121,5 +123,26 @@ class AdminController extends Controller
         $consulta->save();
 
         return back()->with('success', 'Estado actualizado correctamente.');
+    }
+    public function responder(Request $request, int $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+
+        $request->validate(['respuesta' => 'required|string']);
+
+        $consulta = Consulta::findOrFail($id);
+
+        // 1. Guardar la respuesta en la BD
+        $consulta->update([
+            'respuesta' => $request->respuesta,
+            'estado' => true // Marcamos como leído automáticamente al responder
+        ]);
+
+        // 2. Enviar el correo usando tu configuración SMTP
+        Mail::to($consulta->email)->send(new RespuestaConsulta($consulta, $request->respuesta));
+
+        return back()->with('success', 'Respuesta enviada y registrada correctamente.');
     }
 }
