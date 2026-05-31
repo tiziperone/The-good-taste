@@ -46,11 +46,21 @@
                     <tbody>
                         @forelse($consultas as $c)
                         <tr class="{{ $c->estado ? 'opacity-50' : '' }}">
-                            <td class="ps-3 fw-bold">
-                                {{ $c->user ? $c->user->name : $c->nombre }}
-                                <br>
-                                <small class="text-white-50 fw-normal">{{ $c->email }}</small>
+                            <td class="ps-3">
+                                @if($c->users_id)
+                                <span class="badge bg-primary mb-1">
+                                    <i class="bi bi-person-check-fill"></i> Registrado
+                                </span>
+                                <div class="fw-bold">{{ $c->user->name }}</div>
+                                @else
+                                <span class="badge bg-secondary mb-1">
+                                    <i class="bi bi-person-x-fill"></i> Invitado
+                                </span>
+                                <div class="fw-bold">{{ $c->nombre }}</div>
+                                @endif
+                                <small class="text-white-50 d-block">{{ $c->email }}</small>
                             </td>
+
                             <td>{{ $c->asunto }}</td>
                             <td>{{ Str::limit($c->mensaje, 50) }}</td>
                             <td class="text-white-50">{{ $c->created_at->format('d/m/Y') }}</td>
@@ -76,7 +86,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5" class="text-center py-4 text-secondary">No hay consultas pendientes.</td>
+                            <td colspan="5" class="text-center py-4 text-secondary">No hay consultas.</td>
                         </tr>
                         @endforelse
                     </tbody>
