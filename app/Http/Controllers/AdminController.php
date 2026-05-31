@@ -108,4 +108,18 @@ class AdminController extends Controller
 
         return redirect()->route('admin.index')->with('success', 'Producto actualizado correctamente.');
     }
+
+    public function marcarLeido(int $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+
+        $consulta = Consulta::findOrFail($id);
+        // Cambiamos el estado: si era 0 pasa a 1, si era 1 pasa a 0
+        $consulta->estado = !$consulta->estado;
+        $consulta->save();
+
+        return back()->with('success', 'Estado actualizado correctamente.');
+    }
 }

@@ -106,3 +106,6 @@ Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword
 
 // Ruta para las consultas del panel de administrador
 Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
+
+// NUEVA RUTA PARA EL BOTÓN
+Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');

@@ -40,11 +40,12 @@
                             <th>Asunto</th>
                             <th>Mensaje</th>
                             <th>Fecha</th>
+                            <th class="text-center">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($consultas as $c)
-                        <tr>
+                        <tr class="{{ $c->estado ? 'opacity-50' : '' }}">
                             <td class="ps-3 fw-bold">
                                 {{ $c->user ? $c->user->name : $c->nombre }}
                                 <br>
@@ -53,10 +54,19 @@
                             <td>{{ $c->asunto }}</td>
                             <td>{{ Str::limit($c->mensaje, 50) }}</td>
                             <td class="text-white-50">{{ $c->created_at->format('d/m/Y') }}</td>
+                            <td class="text-center">
+                                <form action="{{ route('consultas.marcarLeido', $c->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm {{ $c->estado ? 'btn-success' : 'btn-warning' }}">
+                                        <i class="bi {{ $c->estado ? 'bi-check-all' : 'bi-clock' }}"></i>
+                                        {{ $c->estado ? 'Leído' : 'Pendiente' }}
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="4" class="text-center py-4 text-secondary">No hay consultas pendientes.</td>
+                            <td colspan="5" class="text-center py-4 text-secondary">No hay consultas pendientes.</td>
                         </tr>
                         @endforelse
                     </tbody>
