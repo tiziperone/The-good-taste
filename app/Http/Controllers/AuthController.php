@@ -127,9 +127,7 @@ class AuthController extends Controller
 
     // RECUPERACIÓN DE CONTRASEÑA MANUAL
 
-
-    // 6. PROCESAR SOLICITUD DE TOKEN Y ENVIAR MAIL
-    // 6. PROCESAR SOLICITUD DE TOKEN Y ENVIAR MAIL (VERSIÓN SIN ARCHIVO BLADE)
+    // 6. PROCESAR SOLICITUD DE TOKEN Y ENVIAR MAIL 
     public function enviarEnlaceRecuperacion(Request $request): RedirectResponse
     {
         $request->validate([

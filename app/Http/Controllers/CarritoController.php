@@ -14,7 +14,7 @@ class CarritoController extends Controller
     {
         $urlAnterior = url()->previous();
 
-        // Evitamos capturar las URLs del propio carrito o sus acciones internas
+
         if (!str_contains($urlAnterior, '/carrito')) {
             session()->put('url_seguir_comprando', $urlAnterior);
         }
@@ -25,7 +25,7 @@ class CarritoController extends Controller
         return view('carrito', compact('carrito'));
     }
 
-    // Agrega o incrementa un producto usando Eloquent (AJAX Fetch)
+    // Agrega o incrementa un producto
     public function agregar(Request $request)
     {
         $productoId = $request->input('producto_id');
@@ -62,7 +62,7 @@ class CarritoController extends Controller
         ]);
     }
 
-    // Procesa los botones + y - de la tabla directamente en la BD (AJAX Fetch)
+    // Procesa los botones + y - de la tabla directamente en la BD 
     public function actualizar(Request $request)
     {
         $id = $request->input('id');

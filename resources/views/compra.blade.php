@@ -219,7 +219,6 @@
     </script>
 
     <style>
-        /* Pequeño custom para que los inputs se vean impecables con el modo oscuro */
         .form-control::placeholder {
             color: #adb5bd !important;
             opacity: 0.6;
@@ -229,7 +228,7 @@
             cursor: pointer;
         }
 
-        /* Scrollbar elegante para el contenedor de productos en el resumen */
+
         .style-scroll::-webkit-scrollbar {
             width: 6px;
         }

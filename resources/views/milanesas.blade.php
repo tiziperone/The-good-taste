@@ -144,7 +144,7 @@
         });
       });
 
-      // LÓGICA CORREGIDA: Botón "Comprar Ahora" (Estilo Mercado Libre)
+      //Botón "Comprar Ahora" (Estilo Mercado Libre)
       document.querySelectorAll('.btn-comprar-ahora').forEach(boton => {
         boton.addEventListener('click', function() {
           const productoId = this.getAttribute('data-id');
@@ -156,7 +156,7 @@
             return;
           }
 
-          // Redirige directamente a la pantalla de pago enviando el ID por la URL, sin tocar el carrito
+          // Redirige directamente a la pantalla de pago 
           window.location.href = "{{ route('compra.index') }}?comprar_ahora=" + productoId;
         });
       });

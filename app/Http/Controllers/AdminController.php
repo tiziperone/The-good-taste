@@ -90,7 +90,6 @@ class AdminController extends Controller
 
         $producto = Producto::findOrFail($id);
 
-        // Volvemos a automatizar el tipo por si le cambiaste la categoría
         $tipo = 'Otra';
         if ($request->categoria_id == 1) $tipo = 'Bondiola';
         elseif ($request->categoria_id == 2) $tipo = 'Milanesa';
@@ -105,7 +104,7 @@ class AdminController extends Controller
             'url_imagen' => $request->url_imagen,
             'categoria_id' => $request->categoria_id,
             'tipo' => $tipo,
-            'activo' => true // Aseguramos que siga activo al editarse
+            'activo' => true // producto activo después de la edición
         ]);
 
         return redirect()->route('admin.index')->with('success', 'Producto actualizado correctamente.');

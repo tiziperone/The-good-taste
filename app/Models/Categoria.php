@@ -9,22 +9,21 @@ class Categoria extends Model
 {
     use HasFactory;
 
-    // 1. Especificamos el nombre real de tu tabla de categorías en MariaDB
+    // 1. Especificamos el nombre real de la tabla de categorías en MariaDB
     protected $table = 'categorias';
 
     // 2. Habilitamos los campos para asignación masiva
     protected $fillable = [
         'nombre',
-        'fechacreacion', // Tus columnas de control de tiempo
+        'fechacreacion', // Columnas de control de tiempo
         'actualizacio',
     ];
 
-    // 3.  Le avisamos a Laravel cómo se llaman tus columnas de fecha
+    // 3.  Le avisamos a Laravel cómo se llaman las columnas de fecha
     const CREATED_AT = 'fechacreacion';
     const UPDATED_AT = 'actualizacio';
 
     // 4. Relación uno a muchos con Productos
-    // Esto te va a servir más adelante si querés hacer por ejemplo: $categoria->productos
     public function productos()
     {
         return $this->hasMany(Producto::class, 'categoria_id');

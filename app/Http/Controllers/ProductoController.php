@@ -84,7 +84,6 @@ class ProductoController extends Controller
         return back()->with('success', '¡Pasta añadida exitosamente!');
     }
 
-    // Validación unificada
     private function validarProducto(Request $request)
     {
         $request->validate([

@@ -52,11 +52,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
     Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
 
-    // RUTAS: Panel de Administración
+    //Panel de Administración
     Route::get('/administracion', [AdminController::class, 'index'])->name('admin.index');
     Route::post('/administracion/producto', [AdminController::class, 'store'])->name('admin.store');
 
-    // RUTA NUEVA: Para guardar los cambios al editar un producto
+    //Para guardar los cambios al editar un producto
     Route::put('/administracion/producto/{id}', [AdminController::class, 'update'])->name('admin.update');
 });
 
@@ -91,7 +91,7 @@ Route::get('/milanesas', [ProductoController::class, 'mostrarMilanesas']);
 // Sección Pastas (Categoría 3)
 Route::get('/pastas', [ProductoController::class, 'mostrarPastas']);
 
-// Eliminación (Borrado Lógico) - CORREGIDO A MÉTODO DELETE
+// Eliminación (Borrado Lógico)
 Route::delete('/productos/eliminar/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
 
@@ -107,7 +107,7 @@ Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword
 // Ruta para las consultas del panel de administrador
 Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
 
-// NUEVA RUTA PARA EL BOTÓN
+// Ruta para marcar una consulta como leída
 Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');
 // Ruta para responder consultas
 Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responder'])->name('consultas.responder');
