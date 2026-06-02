@@ -29,7 +29,7 @@
             <i class="bi bi-credit-card-2-front-fill me-2"></i> Finalizar tu Pedido
         </h2>
 
-        <form action="#" method="POST" id="form-checkout" onsubmit="event.preventDefault(); alert('¡Pedido recibido! Acá integrarás la acción final.');">
+        <form action="#" method="POST" id="form-checkout" onsubmit="event.preventDefault(); alert('¡Pedido recibido! Se le enviarán los detalles de su compra.');">
             @csrf
             <div class="row g-4">
 

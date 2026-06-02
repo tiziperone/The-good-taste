@@ -172,7 +172,7 @@
                             <small class="text-danger d-block text-center fw-bold">Hay ítems no disponibles en tu lista.</small>
                             @else
                             <a href="{{ route('compra.index') }}" class="btn btn-warning btn-lg w-100 fw-bold text-dark shadow">
-                                Finalizar Compra <i class="bi bi-arrow-right ms-2"></i>
+                                Continuar con la Compra <i class="bi bi-arrow-right ms-2"></i>
                             </a>
                             @endif
                         </div>
