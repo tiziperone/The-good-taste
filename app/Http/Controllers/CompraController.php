@@ -13,10 +13,9 @@ class CompraController extends Controller
     {
         $usuario = Auth::user();
 
-        // Obtenemos el carrito usando CarritoItem y la columna user_id
         $carrito = CarritoItem::where('user_id', $usuario->id)->get();
 
-        // Obtenemos las direcciones guardadas (esta tabla sí usa id_usuario)
+
         $direccionesGuardadas = Direccion::where('id_usuario', $usuario->id)->get();
 
         return view('compra', compact('carrito', 'direccionesGuardadas'));
@@ -31,7 +30,7 @@ class CompraController extends Controller
             'nombre_direccion' => 'nullable|string|max:255',
         ]);
 
-        // Si el checkbox de guardar está marcado
+
         if ($request->has('guardar_futura')) {
             Direccion::create([
                 'id_usuario' => Auth::id(),
@@ -42,7 +41,7 @@ class CompraController extends Controller
             ]);
         }
 
-        // Aquí continuaría tu lógica normal para procesar la orden de compra en la BD...
+
         return response()->json(['success' => true]);
     }
 }

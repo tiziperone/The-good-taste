@@ -17,9 +17,8 @@ class CarritoItem extends Model
         'cantidad',
     ];
 
-    // Relación para que el carrito pueda sacar el nombre, precio e imagen del producto
     public function producto()
     {
-        return $this->belongsTo(Producto::class, 'producto_id');
+        return $this->belongsTo(Producto::class, 'producto_id')->withTrashed();
     }
 }
