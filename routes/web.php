@@ -25,7 +25,7 @@ Route::get('quienes-somos', function () {
     return view('quienes-somos');
 });
 
-// CORREGIDO: Ruta de catálogo con lógica de base de datos
+// Ruta de catálogo
 Route::get('catalogo', function () {
     $tieneBondiolas = \App\Models\Producto::where('categoria_id', 1)->where('activo', true)->exists();
     $tieneMilanesas = \App\Models\Producto::where('categoria_id', 2)->where('activo', true)->exists();
@@ -49,6 +49,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Rutas de Compra y Carrito
     Route::get('compra', [CompraController::class, 'index'])->name('compra.index');
+    // RUTA NUEVA: Para guardar direcciones desde el proceso de compra
+    Route::post('/guardar-direccion', [CompraController::class, 'guardarDireccionOpcional'])->name('guardar.direccion');
+
     Route::get('carrito', [CarritoController::class, 'index'])->name('carrito.index');
     Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
     Route::post('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');

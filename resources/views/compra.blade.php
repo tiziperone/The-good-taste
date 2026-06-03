@@ -37,18 +37,6 @@
 
                     <div class="card bg-dark border-secondary shadow mb-4">
                         <div class="card-body p-4">
-                            <h5 class="fw-bold text-warning mb-3"><i class="bi bi-person-fill me-2"></i> Datos de Contacto</h5>
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <label class="form-label text-secondary small fw-bold">Teléfono / WhatsApp</label>
-                                    <input type="tel" id="input-telefono" class="form-control bg-secondary text-white border-0" required placeholder="Ej: 3794 123456">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card bg-dark border-secondary shadow mb-4">
-                        <div class="card-body p-4">
                             <h5 class="fw-bold text-warning mb-3"><i class="bi bi-truck me-2"></i> Método de Entrega</h5>
 
                             <div class="d-flex flex-column gap-3">
@@ -347,9 +335,38 @@
                 const calle = document.getElementById('input-calle').value;
                 const altura = document.getElementById('input-altura').value;
                 const piso = document.getElementById('input-piso').value;
+                const nombreDir = document.getElementById('input-nombre-direccion').value;
+                const guardarFuturaCheckbox = document.getElementById('guardar_futura');
+
                 let direccionFull = calle + ' ' + altura;
                 if (piso) direccionFull += ' (' + piso + ')';
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-house-door text-warning me-1"></i> Envío a: ' + direccionFull;
+
+                if (guardarFuturaCheckbox.checked && !document.getElementById('bloque-guardar-direccion').classList.contains('d-none')) {
+                    const csrfToken = document.querySelector('input[name="_token"]').value;
+
+                    fetch("{{ url('/guardar-direccion') }}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': csrfToken
+                            },
+                            body: JSON.stringify({
+                                calle: calle,
+                                altura: altura,
+                                piso_depto: piso,
+                                nombre_direccion: nombreDir,
+                                guardar_futura: 1
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Dirección guardada correctamente.');
+                        })
+                        .catch(error => {
+                            console.error('Error al guardar la dirección:', error);
+                        });
+                }
             }
 
             if (pagoElegido === 'efectivo') {
