@@ -33,13 +33,11 @@ Route::get('comercializacion', function () {
     return view('comercializacion');
 });
 
-
 Route::post('/contacto', [ContactoController::class, 'procesar']);
 
 Route::get('terminos-y-usos', function () {
     return view('terminos-y-usos');
 });
-
 
 // Rutas protegidas por autenticación general
 Route::middleware(['auth'])->group(function () {
@@ -52,14 +50,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
     Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
 
-    //Panel de Administración
+    // Panel de Administración (Vista Única)
     Route::get('/administracion', [AdminController::class, 'index'])->name('admin.index');
     Route::post('/administracion/producto', [AdminController::class, 'store'])->name('admin.store');
-
-    //Para guardar los cambios al editar un producto
     Route::put('/administracion/producto/{id}', [AdminController::class, 'update'])->name('admin.update');
-});
 
+    // Rutas de acción para consultas en el panel (ya no hay GET de vista separada)
+    Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');
+    Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responder'])->name('consultas.responder');
+    Route::delete('/admin/consultas/{id}/eliminar', [AdminController::class, 'eliminar'])->name('consultas.eliminar');
+});
 
 Route::get('inicio-sesion', function () {
     return view('inicio-sesion');
@@ -83,17 +83,11 @@ Route::get('/verificar-correo/{id}', [AuthController::class, 'verificarCorreo'])
 
 Route::post('/cerrar-sesion', [AuthController::class, 'logout']);
 
-
-// Sección Bondiolas (Categoría 1)
+// Sección Productos
 Route::get('/bondiola', [ProductoController::class, 'mostrarBondiolas']);
-// Sección Milanesas (Categoría 2)
 Route::get('/milanesas', [ProductoController::class, 'mostrarMilanesas']);
-// Sección Pastas (Categoría 3)
 Route::get('/pastas', [ProductoController::class, 'mostrarPastas']);
-
-// Eliminación (Borrado Lógico)
 Route::delete('/productos/eliminar/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
-
 
 // Recuperación de Contraseña
 Route::get('/recuperar-contrasena', function () {
@@ -103,13 +97,3 @@ Route::get('/recuperar-contrasena', function () {
 Route::post('/recuperar-contrasena', [AuthController::class, 'enviarEnlaceRecuperacion'])->name('password.email');
 Route::get('/restablecer-password/{token}', [AuthController::class, 'mostrarFormoRestablecer'])->name('password.reset');
 Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword'])->name('password.update');
-
-// Ruta para las consultas del panel de administrador
-Route::get('/admin/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
-
-// Ruta para marcar una consulta como leída
-Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');
-// Ruta para responder consultas
-Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responder'])->name('consultas.responder');
-
-Route::delete('/admin/consultas/{id}/eliminar', [AdminController::class, 'eliminar'])->name('consultas.eliminar');
