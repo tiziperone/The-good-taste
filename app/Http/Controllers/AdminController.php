@@ -11,7 +11,7 @@ use App\Mail\RespuestaConsulta;
 
 class AdminController extends Controller
 {
-    // MÉTODO PARA EL DASHBOARD PRINCIPAL (admin.blade.php)
+    //Admin principal
     public function index()
     {
         if (Auth::user()->role !== 'admin') {
@@ -24,7 +24,7 @@ class AdminController extends Controller
         return view('admin', compact('consultas'));
     }
 
-    // NUEVO MÉTODO PARA GESTIÓN DE PRODUCTOS (admin-gestionProductos.blade.php)
+    //Gestion de productos
     public function productos(Request $request)
     {
         if (Auth::user()->role !== 'admin') {
@@ -39,7 +39,8 @@ class AdminController extends Controller
 
         $consultas = Consulta::all(); // Para el menú lateral
 
-        return view('admin-gestionProductos', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
+        // CORREGIDO: Ahora apunta a admin-productos
+        return view('admin-productos', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
     }
 
     // MÉTODO PARA GESTIÓN DE CONSULTAS (admin-consultas.blade.php)
@@ -85,11 +86,10 @@ class AdminController extends Controller
             'activo' => true
         ]);
 
-        // Cambiado: Ahora redirige a la gestión de productos
         return redirect()->route('admin.productos')->with('success', 'Producto agregado correctamente al catálogo.');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         if (Auth::user()->role !== 'admin') {
             return redirect('/')->with('error', 'Acceso denegado.');
@@ -123,7 +123,6 @@ class AdminController extends Controller
             'activo' => true
         ]);
 
-        // Cambiado: Ahora redirige a la gestión de productos
         return redirect()->route('admin.productos')->with('success', 'Producto actualizado correctamente.');
     }
 

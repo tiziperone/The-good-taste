@@ -50,12 +50,15 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
     Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
 
-    // Panel de Administración (Vista Única)
+    // Panel de Administración
     Route::get('/administracion', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/administracion/productos', [AdminController::class, 'productos'])->name('admin.productos');
+    Route::get('/administracion/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
+
     Route::post('/administracion/producto', [AdminController::class, 'store'])->name('admin.store');
     Route::put('/administracion/producto/{id}', [AdminController::class, 'update'])->name('admin.update');
 
-    // Rutas de acción para consultas en el panel (ya no hay GET de vista separada)
+    // Rutas de acción para consultas en el panel
     Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');
     Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responder'])->name('consultas.responder');
     Route::delete('/admin/consultas/{id}/eliminar', [AdminController::class, 'eliminar'])->name('consultas.eliminar');
@@ -97,4 +100,3 @@ Route::get('/recuperar-contrasena', function () {
 Route::post('/recuperar-contrasena', [AuthController::class, 'enviarEnlaceRecuperacion'])->name('password.email');
 Route::get('/restablecer-password/{token}', [AuthController::class, 'mostrarFormoRestablecer'])->name('password.reset');
 Route::post('/restablecer-password', [AuthController::class, 'actualizarPassword'])->name('password.update');
-Route::get('/admin/productos', [AdminController::class, 'productos'])->name('admin.productos');

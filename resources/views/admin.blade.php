@@ -78,7 +78,7 @@
                         <i class="bi bi-cup-hot-fill text-warning" style="font-size: 4rem;"></i>
                     </div>
                     <h1 class="fw-bold text-warning mb-3">¡Bienvenido al Panel, {{ Auth::user()->name ?? 'Administrador' }}!</h1>
-                    <p class="text-white-50 fs-5 mb-5">¿Qué haremos hoy en The Good Taste?</p>
+                    <p class="text-white-50 fs-5 mb-5">¿Qué haremos hoy?</p>
 
                     <div class="d-flex justify-content-center gap-4 flex-wrap">
                         <a href="{{ route('admin.productos') }}" class="btn btn-outline-warning btn-lg px-4 py-3 fw-bold" style="border-radius: 10px;">
