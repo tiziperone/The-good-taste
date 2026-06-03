@@ -1,5 +1,3 @@
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
-
 <nav class="navbar navbar-expand-lg navbar-personalizada">
     <div class="container-fluid">
 
@@ -23,7 +21,6 @@
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('terminos-y-usos') ? 'active text-black' : 'text-black' }}" href="{{ url('/terminos-y-usos') }}">Términos y Usos</a>
 
                 @auth
-                {{-- ENLACE DE ADMINISTRACIÓN DIRECTO (SOLO PARA ADMINS) --}}
                 @if(auth()->user()->role === 'admin')
                 <a class="nav-link mx-2 text-warning fw-bold pt-1 fs-6 d-flex align-items-center {{ request()->is('administracion') ? 'text-black' : '' }}" href="{{ route('admin.index') }}">
                     <i class="bi bi-shield-lock-fill me-1"></i> Administración
@@ -34,7 +31,25 @@
                     @csrf
                 </form>
 
-                <a class="nav-link mx-2 ms-lg-auto text-lg pt-1 fs-6 d-flex align-items-center text-black"
+                {{-- NUEVO ENLACE: MIS COMPRAS --}}
+                <a class="nav-link mx-2 ms-lg-auto text-lg pt-1 fs-6 d-flex align-items-center text-black {{ request()->is('mis-compras') ? 'active' : '' }}" href="{{ url('/mis-compras') }}">
+                    <i class="bi bi-bag-check-fill me-1"></i> Mis Compras
+                </a>
+
+                {{-- CARRITO --}}
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 d-flex align-items-center text-black position-relative"
+                    href="{{ url('/carrito') }}"
+                    title="Ver mi carrito">
+                    <i class="bi bi-cart3 fs-5 align-middle"></i>
+                    @if(session('carrito') && count(session('carrito')) > 0)
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem; padding: 0.25em 0.5em;">
+                        {{ count(session('carrito')) }}
+                    </span>
+                    @endif
+                </a>
+
+                {{-- CERRAR SESIÓN --}}
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 d-flex align-items-center text-black"
                     href="{{ url('/cerrar-sesion') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <span>Cerrar Sesión</span>
@@ -43,21 +58,10 @@
                         <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
                     </svg>
                 </a>
-
-                <a class="nav-link mx-2 text-lg pt-1 fs-6 d-flex align-items-center text-black position-relative"
-                    href="{{ url('/carrito') }}"
-                    title="Ver mi carrito"
-                    style="margin-left: 5px;">
-                    <i class="bi bi-cart3 fs-5 align-middle"></i>
-                    @if(session('carrito') && count(session('carrito')) > 0)
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem; padding: 0.25em 0.5em;">
-                        {{ count(session('carrito')) }}
-                    </span>
-                    @endif
-                </a>
                 @endauth
 
                 @guest
+                {{-- (Tu código para @guest sigue igual) --}}
                 <a class="nav-link mx-2 ms-lg-auto text-lg pt-1 fs-6 d-flex align-items-center {{ request()->is('inicio-sesion') ? 'active text-black' : 'text-black' }}" href="{{ url('/inicio-sesion') }}">
                     <span>Iniciar Sesión</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person-circle ms-2" viewBox="0 0 16 16">
