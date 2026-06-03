@@ -26,7 +26,7 @@
                 {{-- ENLACE DE ADMINISTRACIÓN DIRECTO (SOLO PARA ADMINS) --}}
                 @if(auth()->user()->role === 'admin')
                 <a class="nav-link mx-2 text-warning fw-bold pt-1 fs-6 d-flex align-items-center {{ request()->is('administracion') ? 'text-black' : '' }}" href="{{ route('admin.index') }}">
-                    <i class="bi bi-shield-lock-fill me-1"></i> Admin
+                    <i class="bi bi-shield-lock-fill me-1"></i> Administración
                 </a>
                 @endif
 

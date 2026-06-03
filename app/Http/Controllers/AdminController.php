@@ -23,7 +23,10 @@ class AdminController extends Controller
         $productos = Producto::orderBy('created_at', $ordenActivos)->get();
         $productosEliminados = Producto::onlyTrashed()->orderBy('deleted_at', $ordenEliminados)->get();
 
-        return view('admin', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados'));
+        // Agregamos esto para que el menú lateral pueda contar los mensajes
+        $consultas = Consulta::all();
+
+        return view('admin', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
     }
 
     public function consultas()
@@ -51,7 +54,6 @@ class AdminController extends Controller
             'categoria_id' => 'required|integer'
         ]);
 
-        // Automatizamos el campo 'tipo' según la categoría elegida
         $tipo = 'Otra';
         if ($request->categoria_id == 1) $tipo = 'Bondiola';
         elseif ($request->categoria_id == 2) $tipo = 'Milanesa';
@@ -66,13 +68,12 @@ class AdminController extends Controller
             'url_imagen' => $request->url_imagen,
             'categoria_id' => $request->categoria_id,
             'tipo' => $tipo,
-            'activo' => true // ¡AQUÍ ESTÁ LA MAGIA! Lo activamos por defecto
+            'activo' => true
         ]);
 
         return redirect()->route('admin.index')->with('success', 'Producto agregado correctamente al catálogo.');
     }
 
-    // MÉTODO PARA EDITAR PRODUCTOS
     public function update(Request $request, $id)
     {
         if (Auth::user()->role !== 'admin') {
@@ -104,7 +105,7 @@ class AdminController extends Controller
             'url_imagen' => $request->url_imagen,
             'categoria_id' => $request->categoria_id,
             'tipo' => $tipo,
-            'activo' => true // producto activo después de la edición
+            'activo' => true
         ]);
 
         return redirect()->route('admin.index')->with('success', 'Producto actualizado correctamente.');
@@ -117,12 +118,12 @@ class AdminController extends Controller
         }
 
         $consulta = Consulta::findOrFail($id);
-        // Cambiamos el estado: si era 0 pasa a 1, si era 1 pasa a 0
         $consulta->estado = !$consulta->estado;
         $consulta->save();
 
         return back()->with('success', 'Estado actualizado correctamente.');
     }
+
     public function responder(Request $request, int $id)
     {
         if (Auth::user()->role !== 'admin') {
@@ -133,13 +134,11 @@ class AdminController extends Controller
 
         $consulta = Consulta::findOrFail($id);
 
-        // 1. Guardar la respuesta en la BD
         $consulta->update([
             'respuesta' => $request->respuesta,
-            'estado' => true // Marcamos como leído automáticamente al responder
+            'estado' => true
         ]);
 
-        // 2. Enviar el correo usando tu configuración SMTP
         Mail::to($consulta->email)->send(new RespuestaConsulta($consulta, $request->respuesta));
 
         return back()->with('success', 'Respuesta enviada y registrada correctamente.');
