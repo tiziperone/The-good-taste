@@ -14,13 +14,29 @@ class CarritoController extends Controller
     {
         $urlAnterior = url()->previous();
 
-
         if (!str_contains($urlAnterior, '/carrito')) {
             session()->put('url_seguir_comprando', $urlAnterior);
         }
 
-        // Cargamos el carrito con su relación de producto
-        $carrito = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
+        // Cargamos los ítems
+        $carritoItems = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
+        $limpieza = false;
+
+        // Limpieza automática: Si el producto fue eliminado, desactivado, o se quedó sin stock, lo sacamos.
+        foreach ($carritoItems as $item) {
+            if (!$item->producto || $item->producto->activo != 1 || $item->producto->stock <= 0) {
+                $item->delete();
+                $limpieza = true;
+            }
+        }
+
+        if ($limpieza) {
+            // Recargamos el carrito ya limpio y avisamos al usuario
+            $carrito = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
+            session()->flash('error', 'Algunos productos de tu carrito ya no están disponibles o se quedaron sin stock y fueron removidos automáticamente.');
+        } else {
+            $carrito = $carritoItems;
+        }
 
         return view('carrito', compact('carrito'));
     }
@@ -31,7 +47,7 @@ class CarritoController extends Controller
         $productoId = $request->input('producto_id');
         $producto = Producto::find($productoId);
 
-        if (!$producto) {
+        if (!$producto || $producto->activo != 1) {
             return response()->json(['success' => false, 'message' => 'El producto ya no existe en el catálogo.'], 404);
         }
 
@@ -74,8 +90,8 @@ class CarritoController extends Controller
             return response()->json(['success' => false, 'message' => 'Producto no encontrado en tu carrito.'], 404);
         }
 
-        // Si intentan actualizar un ítem cuyo producto ya no existe en la BD física
-        if (!$item->producto) {
+        // Validación extra de seguridad antes de actualizar
+        if (!$item->producto || $item->producto->activo != 1 || $item->producto->stock <= 0) {
             return response()->json(['success' => false, 'message' => 'Este producto ya no está disponible en nuestro catálogo.'], 422);
         }
 
@@ -104,7 +120,7 @@ class CarritoController extends Controller
 
         $totalGeneral = 0;
         foreach ($todoElCarrito as $row) {
-            if ($row->producto) { // Solo sumamos productos que existan
+            if ($row->producto && $row->producto->activo == 1 && $row->producto->stock > 0) {
                 $totalGeneral += $row->producto->precio * $row->cantidad;
             }
         }
