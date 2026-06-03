@@ -293,7 +293,6 @@
             });
         });
 
-        // Carga automáticamente los datos del select en los inputs de dirección
         function cargarDireccionGuardada() {
             const select = document.getElementById('select-direcciones');
             const selectedOption = select.options[select.selectedIndex];
@@ -308,7 +307,6 @@
                 inputAltura.value = selectedOption.getAttribute('data-altura');
                 inputPiso.value = selectedOption.getAttribute('data-piso') || '';
 
-                // Ocultamos la opción de re-guardar ya que es una dirección existente
                 bloqueGuardar.classList.add('d-none');
                 document.getElementById('guardar_futura').checked = false;
                 document.getElementById('campo-nombre-alias').classList.add('d-none');
@@ -320,7 +318,6 @@
             }
         }
 
-        // Muestra u oculta el campo del alias de la dirección según el checkbox
         function toggleNombreDireccion() {
             const checkbox = document.getElementById('guardar_futura');
             const campoAlias = document.getElementById('campo-nombre-alias');

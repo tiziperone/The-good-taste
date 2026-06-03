@@ -42,7 +42,6 @@
 
             <div class="mt-auto">
               @auth
-              <!-- Botón Comprar Ahora -->
               <button type="button" class="btn btn-warning fw-bold text-dark btn-comprar-ahora" data-id="{{ $mila->id }}">Comprar</button>
 
               <button type="button" class="btn btn-outline-light ms-2 btn-agregar-carrito" data-id="{{ $mila->id }}">
@@ -144,7 +143,6 @@
         });
       });
 
-      //Botón "Comprar Ahora" (Estilo Mercado Libre)
       document.querySelectorAll('.btn-comprar-ahora').forEach(boton => {
         boton.addEventListener('click', function() {
           const productoId = this.getAttribute('data-id');
@@ -156,8 +154,7 @@
             return;
           }
 
-          // Redirige directamente a la pantalla de pago 
-          window.location.href = "{{ route('compra.index') }}?comprar_ahora=" + productoId;
+          window.location.href = "{{ route('compra.index') }}?producto_id=" + productoId;
         });
       });
     });
