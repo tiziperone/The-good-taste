@@ -10,7 +10,7 @@
 
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
@@ -27,7 +27,7 @@
     <div class="container mt-5 mb-5">
         <h2 class="fw-bold text-warning mb-4" style="font-family: 'Montserrat', sans-serif;">🛒 Tu Carrito de Compras</h2>
 
-        {{-- Mensajes de Error o Éxito del Servidor --}}
+        {{-- Mensajes de Servidor --}}
         @if(session('error'))
         <div class="alert alert-danger alert-dismissible fade show border-start border-danger border-5 bg-dark text-white shadow mb-4" role="alert">
             <i class="bi bi-exclamation-triangle-fill text-danger me-2"></i> {{ session('error') }}
@@ -58,26 +58,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                $total = 0;
-                                $carritoInvalido = false;
-                                @endphp
+                                @php $total = 0; @endphp
 
                                 @foreach($carrito as $item)
                                 @php
-                                // CORREGIDO: Ahora busca activo Y QUE TENGA STOCK
-                                $productoValido = $item->producto && $item->producto->activo == 1 && $item->producto->stock > 0;
-
-                                if (!$productoValido) {
-                                $carritoInvalido = true;
-                                } else {
                                 $subtotal = $item->producto->precio * $item->cantidad;
                                 $total += $subtotal;
-                                }
                                 @endphp
-
-                                @if($productoValido)
-                                {{-- Fila normal: El producto EXISTE, ESTÁ ACTIVO Y TIENE STOCK --}}
                                 <tr>
                                     <td class="ps-3">
                                         <div class="d-flex align-items-center gap-3">
@@ -113,25 +100,6 @@
                                         </form>
                                     </td>
                                 </tr>
-                                @else
-                                {{-- Fila de Alerta: Como ahora se limpia automáticamente en el Controller, rara vez verás esto, pero queda como respaldo de seguridad --}}
-                                <tr class="table-danger text-dark fw-bold">
-                                    <td class="ps-3" colspan="4">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
-                                            <span>Este producto ya no se encuentra disponible o no tiene stock. Por favor, eliminalo para continuar con la compra.</span>
-                                        </div>
-                                    </td>
-                                    <td class="text-center pe-3">
-                                        <form action="{{ route('carrito.eliminar', $item->id) }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3" title="Quitar ítem obsoleto">
-                                                <i class="bi bi-trash-fill me-1"></i> Quitar
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -165,16 +133,9 @@
                         </div>
 
                         <div class="mt-auto">
-                            @if($carritoInvalido)
-                            <button type="button" class="btn btn-secondary btn-lg w-100 fw-bold text-white shadow mb-2" disabled>
-                                Compra Bloqueada <i class="bi bi-lock-fill ms-2"></i>
-                            </button>
-                            <small class="text-danger d-block text-center fw-bold">Hay ítems no disponibles en tu lista.</small>
-                            @else
                             <a href="{{ route('compra.index') }}" class="btn btn-warning btn-lg w-100 fw-bold text-dark shadow">
                                 Continuar con la Compra <i class="bi bi-arrow-right ms-2"></i>
                             </a>
-                            @endif
                         </div>
                     </div>
                 </div>
@@ -229,6 +190,9 @@
                                 document.querySelector('.total-general-val').innerText = data.totalGeneral;
                             } else {
                                 alert(`⚠️ ${data.message}`);
+                                if (data.message.includes("retirado de nuestro catálogo")) {
+                                    window.location.reload();
+                                }
                             }
                         })
                         .catch(error => {

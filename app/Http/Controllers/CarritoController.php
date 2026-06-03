@@ -18,25 +18,42 @@ class CarritoController extends Controller
             session()->put('url_seguir_comprando', $urlAnterior);
         }
 
-        // Cargamos los ítems
+        // Cargamos los ítems del usuario
         $carritoItems = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
-        $limpieza = false;
+        $huboLimpieza = false;
 
-        // Limpieza automática: Si el producto fue eliminado, desactivado, o se quedó sin stock, lo sacamos.
         foreach ($carritoItems as $item) {
-            if (!$item->producto || $item->producto->activo != 1 || $item->producto->stock <= 0) {
-                $item->delete();
-                $limpieza = true;
+            $debeEliminarse = false;
+
+            // 1. El producto fue eliminado físicamente de la base de datos (relación huérfana)
+            if (!$item->producto) {
+                $debeEliminarse = true;
+            }
+            // 2. El producto usa SoftDeletes (borrado lógico) y está en la papelera
+            elseif (method_exists($item->producto, 'trashed') && $item->producto->trashed()) {
+                $debeEliminarse = true;
+            }
+            // 3. (Opcional) Si en tu BD usás un campo 'activo' o 'stock', lo validamos de forma segura
+            elseif (isset($item->producto->activo) && $item->producto->activo != 1) {
+                $debeEliminarse = true;
+            } elseif (isset($item->producto->stock) && $item->producto->stock <= 0) {
+                $debeEliminarse = true;
+            }
+
+            if ($debeEliminarse) {
+                $item->delete(); // Eliminamos el registro corrupto del carrito
+                $huboLimpieza = true;
             }
         }
 
-        if ($limpieza) {
-            // Recargamos el carrito ya limpio y avisamos al usuario
-            $carrito = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
-            session()->flash('error', 'Algunos productos de tu carrito ya no están disponibles o se quedaron sin stock y fueron removidos automáticamente.');
-        } else {
-            $carrito = $carritoItems;
+        // Si detectamos inconsistencias, forzamos una recarga limpia
+        if ($huboLimpieza) {
+            return redirect()->route('carrito.index')
+                ->with('error', 'Se actualizaron los productos de tu carrito porque algunos ya no se encuentran disponibles en el catálogo.');
         }
+
+        // Si todo está íntegro, pasamos la colección a la vista
+        $carrito = $carritoItems;
 
         return view('carrito', compact('carrito'));
     }
@@ -47,11 +64,12 @@ class CarritoController extends Controller
         $productoId = $request->input('producto_id');
         $producto = Producto::find($productoId);
 
-        if (!$producto || $producto->activo != 1) {
+        // Validación estricta al agregar
+        if (!$producto || (method_exists($producto, 'trashed') && $producto->trashed()) || (isset($producto->activo) && $producto->activo != 1)) {
             return response()->json(['success' => false, 'message' => 'El producto ya no existe en el catálogo.'], 404);
         }
 
-        if ($producto->stock <= 0) {
+        if (isset($producto->stock) && $producto->stock <= 0) {
             return response()->json(['success' => false, 'message' => 'Lo sentimos, este producto no tiene stock disponible.'], 400);
         }
 
@@ -90,13 +108,13 @@ class CarritoController extends Controller
             return response()->json(['success' => false, 'message' => 'Producto no encontrado en tu carrito.'], 404);
         }
 
-        // Validación extra de seguridad antes de actualizar
-        if (!$item->producto || $item->producto->activo != 1 || $item->producto->stock <= 0) {
-            return response()->json(['success' => false, 'message' => 'Este producto ya no está disponible en nuestro catálogo.'], 422);
+        // Validación de seguridad por si eliminaron el producto mientras el cliente estaba en el carrito
+        if (!$item->producto || (method_exists($item->producto, 'trashed') && $item->producto->trashed()) || (isset($item->producto->activo) && $item->producto->activo != 1)) {
+            return response()->json(['success' => false, 'message' => 'Este producto fue retirado de nuestro catálogo. Refrescá la página.'], 422);
         }
 
         if ($accion === 'incrementar') {
-            if ($item->cantidad >= $item->producto->stock) {
+            if (isset($item->producto->stock) && $item->cantidad >= $item->producto->stock) {
                 return response()->json([
                     'success' => false,
                     'message' => 'No hay más stock disponible de este producto.'
@@ -109,18 +127,18 @@ class CarritoController extends Controller
             } else {
                 return response()->json([
                     'success' => false,
-                    'message' => 'La cantidad mínima es 1 kg. Si no lo deseás, podés eliminarlo.'
+                    'message' => 'La cantidad mínima es 1 kg. Si no lo deseás, podés eliminarlo usando el botón rojo.'
                 ], 400);
             }
         }
 
-        // Calculamos los subtotales de forma segura
+        // Cálculos seguros
         $subtotal = $item->producto->precio * $item->cantidad;
         $todoElCarrito = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
 
         $totalGeneral = 0;
         foreach ($todoElCarrito as $row) {
-            if ($row->producto && $row->producto->activo == 1 && $row->producto->stock > 0) {
+            if ($row->producto) {
                 $totalGeneral += $row->producto->precio * $row->cantidad;
             }
         }
