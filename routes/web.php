@@ -25,8 +25,13 @@ Route::get('quienes-somos', function () {
     return view('quienes-somos');
 });
 
+// CORREGIDO: Ruta de catálogo con lógica de base de datos
 Route::get('catalogo', function () {
-    return view('catalogo');
+    $tieneBondiolas = \App\Models\Producto::where('categoria_id', 1)->where('activo', true)->exists();
+    $tieneMilanesas = \App\Models\Producto::where('categoria_id', 2)->where('activo', true)->exists();
+    $tienePastas = \App\Models\Producto::where('categoria_id', 3)->where('activo', true)->exists();
+
+    return view('catalogo', compact('tieneBondiolas', 'tieneMilanesas', 'tienePastas'));
 });
 
 Route::get('comercializacion', function () {
