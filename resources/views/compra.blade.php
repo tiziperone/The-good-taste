@@ -39,13 +39,9 @@
                         <div class="card-body p-4">
                             <h5 class="fw-bold text-warning mb-3"><i class="bi bi-person-fill me-2"></i> Datos de Contacto</h5>
                             <div class="row g-3">
-                                <div class="col-12 col-md-6">
-                                    <label class="form-label text-secondary small fw-bold">Nombre Completo</label>
-                                    <input type="text" id="input-nombre" class="form-control bg-secondary text-white border-0" required placeholder="Ej: Juan Pérez">
-                                </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12">
                                     <label class="form-label text-secondary small fw-bold">Teléfono / WhatsApp</label>
-                                    <input type="tel" id="input-telefono" class="form-control bg-secondary text-white border-0" required placeholder="Ej: 11 2345 6789">
+                                    <input type="tel" id="input-telefono" class="form-control bg-secondary text-white border-0" required placeholder="Ej: 3794 123456">
                                 </div>
                             </div>
                         </div>
@@ -251,17 +247,14 @@
             });
         });
 
-        // Función para procesar y mostrar el modal de éxito
         function procesarCompra(event) {
-            event.preventDefault(); // Evita que la página se recargue
+            event.preventDefault();
 
-            // Obtenemos los valores ingresados
-            const nombre = document.getElementById('input-nombre').value;
             const envioElegido = document.querySelector('input[name="metodo_envio"]:checked').value;
             const pagoElegido = document.querySelector('input[name="metodo_pago"]:checked').value;
 
-            // Llenamos los datos en el modal
-            document.getElementById('resumen-nombre').textContent = nombre;
+            // Inyectamos el nombre del usuario autenticado directo de Laravel
+            document.getElementById('resumen-nombre').textContent = "{{ Auth::user()->name ?? 'Cliente' }}";
 
             if (envioElegido === 'retiro') {
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-shop text-warning me-1"></i> Retiro por sucursal';
@@ -279,7 +272,6 @@
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-bank text-warning me-1"></i> Transferencia / Alias';
             }
 
-            // Mostramos el modal
             const modalExito = new bootstrap.Modal(document.getElementById('modalExito'));
             modalExito.show();
         }
