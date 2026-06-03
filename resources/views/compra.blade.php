@@ -70,7 +70,7 @@
                                 <div class="mb-4">
                                     <label class="form-label text-warning small fw-bold">Mis Direcciones Guardadas</label>
                                     <select id="select-direcciones" class="form-select bg-secondary text-white border-0" onchange="cargarDireccionGuardada()">
-                                        <option value="">Seleccionar una dirección guardada</option>
+                                        <option value="">-- Seleccionar una dirección guardada u otra nueva --</option>
                                         @foreach($direccionesGuardadas as $dir)
                                         <option value="{{ $dir->id }}"
                                             data-calle="{{ $dir->calle }}"
@@ -224,7 +224,7 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0 pt-0 pb-4 px-4">
-                    <a href="{{ url('/') }}" class="btn btn-success w-100 fw-bold py-2" style="border-radius: 8px;">Volver al Inicio</a>
+                    <a href="{{ url('/mis-compras') }}" class="btn btn-success w-100 fw-bold py-2" style="border-radius: 8px;">Ir a Mis Compras</a>
                 </div>
             </div>
         </div>
@@ -332,7 +332,7 @@
 
             let promesas = [];
 
-            // 1. Lógica de Dirección
+            // --- 1. Lógica de Dirección ---
             if (envioElegido === 'retiro') {
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-shop text-warning me-1"></i> Retiro por sucursal';
             } else {
@@ -366,16 +366,19 @@
                 }
             }
 
-            //2. Lógica de Pago
+            // --- 2. Lógica de Pago ---
             if (pagoElegido === 'efectivo') {
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-cash-coin text-warning me-1"></i> Efectivo';
             } else {
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-bank text-warning me-1"></i> Transferencia / Alias';
             }
 
-            //3. Vaciar Carrito 
-
+            // --- 3. Vaciar Carrito y Confirmar ---
             const esCarrito = "{{ request()->has('producto_id') ? 'false' : 'true' }}" === "true";
+
+            // Leemos el producto_id de la URL por si es una compra directa
+            const urlParams = new URLSearchParams(window.location.search);
+            const productoIdUrl = urlParams.get('producto_id');
 
             let promesaVaciarCarrito = fetch("{{ url('/confirmar-compra') }}", {
                 method: 'POST',
@@ -384,7 +387,8 @@
                     'X-CSRF-TOKEN': csrfToken
                 },
                 body: JSON.stringify({
-                    es_carrito: esCarrito
+                    es_carrito: esCarrito,
+                    producto_id: productoIdUrl
                 })
             }).then(res => res.json());
 

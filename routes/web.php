@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MisComprasController;
 
 Route::get('/', function () {
     return view('pagina-principal');
@@ -73,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/consultas/{id}/eliminar', [AdminController::class, 'eliminar'])->name('consultas.eliminar');
     Route::post('/confirmar-compra', [CompraController::class, 'confirmarCompra'])->name('confirmar.compra');
     Route::get('/mis-compras', [MisComprasController::class, 'index'])->name('mis-compras.index');
+    Route::post('/confirmar-compra', [CompraController::class, 'confirmarCompra'])->name('confirmar.compra');
 });
 
 Route::get('inicio-sesion', function () {
