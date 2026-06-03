@@ -11,7 +11,21 @@ use App\Mail\RespuestaConsulta;
 
 class AdminController extends Controller
 {
-    public function index(Request $request)
+    // MÉTODO PARA EL DASHBOARD PRINCIPAL (admin.blade.php)
+    public function index()
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+
+        // Solo necesitamos las consultas para el globito del menú
+        $consultas = Consulta::all();
+
+        return view('admin', compact('consultas'));
+    }
+
+    // NUEVO MÉTODO PARA GESTIÓN DE PRODUCTOS (admin-gestionProductos.blade.php)
+    public function productos(Request $request)
     {
         if (Auth::user()->role !== 'admin') {
             return redirect('/')->with('error', 'Acceso denegado.');
@@ -23,12 +37,12 @@ class AdminController extends Controller
         $productos = Producto::orderBy('created_at', $ordenActivos)->get();
         $productosEliminados = Producto::onlyTrashed()->orderBy('deleted_at', $ordenEliminados)->get();
 
-        // Agregamos esto para que el menú lateral pueda contar los mensajes
-        $consultas = Consulta::all();
+        $consultas = Consulta::all(); // Para el menú lateral
 
-        return view('admin', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
+        return view('admin-gestionProductos', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
     }
 
+    // MÉTODO PARA GESTIÓN DE CONSULTAS (admin-consultas.blade.php)
     public function consultas()
     {
         if (Auth::user()->role !== 'admin') {
@@ -71,7 +85,8 @@ class AdminController extends Controller
             'activo' => true
         ]);
 
-        return redirect()->route('admin.index')->with('success', 'Producto agregado correctamente al catálogo.');
+        // Cambiado: Ahora redirige a la gestión de productos
+        return redirect()->route('admin.productos')->with('success', 'Producto agregado correctamente al catálogo.');
     }
 
     public function update(Request $request, $id)
@@ -108,7 +123,8 @@ class AdminController extends Controller
             'activo' => true
         ]);
 
-        return redirect()->route('admin.index')->with('success', 'Producto actualizado correctamente.');
+        // Cambiado: Ahora redirige a la gestión de productos
+        return redirect()->route('admin.productos')->with('success', 'Producto actualizado correctamente.');
     }
 
     public function marcarLeido(int $id)
