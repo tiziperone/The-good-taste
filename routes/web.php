@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responder'])->name('consultas.responder');
     Route::delete('/admin/consultas/{id}/eliminar', [AdminController::class, 'eliminar'])->name('consultas.eliminar');
     Route::post('/confirmar-compra', [CompraController::class, 'confirmarCompra'])->name('confirmar.compra');
+    Route::get('/mis-compras', [MisComprasController::class, 'index'])->name('mis-compras.index');
 });
 
 Route::get('inicio-sesion', function () {
