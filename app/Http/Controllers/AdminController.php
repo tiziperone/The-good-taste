@@ -18,7 +18,6 @@ class AdminController extends Controller
             return redirect('/')->with('error', 'Acceso denegado.');
         }
 
-        // Solo necesitamos las consultas para el globito del menú
         $consultas = Consulta::all();
 
         return view('admin', compact('consultas'));
@@ -34,16 +33,27 @@ class AdminController extends Controller
         $ordenActivos = $request->query('orden_activos', 'desc');
         $ordenEliminados = $request->query('orden_eliminados', 'desc');
 
-        $productos = Producto::orderBy('created_at', $ordenActivos)->get();
+        // Construimos la consulta dependiendo de lo que elija el usuario
+        $queryProductos = Producto::query();
+
+        if ($ordenActivos === 'stock_asc') {
+            $queryProductos->orderBy('stock', 'asc');
+        } elseif ($ordenActivos === 'stock_desc') {
+            $queryProductos->orderBy('stock', 'desc');
+        } elseif ($ordenActivos === 'asc') {
+            $queryProductos->orderBy('created_at', 'asc');
+        } else {
+            $queryProductos->orderBy('created_at', 'desc'); // Por defecto
+        }
+
+        $productos = $queryProductos->get();
         $productosEliminados = Producto::onlyTrashed()->orderBy('deleted_at', $ordenEliminados)->get();
 
-        $consultas = Consulta::all(); // Para el menú lateral
+        $consultas = Consulta::all();
 
-        // CORREGIDO: Ahora apunta a admin-productos
         return view('admin-productos', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
     }
 
-    // MÉTODO PARA GESTIÓN DE CONSULTAS (admin-consultas.blade.php)
     public function consultas()
     {
         if (Auth::user()->role !== 'admin') {
@@ -169,5 +179,24 @@ class AdminController extends Controller
         $consulta->delete();
 
         return back()->with('success', 'Consulta eliminada correctamente.');
+    }
+
+    // NUEVO: MÉTODO PARA RESTAURAR PRODUCTOS
+    public function restaurar(int $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+
+        // Buscamos el producto solo entre los eliminados
+        $producto = Producto::onlyTrashed()->findOrFail($id);
+
+        // restore() quita el deleted_at de la base de datos (DBeaver)
+        $producto->restore();
+
+        // Nos aseguramos de que su estado "activo" vuelva a true por las dudas
+        $producto->update(['activo' => true]);
+
+        return back()->with('success', 'Producto reactivado correctamente. ¡Vuelve a estar en el catálogo!');
     }
 }

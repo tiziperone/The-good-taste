@@ -93,10 +93,12 @@
                         <form action="{{ route('admin.productos') }}" method="GET" class="d-flex align-items-center gap-2 m-0">
                             <input type="hidden" name="orden_eliminados" value="{{ $ordenEliminados }}">
 
-                            <label class="text-white small mb-0 fw-normal">Ordenar:</label>
+                            <label class="text-white small mb-0 fw-normal">Ordenar por:</label>
                             <select name="orden_activos" class="form-select form-select-sm bg-dark text-white border-0" onchange="this.form.submit()">
                                 <option value="desc" {{ $ordenActivos == 'desc' ? 'selected' : '' }}>Más nuevos</option>
                                 <option value="asc" {{ $ordenActivos == 'asc' ? 'selected' : '' }}>Más antiguos</option>
+                                <option value="stock_asc" {{ $ordenActivos == 'stock_asc' ? 'selected' : '' }}>Menos stock</option>
+                                <option value="stock_desc" {{ $ordenActivos == 'stock_desc' ? 'selected' : '' }}>Más stock</option>
                             </select>
                         </form>
                     </div>
@@ -229,8 +231,8 @@
 
                             <label class="text-white small mb-0 fw-normal">Ordenar por baja:</label>
                             <select name="orden_eliminados" class="form-select form-select-sm bg-dark text-white border-0" onchange="this.form.submit()">
-                                <option value="desc" {{ $ordenEliminados == 'desc' ? 'selected' : '' }}>Eliminados recientes</option>
-                                <option value="asc" {{ $ordenEliminados == 'asc' ? 'selected' : '' }}>Eliminados antiguos</option>
+                                <option value="desc" {{ $ordenEliminados == 'desc' ? 'selected' : '' }}>Recientes</option>
+                                <option value="asc" {{ $ordenEliminados == 'asc' ? 'selected' : '' }}>Antiguos</option>
                             </select>
                         </form>
                     </div>
@@ -242,6 +244,7 @@
                                     <th>Producto</th>
                                     <th>Agregado el</th>
                                     <th>Eliminado el</th>
+                                    <th class="text-center pe-3">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -251,10 +254,19 @@
                                     <td>{{ $eliminado->nombre }}</td>
                                     <td>{{ $eliminado->created_at->format('d/m/Y H:i') }}</td>
                                     <td class="text-danger fw-bold">{{ $eliminado->deleted_at->format('d/m/Y H:i') }}</td>
+                                    <td class="text-center pe-3">
+                                        <form action="{{ route('admin.productos.restaurar', $eliminado->id) }}" method="POST" onsubmit="return confirm('¿Querés volver a activar este producto en el catálogo?');">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" class="btn btn-outline-success btn-sm rounded-circle" title="Reactivar producto">
+                                                <i class="bi bi-arrow-counterclockwise"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="4" class="text-center py-4">No hay productos en el historial de eliminados.</td>
+                                    <td colspan="5" class="text-center py-4">No hay productos en el historial de eliminados.</td>
                                 </tr>
                                 @endforelse
                             </tbody>

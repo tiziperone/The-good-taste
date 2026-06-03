@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/administracion/producto', [AdminController::class, 'store'])->name('admin.store');
     Route::put('/administracion/producto/{id}', [AdminController::class, 'update'])->name('admin.update');
+    Route::patch('/administracion/producto/{id}/restaurar', [AdminController::class, 'restaurar'])->name('admin.productos.restaurar');
 
     // Rutas de acción para consultas en el panel
     Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');
