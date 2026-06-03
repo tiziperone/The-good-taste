@@ -65,8 +65,8 @@
 
                                 @foreach($carrito as $item)
                                 @php
-                                // CORREGIDO: Ahora busca la columna 'activo' que es la correcta
-                                $productoValido = $item->producto && $item->producto->activo == 1;
+                                // CORREGIDO: Ahora busca activo Y QUE TENGA STOCK
+                                $productoValido = $item->producto && $item->producto->activo == 1 && $item->producto->stock > 0;
 
                                 if (!$productoValido) {
                                 $carritoInvalido = true;
@@ -77,7 +77,7 @@
                                 @endphp
 
                                 @if($productoValido)
-                                {{-- Fila normal: El producto EXISTE Y ESTÁ ACTIVO --}}
+                                {{-- Fila normal: El producto EXISTE, ESTÁ ACTIVO Y TIENE STOCK --}}
                                 <tr>
                                     <td class="ps-3">
                                         <div class="d-flex align-items-center gap-3">
@@ -114,12 +114,12 @@
                                     </td>
                                 </tr>
                                 @else
-                                {{-- Fila de Alerta: El producto NO EXISTE o FUE ELIMINADO LÓGICAMENTE --}}
+                                {{-- Fila de Alerta: Como ahora se limpia automáticamente en el Controller, rara vez verás esto, pero queda como respaldo de seguridad --}}
                                 <tr class="table-danger text-dark fw-bold">
                                     <td class="ps-3" colspan="4">
                                         <div class="d-flex align-items-center gap-2">
                                             <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
-                                            <span>Este producto ya no se encuentra disponible. Por favor, eliminalo para continuar con la compra.</span>
+                                            <span>Este producto ya no se encuentra disponible o no tiene stock. Por favor, eliminalo para continuar con la compra.</span>
                                         </div>
                                     </td>
                                     <td class="text-center pe-3">
