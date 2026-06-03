@@ -34,34 +34,33 @@
 
             @foreach($compras as $compra)
             <div class="accordion-item bg-dark border-secondary mb-3 shadow-sm" style="border-radius: 10px; overflow: hidden;">
-                <h2 class="accordion-header" id="heading-{{ $compra->ID ?? $compra->id }}">
-                    <button class="accordion-button collapsed bg-secondary text-white fw-bold d-flex flex-wrap gap-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $compra->ID ?? $compra->id }}" aria-expanded="false" aria-controls="collapse-{{ $compra->ID ?? $compra->id }}" style="box-shadow: none;">
+                <h2 class="accordion-header" id="heading-{{ $compra->id }}">
+                    <button class="accordion-button collapsed bg-secondary text-white fw-bold d-flex flex-wrap gap-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $compra->id }}" aria-expanded="false" aria-controls="collapse-{{ $compra->id }}" style="box-shadow: none;">
 
                         <div class="d-flex flex-column me-auto">
-                            <span class="text-warning small text-uppercase">Pedido #{{ str_pad($compra->ID ?? $compra->id, 5, '0', STR_PAD_LEFT) }}</span>
-                            <span class="fs-5">{{ \Carbon\Carbon::parse($compra->Created_ad)->format('d/m/Y - H:i') }} hs</span>
+                            <span class="text-warning small text-uppercase">Pedido #{{ str_pad($compra->id, 5, '0', STR_PAD_LEFT) }}</span>
+                            <span class="fs-5">{{ \Carbon\Carbon::parse($compra->created_at)->format('d/m/Y - H:i') }} hs</span>
                         </div>
 
                         <div class="d-flex align-items-center gap-4 me-3">
                             <div class="text-end d-none d-sm-block">
                                 <span class="d-block small text-light opacity-75">Estado</span>
-                                @if(strtolower($compra->Estado) == 'pendiente')
+                                {{-- El estado ahora es booleano: 0 = false (pendiente), 1 = true (completado) --}}
+                                @if($compra->estado == 0)
                                 <span class="badge bg-warning text-dark"><i class="bi bi-clock-history me-1"></i> Pendiente</span>
-                                @elseif(strtolower($compra->Estado) == 'completado')
-                                <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Entregado</span>
                                 @else
-                                <span class="badge bg-secondary"><i class="bi bi-info-circle me-1"></i> {{ ucfirst($compra->Estado) }}</span>
+                                <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Entregado</span>
                                 @endif
                             </div>
                             <div class="text-end">
                                 <span class="d-block small text-light opacity-75">Total</span>
-                                <span class="fs-5 text-warning fw-bold">$ {{ number_format($compra->Total, 0, ',', '.') }}</span>
+                                <span class="fs-5 text-warning fw-bold">$ {{ number_format($compra->total, 0, ',', '.') }}</span>
                             </div>
                         </div>
                     </button>
                 </h2>
 
-                <div id="collapse-{{ $compra->ID ?? $compra->id }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ $compra->ID ?? $compra->id }}" data-bs-parent="#acordeonCompras">
+                <div id="collapse-{{ $compra->id }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ $compra->id }}" data-bs-parent="#acordeonCompras">
                     <div class="accordion-body bg-dark text-light border-top border-secondary p-4">
 
                         <h6 class="text-warning fw-bold border-bottom border-secondary pb-2"><i class="bi bi-list-ul me-2"></i>Productos del Pedido</h6>
@@ -75,8 +74,8 @@
                                             <img src="{{ asset($detalle->url_imagen ?? 'Img/BondiolaTarjetaSinPimenton.png') }}" alt="Producto" class="rounded" style="width: 40px; height: 40px; object-fit: cover;">
                                         </td>
                                         <td>{{ $detalle->nombre ?? 'Producto Eliminado' }}</td>
-                                        <td class="text-center text-secondary">{{ $detalle->Cantidad }} u/kg</td>
-                                        <td class="text-end fw-bold text-light">$ {{ number_format($detalle->Cantidad * $detalle->Precio_Unitario, 0, ',', '.') }}</td>
+                                        <td class="text-center text-secondary">{{ $detalle->cantidad }} u/kg</td>
+                                        <td class="text-end fw-bold text-light">$ {{ number_format($detalle->cantidad * $detalle->precioUnitario, 0, ',', '.') }}</td>
                                     </tr>
                                     @endforeach
                                     @endif

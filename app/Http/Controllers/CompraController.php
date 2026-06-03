@@ -65,7 +65,7 @@ class CompraController extends Controller
         $items = [];
         $totalGeneral = 0;
 
-        // 1. Recopilamos los productos (compra directa o carrito)
+        // 1. Recopilamos los productos
         if (!$esCarrito && $request->has('producto_id')) {
             $producto = Producto::find($request->input('producto_id'));
             if ($producto) {
@@ -93,28 +93,28 @@ class CompraController extends Controller
             }
         }
 
-        // 2. Insertamos el registro en la tabla 'orden' (usando las columnas de tu Excel)
-        $idOrden = DB::table('orden')->insertGetId([
-            'ID_usuario' => $usuario->id,
-            'Total' => $totalGeneral,
-            'Estado' => 'pendiente',
-            'Created_ad' => now(),
-            'Updated_ad' => now()
+        // 2. Insertamos en 'ordens' (Nombres de tus migraciones)
+        $idOrden = DB::table('ordens')->insertGetId([
+            'users_id' => $usuario->id,
+            'total' => $totalGeneral,
+            'estado' => false, // false = pendiente, según tu default
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
-        // 3. Insertamos cada producto en 'itemorden'
+        // 3. Insertamos cada producto en 'item_ordens'
         foreach ($items as $item) {
-            DB::table('itemorden')->insert([
-                'ID_orden' => $idOrden,
-                'ID_producto' => $item->producto_id,
-                'Cantidad' => $item->cantidad,
-                'Precio_Unitario' => $item->precio,
-                'Created_ad' => now(),
-                'Updated_ad' => now()
+            DB::table('item_ordens')->insert([
+                'ordens_id' => $idOrden,
+                'productos_id' => $item->producto_id,
+                'cantidad' => $item->cantidad,
+                'precioUnitario' => $item->precio,
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         }
 
-        // 4. Vaciamos el carrito (solo si la compra vino de ahí)
+        // 4. Vaciamos el carrito (si corresponde)
         if ($esCarrito) {
             CarritoItem::where('user_id', $usuario->id)->delete();
         }
