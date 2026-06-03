@@ -76,15 +76,51 @@
                             </div>
 
                             <div id="campos-direccion" class="mt-4 d-none">
+                                <hr class="border-secondary my-4">
+
+                                @if(isset($direccionesGuardadas) && $direccionesGuardadas->count() > 0)
+                                <div class="mb-4">
+                                    <label class="form-label text-warning small fw-bold">Mis Direcciones Guardadas</label>
+                                    <select id="select-direcciones" class="form-select bg-secondary text-white border-0" onchange="cargarDireccionGuardada()">
+                                        <option value="">-- Seleccionar una dirección guardada u otra nueva --</option>
+                                        @foreach($direccionesGuardadas as $dir)
+                                        <option value="{{ $dir->id }}"
+                                            data-calle="{{ $dir->calle }}"
+                                            data-altura="{{ $dir->altura }}"
+                                            data-piso="{{ $dir->piso_depto }}">
+                                            {{ $dir->nombre }} ({{ $dir->calle }} {{ $dir->altura }})
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @endif
+
                                 <h6 class="text-warning small fw-bold mb-3">Dirección de Entrega</h6>
                                 <div class="row g-3">
-                                    <div class="col-12 col-md-8">
-                                        <label class="form-label text-secondary small fw-bold">Calle y Número</label>
-                                        <input type="text" id="input-calle" class="form-control bg-secondary text-white border-0" placeholder="Ej: Av. Rivadavia 1234">
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label text-secondary small fw-bold">Calle</label>
+                                        <input type="text" id="input-calle" name="calle" class="form-control bg-secondary text-white border-0" placeholder="Ej: Av. Rivadavia">
                                     </div>
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-3">
+                                        <label class="form-label text-secondary small fw-bold">Altura / Número</label>
+                                        <input type="text" id="input-altura" name="altura" class="form-control bg-secondary text-white border-0" placeholder="Ej: 1234">
+                                    </div>
+                                    <div class="col-12 col-md-3">
                                         <label class="form-label text-secondary small fw-bold">Piso / Depto (Opcional)</label>
-                                        <input type="text" id="input-piso" class="form-control bg-secondary text-white border-0" placeholder="Ej: 4to B">
+                                        <input type="text" id="input-piso" name="piso_depto" class="form-control bg-secondary text-white border-0" placeholder="Ej: 4to B">
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 p-3 bg-secondary rounded" id="bloque-guardar-direccion">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="guardar_futura" id="guardar_futura" value="1" onchange="toggleNombreDireccion()">
+                                        <label class="form-check-input-label small text-white fw-bold cursor-pointer" Summer for="guardar_futura">
+                                            Guardar esta dirección para futuras compras
+                                        </label>
+                                    </div>
+                                    <div id="campo-nombre-alias" class="mt-2 d-none">
+                                        <label class="form-label text-warning small fw-bold">Nombre / Alias de la dirección</label>
+                                        <input type="text" id="input-nombre-direccion" name="nombre_direccion" class="form-control bg-dark text-white border-0 form-control-sm" placeholder="Ej: Casa Padres, Mi Depto, Trabajo">
                                     </div>
                                 </div>
                             </div>
@@ -210,6 +246,7 @@
         function toggleEnvio(isDelivery) {
             const camposDireccion = document.getElementById('campos-direccion');
             const inputCalle = document.getElementById('input-calle');
+            const inputAltura = document.getElementById('input-altura');
             const labels = document.querySelectorAll('input[name="metodo_envio"]');
 
             labels.forEach(radio => {
@@ -226,11 +263,16 @@
             if (isDelivery) {
                 camposDireccion.classList.remove('d-none');
                 inputCalle.setAttribute('required', 'required');
+                inputAltura.setAttribute('required', 'required');
             } else {
                 camposDireccion.classList.add('d-none');
                 inputCalle.removeAttribute('required');
+                inputAltura.removeAttribute('required');
                 inputCalle.value = '';
+                inputAltura.value = '';
                 document.getElementById('input-piso').value = '';
+                const selectDir = document.getElementById('select-direcciones');
+                if (selectDir) selectDir.value = '';
             }
         }
 
@@ -247,21 +289,64 @@
             });
         });
 
+        // Carga automáticamente los datos del select en los inputs de dirección
+        function cargarDireccionGuardada() {
+            const select = document.getElementById('select-direcciones');
+            const selectedOption = select.options[select.selectedIndex];
+
+            const inputCalle = document.getElementById('input-calle');
+            const inputAltura = document.getElementById('input-altura');
+            const inputPiso = document.getElementById('input-piso');
+            const bloqueGuardar = document.getElementById('bloque-guardar-direccion');
+
+            if (selectedOption.value !== "") {
+                inputCalle.value = selectedOption.getAttribute('data-calle');
+                inputAltura.value = selectedOption.getAttribute('data-altura');
+                inputPiso.value = selectedOption.getAttribute('data-piso') || '';
+
+                // Ocultamos la opción de re-guardar ya que es una dirección existente
+                bloqueGuardar.classList.add('d-none');
+                document.getElementById('guardar_futura').checked = false;
+                document.getElementById('campo-nombre-alias').classList.add('d-none');
+            } else {
+                inputCalle.value = '';
+                inputAltura.value = '';
+                inputPiso.value = '';
+                bloqueGuardar.classList.remove('d-none');
+            }
+        }
+
+        // Muestra u oculta el campo del alias de la dirección según el checkbox
+        function toggleNombreDireccion() {
+            const checkbox = document.getElementById('guardar_futura');
+            const campoAlias = document.getElementById('campo-nombre-alias');
+            const inputAlias = document.getElementById('input-nombre-direccion');
+
+            if (checkbox.checked) {
+                campoAlias.classList.remove('d-none');
+                inputAlias.setAttribute('required', 'required');
+            } else {
+                campoAlias.classList.add('d-none');
+                inputAlias.removeAttribute('required');
+                inputAlias.value = '';
+            }
+        }
+
         function procesarCompra(event) {
             event.preventDefault();
 
             const envioElegido = document.querySelector('input[name="metodo_envio"]:checked').value;
             const pagoElegido = document.querySelector('input[name="metodo_pago"]:checked').value;
 
-            // Inyectamos el nombre del usuario autenticado directo de Laravel
             document.getElementById('resumen-nombre').textContent = "{{ Auth::user()->name ?? 'Cliente' }}";
 
             if (envioElegido === 'retiro') {
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-shop text-warning me-1"></i> Retiro por sucursal';
             } else {
                 const calle = document.getElementById('input-calle').value;
+                const altura = document.getElementById('input-altura').value;
                 const piso = document.getElementById('input-piso').value;
-                let direccionFull = calle;
+                let direccionFull = calle + ' ' + altura;
                 if (piso) direccionFull += ' (' + piso + ')';
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-house-door text-warning me-1"></i> Envío a: ' + direccionFull;
             }
