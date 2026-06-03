@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
-    <title>The Good Taste - Consultas</title>
+    <title>The Good Taste - Gestión de Consultas</title>
 
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
     <style>
-        /* Estilos personalizados para el menú lateral */
         .sidebar-menu .nav-link {
             color: #fff;
             border-radius: 8px;
@@ -56,10 +55,13 @@
                     <hr class="border-secondary mt-0">
                     <div class="nav flex-column nav-pills sidebar-menu">
                         <a href="{{ route('admin.index') }}" class="nav-link text-start border-0 text-decoration-none">
-                            <i class="bi bi-box-seam-fill me-2"></i> Productos
+                            <i class="bi bi-house-door-fill me-2"></i> Inicio
+                        </a>
+                        <a href="{{ route('admin.productos') }}" class="nav-link text-start border-0 text-decoration-none">
+                            <i class="bi bi-box-seam-fill me-2"></i> Gestión de Productos
                         </a>
                         <a href="{{ route('admin.consultas') }}" class="nav-link active text-start border-0 position-relative text-decoration-none">
-                            <i class="bi bi-envelope-fill me-2"></i> Consultas
+                            <i class="bi bi-envelope-fill me-2"></i> Gestión de Consultas
                             @if($consultas->count() > 0)
                             <span class="position-absolute top-50 end-0 translate-middle-y me-3 badge rounded-pill bg-danger">
                                 {{ $consultas->count() }}
