@@ -14,6 +14,7 @@ class CompraController extends Controller
     {
         $usuario = Auth::user();
 
+        // Si se recibe un producto específico (botón "Comprar Ahora"), creamos un carrito temporal
         if ($request->has('producto_id')) {
             $producto = Producto::findOrFail($request->producto_id);
             $cantidad = $request->input('cantidad', 1);
@@ -28,6 +29,7 @@ class CompraController extends Controller
 
             $carrito = collect([$item]);
         } else {
+            // Si no, cargamos el carrito normal de la base de datos
             $carrito = CarritoItem::with('producto')->where('user_id', $usuario->id)->get();
         }
 
@@ -36,6 +38,7 @@ class CompraController extends Controller
         return view('compra', compact('carrito', 'direccionesGuardadas'));
     }
 
+    // Guarda una nueva dirección en la base de datos si el usuario lo solicita
     public function guardarDireccionOpcional(Request $request)
     {
         $request->validate([
@@ -53,6 +56,17 @@ class CompraController extends Controller
                 'altura' => $request->input('altura'),
                 'piso_depto' => $request->input('piso_depto'),
             ]);
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    // Vacía el carrito tras confirmar la compra
+    public function confirmarCompra(Request $request)
+    {
+        // Solo eliminamos los registros si la compra proviene del carrito general
+        if ($request->input('es_carrito')) {
+            CarritoItem::where('user_id', Auth::id())->delete();
         }
 
         return response()->json(['success' => true]);

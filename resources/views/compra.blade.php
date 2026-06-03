@@ -70,7 +70,7 @@
                                 <div class="mb-4">
                                     <label class="form-label text-warning small fw-bold">Mis Direcciones Guardadas</label>
                                     <select id="select-direcciones" class="form-select bg-secondary text-white border-0" onchange="cargarDireccionGuardada()">
-                                        <option value="">-- Seleccionar una dirección guardada u otra nueva --</option>
+                                        <option value="">Seleccionar una dirección guardada</option>
                                         @foreach($direccionesGuardadas as $dir)
                                         <option value="{{ $dir->id }}"
                                             data-calle="{{ $dir->calle }}"
@@ -326,9 +326,13 @@
 
             const envioElegido = document.querySelector('input[name="metodo_envio"]:checked').value;
             const pagoElegido = document.querySelector('input[name="metodo_pago"]:checked').value;
+            const csrfToken = document.querySelector('input[name="_token"]').value;
 
             document.getElementById('resumen-nombre').textContent = "{{ Auth::user()->name ?? 'Cliente' }}";
 
+            let promesas = [];
+
+            // 1. Lógica de Dirección
             if (envioElegido === 'retiro') {
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-shop text-warning me-1"></i> Retiro por sucursal';
             } else {
@@ -342,41 +346,59 @@
                 if (piso) direccionFull += ' (' + piso + ')';
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-house-door text-warning me-1"></i> Envío a: ' + direccionFull;
 
-                if (guardarFuturaCheckbox.checked && !document.getElementById('bloque-guardar-direccion').classList.contains('d-none')) {
-                    const csrfToken = document.querySelector('input[name="_token"]').value;
+                if (guardarFuturaCheckbox && guardarFuturaCheckbox.checked && !document.getElementById('bloque-guardar-direccion').classList.contains('d-none')) {
+                    let promesaDir = fetch("{{ url('/guardar-direccion') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        body: JSON.stringify({
+                            calle: calle,
+                            altura: altura,
+                            piso_depto: piso,
+                            nombre_direccion: nombreDir,
+                            guardar_futura: 1
+                        })
+                    }).then(res => res.json());
 
-                    fetch("{{ url('/guardar-direccion') }}", {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': csrfToken
-                            },
-                            body: JSON.stringify({
-                                calle: calle,
-                                altura: altura,
-                                piso_depto: piso,
-                                nombre_direccion: nombreDir,
-                                guardar_futura: 1
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Dirección guardada correctamente.');
-                        })
-                        .catch(error => {
-                            console.error('Error al guardar la dirección:', error);
-                        });
+                    promesas.push(promesaDir);
                 }
             }
 
+            //2. Lógica de Pago
             if (pagoElegido === 'efectivo') {
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-cash-coin text-warning me-1"></i> Efectivo';
             } else {
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-bank text-warning me-1"></i> Transferencia / Alias';
             }
 
-            const modalExito = new bootstrap.Modal(document.getElementById('modalExito'));
-            modalExito.show();
+            //3. Vaciar Carrito 
+
+            const esCarrito = "{{ request()->has('producto_id') ? 'false' : 'true' }}" === "true";
+
+            let promesaVaciarCarrito = fetch("{{ url('/confirmar-compra') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                body: JSON.stringify({
+                    es_carrito: esCarrito
+                })
+            }).then(res => res.json());
+
+            promesas.push(promesaVaciarCarrito);
+
+            // Una vez que todas las promesas terminan, mostramos el modal
+            Promise.all(promesas).then(() => {
+                const modalExito = new bootstrap.Modal(document.getElementById('modalExito'));
+                modalExito.show();
+            }).catch(error => {
+                console.error('Error procesando compra:', error);
+                const modalExito = new bootstrap.Modal(document.getElementById('modalExito'));
+                modalExito.show();
+            });
         }
     </script>
 
