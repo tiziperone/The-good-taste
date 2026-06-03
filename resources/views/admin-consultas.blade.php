@@ -62,9 +62,11 @@
                         </a>
                         <a href="{{ route('admin.consultas') }}" class="nav-link active text-start border-0 position-relative text-decoration-none">
                             <i class="bi bi-envelope-fill me-2"></i> Gestión de Consultas
-                            @if($consultas->count() > 0)
+                            {{-- CORRECCIÓN: Filtramos solo los mensajes no leídos para la notificación del menú --}}
+                            @php $mensajesNuevos = $consultas->where('estado', 0)->count(); @endphp
+                            @if($mensajesNuevos > 0)
                             <span class="position-absolute top-50 end-0 translate-middle-y me-3 badge rounded-pill bg-danger">
-                                {{ $consultas->count() }}
+                                {{ $mensajesNuevos }}
                             </span>
                             @endif
                         </a>
@@ -78,7 +80,13 @@
                 <div class="card bg-dark border-secondary shadow mx-auto">
                     <div class="card-header border-secondary bg-secondary text-white fw-bold d-flex justify-content-between align-items-center">
                         <span>Mensajes de Usuarios</span>
-                        <span class="badge bg-warning text-dark">{{ $consultas->count() }} totales</span>
+                        <div>
+                            {{-- Muestra la info detallada: Nuevos vs Totales --}}
+                            @if($mensajesNuevos > 0)
+                            <span class="badge bg-danger me-2">{{ $mensajesNuevos }} nuevos</span>
+                            @endif
+                            <span class="badge bg-warning text-dark">{{ $consultas->count() }} totales</span>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-dark table-hover align-middle mb-0">
