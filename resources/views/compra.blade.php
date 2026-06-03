@@ -114,7 +114,7 @@
                                 <div class="mt-3 p-3 bg-secondary rounded" id="bloque-guardar-direccion">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="guardar_futura" id="guardar_futura" value="1" onchange="toggleNombreDireccion()">
-                                        <label class="form-check-input-label small text-white fw-bold cursor-pointer" Summer for="guardar_futura">
+                                        <label class="form-check-input-label small text-white fw-bold cursor-pointer" for="guardar_futura">
                                             Guardar esta dirección para futuras compras
                                         </label>
                                     </div>
@@ -164,6 +164,7 @@
                             <div class="mb-4 style-scroll" style="max-height: 200px; overflow-y: auto;">
                                 @php $total = 0; @endphp
                                 @foreach($carrito as $item)
+                                @if($item->producto)
                                 @php
                                 $subtotal = $item->producto->precio * $item->cantidad;
                                 $total += $subtotal;
@@ -175,6 +176,7 @@
                                     </div>
                                     <span class="fw-bold text-warning small">$ {{ number_format($subtotal, 0, ',', '.') }}</span>
                                 </div>
+                                @endif
                                 @endforeach
                             </div>
 
@@ -218,9 +220,11 @@
                             <span class="text-warning small fw-bold text-uppercase">Tus Productos</span>
                             <div class="mt-2 style-scroll" style="max-height: 120px; overflow-y: auto;">
                                 @foreach($carrito as $item)
+                                @if($item->producto)
                                 <div class="d-flex justify-content-between align-items-center mb-1">
                                     <small class="text-light">{{ $item->cantidad }}x {{ $item->producto->nombre }}</small>
                                 </div>
+                                @endif
                                 @endforeach
                             </div>
                         </div>
