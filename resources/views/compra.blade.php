@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
-    <title>The Good Taste - Finalizar Compra</title>
+    <title>The Good Taste - Compra</title>
 
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
@@ -29,31 +29,28 @@
             <i class="bi bi-credit-card-2-front-fill me-2"></i> Finalizar tu Pedido
         </h2>
 
-        <form action="#" method="POST" id="form-checkout" onsubmit="event.preventDefault(); alert('¡Pedido recibido! Se le enviarán los detalles de su compra.');">
+        <form action="#" method="POST" id="form-checkout" onsubmit="procesarCompra(event)">
             @csrf
             <div class="row g-4">
 
-                {{-- COLUMNA IZQUIERDA: OPCIONES DE ENVÍO Y PAGO --}}
                 <div class="col-12 col-lg-8">
 
-                    {{-- Bloque 1: Datos del Cliente --}}
                     <div class="card bg-dark border-secondary shadow mb-4">
                         <div class="card-body p-4">
                             <h5 class="fw-bold text-warning mb-3"><i class="bi bi-person-fill me-2"></i> Datos de Contacto</h5>
                             <div class="row g-3">
                                 <div class="col-12 col-md-6">
                                     <label class="form-label text-secondary small fw-bold">Nombre Completo</label>
-                                    <input type="text" class="form-control bg-secondary text-white border-0" required placeholder="Ej: Juan Pérez">
+                                    <input type="text" id="input-nombre" class="form-control bg-secondary text-white border-0" required placeholder="Ej: Juan Pérez">
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label text-secondary small fw-bold">Teléfono / WhatsApp</label>
-                                    <input type="tel" class="form-control bg-secondary text-white border-0" required placeholder="Ej: 11 2345 6789">
+                                    <input type="tel" id="input-telefono" class="form-control bg-secondary text-white border-0" required placeholder="Ej: 11 2345 6789">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {{-- Bloque 2: Método de Envío --}}
                     <div class="card bg-dark border-secondary shadow mb-4">
                         <div class="card-body p-4">
                             <h5 class="fw-bold text-warning mb-3"><i class="bi bi-truck me-2"></i> Método de Entrega</h5>
@@ -82,7 +79,6 @@
                                 </label>
                             </div>
 
-                            {{-- Campos Dinámicos de Dirección (Se muestran solo si elige Delivery) --}}
                             <div id="campos-direccion" class="mt-4 d-none">
                                 <h6 class="text-warning small fw-bold mb-3">Dirección de Entrega</h6>
                                 <div class="row g-3">
@@ -92,14 +88,13 @@
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <label class="form-label text-secondary small fw-bold">Piso / Depto (Opcional)</label>
-                                        <input type="text" class="form-control bg-secondary text-white border-0" placeholder="Ej: 4to B">
+                                        <input type="text" id="input-piso" class="form-control bg-secondary text-white border-0" placeholder="Ej: 4to B">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {{-- Bloque 3: Método de Pago --}}
                     <div class="card bg-dark border-secondary shadow">
                         <div class="card-body p-4">
                             <h5 class="fw-bold text-warning mb-3"><i class="bi bi-wallet2 me-2"></i> Método de Pago</h5>
@@ -129,13 +124,11 @@
 
                 </div>
 
-                {{-- COLUMNA DERECHA: RESUMEN DE COMPRA --}}
                 <div class="col-12 col-lg-4">
                     <div class="card text-bg-dark border-warning shadow position-sticky" style="top: 20px;">
                         <div class="card-body p-4">
                             <h4 class="card-title fw-bold text-warning mb-4 pb-2 border-bottom border-secondary">Resumen de Compra</h4>
 
-                            {{-- Mini Lista de Productos elegidos --}}
                             <div class="mb-4 style-scroll" style="max-height: 200px; overflow-y: auto;">
                                 @php $total = 0; @endphp
                                 @foreach($carrito as $item)
@@ -146,7 +139,7 @@
                                 <div class="d-flex justify-content-between align-items-center mb-3 pe-2">
                                     <div>
                                         <span class="fw-bold text-light d-block small">{{ $item->producto->nombre }}</span>
-                                        <small class="text-secondary">{{ $item->cantidad }} kg x ${{ number_format($item->producto->precio, 0, ',', '.') }}</small>
+                                        <small class="text-secondary">{{ $item->cantidad }} u. x ${{ number_format($item->producto->precio, 0, ',', '.') }}</small>
                                     </div>
                                     <span class="fw-bold text-warning small">$ {{ number_format($subtotal, 0, ',', '.') }}</span>
                                 </div>
@@ -169,18 +162,60 @@
         </form>
     </div>
 
+    <div class="modal fade" id="modalExito" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-success shadow-lg" style="border-radius: 15px;">
+                <div class="modal-header border-0 pb-0 justify-content-center mt-3">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                </div>
+                <div class="modal-body text-center px-4">
+                    <h3 class="fw-bold text-success mb-2">¡Pedido Confirmado!</h3>
+                    <p class="text-white-50 mb-4">Gracias por tu compra, <span id="resumen-nombre" class="text-white fw-bold"></span>. Acá tenés los detalles de tu pedido:</p>
+
+                    <div class="bg-secondary p-3 rounded text-start mb-4">
+                        <div class="mb-2">
+                            <span class="text-warning small fw-bold text-uppercase">Método de Entrega</span>
+                            <div class="fw-bold" id="resumen-entrega"></div>
+                        </div>
+                        <div class="mb-3">
+                            <span class="text-warning small fw-bold text-uppercase">Método de Pago</span>
+                            <div class="fw-bold" id="resumen-pago"></div>
+                        </div>
+                        <hr class="border-secondary my-2">
+                        <div>
+                            <span class="text-warning small fw-bold text-uppercase">Tus Productos</span>
+                            <div class="mt-2 style-scroll" style="max-height: 120px; overflow-y: auto;">
+                                @foreach($carrito as $item)
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <small class="text-light">{{ $item->cantidad }}x {{ $item->producto->nombre }}</small>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <hr class="border-secondary my-2">
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="fw-bold text-white fs-5">Total a abonar</span>
+                            <span class="fw-bold text-warning fs-5">$ {{ number_format($total, 0, ',', '.') }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0 pb-4 px-4">
+                    <a href="{{ url('/') }}" class="btn btn-success w-100 fw-bold py-2" style="border-radius: 8px;">Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @include('componentes.footer')
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    {{-- Script interactivo para cambiar dinámicamente bordes y mostrar el formulario de dirección --}}
     <script>
         function toggleEnvio(isDelivery) {
             const camposDireccion = document.getElementById('campos-direccion');
             const inputCalle = document.getElementById('input-calle');
             const labels = document.querySelectorAll('input[name="metodo_envio"]');
 
-            // Actualizar clases de bordes visuales en los contenedores
             labels.forEach(radio => {
                 const parentLabel = radio.closest('label');
                 if (radio.checked) {
@@ -192,7 +227,6 @@
                 }
             });
 
-            // Mostrar u ocultar sección de dirección física
             if (isDelivery) {
                 camposDireccion.classList.remove('d-none');
                 inputCalle.setAttribute('required', 'required');
@@ -200,6 +234,7 @@
                 camposDireccion.classList.add('d-none');
                 inputCalle.removeAttribute('required');
                 inputCalle.value = '';
+                document.getElementById('input-piso').value = '';
             }
         }
 
@@ -215,6 +250,39 @@
                 }
             });
         });
+
+        // Función para procesar y mostrar el modal de éxito
+        function procesarCompra(event) {
+            event.preventDefault(); // Evita que la página se recargue
+
+            // Obtenemos los valores ingresados
+            const nombre = document.getElementById('input-nombre').value;
+            const envioElegido = document.querySelector('input[name="metodo_envio"]:checked').value;
+            const pagoElegido = document.querySelector('input[name="metodo_pago"]:checked').value;
+
+            // Llenamos los datos en el modal
+            document.getElementById('resumen-nombre').textContent = nombre;
+
+            if (envioElegido === 'retiro') {
+                document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-shop text-warning me-1"></i> Retiro por sucursal';
+            } else {
+                const calle = document.getElementById('input-calle').value;
+                const piso = document.getElementById('input-piso').value;
+                let direccionFull = calle;
+                if (piso) direccionFull += ' (' + piso + ')';
+                document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-house-door text-warning me-1"></i> Envío a: ' + direccionFull;
+            }
+
+            if (pagoElegido === 'efectivo') {
+                document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-cash-coin text-warning me-1"></i> Efectivo';
+            } else {
+                document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-bank text-warning me-1"></i> Transferencia / Alias';
+            }
+
+            // Mostramos el modal
+            const modalExito = new bootstrap.Modal(document.getElementById('modalExito'));
+            modalExito.show();
+        }
     </script>
 
     <style>
@@ -226,7 +294,6 @@
         .cursor-pointer {
             cursor: pointer;
         }
-
 
         .style-scroll::-webkit-scrollbar {
             width: 6px;
