@@ -79,6 +79,9 @@ Route::middleware(['auth'])->group(function () {
     //Gestion de pedidos
     Route::get('/admin/pedidos', [App\Http\Controllers\AdminController::class, 'pedidos'])->name('admin.pedidos');
     Route::put('/admin/pedidos/{id}/estado', [App\Http\Controllers\AdminController::class, 'actualizarEstadoPedido'])->name('admin.pedidos.actualizar');
+
+    Route::get('/admin/usuarios', [App\Http\Controllers\AdminController::class, 'verUsuarios'])->name('admin.usuarios');
+    Route::post('/admin/usuarios/{id}/banear', [App\Http\Controllers\AdminController::class, 'banear'])->name('admin.usuarios.banear');
 });
 
 Route::get('inicio-sesion', function () {

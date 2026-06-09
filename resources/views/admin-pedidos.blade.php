@@ -72,6 +72,9 @@
                             </span>
                             @endif
                         </a>
+                        <a href="{{ route('admin.usuarios') }}" class="nav-link text-start border-0 {{ request()->routeIs('admin.usuarios') ? 'active' : '' }}">
+                            <i class="bi bi-people-fill me-2"></i> Gestión de Usuarios
+                        </a>
                     </div>
                 </div>
             </div>
