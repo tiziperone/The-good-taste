@@ -60,6 +60,10 @@
                         <a href="{{ route('admin.productos') }}" class="nav-link text-start border-0 text-decoration-none">
                             <i class="bi bi-box-seam-fill me-2"></i> Gestión de Productos
                         </a>
+                        {{-- NUEVO: Enlace a Gestión de Pedidos agregado --}}
+                        <a href="{{ route('admin.pedidos') }}" class="nav-link text-start border-0 text-decoration-none">
+                            <i class="bi bi-bag-check-fill me-2"></i> Gestión de Pedidos
+                        </a>
                         <a href="{{ route('admin.consultas') }}" class="nav-link active text-start border-0 position-relative text-decoration-none">
                             <i class="bi bi-envelope-fill me-2"></i> Gestión de Consultas
                             {{-- CORRECCIÓN: Filtramos solo los mensajes no leídos para la notificación del menú --}}
