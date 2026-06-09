@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Consulta;
+use App\Models\Orden; // NUEVO: Importación del modelo Orden
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RespuestaConsulta;
@@ -33,7 +34,6 @@ class AdminController extends Controller
         $ordenActivos = $request->query('orden_activos', 'desc');
         $ordenEliminados = $request->query('orden_eliminados', 'desc');
 
-        // Construimos la consulta dependiendo de lo que elija el usuario
         $queryProductos = Producto::query();
 
         if ($ordenActivos === 'stock_asc') {
@@ -52,6 +52,42 @@ class AdminController extends Controller
         $consultas = Consulta::all();
 
         return view('admin-productos', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
+    }
+
+    // NUEVO: Gestión de Pedidos usando el modelo Orden
+    public function pedidos()
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+
+        // Traemos las órdenes junto con la información del usuario
+        $pedidos = Orden::with('user')->orderBy('created_at', 'desc')->get();
+        $consultas = Consulta::all();
+
+        return view('admin-pedidos', compact('pedidos', 'consultas'));
+    }
+
+    // NUEVO: Actualizar estado de la Orden
+    public function actualizarEstadoPedido(Request $request, int $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+
+        $request->validate([
+            'estado' => 'required|string'
+        ]);
+
+        $pedido = Orden::findOrFail($id);
+
+        $estadosPermitidos = ['En espera', 'Listo', 'En camino', 'Entregado', 'Listo para retirar'];
+        if (in_array($request->estado, $estadosPermitidos)) {
+            $pedido->update(['estado' => $request->estado]);
+            return back()->with('success', 'El estado del pedido #' . $pedido->id . ' se ha actualizado a: ' . $request->estado);
+        }
+
+        return back()->with('error', 'Estado no válido.');
     }
 
     public function consultas()
@@ -181,20 +217,14 @@ class AdminController extends Controller
         return back()->with('success', 'Consulta eliminada correctamente.');
     }
 
-    // NUEVO: MÉTODO PARA RESTAURAR PRODUCTOS
     public function restaurar(int $id)
     {
         if (Auth::user()->role !== 'admin') {
             return redirect('/')->with('error', 'Acceso denegado.');
         }
 
-        // Buscamos el producto solo entre los eliminados
         $producto = Producto::onlyTrashed()->findOrFail($id);
-
-        // restore() quita el deleted_at de la base de datos (DBeaver)
         $producto->restore();
-
-        // Nos aseguramos de que su estado "activo" vuelva a true por las dudas
         $producto->update(['activo' => true]);
 
         return back()->with('success', 'Producto reactivado correctamente. ¡Vuelve a estar en el catálogo!');

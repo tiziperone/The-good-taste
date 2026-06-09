@@ -53,8 +53,9 @@
                     <table class="table table-dark table-hover align-middle border-warning m-0">
                         <thead class="table-warning text-dark text-center">
                             <tr>
-                                <th>N° Pedido</th>
+                                <th>N° Orden</th>
                                 <th>Usuario</th>
+                                <th>Total</th>
                                 <th>Método de Pago</th>
                                 <th>Tipo de Entrega</th>
                                 <th>Estado Actual</th>
@@ -66,10 +67,9 @@
                             <tr>
                                 <td class="fw-bold">#{{ $pedido->id }}</td>
                                 <td>{{ $pedido->user->name ?? 'Usuario Desconocido' }}</td>
-
-                                {{-- NOTA: Si tus columnas se llaman distinto en la BD, cámbialo aquí abajo --}}
-                                <td>{{ $pedido->metodo_pago }}</td>
-                                <td>{{ $pedido->tipo_envio }}</td>
+                                <td class="text-success fw-bold">${{ number_format($pedido->total, 2) }}</td>
+                                <td>{{ $pedido->metodo_pago ?? 'N/A' }}</td>
+                                <td>{{ $pedido->tipo_envio ?? 'N/A' }}</td>
 
                                 <td>
                                     <span class="badge fs-6
@@ -90,7 +90,7 @@
                                             <option value="En espera" {{ $pedido->estado == 'En espera' ? 'selected' : '' }}>En espera</option>
                                             <option value="Listo" {{ $pedido->estado == 'Listo' ? 'selected' : '' }}>Listo</option>
 
-                                            {{-- Lógica inteligente: Solo muestra opciones de envío si es a domicilio, o retiro si es en local --}}
+                                            {{-- Filtramos dependiendo del tipo de envio --}}
                                             @if(strtolower($pedido->tipo_envio) == 'domicilio' || strtolower($pedido->tipo_envio) == 'envio')
                                             <option value="En camino" {{ $pedido->estado == 'En camino' ? 'selected' : '' }}>En camino</option>
                                             <option value="Entregado" {{ $pedido->estado == 'Entregado' ? 'selected' : '' }}>Entregado</option>
@@ -105,7 +105,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="6" class="text-center text-white-50 py-4">
+                                <td colspan="7" class="text-center text-white-50 py-4">
                                     <i class="bi bi-inbox-fill fs-2 d-block mb-2"></i>
                                     No hay pedidos registrados en el sistema.
                                 </td>
