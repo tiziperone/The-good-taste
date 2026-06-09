@@ -75,6 +75,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/confirmar-compra', [CompraController::class, 'confirmarCompra'])->name('confirmar.compra');
     Route::get('/mis-compras', [MisComprasController::class, 'index'])->name('mis-compras.index');
     Route::post('/confirmar-compra', [CompraController::class, 'confirmarCompra'])->name('confirmar.compra');
+
+    //Gestion de pedidos
+    Route::get('/admin/pedidos', [App\Http\Controllers\AdminController::class, 'pedidos'])->name('admin.pedidos');
+    Route::put('/admin/pedidos/{id}/estado', [App\Http\Controllers\AdminController::class, 'actualizarEstadoPedido'])->name('admin.pedidos.actualizar');
 });
 
 Route::get('inicio-sesion', function () {
