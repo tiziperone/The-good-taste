@@ -11,6 +11,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
+    <style>
+        .sidebar-menu .nav-link {
+            color: #fff;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .sidebar-menu .nav-link:hover {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+
+        .sidebar-menu .nav-link.active {
+            background-color: #ffc107 !important;
+            color: #212529 !important;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body class="bg-dark text-white">
@@ -19,101 +40,110 @@
 
     <div class="container mt-4 mb-4 d-flex justify-content-between align-items-center">
         @include('componentes.botonesAtrasAdelante')
-
-        <a href="{{ route('admin.index') }}" class="btn btn-outline-warning fw-bold">
-            <i class="bi bi-house-door-fill me-2"></i>Volver al Panel
-        </a>
     </div>
 
     <hr class="border-warning border-2 opacity-100">
 
     <div class="container-fluid px-4 mt-5 mb-5">
-        <h2 class="text-warning fw-bold mb-4">
-            <i class="bi bi-bag-check-fill me-2"></i>Gestión de Pedidos
-        </h2>
+        <div class="row">
 
-        {{-- Alertas de Éxito o Error --}}
-        @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show fw-bold" role="alert">
-            <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
-        @if(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show fw-bold" role="alert">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
-
-        {{-- Tabla de Pedidos --}}
-        <div class="card bg-dark border-secondary shadow">
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-dark table-hover align-middle border-warning m-0">
-                        <thead class="table-warning text-dark text-center">
-                            <tr>
-                                <th>N° Orden</th>
-                                <th>Usuario</th>
-                                <th>Total</th>
-                                <th>Método de Pago</th>
-                                <th>Tipo de Entrega</th>
-                                <th>Estado Actual</th>
-                                <th>Cambiar Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            @forelse($pedidos as $pedido)
-                            <tr>
-                                <td class="fw-bold">#{{ $pedido->id }}</td>
-                                <td>{{ $pedido->user->name ?? 'Usuario Desconocido' }}</td>
-                                <td class="text-success fw-bold">${{ number_format($pedido->total, 2) }}</td>
-                                <td>{{ $pedido->metodo_pago ?? 'N/A' }}</td>
-                                <td>{{ $pedido->tipo_envio ?? 'N/A' }}</td>
-
-                                <td>
-                                    <span class="badge fs-6
-                                            @if($pedido->estado == 'En espera') bg-secondary 
-                                            @elseif($pedido->estado == 'Listo') bg-primary 
-                                            @elseif($pedido->estado == 'En camino') bg-info text-dark
-                                            @elseif($pedido->estado == 'Entregado' || $pedido->estado == 'Listo para retirar') bg-success 
-                                            @else bg-light text-dark @endif">
-                                        {{ $pedido->estado }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <form action="{{ route('admin.pedidos.actualizar', $pedido->id) }}" method="POST" class="d-flex gap-2 justify-content-center">
-                                        @csrf
-                                        @method('PUT')
-
-                                        <select name="estado" class="form-select form-select-sm bg-dark text-white border-warning" style="width: auto;" required>
-                                            <option value="En espera" {{ $pedido->estado == 'En espera' ? 'selected' : '' }}>En espera</option>
-                                            <option value="Listo" {{ $pedido->estado == 'Listo' ? 'selected' : '' }}>Listo</option>
-
-                                            {{-- Filtramos dependiendo del tipo de envio --}}
-                                            @if(strtolower($pedido->tipo_envio) == 'domicilio' || strtolower($pedido->tipo_envio) == 'envio')
-                                            <option value="En camino" {{ $pedido->estado == 'En camino' ? 'selected' : '' }}>En camino</option>
-                                            <option value="Entregado" {{ $pedido->estado == 'Entregado' ? 'selected' : '' }}>Entregado</option>
-                                            @else
-                                            <option value="Listo para retirar" {{ $pedido->estado == 'Listo para retirar' ? 'selected' : '' }}>Listo para retirar</option>
-                                            @endif
-                                        </select>
-
-                                        <button type="submit" class="btn btn-warning btn-sm fw-bold">Actualizar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="7" class="text-center text-white-50 py-4">
-                                    <i class="bi bi-inbox-fill fs-2 d-block mb-2"></i>
-                                    No hay pedidos registrados en el sistema.
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+            <div class="col-md-3 col-lg-2 mb-4">
+                <div class="card bg-dark border-secondary p-3 shadow">
+                    <h5 class="fw-bold text-warning mb-3 text-center text-md-start">
+                        <i class="bi bi-speedometer2 me-2"></i>Panel Admin
+                    </h5>
+                    <hr class="border-secondary mt-0">
+                    <div class="nav flex-column nav-pills sidebar-menu">
+                        <a href="{{ route('admin.index') }}" class="nav-link text-start border-0 text-decoration-none">
+                            <i class="bi bi-house-door-fill me-2"></i> Inicio
+                        </a>
+                        <a href="{{ route('admin.productos') }}" class="nav-link text-start border-0 text-decoration-none">
+                            <i class="bi bi-box-seam-fill me-2"></i> Gestión de Productos
+                        </a>
+                        <a href="{{ route('admin.pedidos') }}" class="nav-link active text-start border-0 text-decoration-none">
+                            <i class="bi bi-bag-check-fill me-2"></i> Gestión de Pedidos
+                        </a>
+                        <a href="{{ route('admin.consultas') }}" class="nav-link text-start border-0 position-relative text-decoration-none">
+                            <i class="bi bi-envelope-fill me-2"></i> Gestión de Consultas
+                            @php $mensajesNuevos = $consultas->where('estado', 0)->count(); @endphp
+                            @if($mensajesNuevos > 0)
+                            <span class="position-absolute top-50 end-0 translate-middle-y me-3 badge rounded-pill bg-danger">
+                                {{ $mensajesNuevos }}
+                            </span>
+                            @endif
+                        </a>
+                    </div>
                 </div>
+            </div>
+
+            <div class="col-md-9 col-lg-10">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold text-warning m-0"><i class="bi bi-bag-check-fill me-2"></i> Gestión de Pedidos</h2>
+                </div>
+
+                @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show bg-success text-white border-0 shadow mb-4" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show bg-danger text-white border-0 shadow mb-4" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ session('error') }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+
+                <div class="card bg-dark border-secondary shadow mb-5">
+                    <div class="card-header border-secondary bg-secondary text-white fw-bold">
+                        <span>Listado de Órdenes Actuales</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0">
+                            <thead>
+                                <tr class="text-warning">
+                                    <th class="ps-3">N° Orden</th>
+                                    <th>Usuario</th>
+                                    <th>Total</th>
+                                    <th class="pe-3">Acción (Estado)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($pedidos as $pedido)
+                                <tr>
+                                    <td class="ps-3 fw-bold">#{{ $pedido->id }}</td>
+                                    <td>
+                                        <i class="bi bi-person-circle me-1 text-secondary"></i>
+                                        {{ $pedido->user->name ?? 'Usuario Desconocido' }}
+                                    </td>
+                                    <td class="text-success fw-bold">$ {{ number_format($pedido->total, 0, ',', '.') }}</td>
+
+                                    <td class="pe-3">
+                                        <form action="{{ route('admin.pedidos.actualizar', $pedido->id) }}" method="POST" class="m-0">
+                                            @csrf
+                                            @method('PUT')
+
+                                            <select name="estado" class="form-select form-select-sm bg-dark text-white border-warning" onchange="this.form.submit()" required>
+                                                <option value="En proceso" {{ $pedido->estado == 'En proceso' ? 'selected' : '' }}>En proceso</option>
+                                                <option value="Listo para enviar/retirar" {{ $pedido->estado == 'Listo para enviar/retirar' ? 'selected' : '' }}>Listo para enviar/retirar</option>
+                                                <option value="Enviado" {{ $pedido->estado == 'Enviado' ? 'selected' : '' }}>Enviado</option>
+                                                <option value="Entregado/retirado" {{ $pedido->estado == 'Entregado/retirado' ? 'selected' : '' }}>Entregado/retirado</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="4" class="text-center py-5 text-secondary">
+                                        <i class="bi bi-bag-x fs-1 d-block mb-2"></i> No hay pedidos registrados en el sistema.
+                                    </td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

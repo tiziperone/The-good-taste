@@ -68,7 +68,6 @@ class AdminController extends Controller
         return view('admin-pedidos', compact('pedidos', 'consultas'));
     }
 
-    // NUEVO: Actualizar estado de la Orden
     public function actualizarEstadoPedido(Request $request, int $id)
     {
         if (Auth::user()->role !== 'admin') {
@@ -81,10 +80,15 @@ class AdminController extends Controller
 
         $pedido = Orden::findOrFail($id);
 
-        $estadosPermitidos = ['En espera', 'Listo', 'En camino', 'Entregado', 'Listo para retirar'];
-        if (in_array($request->estado, $estadosPermitidos)) {
-            $pedido->update(['estado' => $request->estado]);
-            return back()->with('success', 'El estado del pedido #' . $pedido->id . ' se ha actualizado a: ' . $request->estado);
+        // Si el estado que llega es el "0" viejo, lo forzamos al nuevo estado inicial
+        $estadoNuevo = $request->estado === '0' ? 'En proceso' : $request->estado;
+
+        // La nueva lista de estados permitidos generalizados
+        $estadosPermitidos = ['En proceso', 'Listo para enviar/retirar', 'Enviado', 'Entregado/retirado'];
+
+        if (in_array($estadoNuevo, $estadosPermitidos)) {
+            $pedido->update(['estado' => $estadoNuevo]);
+            return back()->with('success', 'El estado del pedido #' . $pedido->id . ' se ha actualizado a: ' . $estadoNuevo);
         }
 
         return back()->with('error', 'Estado no válido.');

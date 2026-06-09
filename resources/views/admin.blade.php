@@ -60,6 +60,10 @@
                         <a href="{{ route('admin.productos') }}" class="nav-link text-start border-0 text-decoration-none">
                             <i class="bi bi-box-seam-fill me-2"></i> Gestión de Productos
                         </a>
+                        {{-- NUEVO: Enlace a Gestión de Pedidos en la barra lateral --}}
+                        <a href="{{ route('admin.pedidos') }}" class="nav-link text-start border-0 text-decoration-none">
+                            <i class="bi bi-bag-check-fill me-2"></i> Gestión de Pedidos
+                        </a>
                         <a href="{{ route('admin.consultas') }}" class="nav-link text-start border-0 position-relative text-decoration-none">
                             <i class="bi bi-envelope-fill me-2"></i> Gestión de Consultas
                             {{-- CORRECCIÓN: Filtramos solo los mensajes no leídos para la notificación --}}
@@ -87,6 +91,13 @@
                             <i class="bi bi-box-seam-fill d-block mb-2" style="font-size: 2rem;"></i>
                             Ver Productos
                         </a>
+
+                        {{-- NUEVO: Botón principal grande de Pedidos --}}
+                        <a href="{{ route('admin.pedidos') }}" class="btn btn-outline-warning btn-lg px-4 py-3 fw-bold" style="border-radius: 10px;">
+                            <i class="bi bi-bag-check-fill d-block mb-2" style="font-size: 2rem;"></i>
+                            Ver Pedidos
+                        </a>
+
                         <a href="{{ route('admin.consultas') }}" class="btn btn-outline-warning btn-lg px-4 py-3 fw-bold position-relative" style="border-radius: 10px;">
                             <i class="bi bi-envelope-fill d-block mb-2" style="font-size: 2rem;"></i>
                             Ver Consultas
