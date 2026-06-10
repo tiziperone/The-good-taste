@@ -97,12 +97,12 @@ class CompraController extends Controller
         $idOrden = DB::table('ordens')->insertGetId([
             'users_id' => $usuario->id,
             'total' => $totalGeneral,
-            'estado' => false, // false = pendiente
+            'estado' => 'En proceso', // CORRECCIÓN AQUÍ: El estado por defecto ahora es de texto
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-        // 3. Insertamos cada producto en 'item_ordens' y ACTUALIZAMOS EL STOCK
+        // 3. Insertamos cada producto en 'item_ordens' y descontamos stock
         foreach ($items as $item) {
             DB::table('item_ordens')->insert([
                 'ordens_id' => $idOrden,
@@ -113,7 +113,6 @@ class CompraController extends Controller
                 'updated_at' => now()
             ]);
 
-            // Esta es la línea nueva que descuenta el stock automáticamente
             Producto::where('id', $item->producto_id)->decrement('stock', $item->cantidad);
         }
 

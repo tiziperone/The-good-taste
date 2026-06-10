@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -45,12 +45,27 @@
                         <div class="d-flex align-items-center gap-4 me-3">
                             <div class="text-end d-none d-sm-block">
                                 <span class="d-block small text-light opacity-75">Estado</span>
-                                {{-- El estado ahora es booleano: 0 = false (pendiente), 1 = true (completado) --}}
-                                @if($compra->estado == 0)
-                                <span class="badge bg-warning text-dark"><i class="bi bi-clock-history me-1"></i> Pendiente</span>
-                                @else
-                                <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Entregado</span>
-                                @endif
+
+                                {{-- Lógica de estados sincronizada con el panel admin --}}
+                                @switch($compra->estado)
+                                @case('En proceso')
+                                @case('0')
+                                <span class="badge bg-warning text-dark"><i class="bi bi-clock-history me-1"></i> En proceso</span>
+                                @break
+                                @case('Listo para enviar/retirar')
+                                <span class="badge bg-info text-dark"><i class="bi bi-box-seam me-1"></i> Listo para enviar/retirar</span>
+                                @break
+                                @case('Enviado')
+                                <span class="badge bg-primary"><i class="bi bi-truck me-1"></i> Enviado</span>
+                                @break
+                                @case('Entregado/retirado')
+                                @case('1')
+                                <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Entregado/retirado</span>
+                                @break
+                                @default
+                                <span class="badge bg-secondary"><i class="bi bi-info-circle me-1"></i> {{ $compra->estado }}</span>
+                                @endswitch
+
                             </div>
                             <div class="text-end">
                                 <span class="d-block small text-light opacity-75">Total</span>
