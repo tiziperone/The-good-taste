@@ -111,7 +111,15 @@
                                         <td class="text-center">
                                             <form action="{{ route('admin.usuarios.banear', $user->id) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="btn btn-outline-danger btn-sm">Banear</button>
+                                                @if($user->activo)
+                                                <button type="submit" class="btn btn-outline-danger btn-sm" title="Banear Usuario">
+                                                    <i class="bi bi-person-x-fill me-1"></i> Banear
+                                                </button>
+                                                @else
+                                                <button type="submit" class="btn btn-outline-success btn-sm" title="Reactivar Usuario">
+                                                    <i class="bi bi-person-check-fill me-1"></i> Reactivar
+                                                </button>
+                                                @endif
                                             </form>
                                         </td>
                                     </tr>

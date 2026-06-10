@@ -11,9 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Agregamos nuestro middleware a todas las rutas web
+        // Agregamos nuestros middlewares a todas las rutas web
         $middleware->web(append: [
-            \App\Http\Middleware\UpdateUserLastSeen::class,
+            \App\Http\Middleware\CheckUserActivo::class,    // 1. Primero verifica si está baneado
+            \App\Http\Middleware\UpdateUserLastSeen::class, // 2. Si no está baneado, actualiza la última conexión
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
