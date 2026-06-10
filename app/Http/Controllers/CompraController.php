@@ -93,16 +93,16 @@ class CompraController extends Controller
             }
         }
 
-        // 2. Insertamos en 'ordens' (Nombres de tus migraciones)
+        // 2. Insertamos en 'ordens'
         $idOrden = DB::table('ordens')->insertGetId([
             'users_id' => $usuario->id,
             'total' => $totalGeneral,
-            'estado' => false, // false = pendiente, según tu default
+            'estado' => false, // false = pendiente
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-        // 3. Insertamos cada producto en 'item_ordens'
+        // 3. Insertamos cada producto en 'item_ordens' y ACTUALIZAMOS EL STOCK
         foreach ($items as $item) {
             DB::table('item_ordens')->insert([
                 'ordens_id' => $idOrden,
@@ -112,6 +112,9 @@ class CompraController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
+
+            // Esta es la línea nueva que descuenta el stock automáticamente
+            Producto::where('id', $item->producto_id)->decrement('stock', $item->cantidad);
         }
 
         // 4. Vaciamos el carrito (si corresponde)
