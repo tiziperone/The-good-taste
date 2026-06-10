@@ -87,6 +87,7 @@
                                         <th class="ps-3">ID</th>
                                         <th>Nombre</th>
                                         <th>Email</th>
+                                        <th>Estado</th>
                                         <th class="text-center">Acciones</th>
                                     </tr>
                                 </thead>
@@ -96,6 +97,17 @@
                                         <td class="ps-3">{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
+
+                                        <td>
+                                            @if($user->last_seen_at && \Carbon\Carbon::parse($user->last_seen_at)->diffInMinutes(now()) < 5)
+                                                <span class="badge bg-success">En sesión</span>
+                                                @else
+                                                <small class="text-white">
+                                                    Última vez: {{ $user->last_seen_at ? \Carbon\Carbon::parse($user->last_seen_at)->format('d/m/Y H:i') : 'Desconocido' }}
+                                                </small>
+                                                @endif
+                                        </td>
+
                                         <td class="text-center">
                                             <form action="{{ route('admin.usuarios.banear', $user->id) }}" method="POST">
                                                 @csrf
@@ -105,7 +117,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="4" class="text-center py-4">No hay usuarios registrados.</td>
+                                        <td colspan="5" class="text-center py-4">No hay usuarios registrados.</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
