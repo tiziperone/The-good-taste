@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Consulta;
-use App\Models\Orden; // NUEVO: Importación del modelo Orden
+use App\Models\Orden;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB; // Ya lo tenías importado, ¡perfecto!
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RespuestaConsulta;
 use App\Models\User;
@@ -55,7 +56,7 @@ class AdminController extends Controller
         return view('admin-productos', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
     }
 
-    // NUEVO: Gestión de Pedidos usando el modelo Orden
+    // Gestión de Pedidos usando el modelo Orden
     public function pedidos()
     {
         if (Auth::user()->role !== 'admin') {
@@ -64,6 +65,17 @@ class AdminController extends Controller
 
         // Traemos las órdenes junto con la información del usuario
         $pedidos = Orden::with('user')->orderBy('created_at', 'desc')->get();
+
+        // CORRECCIÓN: Le adjuntamos a cada pedido sus productos asociados para que la vista los muestre
+        foreach ($pedidos as $pedido) {
+            $pedido->detalles = DB::table('item_ordens')
+                ->join('productos', 'item_ordens.productos_id', '=', 'productos.id')
+                ->where('item_ordens.ordens_id', $pedido->id)
+                ->whereNull('item_ordens.deleted_at')
+                ->select('item_ordens.*', 'productos.nombre')
+                ->get();
+        }
+
         $consultas = Consulta::all();
 
         return view('admin-pedidos', compact('pedidos', 'consultas'));

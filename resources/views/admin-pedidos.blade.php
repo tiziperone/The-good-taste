@@ -38,7 +38,7 @@
 
     @include('componentes.navbar')
 
-    <div class="container mt-4 mb-4 d-flex justify-content-between align-items-center">
+    <div class="container-fluid px-4 mt-4 mb-4 d-flex justify-content-between align-items-center">
         @include('componentes.botonesAtrasAdelante')
     </div>
 
@@ -107,6 +107,7 @@
                                 <tr class="text-warning">
                                     <th class="ps-3">N° Orden</th>
                                     <th>Usuario</th>
+                                    <th>Productos</th> <!-- NUEVA COLUMNA -->
                                     <th>Total</th>
                                     <th class="pe-3">Acción (Estado)</th>
                                 </tr>
@@ -119,6 +120,20 @@
                                         <i class="bi bi-person-circle me-1 text-secondary"></i>
                                         {{ $pedido->user->name ?? 'Usuario Desconocido' }}
                                     </td>
+
+                                    <!-- CELDA DONDE SE MUESTRAN LOS PRODUCTOS -->
+                                    <td>
+                                        @if(isset($pedido->detalles) && count($pedido->detalles) > 0)
+                                        <ul class="mb-0 ps-3 small text-light" style="list-style-type: circle;">
+                                            @foreach($pedido->detalles as $detalle)
+                                            <li>{{ $detalle->cantidad }}x {{ $detalle->nombre ?? 'Producto Eliminado' }}</li>
+                                            @endforeach
+                                        </ul>
+                                        @else
+                                        <small class="text-white fst-italic">Detalles no cargados</small>
+                                        @endif
+                                    </td>
+
                                     <td class="text-success fw-bold">$ {{ number_format($pedido->total, 0, ',', '.') }}</td>
 
                                     <td class="pe-3">
@@ -137,7 +152,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="4" class="text-center py-5 text-secondary">
+                                    <td colspan="5" class="text-center py-5 text-secondary">
                                         <i class="bi bi-bag-x fs-1 d-block mb-2"></i> No hay pedidos registrados en el sistema.
                                     </td>
                                 </tr>
