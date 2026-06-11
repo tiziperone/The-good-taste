@@ -74,8 +74,65 @@
             </div>
 
             <div class="col-md-9 col-lg-10">
+
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h2 class="fw-bold text-warning m-0"><i class="bi bi-people-fill me-2"></i> Gestión de Usuarios</h2>
+                    <h2 class="fw-bold text-warning m-0"><i class="bi bi-shield-lock-fill me-2"></i> Administradores</h2>
+                </div>
+
+                <div class="card bg-dark border-secondary shadow mb-5">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-dark table-hover align-middle mb-0">
+                                <thead>
+                                    <tr class="text-warning">
+                                        <th class="ps-3">ID</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Estado</th>
+                                        <th class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($administradores as $admin)
+                                    <tr>
+                                        <td class="ps-3">{{ $admin->id }}</td>
+                                        <td>{{ $admin->name }}</td>
+                                        <td>{{ $admin->email }}</td>
+                                        <td>
+                                            @if($admin->last_seen_at && \Carbon\Carbon::parse($admin->last_seen_at)->diffInMinutes(now()) < 5)
+                                                <span class="badge bg-success">En sesión</span>
+                                                @else
+                                                <small class="text-white">
+                                                    Última vez: {{ $admin->last_seen_at ? \Carbon\Carbon::parse($admin->last_seen_at)->format('d/m/Y H:i') : 'Desconocido' }}
+                                                </small>
+                                                @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if(auth()->id() !== $admin->id)
+                                            <form action="{{ route('admin.usuarios.quitarAdmin', $admin->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-outline-danger btn-sm" title="Quitar permisos de administrador">
+                                                    <i class="bi bi-arrow-down-circle-fill me-1"></i> Quitar Admin
+                                                </button>
+                                            </form>
+                                            @else
+                                            <span class="badge bg-secondary">Tú (Actual)</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4">No hay otros administradores registrados.</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4 mt-5">
+                    <h2 class="fw-bold text-warning m-0"><i class="bi bi-person-lines-fill me-2"></i> Usuarios Regulares</h2>
                 </div>
 
                 <div class="card bg-dark border-secondary shadow mb-5">
@@ -97,7 +154,6 @@
                                         <td class="ps-3">{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-
                                         <td>
                                             @if($user->last_seen_at && \Carbon\Carbon::parse($user->last_seen_at)->diffInMinutes(now()) < 5)
                                                 <span class="badge bg-success">En sesión</span>
@@ -107,9 +163,15 @@
                                                 </small>
                                                 @endif
                                         </td>
-
                                         <td class="text-center">
-                                            <form action="{{ route('admin.usuarios.banear', $user->id) }}" method="POST">
+                                            <form action="{{ route('admin.usuarios.hacerAdmin', $user->id) }}" method="POST" class="d-inline me-1">
+                                                @csrf
+                                                <button type="submit" class="btn btn-outline-info btn-sm" title="Convertir en Administrador">
+                                                    <i class="bi bi-arrow-up-circle-fill me-1"></i> Hacer Admin
+                                                </button>
+                                            </form>
+
+                                            <form action="{{ route('admin.usuarios.banear', $user->id) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @if($user->activo)
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" title="Banear Usuario">
@@ -125,7 +187,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5" class="text-center py-4">No hay usuarios registrados.</td>
+                                        <td colspan="5" class="text-center py-4">No hay usuarios regulares registrados.</td>
                                     </tr>
                                     @endforelse
                                 </tbody>

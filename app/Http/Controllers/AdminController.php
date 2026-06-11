@@ -252,16 +252,56 @@ class AdminController extends Controller
         return back()->with('success', 'Producto reactivado correctamente. ¡Vuelve a estar en el catálogo!');
     }
 
+    // ==========================================
+    // SECCIÓN USUARIOS Y ROLES
+    // ==========================================
+
     public function verUsuarios()
     {
         if (Auth::user()->role !== 'admin') {
             return redirect('/')->with('error', 'Acceso denegado.');
         }
 
-        $usuarios = User::all();
-        $consultas = Consulta::all(); // Necesario para mantener la consistencia en la vista si usas el sidebar
+        // Separamos a los administradores de los usuarios regulares basados en el campo 'role'
+        $administradores = User::where('role', 'admin')->get();
+        $usuarios = User::where('role', '!=', 'admin')->orWhereNull('role')->get();
 
-        return view('admin-usuarios', compact('usuarios', 'consultas'));
+        $consultas = Consulta::all(); // Necesario para mantener la consistencia en la vista
+
+        return view('admin-usuarios', compact('administradores', 'usuarios', 'consultas'));
+    }
+
+    public function hacerAdmin(int $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+
+        $usuario = User::findOrFail($id);
+
+        $usuario->role = 'admin';
+        $usuario->save();
+
+        return back()->with('success', "El usuario {$usuario->name} ahora es administrador.");
+    }
+
+    public function quitarAdmin(int $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect('/')->with('error', 'Acceso denegado.');
+        }
+
+        $usuario = User::findOrFail($id);
+
+        // Evitar que el administrador se quite los permisos a sí mismo
+        if ($usuario->id === Auth::id()) {
+            return back()->with('error', 'No puedes quitarte tus propios permisos de administrador.');
+        }
+
+        $usuario->role = 'user'; // Ajustamos el rol nuevamente a usuario estándar
+        $usuario->save();
+
+        return back()->with('success', "Se han quitado los permisos de administrador a {$usuario->name}.");
     }
 
     public function banear(int $id)

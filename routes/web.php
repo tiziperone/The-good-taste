@@ -72,18 +72,25 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');
     Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responder'])->name('consultas.responder');
     Route::delete('/admin/consultas/{id}/eliminar', [AdminController::class, 'eliminar'])->name('consultas.eliminar');
+
+    // Rutas de cliente (Compras)
     Route::post('/confirmar-compra', [CompraController::class, 'confirmarCompra'])->name('confirmar.compra');
     Route::get('/mis-compras', [MisComprasController::class, 'index'])->name('mis-compras.index');
-    Route::post('/confirmar-compra', [CompraController::class, 'confirmarCompra'])->name('confirmar.compra');
 
-    //Gestion de pedidos
-    Route::get('/admin/pedidos', [App\Http\Controllers\AdminController::class, 'pedidos'])->name('admin.pedidos');
-    Route::put('/admin/pedidos/{id}/estado', [App\Http\Controllers\AdminController::class, 'actualizarEstadoPedido'])->name('admin.pedidos.actualizar');
+    // Gestión de pedidos
+    Route::get('/admin/pedidos', [AdminController::class, 'pedidos'])->name('admin.pedidos');
+    Route::put('/admin/pedidos/{id}/estado', [AdminController::class, 'actualizarEstadoPedido'])->name('admin.pedidos.actualizar');
 
-    Route::get('/admin/usuarios', [App\Http\Controllers\AdminController::class, 'verUsuarios'])->name('admin.usuarios');
-    Route::post('/admin/usuarios/{id}/banear', [App\Http\Controllers\AdminController::class, 'banear'])->name('admin.usuarios.banear');
+    // Gestión de usuarios y administradores
+    Route::get('/admin/usuarios', [AdminController::class, 'verUsuarios'])->name('admin.usuarios');
+    Route::post('/admin/usuarios/{id}/banear', [AdminController::class, 'banear'])->name('admin.usuarios.banear');
+
+    // RUTAS NUEVAS PARA GESTIÓN DE ROLES (Crear/Quitar Admin)
+    Route::post('/admin/usuarios/{id}/hacer-admin', [AdminController::class, 'hacerAdmin'])->name('admin.usuarios.hacerAdmin');
+    Route::post('/admin/usuarios/{id}/quitar-admin', [AdminController::class, 'quitarAdmin'])->name('admin.usuarios.quitarAdmin');
 });
 
+// Rutas de Autenticación
 Route::get('inicio-sesion', function () {
     return view('inicio-sesion');
 })->name('login');
