@@ -15,7 +15,7 @@ class MisComprasController extends Controller
         // Traemos las compras ordenadas por la más reciente
         $compras = DB::table('ordens')
             ->where('users_id', $usuarioId)
-            ->whereNull('deleted_at') // Respetando tu SoftDeletes
+            ->whereNull('deleted_at')
             ->orderBy('created_at', 'desc')
             ->get();
 

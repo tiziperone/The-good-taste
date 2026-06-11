@@ -41,6 +41,7 @@
             </h4>
 
             <div class="mt-auto">
+              @if($mila->stock > 0)
               @auth
               <button type="button" class="btn btn-warning fw-bold text-dark btn-comprar-ahora" data-id="{{ $mila->id }}">Comprar</button>
 
@@ -53,6 +54,11 @@
                 Agregar <i class="bi bi-cart"></i>
               </button>
               @endauth
+              @else
+              <button type="button" class="btn btn-secondary fw-bold text-light w-100 disabled" disabled>
+                <i class="bi bi-x-circle me-1"></i> Sin Stock
+              </button>
+              @endif
             </div>
           </div>
         </div>

@@ -324,6 +324,9 @@
         function procesarCompra(event) {
             event.preventDefault();
 
+            const botonSubmit = event.target.querySelector('button[type="submit"]');
+            botonSubmit.disabled = true; // Deshabilitamos el botón para evitar doble click
+
             const envioElegido = document.querySelector('input[name="metodo_envio"]:checked').value;
             const pagoElegido = document.querySelector('input[name="metodo_pago"]:checked').value;
             const csrfToken = document.querySelector('input[name="_token"]').value;
@@ -332,7 +335,7 @@
 
             let promesas = [];
 
-            // --- 1. Lógica de Dirección ---
+            //1. Lógica de Dirección
             if (envioElegido === 'retiro') {
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-shop text-warning me-1"></i> Retiro por sucursal';
             } else {
@@ -366,17 +369,15 @@
                 }
             }
 
-            // --- 2. Lógica de Pago ---
+            //2. Lógica de Pago
             if (pagoElegido === 'efectivo') {
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-cash-coin text-warning me-1"></i> Efectivo';
             } else {
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-bank text-warning me-1"></i> Transferencia / Alias';
             }
 
-            // --- 3. Vaciar Carrito y Confirmar ---
+            //3. Vaciado y Confirmación
             const esCarrito = "{{ request()->has('producto_id') ? 'false' : 'true' }}" === "true";
-
-            // Leemos el producto_id de la URL por si es una compra directa
             const urlParams = new URLSearchParams(window.location.search);
             const productoIdUrl = urlParams.get('producto_id');
 
@@ -390,18 +391,25 @@
                     es_carrito: esCarrito,
                     producto_id: productoIdUrl
                 })
-            }).then(res => res.json());
+            }).then(res => res.json()).then(data => {
+                if (!data.success) {
+                    throw new Error(data.message || 'Error desconocido al procesar la compra.');
+                }
+                return data;
+            });
 
             promesas.push(promesaVaciarCarrito);
 
-            // Una vez que todas las promesas terminan, mostramos el modal
             Promise.all(promesas).then(() => {
+                botonSubmit.disabled = false;
                 const modalExito = new bootstrap.Modal(document.getElementById('modalExito'));
                 modalExito.show();
             }).catch(error => {
+                botonSubmit.disabled = false;
                 console.error('Error procesando compra:', error);
-                const modalExito = new bootstrap.Modal(document.getElementById('modalExito'));
-                modalExito.show();
+
+                alert('No se pudo completar el pedido: \n\n' + error.message);
+
             });
         }
     </script>
