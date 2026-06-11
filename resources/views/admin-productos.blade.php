@@ -65,7 +65,6 @@
                         </a>
                         <a href="{{ route('admin.consultas') }}" class="nav-link text-start border-0 position-relative text-decoration-none">
                             <i class="bi bi-envelope-fill me-2"></i> Gestión de Consultas
-                            {{-- CORRECCIÓN: Ahora cuenta correctamente solo los mensajes no leídos --}}
                             @php $mensajesNuevos = $consultas->where('estado', 0)->count(); @endphp
                             @if($mensajesNuevos > 0)
                             <span class="position-absolute top-50 end-0 translate-middle-y me-3 badge rounded-pill bg-danger">
@@ -140,11 +139,13 @@
                                         @else Otra @endif
                                     </td>
                                     <td>
-                                        @if($prod->stock <= $prod->stock_minimo)
-                                            <span class="badge bg-danger">Bajo: {{ $prod->stock }}</span>
-                                            @else
-                                            <span class="badge bg-success">Ok: {{ $prod->stock }}</span>
-                                            @endif
+                                        @if($prod->stock <= 0)
+                                            <span class="badge bg-danger">No</span>
+                                            @elseif($prod->stock <= $prod->stock_minimo)
+                                                <span class="badge bg-warning text-dark">Bajo: {{ $prod->stock }}</span>
+                                                @else
+                                                <span class="badge bg-success">Ok: {{ $prod->stock }}</span>
+                                                @endif
                                     </td>
                                     <td class="fw-bold">$ {{ number_format($prod->precio, 0, ',', '.') }}</td>
                                     <td class="text-white-50">{{ $prod->created_at->format('d/m/Y H:i') }}</td>
@@ -250,7 +251,7 @@
                                 <tr class="text-danger">
                                     <th class="ps-3">ID</th>
                                     <th>Producto</th>
-                                    <th>Agregado el</th>
+                                    <th>Categoría</th>
                                     <th>Eliminado el</th>
                                     <th class="text-center pe-3">Acción</th>
                                 </tr>
@@ -260,7 +261,12 @@
                                 <tr>
                                     <td class="ps-3">#{{ $eliminado->id }}</td>
                                     <td>{{ $eliminado->nombre }}</td>
-                                    <td>{{ $eliminado->created_at->format('d/m/Y H:i') }}</td>
+                                    <td>
+                                        @if($eliminado->categoria_id == 1) Bondiolas
+                                        @elseif($eliminado->categoria_id == 2) Milanesas
+                                        @elseif($eliminado->categoria_id == 3) Pastas
+                                        @else Otra @endif
+                                    </td>
                                     <td class="text-danger fw-bold">{{ $eliminado->deleted_at->format('d/m/Y H:i') }}</td>
                                     <td class="text-center pe-3">
                                         <form action="{{ route('admin.productos.restaurar', $eliminado->id) }}" method="POST" onsubmit="return confirm('¿Querés volver a activar este producto en el catálogo?');">
