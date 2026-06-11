@@ -38,7 +38,7 @@
 
     @include('componentes.navbar')
 
-    <div class="container-fluid px-4 mt-4 mb-4 d-flex justify-content-between align-items-center">
+    <div class="container mt-4 mb-4 d-flex justify-content-between align-items-center">
         @include('componentes.botonesAtrasAdelante')
     </div>
 
