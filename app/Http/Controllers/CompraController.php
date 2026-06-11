@@ -102,11 +102,13 @@ class CompraController extends Controller
         DB::beginTransaction();
 
         try {
-            // 2. Insertamos en 'ordens'
+            // 2. Insertamos en 'ordens' AGREGANDO LOS DATOS DE ENVÍO
             $idOrden = DB::table('ordens')->insertGetId([
                 'users_id' => $usuario->id,
                 'total' => $totalGeneral,
                 'estado' => 'En proceso',
+                'metodo_envio' => $request->input('metodo_envio', 'retiro'), // <-- ACÁ GUARDA EL MÉTODO
+                'direccion_envio' => $request->input('direccion_envio', null), // <-- ACÁ GUARDA LA DIRECCIÓN
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

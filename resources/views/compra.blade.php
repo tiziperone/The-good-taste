@@ -325,7 +325,7 @@
             event.preventDefault();
 
             const botonSubmit = event.target.querySelector('button[type="submit"]');
-            botonSubmit.disabled = true; // Deshabilitamos el botón para evitar doble click
+            botonSubmit.disabled = true;
 
             const envioElegido = document.querySelector('input[name="metodo_envio"]:checked').value;
             const pagoElegido = document.querySelector('input[name="metodo_pago"]:checked').value;
@@ -334,8 +334,9 @@
             document.getElementById('resumen-nombre').textContent = "{{ Auth::user()->name ?? 'Cliente' }}";
 
             let promesas = [];
+            let direccionFullFrontend = null; // Para mandar al backend
 
-            //1. Lógica de Dirección
+            // 1. Lógica de Dirección
             if (envioElegido === 'retiro') {
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-shop text-warning me-1"></i> Retiro por sucursal';
             } else {
@@ -345,9 +346,10 @@
                 const nombreDir = document.getElementById('input-nombre-direccion').value;
                 const guardarFuturaCheckbox = document.getElementById('guardar_futura');
 
-                let direccionFull = calle + ' ' + altura;
-                if (piso) direccionFull += ' (' + piso + ')';
-                document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-house-door text-warning me-1"></i> Envío a: ' + direccionFull;
+                direccionFullFrontend = calle + ' ' + altura;
+                if (piso) direccionFullFrontend += ' (' + piso + ')';
+
+                document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-house-door text-warning me-1"></i> Envío a: ' + direccionFullFrontend;
 
                 if (guardarFuturaCheckbox && guardarFuturaCheckbox.checked && !document.getElementById('bloque-guardar-direccion').classList.contains('d-none')) {
                     let promesaDir = fetch("{{ url('/guardar-direccion') }}", {
@@ -369,14 +371,14 @@
                 }
             }
 
-            //2. Lógica de Pago
+            // 2. Lógica de Pago
             if (pagoElegido === 'efectivo') {
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-cash-coin text-warning me-1"></i> Efectivo';
             } else {
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-bank text-warning me-1"></i> Transferencia / Alias';
             }
 
-            //3. Vaciado y Confirmación
+            // 3. Vaciado y Confirmación (AHORA ENVIANDO METODO Y DIRECCION)
             const esCarrito = "{{ request()->has('producto_id') ? 'false' : 'true' }}" === "true";
             const urlParams = new URLSearchParams(window.location.search);
             const productoIdUrl = urlParams.get('producto_id');
@@ -389,7 +391,9 @@
                 },
                 body: JSON.stringify({
                     es_carrito: esCarrito,
-                    producto_id: productoIdUrl
+                    producto_id: productoIdUrl,
+                    metodo_envio: envioElegido, // Se manda 'retiro' o 'delivery'
+                    direccion_envio: direccionFullFrontend // Se manda el string o null
                 })
             }).then(res => res.json()).then(data => {
                 if (!data.success) {
@@ -407,9 +411,7 @@
             }).catch(error => {
                 botonSubmit.disabled = false;
                 console.error('Error procesando compra:', error);
-
                 alert('No se pudo completar el pedido: \n\n' + error.message);
-
             });
         }
     </script>

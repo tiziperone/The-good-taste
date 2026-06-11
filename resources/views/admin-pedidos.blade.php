@@ -106,8 +106,10 @@
                             <thead>
                                 <tr class="text-warning">
                                     <th class="ps-3">N° Orden</th>
+                                    <th>Fecha y Hora</th>
                                     <th>Usuario</th>
-                                    <th>Productos</th> <!-- NUEVA COLUMNA -->
+                                    <th>Entrega</th>
+                                    <th>Productos</th>
                                     <th>Total</th>
                                     <th class="pe-3">Acción (Estado)</th>
                                 </tr>
@@ -116,12 +118,28 @@
                                 @forelse($pedidos as $pedido)
                                 <tr>
                                     <td class="ps-3 fw-bold">#{{ $pedido->id }}</td>
+
+                                    <td class="text-white-50 small">
+                                        <i class="bi bi-calendar-event me-1"></i> {{ \Carbon\Carbon::parse($pedido->created_at)->format('d/m/Y') }}<br>
+                                        <i class="bi bi-clock me-1"></i> {{ \Carbon\Carbon::parse($pedido->created_at)->format('H:i') }} hs
+                                    </td>
+
                                     <td>
                                         <i class="bi bi-person-circle me-1 text-secondary"></i>
                                         {{ $pedido->user->name ?? 'Usuario Desconocido' }}
                                     </td>
 
-                                    <!-- CELDA DONDE SE MUESTRAN LOS PRODUCTOS -->
+                                    <td>
+                                        @if(isset($pedido->metodo_envio) && $pedido->metodo_envio === 'delivery')
+                                        <span class="badge bg-info text-dark mb-1"><i class="bi bi-truck me-1"></i>A Domicilio</span><br>
+                                        <small class="text-light" style="font-size: 0.8rem;"><i class="bi bi-geo-alt-fill text-warning me-1"></i>{{ $pedido->direccion_envio ?? 'Dirección no especificada' }}</small>
+                                        @elseif(isset($pedido->metodo_envio) && $pedido->metodo_envio === 'retiro')
+                                        <span class="badge bg-secondary"><i class="bi bi-shop me-1"></i>Retiro en Local</span>
+                                        @else
+                                        <span class="badge bg-dark border border-secondary text-secondary">Dato no registrado</span>
+                                        @endif
+                                    </td>
+
                                     <td>
                                         @if(isset($pedido->detalles) && count($pedido->detalles) > 0)
                                         <ul class="mb-0 ps-3 small text-light" style="list-style-type: circle;">
@@ -134,7 +152,7 @@
                                         @endif
                                     </td>
 
-                                    <td class="text-success fw-bold">$ {{ number_format($pedido->total, 0, ',', '.') }}</td>
+                                    <td class="text-success fw-bold text-nowrap">$ {{ number_format($pedido->total, 0, ',', '.') }}</td>
 
                                     <td class="pe-3">
                                         <form action="{{ route('admin.pedidos.actualizar', $pedido->id) }}" method="POST" class="m-0">
@@ -152,7 +170,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="5" class="text-center py-5 text-secondary">
+                                    <td colspan="7" class="text-center py-5 text-secondary">
                                         <i class="bi bi-bag-x fs-1 d-block mb-2"></i> No hay pedidos registrados en el sistema.
                                     </td>
                                 </tr>

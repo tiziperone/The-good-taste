@@ -7,7 +7,7 @@ use App\Models\Producto;
 use App\Models\Consulta;
 use App\Models\Orden;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB; // Ya lo tenías importado, ¡perfecto!
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RespuestaConsulta;
 use App\Models\User;
@@ -66,7 +66,7 @@ class AdminController extends Controller
         // Traemos las órdenes junto con la información del usuario
         $pedidos = Orden::with('user')->orderBy('created_at', 'desc')->get();
 
-        // CORRECCIÓN: Le adjuntamos a cada pedido sus productos asociados para que la vista los muestre
+        // Le adjuntamos a cada pedido sus productos asociados para que la vista los muestre
         foreach ($pedidos as $pedido) {
             $pedido->detalles = DB::table('item_ordens')
                 ->join('productos', 'item_ordens.productos_id', '=', 'productos.id')
@@ -241,8 +241,13 @@ class AdminController extends Controller
         }
 
         $producto = Producto::onlyTrashed()->findOrFail($id);
-        $producto->restore();
-        $producto->update(['activo' => true]);
+        $producto->restore(); // Esto le quita el deleted_at
+
+        // CORRECCIÓN: Asignamos directamente las propiedades y usamos save() 
+        // para evitar la protección de asignación masiva de Laravel sobre created_at.
+        $producto->activo = true;
+        $producto->created_at = now();
+        $producto->save();
 
         return back()->with('success', 'Producto reactivado correctamente. ¡Vuelve a estar en el catálogo!');
     }
