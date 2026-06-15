@@ -65,7 +65,7 @@ class CompraController extends Controller
         $items = [];
         $totalGeneral = 0;
 
-        // 1. Recopilamos los productos y validamos stock
+        //Recopila productos y valida stock
         if (!$esCarrito && $request->has('producto_id')) {
             $producto = Producto::find($request->input('producto_id'));
             if ($producto) {
@@ -102,13 +102,12 @@ class CompraController extends Controller
         DB::beginTransaction();
 
         try {
-            // 2. Insertamos en 'ordens' AGREGANDO LOS DATOS DE ENVÍO
             $idOrden = DB::table('ordens')->insertGetId([
                 'users_id' => $usuario->id,
                 'total' => $totalGeneral,
                 'estado' => 'En proceso',
-                'metodo_envio' => $request->input('metodo_envio', 'retiro'), // <-- ACÁ GUARDA EL MÉTODO
-                'direccion_envio' => $request->input('direccion_envio', null), // <-- ACÁ GUARDA LA DIRECCIÓN
+                'metodo_envio' => $request->input('metodo_envio', 'retiro'),
+                'direccion_envio' => $request->input('direccion_envio', null), // guarda la direccion
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

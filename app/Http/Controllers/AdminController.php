@@ -26,7 +26,6 @@ class AdminController extends Controller
         return view('admin', compact('consultas'));
     }
 
-    //Gestion de productos
     public function productos(Request $request)
     {
         if (Auth::user()->role !== 'admin') {
@@ -45,7 +44,7 @@ class AdminController extends Controller
         } elseif ($ordenActivos === 'asc') {
             $queryProductos->orderBy('created_at', 'asc');
         } else {
-            $queryProductos->orderBy('created_at', 'desc'); // Por defecto
+            $queryProductos->orderBy('created_at', 'desc');
         }
 
         $productos = $queryProductos->get();
@@ -56,14 +55,12 @@ class AdminController extends Controller
         return view('admin-productos', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
     }
 
-    // Gestión de Pedidos usando el modelo Orden
     public function pedidos()
     {
         if (Auth::user()->role !== 'admin') {
             return redirect('/')->with('error', 'Acceso denegado.');
         }
 
-        // Traemos las órdenes junto con la información del usuario
         $pedidos = Orden::with('user')->orderBy('created_at', 'desc')->get();
 
         // Le adjuntamos a cada pedido sus productos asociados para que la vista los muestre
@@ -93,7 +90,6 @@ class AdminController extends Controller
 
         $pedido = Orden::findOrFail($id);
 
-        // Si el estado que llega es el "0" viejo, lo forzamos al nuevo estado inicial
         $estadoNuevo = $request->estado === '0' ? 'En proceso' : $request->estado;
 
         // La nueva lista de estados permitidos generalizados
@@ -243,8 +239,7 @@ class AdminController extends Controller
         $producto = Producto::onlyTrashed()->findOrFail($id);
         $producto->restore(); // Esto le quita el deleted_at
 
-        // CORRECCIÓN: Asignamos directamente las propiedades y usamos save() 
-        // para evitar la protección de asignación masiva de Laravel sobre created_at.
+
         $producto->activo = true;
         $producto->created_at = now();
         $producto->save();
@@ -252,9 +247,6 @@ class AdminController extends Controller
         return back()->with('success', 'Producto reactivado correctamente. ¡Vuelve a estar en el catálogo!');
     }
 
-    // ==========================================
-    // SECCIÓN USUARIOS Y ROLES
-    // ==========================================
 
     public function verUsuarios()
     {
@@ -266,7 +258,7 @@ class AdminController extends Controller
         $administradores = User::where('role', 'admin')->get();
         $usuarios = User::where('role', '!=', 'admin')->orWhereNull('role')->get();
 
-        $consultas = Consulta::all(); // Necesario para mantener la consistencia en la vista
+        $consultas = Consulta::all();
 
         return view('admin-usuarios', compact('administradores', 'usuarios', 'consultas'));
     }
@@ -293,12 +285,12 @@ class AdminController extends Controller
 
         $usuario = User::findOrFail($id);
 
-        // Evitar que el administrador se quite los permisos a sí mismo
+
         if ($usuario->id === Auth::id()) {
             return back()->with('error', 'No puedes quitarte tus propios permisos de administrador.');
         }
 
-        $usuario->role = 'user'; // Ajustamos el rol nuevamente a usuario estándar
+        $usuario->role = 'user';
         $usuario->save();
 
         return back()->with('success', "Se han quitado los permisos de administrador a {$usuario->name}.");
@@ -312,7 +304,7 @@ class AdminController extends Controller
 
         $usuario = User::findOrFail($id);
 
-        // Evitar que el admin se baneé a sí mismo
+        // Para que el admin no se auto baneé 
         if ($usuario->id === Auth::id()) {
             return back()->with('error', 'No puedes banearte a ti mismo.');
         }

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CarritoController extends Controller
 {
-    // Carga la vista de la tabla leyendo los registros desde la BD
     public function index(Request $request)
     {
         $urlAnterior = url()->previous();
@@ -25,34 +24,27 @@ class CarritoController extends Controller
         foreach ($carritoItems as $item) {
             $debeEliminarse = false;
 
-            // 1. El producto fue eliminado físicamente de la base de datos (relación huérfana)
             if (!$item->producto) {
                 $debeEliminarse = true;
-            }
-            // 2. El producto usa SoftDeletes (borrado lógico) y está en la papelera
-            elseif (method_exists($item->producto, 'trashed') && $item->producto->trashed()) {
+            } elseif (method_exists($item->producto, 'trashed') && $item->producto->trashed()) {
                 $debeEliminarse = true;
-            }
-            // 3. (Opcional) Si en tu BD usás un campo 'activo' o 'stock', lo validamos de forma segura
-            elseif (isset($item->producto->activo) && $item->producto->activo != 1) {
+            } elseif (isset($item->producto->activo) && $item->producto->activo != 1) {
                 $debeEliminarse = true;
             } elseif (isset($item->producto->stock) && $item->producto->stock <= 0) {
                 $debeEliminarse = true;
             }
 
             if ($debeEliminarse) {
-                $item->delete(); // Eliminamos el registro corrupto del carrito
+                $item->delete();
                 $huboLimpieza = true;
             }
         }
 
-        // Si detectamos inconsistencias, forzamos una recarga limpia
         if ($huboLimpieza) {
             return redirect()->route('carrito.index')
                 ->with('error', 'Se actualizaron los productos de tu carrito porque algunos ya no se encuentran disponibles en el catálogo.');
         }
 
-        // Si todo está íntegro, pasamos la colección a la vista
         $carrito = $carritoItems;
 
         return view('carrito', compact('carrito'));
@@ -64,7 +56,7 @@ class CarritoController extends Controller
         $productoId = $request->input('producto_id');
         $producto = Producto::find($productoId);
 
-        // Validación estricta al agregar
+        // Validacion por si el produicto fue eliminado mientras el cliente estaba navegando o si no existe
         if (!$producto || (method_exists($producto, 'trashed') && $producto->trashed()) || (isset($producto->activo) && $producto->activo != 1)) {
             return response()->json(['success' => false, 'message' => 'El producto ya no existe en el catálogo.'], 404);
         }
@@ -132,7 +124,6 @@ class CarritoController extends Controller
             }
         }
 
-        // Cálculos seguros
         $subtotal = $item->producto->precio * $item->cantidad;
         $todoElCarrito = CarritoItem::with('producto')->where('user_id', Auth::id())->get();
 

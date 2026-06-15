@@ -14,7 +14,7 @@ use App\Notifications\VerificarCuentaNotification;
 
 class AuthController extends Controller
 {
-    // 1. PROCESAR REGISTRO
+    // Para procesar el registro
     public function registrar(Request $request): RedirectResponse
     {
         $request->validate([
@@ -45,7 +45,7 @@ class AuthController extends Controller
         return redirect()->route('validacion');
     }
 
-    // 2. VERIFICAR EL CLIC DESDE GMAIL
+    // 2. Para cuando el usuario hace click en su gmail
     public function verificarCorreo(int $id, Request $request): RedirectResponse
     {
         $user = User::findOrFail($id);
@@ -61,7 +61,7 @@ class AuthController extends Controller
         return redirect('/inicio-sesion');
     }
 
-    // 3. REENVIAR EL CORREO SI NO LLEGÓ
+    // Para reenviar el correo
     public function reenviarCorreo(): RedirectResponse
     {
         $email = session('email_registro');
@@ -77,7 +77,7 @@ class AuthController extends Controller
         return back()->withErrors(['error' => 'No se pudo reenviar el correo. Por favor intente registrarse de nuevo.']);
     }
 
-    // 4. PROCESAR INICIO DE SESIÓN
+    // Procesa el inico de sesion
     public function login(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
@@ -114,7 +114,7 @@ class AuthController extends Controller
         return back()->withErrors(['auth_failed' => true])->withInput();
     }
 
-    // 5. PROCESAR CIERRE DE SESIÓN
+    //Procesar el cierre de sesion
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
@@ -125,9 +125,7 @@ class AuthController extends Controller
     }
 
 
-    // RECUPERACIÓN DE CONTRASEÑA MANUAL
-
-    // 6. PROCESAR SOLICITUD DE TOKEN Y ENVIAR MAIL 
+    // Recuperar contraseña
     public function enviarEnlaceRecuperacion(Request $request): RedirectResponse
     {
         $request->validate([
@@ -145,11 +143,9 @@ class AuthController extends Controller
                 'created_at' => now()
             ]
         );
-
-        // Creamos el enlace que irá dentro del mensaje
         $url = route('password.reset', ['token' => $token, 'email' => $request->email]);
 
-        // Usamos Mail::html para enviar código HTML directo en un string sin usar archivos blade
+
         $textoHtml = "
         <div style='background-color: #212529; color: white; padding: 20px; font-family: sans-serif; border-radius: 10px;'>
             <h2>Restablecer Contraseña - The Good Taste</h2>
@@ -168,16 +164,15 @@ class AuthController extends Controller
         return back()->with('message', '¡Perfecto! Te enviamos el enlace de recuperación a tu correo electrónico.');
     }
 
-    // 7. MOSTRAR LA PANTALLA PARA INGRESAR LA NUEVA CONTRASEÑA
+    // Ingresar nueva contraseña
     public function mostrarFormoRestablecer(string $token, Request $request)
     {
         $email = $request->query('email');
 
-        // Apunta directamente al archivo suelto en /views
         return view('nueva-password', compact('token', 'email'));
     }
 
-    // 8. GUARDAR LA NUEVA CONTRASEÑA CAMBIADA
+    // Guardar nueva contraseña
     public function actualizarPassword(Request $request): RedirectResponse
     {
         $request->validate([

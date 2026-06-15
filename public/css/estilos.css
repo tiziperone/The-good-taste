@@ -1,24 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
 
-/* --- VARIABLES GLOBALES --- */
+
 :root {
-    --color-primario: #ffc107;      /* Amarillo Warning */
-    --color-fondo-oscuro: #1a1d20;  /* Gris casi negro */
+    --color-primario: #ffc107;     
+    --color-fondo-oscuro: #1a1d20; 
     --color-texto-blanco: #ffffff;
     --fuente-principal: 'Montserrat', sans-serif;
     --transicion: all 0.3s ease;
 }
 
-/* --- REGLAS BASE --- */
 body, html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
 
-/* --- COMPONENTES REUTILIZABLES --- */
 
-/* Títulos con estilo marca (Nuestra Esencia, Quiénes Somos, etc.) */
+/* Títulos con estilo (Nuestra Esencia, Quiénes Somos, etc.) */
 .titulo-seccion-especial {
     font-family: var(--fuente-principal);
     font-weight: 800;
@@ -45,7 +43,7 @@ body, html {
 .btn-circular {
     background-color: rgba(26, 29, 32, 0.8);
     color: var(--color-texto-blanco);
-    border: 1px solid var(--color-primario); /* Ahora todos son amarillos por defecto */
+    border: 1px solid var(--color-primario); 
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -59,7 +57,7 @@ body, html {
 
 .btn-circular:hover {
     background-color: var(--color-primario);
-    color: #212529; /* Letra oscura al hover para contraste */
+    color: #212529; 
     transform: scale(1.1);
     box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
 }
@@ -69,10 +67,10 @@ body, html {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    display: none; /* Se activa por JS */
+    display: none; 
 }
 
-/* --- NAVBAR PERSONALIZADA (SECCIÓN CORREGIDA) --- */
+/* --- NAVBAR--> */
 .navbar-personalizada {
     background-color: var(--color-fondo-oscuro) !important;
     border-bottom: 2px solid #333;
@@ -91,7 +89,7 @@ body, html {
 .navbar-personalizada .nav-link,
 .navbar-personalizada .nav-link span {
     font-family: var(--fuente-principal) !important;
-    font-weight: 700 !important; /* Estilo bold para que resalte */
+    font-weight: 700 !important;
     color: var(--color-texto-blanco) !important;
     transition: var(--transicion);
 }
@@ -99,7 +97,7 @@ body, html {
 /* Estado Activo de la Navbar (El cuadrito resaltador) */
 .navbar-personalizada .nav-link.active {
     background-color: var(--color-primario) !important;
-    color: #212529 !important; /* Texto oscuro para contraste */
+    color: #212529 !important;
     border-radius: 8px !important;
     padding: 5px 15px !important;
 }
@@ -116,7 +114,7 @@ body, html {
     color: var(--color-primario) !important;
 }
 
-/* Navbar Toggler (Hamburgesa) */
+/* Navbar Toggler */
 .navbar-toggler {
     border: none !important;
     outline: none !important;
@@ -127,13 +125,13 @@ body, html {
     filter: invert(1);
 }
 
-/* --- FOOTER Y REDES --- */
+/* --- Footer y redes */
 .hover-warning:hover {
     color: var(--color-primario) !important;
     transition: var(--transicion);
 }
 
-/* --- UTILIDADES --- */
+
 img.emoji {
     height: 1.1em !important;
     width: 1.1em !important;
@@ -144,10 +142,10 @@ img.emoji {
 /* --- Fuentes --- */
 .titulo-black {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 900; /* BLACK */
+    font-weight: 900; 
 }
 
 .texto-bold {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700; /* BOLD */
+    font-weight: 700; 
 }

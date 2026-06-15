@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 class ProductoController extends Controller
 {
 
-    // SECCIÓN BONDIOLAS (Categoría 1)
+    //bondiolas
     public function mostrarBondiolas()
     {
-        // Trae TODAS las bondiolas activas, sin importar su nombre
         $bondiolas = Producto::where('activo', true)->where('categoria_id', 1)->get();
         return view('bondiola', compact('bondiolas'));
     }
@@ -34,10 +33,9 @@ class ProductoController extends Controller
     }
 
 
-    // SECCIÓN MILANESAS (Categoría 2)
+    //milanesas
     public function mostrarMilanesas()
     {
-        // Trae TODAS las milanesas activas, sin importar su nombre
         $milanesas = Producto::where('activo', true)->where('categoria_id', 2)->get();
         return view('milanesas', compact('milanesas'));
     }
@@ -60,7 +58,7 @@ class ProductoController extends Controller
     }
 
 
-    // SECCIÓN PASTAS (Categoría 3)
+    //pastas
     public function mostrarPastas()
     {
         $pastas = Producto::where('activo', true)->where('categoria_id', 3)->get();
@@ -94,12 +92,10 @@ class ProductoController extends Controller
         ]);
     }
 
-    // Borrado Lógico
     public function destroy(int $id)
     {
         $producto = Producto::findOrFail($id);
 
-        // Esto activa el SoftDelete y guarda la fecha en 'deleted_at'
         $producto->delete();
 
         return back()->with('success', '¡Producto removido del catálogo exitosamente!');

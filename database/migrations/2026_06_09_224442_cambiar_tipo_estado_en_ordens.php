@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::table('ordens', function (Blueprint $table) {
 
-            //decimos que 'estado' deje de ser un número y pase a ser texto.
             $table->string('estado')->default('En proceso')->change();
         });
     }

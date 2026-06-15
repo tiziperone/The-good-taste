@@ -13,8 +13,8 @@ class RespuestaConsulta extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public Consulta $consulta; // Le decimos que es un objeto de tipo Consulta
-    public string $respuesta;  // Le decimos que es un texto (string)
+    public Consulta $consulta;
+    public string $respuesta;
 
     public function __construct(Consulta $consulta, string $respuesta)
     {

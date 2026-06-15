@@ -12,14 +12,14 @@ class MisComprasController extends Controller
     {
         $usuarioId = Auth::id();
 
-        // Traemos las compras ordenadas por la más reciente
+        //Traemos las compras ordenadas por la más reciente
         $compras = DB::table('ordens')
             ->where('users_id', $usuarioId)
             ->whereNull('deleted_at')
             ->orderBy('created_at', 'desc')
             ->get();
 
-        // Le adjuntamos a cada compra sus productos asociados
+        //Se ubica a cada compra sus productos asociados
         foreach ($compras as $compra) {
             $compra->detalles = DB::table('item_ordens')
                 ->join('productos', 'item_ordens.productos_id', '=', 'productos.id')

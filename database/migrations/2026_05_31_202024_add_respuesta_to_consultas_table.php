@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('consultas', function (Blueprint $table) {
-            // Agregamos la columna 'respuesta' después de 'mensaje'
             $table->text('respuesta')->nullable()->after('mensaje');
         });
     }
