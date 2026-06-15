@@ -93,7 +93,7 @@
 
             <h3 class="fw-bold mb-4">¿Cómo realizar un pedido?</h3>
 
-            <!-- Paso 1 -->
+            <!--Paso 1-->
             <div class="col-12 col-md-4">
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 1.jpg') }}" class="card-img-top w-100 mx-auto mt-3">

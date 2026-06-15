@@ -334,7 +334,7 @@
             document.getElementById('resumen-nombre').textContent = "{{ Auth::user()->name ?? 'Cliente' }}";
 
             let promesas = [];
-            let direccionFullFrontend = null; // Para mandar al backend
+            let direccionFullFrontend = null;
 
             // 1. Lógica de Dirección
             if (envioElegido === 'retiro') {
@@ -378,7 +378,7 @@
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-bank text-warning me-1"></i> Transferencia / Alias';
             }
 
-            // 3. Vaciado y Confirmación (AHORA ENVIANDO METODO Y DIRECCION)
+            // 3. Vaciado y Confirmación de Compra
             const esCarrito = "{{ request()->has('producto_id') ? 'false' : 'true' }}" === "true";
             const urlParams = new URLSearchParams(window.location.search);
             const productoIdUrl = urlParams.get('producto_id');

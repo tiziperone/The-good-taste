@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
     <style>
-        /* Eliminamos márgenes del body para que el footer ocupe el 100% abajo */
         body,
         html {
             margin: 0;

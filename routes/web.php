@@ -45,12 +45,11 @@ Route::get('terminos-y-usos', function () {
     return view('terminos-y-usos');
 });
 
-// Rutas protegidas por autenticación general
+// Rutas protegidas
 Route::middleware(['auth'])->group(function () {
 
     // Rutas de Compra y Carrito
     Route::get('compra', [CompraController::class, 'index'])->name('compra.index');
-    // RUTA NUEVA: Para guardar direcciones desde el proceso de compra
     Route::post('/guardar-direccion', [CompraController::class, 'guardarDireccionOpcional'])->name('guardar.direccion');
 
     Route::get('carrito', [CarritoController::class, 'index'])->name('carrito.index');
@@ -85,7 +84,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/usuarios', [AdminController::class, 'verUsuarios'])->name('admin.usuarios');
     Route::post('/admin/usuarios/{id}/banear', [AdminController::class, 'banear'])->name('admin.usuarios.banear');
 
-    // RUTAS NUEVAS PARA GESTIÓN DE ROLES (Crear/Quitar Admin)
+    // Gestion de roles (Crear/Quitar Admin)
     Route::post('/admin/usuarios/{id}/hacer-admin', [AdminController::class, 'hacerAdmin'])->name('admin.usuarios.hacerAdmin');
     Route::post('/admin/usuarios/{id}/quitar-admin', [AdminController::class, 'quitarAdmin'])->name('admin.usuarios.quitarAdmin');
 });

@@ -5,7 +5,7 @@
 <script>
     window.addEventListener('scroll', () => {
         const btn = document.getElementById('btnArriba');
-        // Cambiamos 'block' por 'flex' para que el icono quede perfectamente centrado
+        // Cambiamos 'block' por 'flex' para que el icono quede centrado
         if (window.scrollY > 300) {
             btn.style.display = 'flex';
             btn.style.alignItems = 'center';

@@ -96,7 +96,7 @@
       document.querySelectorAll('.btn-requiere-auth').forEach(boton => {
         boton.addEventListener('click', function(e) {
           e.preventDefault();
-          toastMensaje.innerHTML = '⚠️ Debes iniciar sesión para realizar una compra.';
+          toastMensaje.innerHTML = 'Debes iniciar sesión para realizar una compra.';
           toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
           btnVerCarritoToast.classList.add('d-none');
           toast.show();
@@ -108,7 +108,7 @@
           const productoId = this.getAttribute('data-id');
 
           if (!productoId) {
-            toastMensaje.innerHTML = "❌ Error: ID de producto no válido.";
+            toastMensaje.innerHTML = "Error: ID de producto no válido.";
             toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
             btnVerCarritoToast.classList.add('d-none');
             toast.show();
@@ -141,7 +141,7 @@
             })
             .catch(error => {
               console.error('Error:', error);
-              toastMensaje.innerHTML = "❌ Hubo un problema al procesar la solicitud.";
+              toastMensaje.innerHTML = "Hubo un problema al procesar la solicitud.";
               toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
               btnVerCarritoToast.classList.add('d-none');
               toast.show();
@@ -154,7 +154,7 @@
           const productoId = this.getAttribute('data-id');
 
           if (!productoId) {
-            toastMensaje.innerHTML = "❌ Error: ID de producto no válido.";
+            toastMensaje.innerHTML = "Error: ID de producto no válido.";
             toastElement.className = 'toast align-items-center text-bg-danger border-0 shadow';
             toast.show();
             return;

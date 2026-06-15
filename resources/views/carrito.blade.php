@@ -197,7 +197,7 @@
                         })
                         .catch(error => {
                             console.error('Error:', error);
-                            alert('❌ Hubo un error al procesar el cambio de cantidad.');
+                            alert('Hubo un error al procesar el cambio de cantidad.');
                         });
                 });
             });

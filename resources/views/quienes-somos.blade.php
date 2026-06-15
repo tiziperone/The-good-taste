@@ -43,7 +43,6 @@
       width: 60%;
       height: 4px;
       background-color: #ffc107;
-      /* Color warning */
       bottom: 0;
       left: 20%;
       border-radius: 2px;
@@ -73,7 +72,7 @@
   <div class="container py-5">
 
     <div class="text-center mb-4">
-      <span class="subtitulo-esencia">Nuestra Esencia</span><!-- Aqui y en la linea de abajo se aplican estilos predefinidos en el <style> de arriba-->
+      <span class="subtitulo-esencia">Nuestra Esencia</span><!-- Aca y en la linea de abajo se aplican estilos predefinidos en el <style> de arriba-->
       <h1 class="titulo-nosotros">¿Quiénes Somos?</h1>
     </div>
 

@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
     <style>
-        /* Pequeño detalle para que las redes brillen en amarillo al pasar el mouse */
         .hover-warning:hover {
             color: #ffc107 !important;
             transition: color 0.3s ease;
@@ -34,9 +33,7 @@
             background-color: #343a40;
             /* Fondo un poco más claro */
             border-color: rgba(255, 193, 7, 1);
-            /* Borde warning sólido */
             box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
-            /* Glow warning sutil */
             transform: scale(1.05);
         }
     </style>
