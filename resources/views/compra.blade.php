@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image/png">
     <title>The Good Taste - Compra</title>
 
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -149,20 +149,37 @@
                         <div class="card-body p-4">
                             <h4 class="card-title fw-bold text-warning mb-4 pb-2 border-bottom border-secondary">Resumen de Compra</h4>
 
-                            <div class="mb-4 style-scroll" style="max-height: 200px; overflow-y: auto;">
+                            <div class="mb-4 style-scroll" style="max-height: 250px; overflow-y: auto; padding-right: 5px;">
                                 @php $total = 0; @endphp
                                 @foreach($carrito as $item)
                                 @if($item->producto)
                                 @php
-                                $subtotal = $item->producto->precio * $item->cantidad;
+                                $pId = $item->producto->id;
+                                $pNombre = $item->producto->nombre;
+                                $pStock = $item->producto->stock;
+                                $pPrecio = $item->producto->precio;
+                                $pCantidad = $item->cantidad;
+
+                                $subtotal = $pPrecio * $pCantidad;
                                 $total += $subtotal;
+
+                                // Armamos todo el llamado a la funcion en un string de PHP para que VS Code no vea las comas y no se maree
+                                $btnMenos = "cambiarCantidad($pId, -1, $pStock, $pPrecio)";
+                                $btnMas = "cambiarCantidad($pId, 1, $pStock, $pPrecio)";
                                 @endphp
-                                <div class="d-flex justify-content-between align-items-center mb-3 pe-2">
+                                <div class="d-flex justify-content-between align-items-center mb-3" id="item-row-{{ $pId }}">
                                     <div>
-                                        <span class="fw-bold text-light d-block small">{{ $item->producto->nombre }}</span>
-                                        <small class="text-secondary">{{ $item->cantidad }} u. x ${{ number_format($item->producto->precio, 0, ',', '.') }}</small>
+                                        <span class="fw-bold text-light d-block small nombre-producto">{{ $pNombre }}</span>
+                                        <div class="d-flex align-items-center mt-2">
+                                            <button type="button" class="btn btn-sm btn-outline-warning py-0 px-2" onclick="{{ $btnMenos }}"><i class="bi bi-dash"></i></button>
+                                            <input type="number" id="cant-{{ $pId }}" value="{{ $pCantidad }}" class="form-control form-control-sm bg-transparent text-white border-0 text-center p-0 mx-1 shadow-none fw-bold" style="width: 35px;" readonly>
+                                            <button type="button" class="btn btn-sm btn-outline-warning py-0 px-2" onclick="{{ $btnMas }}"><i class="bi bi-plus"></i></button>
+                                        </div>
                                     </div>
-                                    <span class="fw-bold text-warning small">$ {{ number_format($subtotal, 0, ',', '.') }}</span>
+                                    <div class="text-end">
+                                        <span class="fw-bold text-warning small d-block" id="subtotal-{{ $pId }}">$ {{ number_format($subtotal, 0, ',', '.') }}</span>
+                                        <small class="text-secondary" style="font-size: 0.7rem;">Stock: {{ $pStock }}</small>
+                                    </div>
                                 </div>
                                 @endif
                                 @endforeach
@@ -170,7 +187,7 @@
 
                             <div class="d-flex justify-content-between mb-4 fs-4 border-top border-secondary pt-3">
                                 <span class="fw-bold text-warning">Total:</span>
-                                <span class="fw-bold text-warning">$ {{ number_format($total, 0, ',', '.') }}</span>
+                                <span class="fw-bold text-warning" id="total-compra">$ {{ number_format($total, 0, ',', '.') }}</span>
                             </div>
 
                             <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold text-dark shadow py-3">
@@ -206,20 +223,14 @@
                         <hr class="border-secondary my-2">
                         <div>
                             <span class="text-warning small fw-bold text-uppercase">Tus Productos</span>
-                            <div class="mt-2 style-scroll" style="max-height: 120px; overflow-y: auto;">
-                                @foreach($carrito as $item)
-                                @if($item->producto)
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <small class="text-light">{{ $item->cantidad }}x {{ $item->producto->nombre }}</small>
-                                </div>
-                                @endif
-                                @endforeach
+                            <div class="mt-2 style-scroll" style="max-height: 120px; overflow-y: auto;" id="contenedor-productos-modal">
+                                <!-- Se llena dinámicamente con JS antes de abrir -->
                             </div>
                         </div>
                         <hr class="border-secondary my-2">
                         <div class="d-flex justify-content-between align-items-center mt-2">
                             <span class="fw-bold text-white fs-5">Total a abonar</span>
-                            <span class="fw-bold text-warning fs-5">$ {{ number_format($total, 0, ',', '.') }}</span>
+                            <span class="fw-bold text-warning fs-5" id="modal-total-compra">$ {{ number_format($total, 0, ',', '.') }}</span>
                         </div>
                     </div>
                 </div>
@@ -235,6 +246,42 @@
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <script>
+        function cambiarCantidad(prodId, delta, maxStock, precio) {
+            maxStock = parseInt(maxStock);
+            precio = parseFloat(precio);
+
+            const inputCant = document.getElementById('cant-' + prodId);
+            let cant = parseInt(inputCant.value);
+            let nuevaCant = cant + delta;
+
+            if (nuevaCant < 1) nuevaCant = 1;
+
+            if (nuevaCant > maxStock) {
+                nuevaCant = maxStock;
+                alert('No podés agregar más. El stock máximo disponible es ' + maxStock + '.');
+            }
+
+            if (nuevaCant !== cant) {
+                inputCant.value = nuevaCant;
+                document.getElementById('subtotal-' + prodId).innerText = '$ ' + (nuevaCant * precio).toLocaleString('es-AR');
+                actualizarTotal();
+            }
+        }
+
+        function actualizarTotal() {
+            let total = 0;
+            document.querySelectorAll('input[id^="cant-"]').forEach(input => {
+                let prodId = input.id.replace('cant-', '');
+                let subtotalStr = document.getElementById('subtotal-' + prodId).innerText;
+                let subtotal = parseInt(subtotalStr.replace('$ ', '').replace(/\./g, ''));
+                total += subtotal;
+            });
+
+            const totalFormateado = '$ ' + total.toLocaleString('es-AR');
+            document.getElementById('total-compra').innerText = totalFormateado;
+            document.getElementById('modal-total-compra').innerText = totalFormateado;
+        }
+
         function toggleEnvio(isDelivery) {
             const camposDireccion = document.getElementById('campos-direccion');
             const inputCalle = document.getElementById('input-calle');
@@ -333,10 +380,31 @@
 
             document.getElementById('resumen-nombre').textContent = "{{ Auth::user()->name ?? 'Cliente' }}";
 
+            let itemsParaComprar = [];
+            document.querySelectorAll('input[id^="cant-"]').forEach(input => {
+                let prodId = input.id.replace('cant-', '');
+                itemsParaComprar.push({
+                    producto_id: prodId,
+                    cantidad: parseInt(input.value)
+                });
+            });
+
+            const contProductosModal = document.getElementById('contenedor-productos-modal');
+            contProductosModal.innerHTML = '';
+            itemsParaComprar.forEach(item => {
+                let row = document.querySelector('#item-row-' + item.producto_id);
+                if (row) {
+                    let nombre = row.querySelector('.nombre-producto').innerText;
+                    let div = document.createElement('div');
+                    div.className = 'd-flex justify-content-between align-items-center mb-1';
+                    div.innerHTML = `<small class="text-light">${item.cantidad}x ${nombre}</small>`;
+                    contProductosModal.appendChild(div);
+                }
+            });
+
             let promesas = [];
             let direccionFullFrontend = null;
 
-            // 1. Lógica de Dirección
             if (envioElegido === 'retiro') {
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-shop text-warning me-1"></i> Retiro por sucursal';
             } else {
@@ -371,14 +439,12 @@
                 }
             }
 
-            // 2. Lógica de Pago
             if (pagoElegido === 'efectivo') {
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-cash-coin text-warning me-1"></i> Efectivo';
             } else {
                 document.getElementById('resumen-pago').innerHTML = '<i class="bi bi-bank text-warning me-1"></i> Transferencia / Alias';
             }
 
-            // 3. Vaciado y Confirmación de Compra
             const esCarrito = "{{ request()->has('producto_id') ? 'false' : 'true' }}" === "true";
             const urlParams = new URLSearchParams(window.location.search);
             const productoIdUrl = urlParams.get('producto_id');
@@ -392,8 +458,9 @@
                 body: JSON.stringify({
                     es_carrito: esCarrito,
                     producto_id: productoIdUrl,
-                    metodo_envio: envioElegido, // Se manda 'retiro' o 'delivery'
-                    direccion_envio: direccionFullFrontend // Se manda el string o null
+                    items: itemsParaComprar,
+                    metodo_envio: envioElegido,
+                    direccion_envio: direccionFullFrontend
                 })
             }).then(res => res.json()).then(data => {
                 if (!data.success) {
@@ -411,7 +478,10 @@
             }).catch(error => {
                 botonSubmit.disabled = false;
                 console.error('Error procesando compra:', error);
-                alert('No se pudo completar el pedido: \n\n' + error.message);
+                alert('No se pudo completar el pedido:\n\n' + error.message);
+                if (error.message.includes('ya no existe') || error.message.includes('disponible')) {
+                    setTimeout(() => window.location.replace("{{ url('/') }}"), 2000);
+                }
             });
         }
     </script>
@@ -424,6 +494,16 @@
 
         .cursor-pointer {
             cursor: pointer;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
         }
 
         .style-scroll::-webkit-scrollbar {
