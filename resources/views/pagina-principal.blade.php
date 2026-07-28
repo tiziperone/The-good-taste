@@ -92,14 +92,14 @@
     </div>
 
     <div class="container mb-5">
-        <div class="row text-center g-4">
+        <div class="row justify-content-center text-center g-4">
 
-            <div class="col-12 col-md-5">
+            <div class="col-12 col-md-8">
                 <a href="{{ url('/comercializacion') }}" class="text-decoration-none">
-                    <div class="card tarjeta-completa shadow-sm h-100 py-4">
+                    <div class="card tarjeta-completa shadow-sm h-100 py-4 px-3">
                         <i class="bi bi-truck display-3 text-warning mb-2"></i>
                         <h4 class="fw-bold">¿Cómo enviamos?</h4>
-                        <p class="text-light">Información sobre pedidos: entrega, envíos, pagos y como comprar nuestra comida casera.</p>
+                        <p class="text-light mb-0">Información sobre pedidos: entrega, envíos, pagos y como comprar nuestra comida casera.</p>
                     </div>
                 </a>
             </div>
