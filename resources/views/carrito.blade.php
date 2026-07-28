@@ -52,7 +52,7 @@
                                 <tr>
                                     <th scope="col" class="ps-3">Producto</th>
                                     <th scope="col" class="text-center">Precio</th>
-                                    <th scope="col" class="text-center">Cantidad (1kg = 1 unidad)</th>
+                                    <th scope="col" class="text-center">Cantidad</th>
                                     <th scope="col" class="text-center">Subtotal</th>
                                     <th scope="col" class="text-center pe-3">Acciones</th>
                                 </tr>
@@ -81,7 +81,7 @@
                                             </button>
 
                                             <span class="px-3 fw-bold text-white cantidad-val" data-id="{{ $item->id }}">
-                                                {{ $item->cantidad }} kg
+                                                {{ $item->cantidad }}
                                             </span>
 
                                             <button type="button" class="btn btn-sm btn-dark border-0 px-2 btn-actualizar" data-id="{{ $item->id }}" data-accion="incrementar">
@@ -185,7 +185,7 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                document.querySelector(`.cantidad-val[data-id="${id}"]`).innerText = `${data.cantidad} kg`;
+                                document.querySelector(`.cantidad-val[data-id="${id}"]`).innerText = `${data.cantidad}`;
                                 document.querySelector(`.subtotal-val[data-id="${id}"]`).innerText = data.subtotal;
                                 document.querySelector('.total-general-val').innerText = data.totalGeneral;
                             } else {
