@@ -54,13 +54,13 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active" style="max-height: 530px">
-                <img src="{{ url('/Img/BondiolaHome.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Bondiolas">
+                <img src="{{ url('/Img/PastasHome.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Bondiolas">
             </div>
-            <div class="carousel-item" style="max-height: 530px">
+            <!--<div class="carousel-item" style="max-height: 530px">
                 <img src="{{ url('/Img/MilanesaHome.jpg') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 60%;" alt="Milanesas">
-            </div>
+            </div>-->
             <div class="carousel-item" style="max-height: 530px">
-                <img src="{{ url('/Img/PastaHome.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Pastas">
+                <img src="{{ url('/Img/BondiolaHomeProximamente.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Pastas">
             </div>
         </div>
 
@@ -79,7 +79,7 @@
             <div class="col-12 col-md-10">
                 <div class="p-5 rounded-4 border border-warning border-opacity-25 shadow text-center" style="background-color: rgba(255, 255, 255, 0.03);">
                     <h2 class="estilo-marca-2 display-6 fw-bold text-white mb-3">
-                        Bondiola, milanesas y pastas caseras.
+                        Bondiola y pastas caseras.
                     </h2>
                     <p class="fs-4 text-light mb-4">Cocinamos con ingredientes reales para que disfrutes comida de verdad, todos los días.</p>
 
@@ -94,7 +94,7 @@
     <div class="container mb-5">
         <div class="row text-center g-4">
 
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-5">
                 <a href="{{ url('/comercializacion') }}" class="text-decoration-none">
                     <div class="card tarjeta-completa shadow-sm h-100 py-4">
                         <i class="bi bi-truck display-3 text-warning mb-2"></i>
@@ -104,7 +104,7 @@
                 </a>
             </div>
 
-            <div class="col-12 col-md-4">
+            <!--<div class="col-12 col-md-4">
                 <a href="https://wa.me/5493794000000" target="_blank" class="text-decoration-none mt-2">
                     <div class="card tarjeta-completa shadow-sm h-100 py-4">
                         <i class="bi bi-journal-text display-3 text-success mb-2"></i>
@@ -122,7 +122,7 @@
                         <p class="text-light">Conoce a los cocineros.</p>
                     </div>
                 </a>
-            </div>
+            </div>-->
 
         </div>
     </div>

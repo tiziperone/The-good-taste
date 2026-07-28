@@ -55,7 +55,7 @@
                                     <div class="d-flex align-items-center gap-3">
                                         <input type="radio" name="metodo_envio" value="delivery" class="form-check-input text-warning" onclick="toggleEnvio(true)">
                                         <div>
-                                            <span class="d-block fw-bold text-white">Envío a Domicilio (Solo Corrientes Capital)</span>
+                                            <span class="d-block fw-bold text-white">Envío a Domicilio (Solo Florencia Santa Fe)</span>
                                             <small class="text-light opacity-75">Te lo llevamos directo a tu casa</small>
                                         </div>
                                     </div>

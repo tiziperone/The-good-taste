@@ -34,7 +34,7 @@
 
         <div class="row justify-content-center">
             <p class="text-center text-light display-6 mt-3 mb-5">
-                En The Good Taste trabajamos para que disfrutes comida casera...
+                En The Good Taste trabajamos para que disfrutes de comida casera...
             </p>
         </div>
 

@@ -46,7 +46,7 @@
                 <p class="lead border-bottom pb-3 mb-4 text-info">Resumen de Términos y Condiciones</p><!-- Hace que destaque el texto-->
 
                 <div class="lh-base" style="text-align: justify;"><!--Interlineado base (1,5)-->
-                    <p>The Good Taste es un emprendimiento artesanal dedicado a la fabricación y comercialización de productos alimenticios de alta calidad, incluyendo bondiolas, milanesas y pastas. Al utilizar nuestro sitio web, aceptas las condiciones de navegación y los procedimientos de venta detallados a continuación.</p>
+                    <p>The Good Taste es un emprendimiento artesanal dedicado a la fabricación y comercialización de productos alimenticios de alta calidad, incluyendo bondiolas y pastas artesanales. Al utilizar nuestro sitio web, aceptas las condiciones de navegación y los procedimientos de venta detallados a continuación.</p>
 
                     <h3 class="mt-5 mb-3 text-warning">1. Capacidad</h3>
                     <p>Para realizar consultas o registros en nuestro sitio, debes ser mayor de edad con capacidad legal para contratar. Los menores de edad deberán contar con la supervisión de un adulto responsable.</p>
@@ -56,7 +56,7 @@
                     <p><strong>Privacidad:</strong> Hacemos un uso responsable de tu información personal. Los datos recolectados se utilizan exclusivamente para gestionar tus pedidos y mejorar tu experiencia de compra.</p>
 
                     <h3 class="mt-5 mb-3 text-warning">3. Catálogo de Productos y Comercialización</h3>
-                    <p>Los productos visualizados en nuestro catálogo (como nuestras milanesas, bondiolas y pastas) se presentan de manera estática para fines informativos.</p>
+                    <p>Los productos visualizados en nuestro catálogo (como nuestras bondiolas y pastas) se presentan de manera estática para fines informativos.</p>
                     <p><strong>Precios:</strong> Nos reservamos el derecho de modificar los precios y la disponibilidad de los productos sin previo aviso.</p>
                     <p><strong>Fabricación:</strong> Todos los productos son de fabricación propia y artesanal, garantizando la frescura de la materia prima.</p>
 
