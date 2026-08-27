@@ -88,7 +88,7 @@
         @if($tienePastas)
         <div class="col-12 text-center">
             <a href="{{ url('/pastas') }}" class="text-decoration-none">
-                <img src="{{ asset('Img/FotoPastasCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Pastas">
+                <img src="{{ asset('Img/SaborAHogar.jpg') }}" class="w-100 d-block" alt="Foto de Pastas">
             </a>
         </div>
         @endif
