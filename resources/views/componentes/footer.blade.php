@@ -12,7 +12,7 @@
                 <h6 class="text-uppercase fw-bold mb-4 border-bottom border-warning pb-2">Encuéntranos</h6>
                 <p><i class="bi bi-geo-alt-fill me-2 text-warning"></i> Calle 9 de Julio 223.</p>
                 <p><i class="bi bi-globe-americas me-2 text-warning"></i> Florencia Santa Fe, Argentina. CP 3516.</p>
-                <p><i class="bi bi-envelope-fill me-2 text-warning"></i> thegoodtaste@gmail.com</p>
+                <p><i class="bi bi-envelope-fill me-2 text-warning"></i> thegoodtastet@gmail.com</p>
             </div>
 
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center text-md-start">
@@ -36,7 +36,7 @@
         <div class="row text-center text-secondary" style="font-size: 0.9rem;">
             <div class="col-12">
                 <p class="mb-1">© 2026 The Good Taste. Todos los derechos reservados.</p>
-                <p class="mb-0">Titular: Obregón Adrian, Perone Tiziano. | Razón Social: The Good Taste S.R.L. | Domicilio Legal: Calle 9 de Julio 223, Florencia Santa Fe.</p>
+                <p class="mb-0">Titular: Obregón Adrian, Perone Tiziano. | Razón Social: The Good Taste | Domicilio Legal: Florencia Santa Fe.</p>
             </div>
         </div>
     </div>
