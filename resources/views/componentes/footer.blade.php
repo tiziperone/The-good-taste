@@ -20,6 +20,7 @@
                 <div class="d-flex justify-content-center justify-content-md-start gap-4 fs-2 mt-3">
                     <a href="https://www.instagram.com/pastasss.caserasss?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" target="_blank" class="text-white text-decoration-none">
                         <i class="bi bi-instagram hover-warning"></i>
+                        <p><i class="bi bi-geo-alt-fill me-2 text-warning"></i> Para pastas</p>
                     </a>
                     <!--<a href="https://facebook.com/adrian.obregon.3701/" target="_blank" class="text-white text-decoration-none">
                         <i class="bi bi-facebook hover-warning"></i>
