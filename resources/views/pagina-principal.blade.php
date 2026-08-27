@@ -36,6 +36,20 @@
             box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
             transform: scale(1.05);
         }
+
+        .carousel-img-custom {
+            height: 550px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-img-custom {
+                height: auto !important;
+                max-height: 250px;
+                object-fit: contain !important;
+            }
+        }
     </style>
 </head>
 
@@ -49,19 +63,14 @@
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
 
         <div class="carousel-inner">
-            <div class="carousel-item active" style="max-height: 530px">
-                <!-- CAMBIO: url por asset para imágenes locales -->
-                <img src="{{ asset('Img/PastasHome.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Bondiolas">
+            <div class="carousel-item active">
+                <img src="{{ asset('Img/PastasHome.png') }}" class="d-block w-100 carousel-img-custom" alt="Pastas">
             </div>
-            <!--<div class="carousel-item" style="max-height: 530px">
-                <img src="{{ asset('Img/MilanesaHome.jpg') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 60%;" alt="Milanesas">
-            </div>-->
-            <div class="carousel-item" style="max-height: 530px">
-                <img src="{{ asset('Img/BondiolaHomeProximamente.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Pastas">
+            <div class="carousel-item">
+                <img src="{{ asset('Img/BondiolaHomeProximamente.png') }}" class="d-block w-100 carousel-img-custom" alt="Bondiola">
             </div>
         </div>
 
