@@ -11,7 +11,7 @@ class CarritoController extends Controller
 {
     public function index(Request $request)
     {
-        $urlAnterior = url()->previous();
+        $urlAnterior = secure_url()->previous();
 
         if (!str_contains($urlAnterior, '/carrito')) {
             session()->put('url_seguir_comprando', $urlAnterior);

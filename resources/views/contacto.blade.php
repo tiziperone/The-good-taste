@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Contacto</title>
 
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
 
     <style>
         /* Línea divisoria naranja*/
@@ -44,9 +44,9 @@
     <div class="container-xl mt-2">
         <div class="row">
             <div class="col-lg-6 text-center mt-4 mb-5 mb-lg-0 pe-lg-4 divisor-naranja">
-                <img src="{{ url('/Img/LogoOscuro.jpg') }}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo">
+                <img src="{{ secure_url('/Img/LogoOscuro.jpg') }}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo">
 
-                <form action="{{ url('/contacto') }}" method="POST">
+                <form action="{{ secure_url('/contacto') }}" method="POST">
                     @csrf
                     <div class="row mt-4 justify-content-center">
 
@@ -110,7 +110,7 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

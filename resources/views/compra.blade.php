@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image/png">
+    <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image/png">
     <title>The Good Taste - Compra</title>
 
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
 </head>
 
 <body class="bg-dark text-white">
@@ -235,7 +235,7 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0 pt-0 pb-4 px-4">
-                    <a href="{{ url('/mis-compras') }}" class="btn btn-success w-100 fw-bold py-2" style="border-radius: 8px;">Ir a Mis Compras</a>
+                    <a href="{{ secure_url('/mis-compras') }}" class="btn btn-success w-100 fw-bold py-2" style="border-radius: 8px;">Ir a Mis Compras</a>
                 </div>
             </div>
         </div>
@@ -243,7 +243,7 @@
 
     @include('componentes.footer')
 
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <script>
         function cambiarCantidad(prodId, delta, maxStock, precio) {
@@ -420,7 +420,7 @@
                 document.getElementById('resumen-entrega').innerHTML = '<i class="bi bi-house-door text-warning me-1"></i> Envío a: ' + direccionFullFrontend;
 
                 if (guardarFuturaCheckbox && guardarFuturaCheckbox.checked && !document.getElementById('bloque-guardar-direccion').classList.contains('d-none')) {
-                    let promesaDir = fetch("{{ url('/guardar-direccion') }}", {
+                    let promesaDir = fetch("{{ secure_url('/guardar-direccion') }}", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -449,7 +449,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const productoIdUrl = urlParams.get('producto_id');
 
-            let promesaVaciarCarrito = fetch("{{ url('/confirmar-compra') }}", {
+            let promesaVaciarCarrito = fetch("{{ secure_url('/confirmar-compra') }}", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -480,7 +480,7 @@
                 console.error('Error procesando compra:', error);
                 alert('No se pudo completar el pedido:\n\n' + error.message);
                 if (error.message.includes('ya no existe') || error.message.includes('disponible')) {
-                    setTimeout(() => window.location.replace("{{ url('/') }}"), 2000);
+                    setTimeout(() => window.location.replace("{{ secure_url('/') }}"), 2000);
                 }
             });
         }

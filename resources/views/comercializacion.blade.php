@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Comercialización</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
     <!-- Importamos la fuente "Montserrat" desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
@@ -41,7 +41,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card mt-3 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
-                    <img src="{{ asset('Img/repartidor.png') }}" class="card-img-top" alt="Formas de entrega">
+                    <img src="{{ secure_asset('Img/repartidor.png') }}" class="card-img-top" alt="Formas de entrega">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Formas de entrega</h5>
                         <p class="card-text">Ofrecemos distintas opciones para que elijas la que mejor se adapte a vos:</p>
@@ -55,7 +55,7 @@
 
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card mt-3 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
-                    <img src="{{ asset('Img/caja.png') }}" class="card-img-top" alt="Tipos de envío">
+                    <img src="{{ secure_asset('Img/caja.png') }}" class="card-img-top" alt="Tipos de envío">
                     <div class="card-body text-justify">
                         <h5 class="card-title fw-bold">Tipos de envío</h5>
                         <p class="card-text">Nuestros envíos se realizan de manera cuidada para garantizar que los productos lleguen en perfectas condiciones:</p>
@@ -70,7 +70,7 @@
 
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card mt-4 p-3 mx-auto shadow border border-3 border-warning bg-dark text-white" style="width: 20rem;">
-                    <img src="{{ asset('Img/tarjeta-de-credito.png') }}" class="card-img-top" alt="...">
+                    <img src="{{ secure_asset('Img/tarjeta-de-credito.png') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">Formas de pago</h5>
                         <p class="card-text">Aceptamos diferentes medios de pago para tu comodidad:</p>
@@ -96,7 +96,7 @@
             <!--Paso 1-->
             <div class="col-12 col-md-4">
                 <div class="card p-3 shadow h-100">
-                    <img src="{{ asset('Img/imagen 1.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
+                    <img src="{{ secure_asset('Img/imagen 1.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
                         <p class="fw-bold fs-5">1. Vas a catálogo, le das click a la imágen de lo que quieras comer.</p>
                     </div>
@@ -106,7 +106,7 @@
             <!-- Paso 2 -->
             <div class="col-12 col-md-4">
                 <div class="card p-3 shadow h-100">
-                    <img src="{{ asset('Img/imagen 2.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
+                    <img src="{{ secure_asset('Img/imagen 2.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
                         <p class="fw-bold fs-5">2. Le das click a Comprar.</p>
                     </div>
@@ -116,7 +116,7 @@
             <!-- Paso 3 -->
             <div class="col-12 col-md-4">
                 <div class="card p-3 shadow h-100">
-                    <img src="{{ asset('Img/imagen 3.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
+                    <img src="{{ secure_asset('Img/imagen 3.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
                     <div class="card-body">
                         <p class="fw-bold fs-5">3. Por último coordinamos pago y entrega.</p>
                     </div>
@@ -153,7 +153,7 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

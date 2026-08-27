@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Recibido</title>
 
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
 
@@ -44,7 +44,7 @@ tambien se da la posibilidad de volver al inicio del sitio web (pagina principal
                         Hemos recibido tu mensaje. Pronto te responderemos a <strong class="text-warning">{{ $email }}</strong>.
                     </p>
 
-                    <a href="{{ url('/pagina-principal') }}" class="btn btn-warning btn-lg px-5 py-3 shadow-sm rounded fw-bold fs-5 text-dark">
+                    <a href="{{ secure_url('/pagina-principal') }}" class="btn btn-warning btn-lg px-5 py-3 shadow-sm rounded fw-bold fs-5 text-dark">
                         <i class="bi bi-house-door me-2"></i> Volver al Inicio
                     </a>
                 </div>

@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-personalizada">
     <div class="container-fluid">
 
-        <a class="navbar-brand ms-2 mx-sm-4 text-danger-emphasis estilo-marca d-flex align-items-center" href="{{ secure_url('/pagina-principal') }}">
-            <img src="{{ secure_asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
+        <a class="navbar-brand ms-2 mx-sm-4 text-danger-emphasis estilo-marca d-flex align-items-center" href="{{ secure_secure_url('/pagina-principal') }}">
+            <img src="{{ secure_secure_asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
             <span class="estilo-marca">The good taste</span>
         </a>
 
@@ -13,12 +13,12 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav w-100 align-items-center">
 
-                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('pagina-principal') ? 'active text-black' : 'text-black' }}" href="{{ secure_url('/pagina-principal') }}">Inicio</a>
-                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('catalogo') ? 'active text-black' : 'text-black' }}" href="{{ secure_url('/catalogo') }}">Catálogo</a>
-                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('comercializacion') ? 'active text-black' : 'text-black' }}" href="{{ secure_url('/comercializacion') }}">Comercialización</a>
-                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('contacto') ? 'active text-black' : 'text-black' }}" href="{{ secure_url('/contacto') }}">Contáctanos</a>
-                <!--<a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('quienes-somos') ? 'active text-black' : 'text-black' }}" href="{{ secure_url('/quienes-somos') }}">¿Quiénes somos?</a>-->
-                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('terminos-y-usos') ? 'active text-black' : 'text-black' }}" href="{{ secure_url('/terminos-y-usos') }}">Términos y Usos</a>
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('pagina-principal') ? 'active text-black' : 'text-black' }}" href="{{ secure_secure_url('/pagina-principal') }}">Inicio</a>
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('catalogo') ? 'active text-black' : 'text-black' }}" href="{{ secure_secure_url('/catalogo') }}">Catálogo</a>
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('comercializacion') ? 'active text-black' : 'text-black' }}" href="{{ secure_secure_url('/comercializacion') }}">Comercialización</a>
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('contacto') ? 'active text-black' : 'text-black' }}" href="{{ secure_secure_url('/contacto') }}">Contáctanos</a>
+                <!--<a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('quienes-somos') ? 'active text-black' : 'text-black' }}" href="{{ secure_secure_url('/quienes-somos') }}">¿Quiénes somos?</a>-->
+                <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('terminos-y-usos') ? 'active text-black' : 'text-black' }}" href="{{ secure_secure_url('/terminos-y-usos') }}">Términos y Usos</a>
 
                 @auth
                 {{-- Acceso Administrativo --}}
@@ -28,18 +28,18 @@
                 </a>
                 @endif
 
-                <form method="POST" action="{{ secure_url('/cerrar-sesion') }}" id="logout-form" class="d-none">
+                <form method="POST" action="{{ secure_secure_url('/cerrar-sesion') }}" id="logout-form" class="d-none">
                     @csrf
                 </form>
 
                 {{-- MIS COMPRAS: Solo visible para usuarios logueados --}}
-                <a class="nav-link mx-2 ms-lg-auto text-lg pt-1 fs-6 d-flex align-items-center text-black {{ request()->is('mis-compras') ? 'active' : '' }}" href="{{ secure_url('/mis-compras') }}">
+                <a class="nav-link mx-2 ms-lg-auto text-lg pt-1 fs-6 d-flex align-items-center text-black {{ request()->is('mis-compras') ? 'active' : '' }}" href="{{ secure_secure_url('/mis-compras') }}">
                     <i class="bi bi-bag-check-fill me-1"></i> Mis Compras
                 </a>
 
                 {{-- CARRITO --}}
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 d-flex align-items-center text-black position-relative"
-                    href="{{ secure_url('/carrito') }}"
+                    href="{{ secure_secure_url('/carrito') }}"
                     title="Ver mi carrito">
                     <i class="bi bi-cart3 fs-5 align-middle"></i>
                     @if(session('carrito') && count(session('carrito')) > 0)
@@ -51,7 +51,7 @@
 
                 {{-- CERRAR SESIÓN --}}
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 d-flex align-items-center text-black"
-                    href="{{ secure_url('/cerrar-sesion') }}"
+                    href="{{ secure_secure_url('/cerrar-sesion') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <span>Cerrar Sesión</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-box-arrow-right ms-2" viewBox="0 0 16 16">
@@ -62,7 +62,7 @@
                 @endauth
 
                 @guest
-                <a class="nav-link mx-2 ms-lg-auto text-lg pt-1 fs-6 d-flex align-items-center {{ request()->is('inicio-sesion') ? 'active text-black' : 'text-black' }}" href="{{ secure_url('/inicio-sesion') }}">
+                <a class="nav-link mx-2 ms-lg-auto text-lg pt-1 fs-6 d-flex align-items-center {{ request()->is('inicio-sesion') ? 'active text-black' : 'text-black' }}" href="{{ secure_secure_url('/inicio-sesion') }}">
                     <span>Iniciar Sesión</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person-circle ms-2" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />

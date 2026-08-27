@@ -3,7 +3,7 @@
         <div class="row text-center text-md-start justify-content-between">
 
             <div class="col-md-4 col-lg-4 col-xl-4 mx-auto text-center">
-                <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-2 mb-3 shadow" width="120" height="120" alt="The Good Taste Logo" style="object-fit: contain;">
+                <img src="{{ secure_asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-2 mb-3 shadow" width="120" height="120" alt="The Good Taste Logo" style="object-fit: contain;">
                 <h5 class="text-uppercase fw-bold text-warning estilo-marca">The Good Taste</h5>
                 <p>Comida de verdad, con ingredientes reales y mucho cariño.</p>
             </div>

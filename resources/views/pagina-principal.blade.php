@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CAMBIO: asset por secure_asset -->
-    <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="icon" href="{{ secure_secure_asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Home</title>
 
     <!-- CAMBIO: asset por secure_asset -->
-    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ secure_secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- CAMBIO: asset por secure_asset -->
-    <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ secure_secure_asset('css/estilos.css') }}">
 
     <style>
         .hover-warning:hover {
@@ -55,13 +55,13 @@
         <div class="carousel-inner">
             <div class="carousel-item active" style="max-height: 530px">
                 <!-- CAMBIO: url por secure_asset para imágenes locales -->
-                <img src="{{ secure_asset('Img/PastasHome.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Bondiolas">
+                <img src="{{ secure_secure_asset('Img/PastasHome.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Bondiolas">
             </div>
             <!--<div class="carousel-item" style="max-height: 530px">
-                <img src="{{ secure_asset('Img/MilanesaHome.jpg') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 60%;" alt="Milanesas">
+                <img src="{{ secure_secure_asset('Img/MilanesaHome.jpg') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 60%;" alt="Milanesas">
             </div>-->
             <div class="carousel-item" style="max-height: 530px">
-                <img src="{{ secure_asset('Img/BondiolaHomeProximamente.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Pastas">
+                <img src="{{ secure_secure_asset('Img/BondiolaHomeProximamente.png') }}" class="d-block w-100" style="height: 580px; object-fit: cover; object-position: center 50%;" alt="Pastas">
             </div>
         </div>
 
@@ -85,7 +85,7 @@
                     <p class="fs-4 text-light mb-4">Cocinamos con ingredientes reales para que disfrutes comida de verdad, todos los días.</p>
 
                     <!-- CAMBIO: url por secure_url para los links -->
-                    <a href="{{ secure_url('/catalogo') }}" class="btn btn-warning btn-lg px-5 py-3 shadow fw-bold fs-4 text-dark">
+                    <a href="{{ secure_secure_url('/catalogo') }}" class="btn btn-warning btn-lg px-5 py-3 shadow fw-bold fs-4 text-dark">
                         <i class="bi bi-cart2 me-2"></i> ¡Mira nuestras delicias!
                     </a>
                 </div>
@@ -98,7 +98,7 @@
 
             <div class="col-12 col-md-8">
                 <!-- CAMBIO: url por secure_url -->
-                <a href="{{ secure_url('/comercializacion') }}" class="text-decoration-none">
+                <a href="{{ secure_secure_url('/comercializacion') }}" class="text-decoration-none">
                     <div class="card tarjeta-completa shadow-sm h-100 py-4 px-3">
                         <i class="bi bi-truck display-3 text-warning mb-2"></i>
                         <h4 class="fw-bold">¿Cómo enviamos?</h4>
@@ -114,7 +114,7 @@
     @include('componentes.footer')
 
     <!-- CAMBIO: asset por secure_asset -->
-    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ secure_secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
 

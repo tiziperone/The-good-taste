@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Nueva Contraseña</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/estilos.css') }}" rel="stylesheet">
 
     <style>
         body {
@@ -72,7 +72,7 @@
         <div class="card-restablecer">
 
             <div class="text-center mb-4">
-                <img src="{{ asset('Img/LogoOscuro.png') }}" alt="Logo The Good Taste" style="max-width: 80px; height: auto;">
+                <img src="{{ secure_asset('Img/LogoOscuro.png') }}" alt="Logo The Good Taste" style="max-width: 80px; height: auto;">
             </div>
 
             <div class="text-center text-white mb-4">
@@ -122,7 +122,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

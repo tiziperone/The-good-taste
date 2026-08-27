@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>The Good Taste - Verificar Correo</title>
-    <link class="rounded-circle" rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link class="rounded-circle" rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
@@ -117,7 +117,7 @@
                     <div class="mt-2">
                         <p class="small text-white-50 mb-2">¿No recibiste el correo electrónico?</p>
 
-                        <form action="{{ url('/validacion-cuenta') }}" method="POST" id="formReenviar">
+                        <form action="{{ secure_url('/validacion-cuenta') }}" method="POST" id="formReenviar">
                             @csrf
                             <button type="submit" class="btn btn-custom py-2 px-4 shadow-sm">
                                 Reenviar enlace de validación <i class="bi bi-arrow-clockwise ms-1"></i>
@@ -133,7 +133,7 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>
