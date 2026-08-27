@@ -102,7 +102,7 @@
                     <h2 class="estilo-marca-2 display-6 fw-bold text-white mb-3">
                         Bondiola y pastas caseras.
                     </h2>
-                    <p class="fs-4 text-light mb-4">Cocinamos con ingredientes reales para que disfrutes comida de verdad, todos los días.</p>
+                    <p class="fs-4 text-light mb-4">Cocinamos con los ingredientes perfectos para que disfrutes comida de calidad, todos los días.</p>
 
                     <!-- CAMBIO: url por url para los links -->
                     <a href="{{ url('/catalogo') }}" class="btn btn-warning btn-lg px-5 py-3 shadow fw-bold fs-4 text-dark">
