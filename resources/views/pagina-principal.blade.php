@@ -41,12 +41,12 @@
             overflow: hidden;
         }
 
-        /* Celulares: se amplía la altura del contenedor manteniendo el encuadre proporcional */
+        /* Celulares: altura intermedia fija y enfoque superior-izquierdo para recortar y ocultar la esquina inferior derecha */
         .carousel-img-custom {
             width: 100% !important;
-            height: 220px !important;
+            height: 175px !important;
             object-fit: cover !important;
-            object-position: center !important;
+            object-position: left top !important;
         }
 
         /* PC (Escritorio): conserva el ajuste original de 580px y encuadre vertical centrado */
