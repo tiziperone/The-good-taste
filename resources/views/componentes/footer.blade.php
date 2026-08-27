@@ -18,15 +18,15 @@
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center text-md-start">
                 <h6 class="text-uppercase fw-bold mb-4 border-bottom border-warning pb-2">Nuestras Redes</h6>
                 <div class="d-flex justify-content-center justify-content-md-start gap-4 fs-2 mt-3">
-                    <!--<a href="https://instagram.com/elevate.dis" target="_blank" class="text-white text-decoration-none">
+                    <a href="https://www.instagram.com/pastasss.caserasss?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" target="_blank" class="text-white text-decoration-none">
                         <i class="bi bi-instagram hover-warning"></i>
                     </a>
-                    <a href="https://facebook.com/adrian.obregon.3701/" target="_blank" class="text-white text-decoration-none">
+                    <!--<a href="https://facebook.com/adrian.obregon.3701/" target="_blank" class="text-white text-decoration-none">
                         <i class="bi bi-facebook hover-warning"></i>
                     </a>-->
-                    <a href="https://wa.me/5493794000000" target="_blank" class="text-white text-decoration-none">
+                    <!--<a href="https://wa.me/549" target="_blank" class="text-white text-decoration-none">
                         <i class="bi bi-whatsapp hover-warning"></i>
-                    </a>
+                    </a>-->
                 </div>
             </div>
 
