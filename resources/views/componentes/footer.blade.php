@@ -38,7 +38,7 @@
         <div class="row text-center text-secondary" style="font-size: 0.9rem;">
             <div class="col-12">
                 <p class="mb-1">© 2026 The Good Taste. Todos los derechos reservados.</p>
-                <p class="mb-0">Titular: Obregón Adrian, Perone Tiziano. | Razón Social: The Good Taste | Domicilio Legal: Corrientes Capital, Argentina.</p>
+                <p class="mb-0">Titular/es: Obregón Adrian, Perone Tiziano. | Razón Social: The Good Taste | Domicilio Legal: Corrientes Capital, Argentina.</p>
             </div>
         </div>
     </div>

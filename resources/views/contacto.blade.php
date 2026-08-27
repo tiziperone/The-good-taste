@@ -98,7 +98,7 @@
                 <div class="mt-5 p-3 border-top border-warning w-75">
                     <h3 class="fs-5 fw-bold text-warning mb-3">Información Legal</h3>
                     <ul class="list-unstyled text-white-50">
-                        <li class="mb-2"><strong class="text-white">Titular:</strong> Obregón Adrian, Perone Tiziano.</li>
+                        <li class="mb-2"><strong class="text-white">Titular/es:</strong> Obregón Adrian, Perone Tiziano.</li>
                         <li class="mb-2"><strong class="text-white">Nombre: The Good Taste.</strong> The Good Taste</li>
                         <li class="mb-2"><strong class="text-white">Domicilio Legal:</strong> Corrientes Capital, Argentina. </li>
                     </ul>
