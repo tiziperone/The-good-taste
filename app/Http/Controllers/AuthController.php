@@ -30,22 +30,24 @@ class AuthController extends Controller
             'apellido.max' => 'El apellido no puede superar los 20 caracteres.',
         ]);
 
+        // Se crea el usuario ya verificado directamente para evitar el bloqueo SMTP de Render
         $user = User::create([
-            'name'     => $request->nombre,
-            'apellido' => $request->apellido,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-            'role'     => 'user',
-            'active'   => true,
+            'name'              => $request->nombre,
+            'apellido'          => $request->apellido,
+            'email'             => $request->email,
+            'password'          => Hash::make($request->password),
+            'role'              => 'user',
+            'active'            => true,
+            'email_verified_at' => now(), // <-- Nace verificado
         ]);
 
-        session(['email_registro' => $user->email]);
-        $user->notify(new VerificarCuentaNotification());
+        // Autenticamos al usuario automáticamente para que empiece a usar la tienda
+        Auth::login($user);
 
-        return redirect()->route('validacion');
+        return redirect('/pagina-principal')->with('message', '¡Bienvenido a The Good Taste! Tu cuenta ha sido creada con éxito.');
     }
 
-    // 2. Para cuando el usuario hace click en su gmail
+    // 2. Para cuando el usuario hace click en su gmail (si se usa verificación manual)
     public function verificarCorreo(int $id, Request $request): RedirectResponse
     {
         $user = User::findOrFail($id);
@@ -53,31 +55,30 @@ class AuthController extends Controller
         if (!$user->email_verified_at) {
             $user->email_verified_at = now();
             $user->save();
-            Auth::login($user);
-
-            return redirect('/pagina-principal')->with('message', '¡Cuenta verificada con éxito! Bienvenido.');
         }
 
-        return redirect('/inicio-sesion');
+        Auth::login($user);
+        return redirect('/pagina-principal')->with('message', '¡Cuenta verificada con éxito! Bienvenido.');
     }
 
     // Para reenviar el correo
     public function reenviarCorreo(): RedirectResponse
     {
-        $email = session('email_registro');
+        $email = session('email_registro') ?? auth()->user()?->email;
 
         if ($email) {
             $user = User::where('email', $email)->first();
-            if ($user && !$user->email_verified_at) {
-                $user->notify(new VerificarCuentaNotification());
-                return back()->with('message', '¡Te hemos reenviado el enlace de validación a tu Gmail!');
+            if ($user) {
+                $user->email_verified_at = now();
+                $user->save();
+                return redirect('/inicio-sesion')->with('message', 'Tu cuenta ha sido validada.');
             }
         }
 
-        return back()->withErrors(['error' => 'No se pudo reenviar el correo. Por favor intente registrarse de nuevo.']);
+        return back()->withErrors(['error' => 'No se pudo reenviar el correo.']);
     }
 
-    // Procesa el inico de sesion
+    // Procesa el inicio de sesion
     public function login(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
@@ -95,9 +96,10 @@ class AuthController extends Controller
             return back()->withErrors(['password_incorrecta' => true])->withInput();
         }
 
+        // Si por alguna razón el usuario viejo no tiene email_verified_at, lo validamos al instante
         if (is_null($user->email_verified_at)) {
-            session(['email_registro' => $user->email]);
-            return redirect()->route('validacion')->with('message', 'Debes verificar tu cuenta en tu correo antes de ingresar.');
+            $user->email_verified_at = now();
+            $user->save();
         }
 
         $remember = $request->has('remember');
@@ -114,7 +116,7 @@ class AuthController extends Controller
         return back()->withErrors(['auth_failed' => true])->withInput();
     }
 
-    //Procesar el cierre de sesion
+    // Procesar el cierre de sesion
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
@@ -123,7 +125,6 @@ class AuthController extends Controller
 
         return redirect('/pagina-principal');
     }
-
 
     // Recuperar contraseña
     public function enviarEnlaceRecuperacion(Request $request): RedirectResponse
@@ -143,8 +144,8 @@ class AuthController extends Controller
                 'created_at' => now()
             ]
         );
-        $url = route('password.reset', ['token' => $token, 'email' => $request->email]);
 
+        $url = route('password.reset', ['token' => $token, 'email' => $request->email]);
 
         $textoHtml = "
         <div style='background-color: #212529; color: white; padding: 20px; font-family: sans-serif; border-radius: 10px;'>
@@ -154,14 +155,18 @@ class AuthController extends Controller
             <br>
             <small style='color: #6c757d;'>Si no funciona el enlace, copia y pega esto en tu navegador: {$url}</small>
         </div>
-    ";
+        ";
 
-        Mail::html($textoHtml, function ($message) use ($request) {
-            $message->to($request->email);
-            $message->subject('Restablecer Contraseña - The Good Taste');
-        });
-
-        return back()->with('message', '¡Perfecto! Te enviamos el enlace de recuperación a tu correo electrónico.');
+        try {
+            Mail::html($textoHtml, function ($message) use ($request) {
+                $message->to($request->email);
+                $message->subject('Restablecer Contraseña - The Good Taste');
+            });
+            return back()->with('message', '¡Perfecto! Te enviamos el enlace de recuperación a tu correo electrónico.');
+        } catch (\Exception $e) {
+            // Si el servidor de Render bloquea el envío de correo, no rompemos la app
+            return back()->with('message', 'Solicitud recibida. Si el servicio de correo está disponible, recibirás el enlace.');
+        }
     }
 
     // Ingresar nueva contraseña
@@ -199,6 +204,6 @@ class AuthController extends Controller
 
         DB::table('password_reset_tokens')->where('email', $request->email)->delete();
 
-        return redirect()->route('login')->with('message', '¡Tu contraseña ha sido cambiada con éxito! Ya podés iniciar sesión.');
+        return redirect()->route('inicio-sesion')->with('message', '¡Tu contraseña ha sido cambiada con éxito! Ya podés iniciar sesión.');
     }
 }
