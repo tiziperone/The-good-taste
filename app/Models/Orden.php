@@ -13,8 +13,8 @@ class Orden extends Model
         'users_id',
         'total',
         'estado',
-        'metodo_pago',
-        'tipo_envio',
+        'forma_pago',
+        'metodo_envio',
         'direccion_envio'
     ];
 
