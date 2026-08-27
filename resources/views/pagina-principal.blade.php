@@ -41,15 +41,15 @@
             overflow: hidden;
         }
 
-        /* Celulares: ancla arriba y recorta la parte inferior */
+        /* Celulares: corta la parte inferior de la tabla manteniendo el ancho completo */
         .carousel-img-custom {
             width: 100% !important;
-            height: 185px !important;
+            height: 155px !important;
             object-fit: cover !important;
             object-position: center top !important;
         }
 
-        /* Escritorio (PC): restaura la altura y posición normal */
+        /* Escritorio (PC): altura y encuadre normal */
         @media (min-width: 768px) {
             .carousel-img-custom {
                 height: 530px !important;
