@@ -78,7 +78,7 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('Img/PastasHome.png') }}" class="d-block w-100 carousel-img-custom" alt="Pastas">
+                <img src="{{ asset('Img/PastasHome1.png') }}" class="d-block w-100 carousel-img-custom" alt="Pastas">
             </div>
             <div class="carousel-item">
                 <img src="{{ asset('Img/BondiolaHomeProximamente.png') }}" class="d-block w-100 carousel-img-custom" alt="Bondiola">
