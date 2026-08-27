@@ -101,9 +101,21 @@
 
             @if($tienePastas)
             <div class="col-12 col-lg-10">
-                <a href="{{ url('/pastas') }}" class="catalogo-banner-link">
-                    <div class="banner-pastas-wrapper">
-                        <img src="{{ asset('Img/SaborAHogar.jpg') }}" class="banner-pastas-img" alt="Foto de Pastas">
+                <a href="{{ url('/pastas') }}" class="text-decoration-none">
+                    <!-- Banner fabricado con HTML/CSS -->
+                    <div class="w-100 rounded-3 shadow overflow-hidden d-flex align-items-center p-0" style="height: 180px; background-color: #1a1d20; border: 1px solid rgba(255,193,7, 0.2); transition: transform 0.3s ease;">
+
+                        <!-- Logo Sabor a Hogar a la izquierda -->
+                        <div class="h-100" style="width: 40%; background-color: #f7f3ec; display: flex; align-items: center; justify-content: center;">
+                            <img src="{{ asset('Img/SaborAHogar.jpg') }}" alt="Sabor a Hogar" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                        </div>
+
+                        <!-- Texto a la derecha -->
+                        <div style="width: 60%;" class="px-4 text-start">
+                            <h3 class="estilo-marca-2 text-warning mb-1" style="font-size: 2rem;">PASTAS</h3>
+                            <p class="text-light mb-0" style="font-size: 0.9rem; letter-spacing: 1px;">EL VERDADERO SABOR A HOGAR</p>
+                        </div>
+
                     </div>
                 </a>
             </div>
