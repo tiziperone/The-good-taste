@@ -100,7 +100,7 @@
                     <ul class="list-unstyled text-white-50">
                         <li class="mb-2"><strong class="text-white">Titular:</strong> Obregón Adrian, Perone Tiziano.</li>
                         <li class="mb-2"><strong class="text-white">Nombre: The Good Taste.</strong> The Good Taste</li>
-                        <li class="mb-2"><strong class="text-white">Domicilio Legal:</strong> Calle 9 de Julio N° 223, Florencia Santa Fe. </li>
+                        <li class="mb-2"><strong class="text-white">Domicilio Legal:</strong> Corrientes Capital, Argentina. </li>
                     </ul>
                 </div>
             </div>
