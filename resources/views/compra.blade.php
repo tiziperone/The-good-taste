@@ -45,7 +45,7 @@
                                         <input type="radio" name="metodo_envio" value="retiro" class="form-check-input text-warning" checked onclick="toggleEnvio(false)">
                                         <div>
                                             <span class="d-block fw-bold text-white">Retiro por Local</span>
-                                            <small class="text-light opacity-75">Pasás a buscarlo listo por nuestra sucursal</small>
+                                            <small class="text-light opacity-75">Pasás a buscarlo listo por nuestro local</small>
                                         </div>
                                     </div>
                                     <span class="badge bg-warning text-dark fw-bold">Gratis</span>
@@ -55,7 +55,7 @@
                                     <div class="d-flex align-items-center gap-3">
                                         <input type="radio" name="metodo_envio" value="delivery" class="form-check-input text-warning" onclick="toggleEnvio(true)">
                                         <div>
-                                            <span class="d-block fw-bold text-white">Envío a Domicilio (Solo Florencia Santa Fe)</span>
+                                            <span class="d-block fw-bold text-white">Envío a Domicilio (De momento, solo Florencia Santa Fe)</span>
                                             <small class="text-light opacity-75">Te lo llevamos directo a tu casa</small>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@
                                 <div class="row g-3">
                                     <div class="col-12 col-md-6">
                                         <label class="form-label text-secondary small fw-bold">Calle</label>
-                                        <input type="text" id="input-calle" name="calle" class="form-control bg-secondary text-white border-0" placeholder="Ej: Av. Rivadavia">
+                                        <input type="text" id="input-calle" name="calle" class="form-control bg-secondary text-white border-0" placeholder="Ej: 9 de Julio">
                                     </div>
                                     <div class="col-12 col-md-3">
                                         <label class="form-label text-secondary small fw-bold">Altura / Número</label>
@@ -134,7 +134,7 @@
                                         <input type="radio" name="metodo_pago" value="transferencia" class="form-check-input">
                                         <div>
                                             <span class="d-block fw-bold text-white"><i class="bi bi-bank text-warning me-1"></i> Transferencia / Alias</span>
-                                            <small class="text-light opacity-75">Te enviaremos los datos CBU</small>
+                                            <small class="text-light opacity-75">Te enviaremos los datos de transferencia a tu correo!</small>
                                         </div>
                                     </label>
                                 </div>
@@ -224,7 +224,6 @@
                         <div>
                             <span class="text-warning small fw-bold text-uppercase">Tus Productos</span>
                             <div class="mt-2 style-scroll" style="max-height: 120px; overflow-y: auto;" id="contenedor-productos-modal">
-                                <!-- Se llena dinámicamente con JS antes de abrir -->
                             </div>
                         </div>
                         <hr class="border-secondary my-2">
