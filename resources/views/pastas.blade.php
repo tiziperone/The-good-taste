@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
+  <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
   <title>The Good Taste - Pastas</title>
 
-  <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
 <body class="bg-dark">
@@ -31,7 +31,7 @@
       @foreach($pastas as $pasta)
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
-          <img src="{{ secure_asset($pasta->url_imagen ? $pasta->url_imagen : 'Img/SorrentinosTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $pasta->nombre }}">
+          <img src="{{ asset($pasta->url_imagen ? $pasta->url_imagen : 'Img/SorrentinosTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $pasta->nombre }}">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold text-warning">{{ $pasta->nombre }}</h5>
             <p class="card-text text-light flex-grow-1">{{ $pasta->descripcion ?? 'Exquisitas pastas artesanales hechas con mucha dedicación.' }}</p>
@@ -78,13 +78,13 @@
     <div id="toastCarrito" class="toast align-items-center text-bg-success border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
       <div class="d-flex p-2 align-items-center">
         <div class="toast-body flex-grow-1" id="toastMensaje"></div>
-        <a href="{{ secure_url('/carrito') }}" id="btnVerCarritoToast" class="btn btn-light btn-sm fw-bold me-2 shadow-sm text-success">Ver Carrito</a>
+        <a href="{{ url('/carrito') }}" id="btnVerCarritoToast" class="btn btn-light btn-sm fw-bold me-2 shadow-sm text-success">Ver Carrito</a>
         <button type="button" class="btn-close btn-close-white m-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
   </div>
 
-  <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {

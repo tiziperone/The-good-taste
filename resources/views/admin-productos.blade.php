@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Gestión de Productos</title>
 
-    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
     <style>
         .sidebar-menu .nav-link {
@@ -128,7 +128,7 @@
                                     <td class="ps-3">#{{ $prod->id }}</td>
                                     <td>
                                         <div class="d-flex align-items-center gap-2">
-                                            <img src="{{ secure_asset($prod->url_imagen ?? 'Img/LogoOscuro.png') }}" style="width:40px; height:40px; object-fit:cover; border-radius:5px; border: 1px solid #6c757d;">
+                                            <img src="{{ asset($prod->url_imagen ?? 'Img/LogoOscuro.png') }}" style="width:40px; height:40px; object-fit:cover; border-radius:5px; border: 1px solid #6c757d;">
                                             <span class="fw-bold">{{ $prod->nombre }}</span>
                                         </div>
                                     </td>
@@ -346,7 +346,7 @@
         </div>
     </div>
 
-    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')

@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Mis Compras</title>
 
-    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
 <body class="bg-dark text-white">
@@ -86,7 +86,7 @@
                                     @foreach($compra->detalles as $detalle)
                                     <tr>
                                         <td style="width: 40px;">
-                                            <img src="{{ secure_asset($detalle->url_imagen ?? 'Img/BondiolaTarjetaSinPimenton.png') }}" alt="Producto" class="rounded" style="width: 40px; height: 40px; object-fit: cover;">
+                                            <img src="{{ asset($detalle->url_imagen ?? 'Img/BondiolaTarjetaSinPimenton.png') }}" alt="Producto" class="rounded" style="width: 40px; height: 40px; object-fit: cover;">
                                         </td>
                                         <td>{{ $detalle->nombre ?? 'Producto Eliminado' }}</td>
                                         <td class="text-center text-secondary">{{ $detalle->cantidad }} u/kg</td>
@@ -114,7 +114,7 @@
                 Cuando realices y confirmes un pedido, el historial detallado de tus compras aparecerá acá.
             </p>
             <div>
-                <a href="{{ secure_url('/catalogo') }}" class="btn btn-warning fw-bold text-dark px-4 py-2 shadow">
+                <a href="{{ url('/catalogo') }}" class="btn btn-warning fw-bold text-dark px-4 py-2 shadow">
                     Ir al Catálogo
                 </a>
             </div>
@@ -126,7 +126,7 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <style>
         .custom-accordion .accordion-button::after {

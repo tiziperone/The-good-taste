@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
+  <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
   <title>The Good Taste - Nosotros</title>
 
-  <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
   <style>
     /* Efecto para que se "levanten" las tarjetas con nuestras fotos*/
@@ -109,7 +109,7 @@
     <div class="row justify-content-center g-4">
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
         <div class="card card-hover p-2 text-dark" style="width: 20rem;">
-          <img src="{{ secure_asset('Img/tizianoperone.png') }}" class="card-img-top" style="height: 400px; object-fit: cover;" alt="Tiziano Perone">
+          <img src="{{ asset('Img/tizianoperone.png') }}" class="card-img-top" style="height: 400px; object-fit: cover;" alt="Tiziano Perone">
           <div class="card-body">
             <h5 class="card-title fw-bold">Tiziano Perone</h5>
             <p class="card-text text-muted fw-bold" style="text-align: justify;">Tengo 20 años, soy de Florencia Sta. Fe, actual estudiante de Lic. en Sistemas en la ciudad de Corrientes. Me especializo en la elaboración artesanal de embutidos (bondiola).</p>
@@ -119,7 +119,7 @@
 
       <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
         <div class="card card-hover p-2 text-dark" style="width: 20rem;">
-          <img src="{{ secure_asset('Img/adrianobregon.png') }}" class="card-img-top" style="height: 400px; object-fit: cover;" alt="Adrián Obregón">
+          <img src="{{ asset('Img/adrianobregon.png') }}" class="card-img-top" style="height: 400px; object-fit: cover;" alt="Adrián Obregón">
           <div class="card-body">
             <h5 class="card-title fw-bold">Adrián Obregón</h5>
             <p class="card-text text-muted fw-bold" style="text-align: justify;">Tengo 22 años, soy estudiante de Lic. en Sistemas, vivo en San Luis del Palmar, Corrientes. Me especializo en hacer las milanesas de carne.</p>
@@ -133,7 +133,7 @@
   @include('componentes.footer')
   </div>
 
-  <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Carrito</title>
 
-    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
 <body class="bg-dark text-white">
@@ -68,7 +68,7 @@
                                 <tr>
                                     <td class="ps-3">
                                         <div class="d-flex align-items-center gap-3">
-                                            <img src="{{ secure_asset($item->producto->url_imagen ?? 'Img/BondiolaTarjetaSinPimenton.png') }}" alt="{{ $item->producto->nombre }}" class="rounded shadow-sm" style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #ffc107;">
+                                            <img src="{{ asset($item->producto->url_imagen ?? 'Img/BondiolaTarjetaSinPimenton.png') }}" alt="{{ $item->producto->nombre }}" class="rounded shadow-sm" style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #ffc107;">
                                             <span class="fw-bold text-light">{{ $item->producto->nombre }}</span>
                                         </div>
                                     </td>
@@ -107,7 +107,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between mt-3">
-                    <a href="{{ session('url_seguir_comprando', secure_url('/')) }}" class="btn btn-outline-light fw-bold">
+                    <a href="{{ session('url_seguir_comprando', url('/')) }}" class="btn btn-outline-light fw-bold">
                         <i class="bi bi-arrow-left me-2"></i> Seguir Comprando
                     </a>
                     <form action="{{ route('carrito.vaciar') }}" method="POST" onsubmit="return confirm('¿Seguro querés vaciar todo el carrito?');">
@@ -151,7 +151,7 @@
                 ¡Todavía no agregaste ninguna de nuestras bondiolas caseras, milanesas o pastas artesanales! Date un gusto visitando nuestro catálogo.
             </p>
             <div>
-                <a href="{{ session('url_seguir_comprando', secure_url('/')) }}" class="btn btn-warning fw-bold text-dark px-4 py-2 shadow">
+                <a href="{{ session('url_seguir_comprando', url('/')) }}" class="btn btn-warning fw-bold text-dark px-4 py-2 shadow">
                     Volver al Catálogo
                 </a>
             </div>
@@ -162,7 +162,7 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

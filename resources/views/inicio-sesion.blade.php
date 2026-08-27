@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>The Good Taste - Inicio de sesion</title>
-    <link class="rounded-circle" rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link class="rounded-circle" rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
@@ -75,7 +75,7 @@
                 <div class="alert alert-warning alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
                     ¡Vaya! No encontramos ninguna cuenta con ese correo.
-                    <a href="{{ secure_url('/registro') }}" class="alert-link text-decoration-underline">¿Quieres registrarte ahora?</a>
+                    <a href="{{ url('/registro') }}" class="alert-link text-decoration-underline">¿Quieres registrarte ahora?</a>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
@@ -99,12 +99,12 @@
 
                 <div class="card login-card p-4">
                     <div class="text-center my-3">
-                        <img src="{{ secure_url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-1 mx-auto d-block mb-3" width="70" height="70" alt="logo">
+                        <img src="{{ url('/Img/LogoOscuro.jpg')}}" class="rounded-circle p-1 mx-auto d-block mb-3" width="70" height="70" alt="logo">
                         <h2 class="fw-bold tracking-tight">¡Bienvenido!</h2>
                         <p class="text-white-50 small">Ingresa tus credenciales para continuar</p>
                     </div>
 
-                    <form action="{{ secure_url('/inicio-sesion') }}" method="POST">
+                    <form action="{{ url('/inicio-sesion') }}" method="POST">
                         @csrf
 
                         <div class="mb-3">
@@ -122,7 +122,7 @@
                                 <input type="password" name="password" id="password" class="form-control bg-dark text-white border-secondary" placeholder="********" required>
                             </div>
                             <div class="text-end mt-2">
-                                <a href="{{ secure_url('/recuperar-contrasena') }}" class="text-decoration-none" style="color: #6c757d;">¿Olvidaste tu contraseña?</a>
+                                <a href="{{ url('/recuperar-contrasena') }}" class="text-decoration-none" style="color: #6c757d;">¿Olvidaste tu contraseña?</a>
                             </div>
                         </div>
 
@@ -139,7 +139,7 @@
                     </form>
 
                     <div class="text-center mt-4">
-                        <p class="small text-white-50 mb-0">¿Aún no tienes cuenta? <a href="{{ secure_url('/registro') }}" class="text-link fw-bold">Regístrate</a></p>
+                        <p class="small text-white-50 mb-0">¿Aún no tienes cuenta? <a href="{{ url('/registro') }}" class="text-link fw-bold">Regístrate</a></p>
                     </div>
 
                 </div>
@@ -150,7 +150,7 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

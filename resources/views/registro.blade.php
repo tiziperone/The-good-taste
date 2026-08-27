@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>The Good Taste - Registro</title>
-    <link class="rounded-circle" rel="icon" href="{{ secure_asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link class="rounded-circle" rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="{{ secure_asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ secure_asset('css/estilos.css') }}">
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
@@ -83,12 +83,12 @@
 
                 <div class="card register-card p-4">
                     <div class="text-center my-2">
-                        <img src="{{ secure_url('/Img/LogoOscuro.jpg') }}" class="rounded-circle p-1 mx-auto d-block mb-3" width="70" height="70" alt="logo">
+                        <img src="{{ url('/Img/LogoOscuro.jpg') }}" class="rounded-circle p-1 mx-auto d-block mb-3" width="70" height="70" alt="logo">
                         <h2 class="fw-bold tracking-tight">Crea tu Cuenta</h2>
                         <p class="text-white-50 small">Regístrate para disfrutar de "The Good Taste"</p>
                     </div>
 
-                    <form action="{{ secure_url('/registro') }}" method="POST">
+                    <form action="{{ url('/registro') }}" method="POST">
                         @csrf
 
                         <div class="row">
@@ -136,7 +136,7 @@
                         <div class="mb-4 form-check">
                             <input type="checkbox" class="form-check-input" id="terminos" name="terminos" required>
                             <label class="form-check-label small text-white-50" for="terminos">
-                                Acepto los <a href="{{ secure_url('/terminos-y-usos') }}" class="text-link" target="_blank">Términos y Usos</a> de la plataforma.
+                                Acepto los <a href="{{ url('/terminos-y-usos') }}" class="text-link" target="_blank">Términos y Usos</a> de la plataforma.
                             </label>
                         </div>
 
@@ -148,7 +148,7 @@
                     </form>
 
                     <div class="text-center mt-4">
-                        <p class="small text-white-50 mb-0">¿Ya tienes una cuenta? <a href="{{ secure_url('/inicio-sesion') }}" class="text-link fw-bold">Inicia Sesión</a></p>
+                        <p class="small text-white-50 mb-0">¿Ya tienes una cuenta? <a href="{{ url('/inicio-sesion') }}" class="text-link fw-bold">Inicia Sesión</a></p>
                     </div>
 
                 </div>
@@ -159,7 +159,7 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <script>
         function validarContrasenas() {
