@@ -131,10 +131,10 @@
                                     </td>
 
                                     <td>
-                                        @if(isset($pedido->metodo_envio) && $pedido->metodo_envio === 'delivery')
+                                        @if(isset($pedido->tipo_envio) && $pedido->tipo_envio === 'delivery')
                                         <span class="badge bg-info text-dark mb-1"><i class="bi bi-truck me-1"></i>A Domicilio</span><br>
                                         <small class="text-light" style="font-size: 0.8rem;"><i class="bi bi-geo-alt-fill text-warning me-1"></i>{{ $pedido->direccion_envio ?? 'Dirección no especificada' }}</small>
-                                        @elseif(isset($pedido->metodo_envio) && $pedido->metodo_envio === 'retiro')
+                                        @elseif(isset($pedido->tipo_envio) && $pedido->tipo_envio === 'retiro')
                                         <span class="badge bg-secondary"><i class="bi bi-shop me-1"></i>Retiro en Local</span>
                                         @else
                                         <span class="badge bg-dark border border-secondary text-secondary">Dato no registrado</span>
@@ -142,15 +142,21 @@
                                     </td>
 
                                     <td>
-                                        @if(isset($pedido->forma_pago))
-                                        <span class="badge bg-primary text-white"><i class="bi bi-credit-card-fill me-1"></i>{{ ucfirst($pedido->forma_pago) }}</span>
+                                        @if(!empty($pedido->metodo_pago))
+                                        <span class="badge bg-primary text-white"><i class="bi bi-credit-card-fill me-1"></i>{{ ucfirst($pedido->metodo_pago) }}</span>
                                         @else
                                         <span class="badge bg-dark border border-secondary text-secondary">No especificada</span>
                                         @endif
                                     </td>
 
                                     <td>
-                                        @if(isset($pedido->detalles) && count($pedido->detalles) > 0)
+                                        @if(isset($pedido->items) && count($pedido->items) > 0)
+                                        <ul class="mb-0 ps-3 small text-light" style="list-style-type: circle;">
+                                            @foreach($pedido->items as $item)
+                                            <li>{{ $item->cantidad }}x {{ $item->producto->nombre ?? ($item->nombre ?? 'Producto') }}</li>
+                                            @endforeach
+                                        </ul>
+                                        @elseif(isset($pedido->detalles) && count($pedido->detalles) > 0)
                                         <ul class="mb-0 ps-3 small text-light" style="list-style-type: circle;">
                                             @foreach($pedido->detalles as $detalle)
                                             <li>{{ $detalle->cantidad }}x {{ $detalle->nombre ?? 'Producto Eliminado' }}</li>
