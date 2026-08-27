@@ -109,6 +109,7 @@
                                     <th>Fecha y Hora</th>
                                     <th>Usuario</th>
                                     <th>Entrega</th>
+                                    <th>Forma de Pago</th>
                                     <th>Productos</th>
                                     <th>Total</th>
                                     <th class="pe-3">Acción (Estado)</th>
@@ -141,6 +142,14 @@
                                     </td>
 
                                     <td>
+                                        @if(isset($pedido->forma_pago))
+                                        <span class="badge bg-primary text-white"><i class="bi bi-credit-card-fill me-1"></i>{{ ucfirst($pedido->forma_pago) }}</span>
+                                        @else
+                                        <span class="badge bg-dark border border-secondary text-secondary">No especificada</span>
+                                        @endif
+                                    </td>
+
+                                    <td>
                                         @if(isset($pedido->detalles) && count($pedido->detalles) > 0)
                                         <ul class="mb-0 ps-3 small text-light" style="list-style-type: circle;">
                                             @foreach($pedido->detalles as $detalle)
@@ -160,6 +169,7 @@
                                             @method('PUT')
 
                                             <select name="estado" class="form-select form-select-sm bg-dark text-white border-warning" onchange="this.form.submit()" required>
+                                                <option value="Sin confirmar" {{ $pedido->estado == 'Sin confirmar' ? 'selected' : '' }}>Sin confirmar</option>
                                                 <option value="En proceso" {{ $pedido->estado == 'En proceso' ? 'selected' : '' }}>En proceso</option>
                                                 <option value="Listo para enviar/retirar" {{ $pedido->estado == 'Listo para enviar/retirar' ? 'selected' : '' }}>Listo para enviar/retirar</option>
                                                 <option value="Enviado" {{ $pedido->estado == 'Enviado' ? 'selected' : '' }}>Enviado</option>
@@ -170,7 +180,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="7" class="text-center py-5 text-secondary">
+                                    <td colspan="8" class="text-center py-5 text-secondary">
                                         <i class="bi bi-bag-x fs-1 d-block mb-2"></i> No hay pedidos registrados en el sistema.
                                     </td>
                                 </tr>
