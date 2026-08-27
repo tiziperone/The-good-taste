@@ -121,13 +121,17 @@ class CompraController extends Controller
             }
         }
 
+        // Captura el método o forma de pago enviado por el formulario
+        $formaPago = $request->input('forma_pago') ?? $request->input('metodo_pago') ?? null;
+
         DB::beginTransaction();
 
         try {
             $idOrden = DB::table('ordens')->insertGetId([
                 'users_id' => $usuario->id,
                 'total' => $totalGeneral,
-                'estado' => 'En proceso',
+                'estado' => 'Sin confirmar', // Estado por defecto
+                'forma_pago' => $formaPago,  // Se guarda el pago
                 'metodo_envio' => $request->input('metodo_envio', 'retiro'),
                 'direccion_envio' => $request->input('direccion_envio', null),
                 'created_at' => now(),

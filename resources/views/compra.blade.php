@@ -163,7 +163,6 @@
                                 $subtotal = $pPrecio * $pCantidad;
                                 $total += $subtotal;
 
-                                // Armamos todo el llamado a la funcion en un string de PHP para que VS Code no vea las comas y no se maree
                                 $btnMenos = "cambiarCantidad($pId, -1, $pStock, $pPrecio)";
                                 $btnMas = "cambiarCantidad($pId, 1, $pStock, $pPrecio)";
                                 @endphp
@@ -459,6 +458,8 @@
                     producto_id: productoIdUrl,
                     items: itemsParaComprar,
                     metodo_envio: envioElegido,
+                    forma_pago: pagoElegido,
+                    metodo_pago: pagoElegido,
                     direccion_envio: direccionFullFrontend
                 })
             }).then(res => res.json()).then(data => {
