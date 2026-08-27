@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\URL; // <-- Importación fundamental
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (app()->environment('production')) {
+        // Forzamos HTTPS siempre que la app no esté corriendo de forma local en tu PC
+        if (env('APP_ENV') !== 'local') {
             URL::forceScheme('https');
         }
     }
