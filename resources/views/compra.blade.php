@@ -233,7 +233,14 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0 pt-0 pb-4 px-4">
-                    <a href="{{ url('/mis-compras') }}" class="btn btn-success w-100 fw-bold py-2" style="border-radius: 8px;">Ir a Mis Compras</a>
+                    <div class="d-flex flex-column flex-sm-row gap-2 w-100">
+                        <a href="{{ url('/') }}" class="btn btn-outline-warning fw-bold py-2 w-100" style="border-radius: 8px;">
+                            <i class="bi bi-house-door-fill me-1"></i> Ir al Inicio
+                        </a>
+                        <a href="{{ url('/mis-compras') }}" class="btn btn-success fw-bold py-2 w-100" style="border-radius: 8px;">
+                            <i class="bi bi-bag-check-fill me-1"></i> Ir a Mis Compras
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
