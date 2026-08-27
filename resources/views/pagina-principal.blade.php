@@ -37,19 +37,23 @@
             transform: scale(1.05);
         }
 
-        /* Celulares: ancho completo y altura automática para que la imagen se vea entera sin recortes */
-        .carousel-img-custom {
-            width: 100% !important;
-            height: auto !important;
-            max-height: none !important;
-            object-fit: contain !important;
+        .carousel-item {
+            overflow: hidden;
         }
 
-        /* Escritorio (PC): altura fija para mantener el diseño del banner */
+        /* Celulares: ancla arriba y recorta la parte inferior */
+        .carousel-img-custom {
+            width: 100% !important;
+            height: 185px !important;
+            object-fit: cover !important;
+            object-position: center top !important;
+        }
+
+        /* Escritorio (PC): restaura la altura y posición normal */
         @media (min-width: 768px) {
             .carousel-img-custom {
                 height: 530px !important;
-                object-fit: cover !important;
+                object-position: center 30% !important;
             }
         }
     </style>
