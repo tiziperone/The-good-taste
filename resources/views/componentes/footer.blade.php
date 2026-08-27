@@ -10,7 +10,7 @@
 
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
                 <h6 class="text-uppercase fw-bold mb-4 border-bottom border-warning pb-2">Encuéntranos</h6>
-                <p><i class="bi bi-geo-alt-fill me-2 text-warning"></i> Calle 9 de Julio.</p>
+                <!--<p><i class="bi bi-geo-alt-fill me-2 text-warning"></i> Calle 9 de Julio.</p>-->
                 <p><i class="bi bi-globe-americas me-2 text-warning"></i> Florencia Santa Fe, Argentina. CP 3516.</p>
                 <p><i class="bi bi-envelope-fill me-2 text-warning"></i> thegoodtastet@gmail.com</p>
             </div>
