@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,9 +10,11 @@
     <title>The Good Taste - Recibido</title>
 
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
+    <!-- CSS Propio -->
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
 <body class="bg-dark">
@@ -22,17 +25,16 @@
         @include('componentes.botonesAtrasAdelante')
     </div>
 
-    <hr class="border-warning border-2 opacity-100">
+    <hr class="border-warning border-2 opacity-100 mt-0 mb-0">
 
-    <!--Se realiza una estructura de columnas para mostrar que el mensaje se envio con exito
-tambien se da la posibilidad de volver al inicio del sitio web (pagina principal)-->
+    <!-- Mensaje de éxito -->
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
-            <div class="col-10 col-md-8 text-center">
+            <div class="col-11 col-md-8 text-center">
 
                 <div class="p-5 rounded-4 shadow-lg" style="background-color: #2b3035; border: 1px solid rgba(255, 193, 7, 0.2);">
 
-                    <i class="bi bi-check-circle-fill text-success mb-4" style="font-size: 5rem; filter: drop-shadow(0 0 10px rgba(25, 135, 84, 0.5));"></i>
+                    <i class="bi bi-check-circle-fill text-success mb-4 d-inline-block" style="font-size: 5rem; filter: drop-shadow(0 0 10px rgba(25, 135, 84, 0.5));"></i>
 
                     <h2 class="fw-bold text-white mb-3 estilo-marca-2 display-6">¡Mensaje enviado con éxito!</h2>
 
@@ -56,6 +58,8 @@ tambien se da la posibilidad de volver al inicio del sitio web (pagina principal
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
+    <!-- JS de Bootstrap -->
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

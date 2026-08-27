@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,52 +15,53 @@
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
     <style>
-        .catalogo-item {
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .catalogo-item img {
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .catalogo-item:hover img {
-            transform: scale(1.02);
-            z-index: 10;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Imágenes horizontales (Bondiola / Milanesas) */
-        .img-banner-horizontal {
+        .catalogo-banner-link {
+            display: block;
             width: 100%;
-            height: 220px;
+            text-decoration: none;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .catalogo-banner-link:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 193, 7, 0.2);
+        }
+
+        /* Formato estándar de banner para todas las opciones del catálogo */
+        .banner-menu-img {
+            width: 100%;
+            height: 180px;
             object-fit: cover;
             object-position: center;
+            display: block;
         }
 
-        /* Imagen/Logo de Pastas (Sabor a Hogar): no se recorta */
-        .img-pastas-catalogo {
+        /* Banner de pastas: mantiene el mismo tamaño de banner pero muestra el logo centrado completo */
+        .banner-pastas-wrapper {
+            width: 100%;
+            height: 180px;
+            background-color: #f7f3ec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner-pastas-img {
+            height: 100%;
             width: auto;
-            max-width: 90%;
-            height: 280px;
+            max-width: 100%;
             object-fit: contain;
-            border-radius: 12px;
         }
 
-        /* En Computadoras / Pantallas grandes */
+        /* Ajustes para pantalla de computadora (PC) */
         @media (min-width: 768px) {
-            .img-banner-horizontal {
-                height: 420px;
-            }
 
-            .img-pastas-catalogo {
-                height: 480px;
-                max-width: 100%;
+            .banner-menu-img,
+            .banner-pastas-wrapper {
+                height: 320px;
             }
         }
     </style>
@@ -79,28 +81,30 @@
     </div>
 
     <div class="container py-4">
-        <div class="row g-4 justify-content-center">
+        <div class="row justify-content-center g-4">
 
             @if($tieneBondiolas)
-            <div class="col-12 text-center catalogo-item">
-                <a href="{{ url('/bondiola') }}" class="text-decoration-none w-100">
-                    <img src="{{ asset('Img/FotoBondiolaCatalogo.jpg') }}" class="img-banner-horizontal d-block mx-auto rounded-3 shadow" alt="Foto de Bondiola">
+            <div class="col-12 col-lg-10">
+                <a href="{{ url('/bondiola') }}" class="catalogo-banner-link">
+                    <img src="{{ asset('Img/FotoBondiolaCatalogo.jpg') }}" class="banner-menu-img" alt="Foto de Bondiola">
                 </a>
             </div>
             @endif
 
             @if($tieneMilanesas)
-            <div class="col-12 text-center catalogo-item">
-                <a href="{{ url('/milanesas') }}" class="text-decoration-none w-100">
-                    <img src="{{ asset('Img/FotoMilanesaCatalogo.jpg') }}" class="img-banner-horizontal d-block mx-auto rounded-3 shadow" alt="Foto de Milanesa">
+            <div class="col-12 col-lg-10">
+                <a href="{{ url('/milanesas') }}" class="catalogo-banner-link">
+                    <img src="{{ asset('Img/FotoMilanesaCatalogo.jpg') }}" class="banner-menu-img" alt="Foto de Milanesa">
                 </a>
             </div>
             @endif
 
             @if($tienePastas)
-            <div class="col-12 text-center catalogo-item py-2">
-                <a href="{{ url('/pastas') }}" class="text-decoration-none">
-                    <img src="{{ asset('Img/SaborAHogar.jpg') }}" class="img-pastas-catalogo d-block mx-auto shadow" alt="Foto de Pastas">
+            <div class="col-12 col-lg-10">
+                <a href="{{ url('/pastas') }}" class="catalogo-banner-link">
+                    <div class="banner-pastas-wrapper">
+                        <img src="{{ asset('Img/SaborAHogar.jpg') }}" class="banner-pastas-img" alt="Foto de Pastas">
+                    </div>
                 </a>
             </div>
             @endif
