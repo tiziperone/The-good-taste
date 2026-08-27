@@ -17,10 +17,10 @@
 
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center text-md-start">
                 <h6 class="text-uppercase fw-bold mb-4 border-bottom border-warning pb-2">Nuestras Redes</h6>
-                <div class="d-flex justify-content-center justify-content-md-start gap-4 fs-2 mt-3">
-                    <a href="https://www.instagram.com/pastasss.caserasss?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" target="_blank" class="text-white text-decoration-none">
-                        <i class="bi bi-instagram hover-warning"></i>
-                        <p><i class="bi bi-geo-alt-fill me-2 text-warning"></i> Para pastas</p>
+                <div class="d-flex justify-content-center justify-content-md-start mt-3">
+                    <a href="https://www.instagram.com/pastasss.caserasss?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" target="_blank" class="text-white text-decoration-none d-flex align-items-center gap-2">
+                        <i class="bi bi-instagram fs-2 hover-warning text-warning"></i>
+                        <span class="fs-6">Para ver más sobre las deliciosas pastas caseras</span>
                     </a>
                     <!--<a href="https://facebook.com/adrian.obregon.3701/" target="_blank" class="text-white text-decoration-none">
                         <i class="bi bi-facebook hover-warning"></i>
