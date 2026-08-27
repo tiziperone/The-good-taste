@@ -41,19 +41,24 @@
             overflow: hidden;
         }
 
-        /* Celulares: corta la parte inferior de la tabla manteniendo el ancho completo */
+        /* Celulares: recorta un poco más la parte inferior manteniendo todo centrado arriba */
         .carousel-img-custom {
             width: 100% !important;
-            height: 155px !important;
+            height: 135px !important;
             object-fit: cover !important;
             object-position: center top !important;
         }
 
-        /* Escritorio (PC): altura y encuadre normal */
+        /* PC (Escritorio): conserva el ajuste original de 580px y encuadre vertical centrado */
         @media (min-width: 768px) {
+            .carousel-item {
+                max-height: 530px;
+            }
+
             .carousel-img-custom {
-                height: 530px !important;
-                object-position: center 30% !important;
+                height: 580px !important;
+                object-fit: cover !important;
+                object-position: center 50% !important;
             }
         }
     </style>
