@@ -25,10 +25,31 @@
   <hr class="border-warning border-2 opacity-100">
 
   <div class="container mt-5 mb-5">
-    <div class="row justify-content-center g-4">
+    @if(isset($pastas) && $pastas->count() > 0)
+    @php
+    // Filtramos y agrupamos estrictamente por Fideos, Ravioles y Sorrentinos
+    $grupos = $pastas->groupBy(function($item) {
+    $nombre = mb_strtolower($item->nombre);
+    if (str_contains($nombre, 'fideo')) return 'Fideos';
+    if (str_contains($nombre, 'raviol')) return 'Ravioles';
+    if (str_contains($nombre, 'sorrentino')) return 'Sorrentinos';
+    return null;
+    })->filter(function($items, $key) {
+    return !empty($key);
+    });
+    @endphp
 
-      @if(isset($pastas) && $pastas->count() > 0)
-      @foreach($pastas as $pasta)
+    @forelse($grupos as $categoria => $productos)
+    <div class="row mt-4 mb-3">
+      <div class="col-12">
+        <h2 class="text-warning fw-bold border-bottom border-secondary pb-2">
+          <i class="bi bi-tag-fill me-2 fs-4"></i>{{ $categoria }}
+        </h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-start g-4 mb-5">
+      @foreach($productos as $pasta)
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
           <img src="{{ asset($pasta->url_imagen ? $pasta->url_imagen : 'Img/SorrentinosTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $pasta->nombre }}">
@@ -64,14 +85,20 @@
         </div>
       </div>
       @endforeach
-      @else
-      <div class="col-12 text-center text-light">
-        <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary"></i>
-        <p class="fs-5">Por el momento no tenemos pastas disponibles en el catálogo. ¡Vuelve pronto!</p>
-      </div>
-      @endif
-
     </div>
+    @empty
+    <div class="col-12 text-center text-light">
+      <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary"></i>
+      <p class="fs-5">Por el momento no tenemos pastas disponibles en el catálogo. ¡Vuelve pronto!</p>
+    </div>
+    @endforelse
+
+    @else
+    <div class="col-12 text-center text-light">
+      <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary"></i>
+      <p class="fs-5">Por el momento no tenemos pastas disponibles en el catálogo. ¡Vuelve pronto!</p>
+    </div>
+    @endif
   </div>
 
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
