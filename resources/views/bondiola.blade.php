@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -8,9 +8,14 @@
   <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
   <title>The Good Taste - Bondiolas</title>
 
+  <!-- Conexión anticipada a Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
@@ -31,7 +36,7 @@
       @foreach($bondiolas as $bondiola)
       <div class="col-12 col-md-5 col-lg-4">
         <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
-          <img src="{{ asset($bondiola->url_imagen ? $bondiola->url_imagen : 'Img/BondiolaTarjetaSinPimenton.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $bondiola->nombre }}">
+          <img src="{{ asset($bondiola->url_imagen ? $bondiola->url_imagen : 'Img/BondiolaTarjetaSinPimenton.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $bondiola->nombre }}" loading="lazy">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold text-warning">{{ $bondiola->nombre }}</h5>
             <p class="card-text text-light flex-grow-1">{{ $bondiola->descripcion ?? 'Fiambre especial para compartir en picadas y comidas.' }}</p>

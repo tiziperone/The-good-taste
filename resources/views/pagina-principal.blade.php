@@ -6,16 +6,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CAMBIO: asset por asset -->
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Home</title>
 
-    <!-- CAMBIO: asset por asset -->
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Conexión anticipada a Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- CAMBIO: asset por asset -->
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
+    <!-- Priorización de la imagen principal del banner -->
+    <link rel="preload" as="image" href="{{ asset('Img/PastasHome.png') }}" fetchpriority="high">
 
     <style>
         .hover-warning:hover {
@@ -41,7 +46,6 @@
             overflow: hidden;
         }
 
-        /* Celulares: altura intermedia fija y enfoque superior-izquierdo para recortar y ocultar la esquina inferior derecha */
         .carousel-img-custom {
             width: 100% !important;
             height: 175px !important;
@@ -49,7 +53,6 @@
             object-position: left top !important;
         }
 
-        /* PC (Escritorio): conserva el ajuste original de 580px y encuadre vertical centrado */
         @media (min-width: 768px) {
             .carousel-item {
                 max-height: 530px;
@@ -78,10 +81,10 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('Img/PastasHome.png') }}" class="d-block w-100 carousel-img-custom" alt="Pastas">
+                <img src="{{ asset('Img/PastasHome.png') }}" class="d-block w-100 carousel-img-custom" alt="Pastas" fetchpriority="high">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('Img/BondiolaHomeProximamente.png') }}" class="d-block w-100 carousel-img-custom" alt="Bondiola">
+                <img src="{{ asset('Img/BondiolaHomeProximamente.png') }}" class="d-block w-100 carousel-img-custom" alt="Bondiola" loading="lazy">
             </div>
         </div>
 
@@ -104,7 +107,6 @@
                     </h2>
                     <p class="fs-4 text-light mb-4">Cocinamos con los ingredientes perfectos para que disfrutes comida de calidad, todos los días.</p>
 
-                    <!-- CAMBIO: url por url para los links -->
                     <a href="{{ url('/catalogo') }}" class="btn btn-warning btn-lg px-5 py-3 shadow fw-bold fs-4 text-dark">
                         <i class="bi bi-cart2 me-2"></i> ¡Mira nuestras delicias!
                     </a>
@@ -115,9 +117,7 @@
 
     <div class="container mb-5">
         <div class="row justify-content-center text-center g-4">
-
             <div class="col-12 col-md-8">
-                <!-- CAMBIO: url por url -->
                 <a href="{{ url('/comercializacion') }}" class="text-decoration-none">
                     <div class="card tarjeta-completa shadow-sm h-100 py-4 px-3">
                         <i class="bi bi-truck display-3 text-warning mb-2"></i>
@@ -126,16 +126,13 @@
                     </div>
                 </a>
             </div>
-
         </div>
     </div>
 
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <!-- CAMBIO: asset por asset -->
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
 </body>
 
 </html>

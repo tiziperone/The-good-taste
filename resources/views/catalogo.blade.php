@@ -8,9 +8,14 @@
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Catálogo</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Conexión anticipada a Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
     <style>
@@ -23,12 +28,10 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             z-index: 1;
-
             width: 100%;
             height: auto;
             max-height: 65vh;
             object-fit: cover;
-
             object-position: 5% center;
         }
 
@@ -72,7 +75,7 @@
         @if($tieneBondiolas)
         <div class="col-12 text-center">
             <a href="{{ url('/bondiola') }}" class="text-decoration-none">
-                <img src="{{ asset('Img/FotoBondiolaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Bondiola">
+                <img src="{{ asset('Img/FotoBondiolaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Bondiola" fetchpriority="high">
             </a>
         </div>
         @endif
@@ -80,7 +83,7 @@
         @if($tieneMilanesas)
         <div class="col-12 text-center">
             <a href="{{ url('/milanesas') }}" class="text-decoration-none">
-                <img src="{{ asset('Img/FotoMilanesaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Milanesa">
+                <img src="{{ asset('Img/FotoMilanesaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Milanesa" loading="lazy">
             </a>
         </div>
         @endif
@@ -88,7 +91,7 @@
         @if($tienePastas)
         <div class="col-12 text-center">
             <a href="{{ url('/pastas') }}" class="text-decoration-none">
-                <img src="{{ asset('Img/SaborAHogar.jpg') }}" class="w-100 d-block" alt="Foto de Pastas">
+                <img src="{{ asset('Img/SaborAHogar.jpg') }}" class="w-100 d-block" alt="Foto de Pastas" loading="lazy">
             </a>
         </div>
         @endif
