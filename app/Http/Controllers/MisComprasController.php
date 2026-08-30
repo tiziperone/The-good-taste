@@ -12,21 +12,25 @@ class MisComprasController extends Controller
     {
         $usuarioId = Auth::id();
 
-        //Traemos las compras ordenadas por la más reciente
         $compras = DB::table('ordens')
             ->where('users_id', $usuarioId)
             ->whereNull('deleted_at')
             ->orderBy('created_at', 'desc')
             ->get();
 
-        //Se ubica a cada compra sus productos asociados
+        // CORRECCIÓN VELOCIDAD: Cargar detalles en una sola consulta para evitar saturar la base de datos
+        $comprasIds = $compras->pluck('id');
+
+        $todosLosDetalles = DB::table('item_ordens')
+            ->join('productos', 'item_ordens.productos_id', '=', 'productos.id')
+            ->whereIn('item_ordens.ordens_id', $comprasIds)
+            ->whereNull('item_ordens.deleted_at')
+            ->select('item_ordens.*', 'productos.nombre', 'productos.url_imagen')
+            ->get()
+            ->groupBy('ordens_id');
+
         foreach ($compras as $compra) {
-            $compra->detalles = DB::table('item_ordens')
-                ->join('productos', 'item_ordens.productos_id', '=', 'productos.id')
-                ->where('item_ordens.ordens_id', $compra->id)
-                ->whereNull('item_ordens.deleted_at')
-                ->select('item_ordens.*', 'productos.nombre', 'productos.url_imagen')
-                ->get();
+            $compra->detalles = $todosLosDetalles->get($compra->id, collect());
         }
 
         return view('mis-compras', compact('compras'));

@@ -14,15 +14,12 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    //Admin principal
     public function index()
     {
         if (Auth::user()->role !== 'admin') {
             return redirect('/')->with('error', 'Acceso denegado.');
         }
-
         $consultas = Consulta::all();
-
         return view('admin', compact('consultas'));
     }
 
@@ -49,7 +46,6 @@ class AdminController extends Controller
 
         $productos = $queryProductos->get();
         $productosEliminados = Producto::onlyTrashed()->orderBy('deleted_at', $ordenEliminados)->get();
-
         $consultas = Consulta::all();
 
         return view('admin-productos', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
@@ -62,18 +58,22 @@ class AdminController extends Controller
         }
 
         $pedidos = Orden::with('user')->orderBy('created_at', 'desc')->get();
-
-        // Le adjuntamos a cada pedido sus productos asociados para que la vista los muestre
-        foreach ($pedidos as $pedido) {
-            $pedido->detalles = DB::table('item_ordens')
-                ->join('productos', 'item_ordens.productos_id', '=', 'productos.id')
-                ->where('item_ordens.ordens_id', $pedido->id)
-                ->whereNull('item_ordens.deleted_at')
-                ->select('item_ordens.*', 'productos.nombre')
-                ->get();
-        }
-
         $consultas = Consulta::all();
+
+        // CORRECCIÓN VELOCIDAD: Se agrupan las consultas a la DB para evitar hacer N peticiones.
+        $pedidosIds = $pedidos->pluck('id');
+
+        $todosLosDetalles = DB::table('item_ordens')
+            ->join('productos', 'item_ordens.productos_id', '=', 'productos.id')
+            ->whereIn('item_ordens.ordens_id', $pedidosIds)
+            ->whereNull('item_ordens.deleted_at')
+            ->select('item_ordens.*', 'productos.nombre')
+            ->get()
+            ->groupBy('ordens_id');
+
+        foreach ($pedidos as $pedido) {
+            $pedido->detalles = $todosLosDetalles->get($pedido->id, collect());
+        }
 
         return view('admin-pedidos', compact('pedidos', 'consultas'));
     }
@@ -84,15 +84,9 @@ class AdminController extends Controller
             return redirect('/')->with('error', 'Acceso denegado.');
         }
 
-        $request->validate([
-            'estado' => 'required|string'
-        ]);
-
+        $request->validate(['estado' => 'required|string']);
         $pedido = Orden::findOrFail($id);
-
         $estadoNuevo = $request->estado === '0' ? 'En proceso' : $request->estado;
-
-        // La nueva lista de estados permitidos generalizados
         $estadosPermitidos = ['En proceso', 'Listo para enviar/retirar', 'Enviado', 'Entregado/retirado'];
 
         if (in_array($estadoNuevo, $estadosPermitidos)) {
@@ -109,7 +103,8 @@ class AdminController extends Controller
             return redirect('/')->with('error', 'Acceso denegado.');
         }
 
-        $consultas = Consulta::orderBy('created_at', 'desc')->get();
+        // CORRECCIÓN VELOCIDAD: Se carga el usuario asociado al mismo tiempo
+        $consultas = Consulta::with('user')->orderBy('created_at', 'desc')->get();
         return view('admin-consultas', compact('consultas'));
     }
 
@@ -205,7 +200,6 @@ class AdminController extends Controller
         }
 
         $request->validate(['respuesta' => 'required|string']);
-
         $consulta = Consulta::findOrFail($id);
 
         $consulta->update([
@@ -237,8 +231,7 @@ class AdminController extends Controller
         }
 
         $producto = Producto::onlyTrashed()->findOrFail($id);
-        $producto->restore(); // Esto le quita el deleted_at
-
+        $producto->restore();
 
         $producto->activo = true;
         $producto->created_at = now();
@@ -247,17 +240,14 @@ class AdminController extends Controller
         return back()->with('success', 'Producto reactivado correctamente. ¡Vuelve a estar en el catálogo!');
     }
 
-
     public function verUsuarios()
     {
         if (Auth::user()->role !== 'admin') {
             return redirect('/')->with('error', 'Acceso denegado.');
         }
 
-        // Separamos a los administradores de los usuarios regulares basados en el campo 'role'
         $administradores = User::where('role', 'admin')->get();
         $usuarios = User::where('role', '!=', 'admin')->orWhereNull('role')->get();
-
         $consultas = Consulta::all();
 
         return view('admin-usuarios', compact('administradores', 'usuarios', 'consultas'));
@@ -270,7 +260,6 @@ class AdminController extends Controller
         }
 
         $usuario = User::findOrFail($id);
-
         $usuario->role = 'admin';
         $usuario->save();
 
@@ -284,7 +273,6 @@ class AdminController extends Controller
         }
 
         $usuario = User::findOrFail($id);
-
 
         if ($usuario->id === Auth::id()) {
             return back()->with('error', 'No puedes quitarte tus propios permisos de administrador.');
@@ -304,7 +292,6 @@ class AdminController extends Controller
 
         $usuario = User::findOrFail($id);
 
-        // Para que el admin no se auto baneé 
         if ($usuario->id === Auth::id()) {
             return back()->with('error', 'No puedes banearte a ti mismo.');
         }
