@@ -19,14 +19,15 @@ class AuthController extends Controller
         $request->validate([
             'nombre'   => 'required|string|max:20',
             'apellido' => 'required|string|max:20',
-            'email'    => 'required|string|email|max:255|unique:users',
+            'email'    => 'required|string|email:rfc,dns|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'terminos' => 'required',
         ], [
-            'email.unique' => 'Este correo ya se encuentra registrado.',
+            'email.unique'       => 'Este correo ya se encuentra registrado.',
+            'email.email'        => 'El correo electrónico ingresado no es válido o su dominio no existe.',
             'password.confirmed' => 'Las contraseñas no coinciden.',
-            'nombre.max' => 'El nombre no puede superar los 20 caracteres.',
-            'apellido.max' => 'El apellido no puede superar los 20 caracteres.',
+            'nombre.max'         => 'El nombre no puede superar los 20 caracteres.',
+            'apellido.max'       => 'El apellido no puede superar los 20 caracteres.',
         ]);
 
         $user = User::create([

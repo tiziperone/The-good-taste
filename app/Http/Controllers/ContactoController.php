@@ -15,20 +15,23 @@ class ContactoController extends Controller
             'mensaje' => 'required|string',
         ];
 
-        // Si es invitado (no está logueado), le exigimos que complete nombre y correo
+        $mensajes = [
+            'email.email' => 'Por favor, ingresa un correo electrónico real con un dominio válido.',
+        ];
+
+        // Si es invitado, le exigimos nombre y validamos que su dominio de correo sea real
         if (!Auth::check()) {
             $reglas['nombre'] = 'required|string|max:255';
-            $reglas['email']  = 'required|email|max:255';
+            $reglas['email']  = 'required|email:rfc,dns|max:255';
         }
 
-        $request->validate($reglas);
+        $request->validate($reglas, $mensajes);
 
         $nombre = Auth::check() ? Auth::user()->name : $request->nombre;
         $email  = Auth::check() ? Auth::user()->email : $request->email;
 
-        //Guardado en la base de datos
         Consulta::create([
-            'users_id' => Auth::id(), // Devuelve null si no está logueado
+            'users_id' => Auth::id(),
             'nombre'   => $nombre,
             'email'    => $email,
             'asunto'   => $request->asunto,
