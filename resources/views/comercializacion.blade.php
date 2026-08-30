@@ -4,16 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Comercialización</title>
+
+    <!-- Optimización de carga -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
-    <!-- Importamos la fuente "Montserrat" desde Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
+    <!-- Scripts en head con defer -->
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZcgoEq3ZZ1OOFf/X9g5N0M6uF32TijFw1QvQ8FkL/z1OBO6X3/1FhT/41z4f6x" defer></script>
 </head>
 
 <body class="bg-dark">
@@ -27,10 +32,7 @@
     <hr class="border-warning border-2 opacity-100">
 
     <div class="container">
-
-        <h1 class="text-center text-light display-3 mt-5 fw-bold">
-            Comercialización
-        </h1>
+        <h1 class="text-center text-light display-3 mt-5 fw-bold">Comercialización</h1>
 
         <div class="row justify-content-center">
             <p class="text-center text-light display-6 mt-3 mb-5">
@@ -84,16 +86,8 @@
             </div>
         </div>
 
-
-
-
-
-
         <div class="row justify-content-center mt-5 text-center">
-
             <h3 class="fw-bold mb-4">¿Cómo realizar un pedido?</h3>
-
-            <!--Paso 1-->
             <div class="col-12 col-md-4">
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 1.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
@@ -102,8 +96,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Paso 2 -->
             <div class="col-12 col-md-4">
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 2.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
@@ -112,8 +104,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Paso 3 -->
             <div class="col-12 col-md-4">
                 <div class="card p-3 shadow h-100">
                     <img src="{{ asset('Img/imagen 3.jpg') }}" class="card-img-top w-100 mx-auto mt-3">
@@ -122,38 +112,29 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="row justify-content-center mt-5 mb-3">
             <div class="col-md-6">
                 <div class="card p-4 shadow text-center bg-warning text-dark border border-3 border-dark">
-
                     <h5 class="fw-bold mb-3">
                         <i class="bi bi-exclamation-triangle-fill">
                             <p class="titulo-black text-dark">Información importante</p>
                         </i>
-
                     </h5>
-
                     <p class="texto-bold fw-bold mb-3 text-dark">
                         Todos nuestros productos son caseros. Se recomienda pedir con anticipación.
                         Los tiempos de entrega pueden variar según la demanda.
                     </p>
-
                 </div>
             </div>
         </div>
 
     </div>
 
-
-    </div>
-
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

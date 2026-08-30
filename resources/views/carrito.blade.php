@@ -4,14 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Carrito</title>
 
+    <!-- Optimización de carga -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
+    <!-- Scripts en head con defer -->
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZcgoEq3ZZ1OOFf/X9g5N0M6uF32TijFw1QvQ8FkL/z1OBO6X3/1FhT/41z4f6x" defer></script>
 </head>
 
 <body class="bg-dark text-white">
@@ -27,7 +34,6 @@
     <div class="container mt-5 mb-5">
         <h2 class="fw-bold text-warning mb-4" style="font-family: 'Montserrat', sans-serif;">🛒 Tu Carrito de Compras</h2>
 
-        {{-- Mensajes de Servidor --}}
         @if(session('error'))
         <div class="alert alert-danger alert-dismissible fade show border-start border-danger border-5 bg-dark text-white shadow mb-4" role="alert">
             <i class="bi bi-exclamation-triangle-fill text-danger me-2"></i> {{ session('error') }}
@@ -59,7 +65,6 @@
                             </thead>
                             <tbody>
                                 @php $total = 0; @endphp
-
                                 @foreach($carrito as $item)
                                 @php
                                 $subtotal = $item->producto->precio * $item->cantidad;
@@ -73,23 +78,19 @@
                                         </div>
                                     </td>
                                     <td class="text-center">$ {{ number_format($item->producto->precio, 0, ',', '.') }}</td>
-
                                     <td class="text-center">
                                         <div class="d-inline-flex align-items-center bg-secondary rounded overflow-hidden shadow-sm" style="border: 1px solid #6c757d;">
                                             <button type="button" class="btn btn-sm btn-dark border-0 px-2 btn-actualizar" data-id="{{ $item->id }}" data-accion="decrementar">
                                                 <i class="bi bi-minus-lg text-warning"></i>
                                             </button>
-
                                             <span class="px-3 fw-bold text-white cantidad-val" data-id="{{ $item->id }}">
                                                 {{ $item->cantidad }}
                                             </span>
-
                                             <button type="button" class="btn btn-sm btn-dark border-0 px-2 btn-actualizar" data-id="{{ $item->id }}" data-accion="incrementar">
                                                 <i class="bi bi-plus-lg text-warning"></i>
                                             </button>
                                         </div>
                                     </td>
-
                                     <td class="text-center fw-bold text-warning subtotal-val" data-id="{{ $item->id }}">$ {{ number_format($subtotal, 0, ',', '.') }}</td>
                                     <td class="text-center pe-3">
                                         <form action="{{ route('carrito.eliminar', $item->id) }}" method="POST" onsubmit="return confirm('¿Querés quitar este producto del carrito?');">
@@ -121,17 +122,14 @@
                 <div class="card text-bg-dark border-warning shadow h-100">
                     <div class="card-body d-flex flex-column p-4">
                         <h4 class="card-title fw-bold text-warning mb-4 pb-2 border-bottom border-secondary">Resumen del Pedido</h4>
-
                         <div class="d-flex justify-content-between mb-3 fs-5">
                             <span class="text-secondary">Productos:</span>
                             <span class="fw-bold text-light">{{ $carrito->count() }}</span>
                         </div>
-
                         <div class="d-flex justify-content-between mb-4 fs-4 border-top border-secondary pt-3">
                             <span class="fw-bold text-warning">Total:</span>
                             <span class="fw-bold text-warning total-general-val">$ {{ number_format($total, 0, ',', '.') }}</span>
                         </div>
-
                         <div class="mt-auto">
                             <a href="{{ route('compra.index') }}" class="btn btn-warning btn-lg w-100 fw-bold text-dark shadow">
                                 Continuar con la Compra <i class="bi bi-arrow-right ms-2"></i>
@@ -161,8 +159,6 @@
 
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
-
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <a class="navbar-brand ms-2 mx-sm-4 text-danger-emphasis estilo-marca d-flex align-items-center" href="{{ url('/pagina-principal') }}">
-            <img src="{{ asset('Img/LogoOscuro.png') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
+            <img src="{{ asset('Img/LogoOscuro.webp') }}" class="rounded-circle bg-dark p-1 me-2" width="54" height="54" alt="logo">
             <span class="estilo-marca">The good taste</span>
         </a>
 

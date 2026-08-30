@@ -47,7 +47,7 @@
     <div class="container-xl mt-2">
         <div class="row">
             <div class="col-lg-6 text-center mt-4 mb-5 mb-lg-0 pe-lg-4 divisor-naranja">
-                <img src="{{ url('/Img/LogoOscuro.jpg') }}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo">
+                <img src="{{ url('/Img/LogoOscuroContacto.webp') }}" class="rounded-circle p-3 mx-auto d-block w-25" alt="logo">
 
                 <form action="{{ url('/contacto') }}" method="POST">
                     @csrf
