@@ -7,10 +7,16 @@
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Panel de Administración</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZcgoEq3ZZ1OOFf/X9g5N0M6uF32TijFw1QvQ8FkL/z1OBO6X3/1FhT/41z4f6x" defer></script>
 
     <style>
         .sidebar-menu .nav-link {
@@ -46,7 +52,6 @@
 
     <div class="container-fluid px-4 mt-5 mb-5">
         <div class="row">
-
             <div class="col-md-3 col-lg-2 mb-4">
                 <div class="card bg-dark border-secondary p-3 shadow">
                     <h5 class="fw-bold text-warning mb-3 text-center text-md-start">
@@ -54,27 +59,17 @@
                     </h5>
                     <hr class="border-secondary mt-0">
                     <div class="nav flex-column nav-pills sidebar-menu">
-                        <a href="{{ route('admin.index') }}" class="nav-link active text-start border-0 text-decoration-none">
-                            <i class="bi bi-house-door-fill me-2"></i> Inicio
-                        </a>
-                        <a href="{{ route('admin.productos') }}" class="nav-link text-start border-0 text-decoration-none">
-                            <i class="bi bi-box-seam-fill me-2"></i> Gestión de Productos
-                        </a>
-                        <a href="{{ route('admin.pedidos') }}" class="nav-link text-start border-0 text-decoration-none">
-                            <i class="bi bi-bag-check-fill me-2"></i> Gestión de Pedidos
-                        </a>
+                        <a href="{{ route('admin.index') }}" class="nav-link active text-start border-0 text-decoration-none"><i class="bi bi-house-door-fill me-2"></i> Inicio</a>
+                        <a href="{{ route('admin.productos') }}" class="nav-link text-start border-0 text-decoration-none"><i class="bi bi-box-seam-fill me-2"></i> Gestión de Productos</a>
+                        <a href="{{ route('admin.pedidos') }}" class="nav-link text-start border-0 text-decoration-none"><i class="bi bi-bag-check-fill me-2"></i> Gestión de Pedidos</a>
                         <a href="{{ route('admin.consultas') }}" class="nav-link text-start border-0 position-relative text-decoration-none">
                             <i class="bi bi-envelope-fill me-2"></i> Gestión de Consultas
                             @php $mensajesNuevos = $consultas->where('estado', 0)->count(); @endphp
                             @if($mensajesNuevos > 0)
-                            <span class="position-absolute top-50 end-0 translate-middle-y me-3 badge rounded-pill bg-danger">
-                                {{ $mensajesNuevos }}
-                            </span>
+                            <span class="position-absolute top-50 end-0 translate-middle-y me-3 badge rounded-pill bg-danger">{{ $mensajesNuevos }}</span>
                             @endif
                         </a>
-                        <a href="{{ route('admin.usuarios') }}" class="nav-link text-start border-0 {{ request()->routeIs('admin.usuarios') ? 'active' : '' }}">
-                            <i class="bi bi-people-fill me-2"></i> Gestión de Usuarios
-                        </a>
+                        <a href="{{ route('admin.usuarios') }}" class="nav-link text-start border-0"><i class="bi bi-people-fill me-2"></i> Gestión de Usuarios</a>
                     </div>
                 </div>
             </div>
@@ -89,18 +84,13 @@
 
                     <div class="d-flex justify-content-center gap-4 flex-wrap">
                         <a href="{{ route('admin.productos') }}" class="btn btn-outline-warning btn-lg px-4 py-3 fw-bold" style="border-radius: 10px;">
-                            <i class="bi bi-box-seam-fill d-block mb-2" style="font-size: 2rem;"></i>
-                            Ver Productos
+                            <i class="bi bi-box-seam-fill d-block mb-2" style="font-size: 2rem;"></i> Ver Productos
                         </a>
-
                         <a href="{{ route('admin.pedidos') }}" class="btn btn-outline-warning btn-lg px-4 py-3 fw-bold" style="border-radius: 10px;">
-                            <i class="bi bi-bag-check-fill d-block mb-2" style="font-size: 2rem;"></i>
-                            Ver Pedidos
+                            <i class="bi bi-bag-check-fill d-block mb-2" style="font-size: 2rem;"></i> Ver Pedidos
                         </a>
-
                         <a href="{{ route('admin.consultas') }}" class="btn btn-outline-warning btn-lg px-4 py-3 fw-bold position-relative" style="border-radius: 10px;">
-                            <i class="bi bi-envelope-fill d-block mb-2" style="font-size: 2rem;"></i>
-                            Ver Consultas
+                            <i class="bi bi-envelope-fill d-block mb-2" style="font-size: 2rem;"></i> Ver Consultas
                             @if($mensajesNuevos > 0)
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow border border-dark">
                                 {{ $mensajesNuevos }}
@@ -108,20 +98,14 @@
                             </span>
                             @endif
                         </a>
-
-                        {{-- NUEVO: Botón principal grande de Usuarios --}}
                         <a href="{{ route('admin.usuarios') }}" class="btn btn-outline-warning btn-lg px-4 py-3 fw-bold" style="border-radius: 10px;">
-                            <i class="bi bi-people-fill d-block mb-2" style="font-size: 2rem;"></i>
-                            Ver Usuarios
+                            <i class="bi bi-people-fill d-block mb-2" style="font-size: 2rem;"></i> Ver Usuarios
                         </a>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')

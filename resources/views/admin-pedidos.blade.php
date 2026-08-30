@@ -7,10 +7,16 @@
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Gestión de Pedidos</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZcgoEq3ZZ1OOFf/X9g5N0M6uF32TijFw1QvQ8FkL/z1OBO6X3/1FhT/41z4f6x" defer></script>
 
     <style>
         .sidebar-menu .nav-link {
@@ -130,7 +136,6 @@
                                         {{ $pedido->user->name ?? 'Usuario Desconocido' }}
                                     </td>
 
-                                    <!-- ENTREGA (Restaurado a metodo_envio) -->
                                     <td>
                                         @if(isset($pedido->metodo_envio) && $pedido->metodo_envio === 'delivery')
                                         <span class="badge bg-info text-dark mb-1"><i class="bi bi-truck me-1"></i>A Domicilio</span><br>
@@ -142,7 +147,6 @@
                                         @endif
                                     </td>
 
-                                    <!-- PAGO (Busca forma_pago que es el de la base de datos) -->
                                     <td>
                                         @if(!empty($pedido->forma_pago))
                                         <span class="badge bg-primary text-white"><i class="bi bi-credit-card-fill me-1"></i>{{ ucfirst($pedido->forma_pago) }}</span>
@@ -153,7 +157,6 @@
                                         @endif
                                     </td>
 
-                                    <!-- PRODUCTOS (Restaurado a detalles) -->
                                     <td>
                                         @if(isset($pedido->detalles) && count($pedido->detalles) > 0)
                                         <ul class="mb-0 ps-3 small text-light" style="list-style-type: circle;">
@@ -198,8 +201,6 @@
             </div>
         </div>
     </div>
-
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')

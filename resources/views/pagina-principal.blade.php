@@ -5,22 +5,27 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Home</title>
 
-    <!-- Conexión anticipada a Google Fonts -->
+    <!-- 1. Optimización de Fuentes Web -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
+    <!-- 2. CSS Crítico -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
-    <!-- Priorización de la imagen principal del banner -->
+    <!-- 3. Precarga de Imagen Principal -->
     <link rel="preload" as="image" href="{{ asset('Img/PastasHome.png') }}" fetchpriority="high">
+
+    <!-- 4. Scripts con Defer (No bloquean el renderizado) -->
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
+
+    <!-- 5. Precarga inteligente de rutas (Simula velocidad SPA) -->
+    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZcgoEq3ZZ1OOFf/X9g5N0M6uF32TijFw1QvQ8FkL/z1OBO6X3/1FhT/41z4f6x" defer></script>
 
     <style>
         .hover-warning:hover {
@@ -132,7 +137,7 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
 </body>
 
 </html>

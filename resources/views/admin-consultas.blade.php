@@ -7,10 +7,19 @@
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
     <title>The Good Taste - Gestión de Consultas</title>
 
+    <!-- Optimización de Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
+    <!-- Scripts con Defer (Optimizados) -->
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZcgoEq3ZZ1OOFf/X9g5N0M6uF32TijFw1QvQ8FkL/z1OBO6X3/1FhT/41z4f6x" defer></script>
 
     <style>
         .sidebar-menu .nav-link {
@@ -60,13 +69,11 @@
                         <a href="{{ route('admin.productos') }}" class="nav-link text-start border-0 text-decoration-none">
                             <i class="bi bi-box-seam-fill me-2"></i> Gestión de Productos
                         </a>
-                        {{-- NUEVO: Enlace a Gestión de Pedidos agregado --}}
                         <a href="{{ route('admin.pedidos') }}" class="nav-link text-start border-0 text-decoration-none">
                             <i class="bi bi-bag-check-fill me-2"></i> Gestión de Pedidos
                         </a>
                         <a href="{{ route('admin.consultas') }}" class="nav-link active text-start border-0 position-relative text-decoration-none">
                             <i class="bi bi-envelope-fill me-2"></i> Gestión de Consultas
-                            {{-- CORRECCIÓN: Filtramos solo los mensajes no leídos para la notificación del menú --}}
                             @php $mensajesNuevos = $consultas->where('estado', 0)->count(); @endphp
                             @if($mensajesNuevos > 0)
                             <span class="position-absolute top-50 end-0 translate-middle-y me-3 badge rounded-pill bg-danger">
@@ -88,7 +95,6 @@
                     <div class="card-header border-secondary bg-secondary text-white fw-bold d-flex justify-content-between align-items-center">
                         <span>Mensajes de Usuarios</span>
                         <div>
-                            {{-- Muestra la info detallada: Nuevos vs Totales --}}
                             @if($mensajesNuevos > 0)
                             <span class="badge bg-danger me-2">{{ $mensajesNuevos }} nuevos</span>
                             @endif
@@ -168,8 +174,6 @@
 
         </div>
     </div>
-
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
