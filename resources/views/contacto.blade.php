@@ -89,8 +89,7 @@
 
             <div class="col-lg-6 ps-lg-4 text-center d-flex flex-column align-items-center">
                 <h2 class="mt-3">Nos podés encontrar en:</h2>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d615.5136625506285!2d-59.219627250823635!3d-28.04579628334867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses-419!2sar!4v1785249401928!5m2!1ses-419!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                <!--<h2 class="mt-4">Comunícate con nosotros:</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d837.2926772310801!2d-59.219791729866046!3d-28.046017172031114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e1!3m2!1ses-419!2sar!4v1788055942012!5m2!1ses-419!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe> <!--<h2 class="mt-4">Comunícate con nosotros:</h2>
                 <a href="https://wa.me/5493794000000" target="_blank" class="text-white text-decoration-none mt-2">
                     <i class="bi bi-whatsapp hover-warning" style="font-size: 4rem;"></i>-->
                 </a>
