@@ -56,7 +56,7 @@
       @foreach($productos as $pasta)
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
-          <img src="{{ asset($pasta->url_imagen ? $pasta->url_imagen : 'Img/SorrentinosTarjeta.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $pasta->nombre }}" loading="lazy">
+          <img src="{{ asset($pasta->url_imagen ? $pasta->url_imagen : 'Img/SorrentinosTarjeta.webp') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $pasta->nombre }}" loading="lazy">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold text-warning">{{ $pasta->nombre }}</h5>
             <p class="card-text text-light flex-grow-1">{{ $pasta->descripcion ?? 'Exquisitas pastas artesanales hechas con mucha dedicación.' }}</p>

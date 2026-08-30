@@ -36,7 +36,7 @@
       @foreach($bondiolas as $bondiola)
       <div class="col-12 col-md-5 col-lg-4">
         <div class="card text-bg-dark border-warning shadow-sm h-100 position-relative">
-          <img src="{{ asset($bondiola->url_imagen ? $bondiola->url_imagen : 'Img/BondiolaTarjetaSinPimenton.png') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $bondiola->nombre }}" loading="lazy">
+          <img src="{{ asset($bondiola->url_imagen ? $bondiola->url_imagen : 'Img/BondiolaTarjetaSinPimenton.webp') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ $bondiola->nombre }}" loading="lazy">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold text-warning">{{ $bondiola->nombre }}</h5>
             <p class="card-text text-light flex-grow-1">{{ $bondiola->descripcion ?? 'Fiambre especial para compartir en picadas y comidas.' }}</p>

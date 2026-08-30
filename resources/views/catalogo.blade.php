@@ -75,7 +75,7 @@
         @if($tieneBondiolas)
         <div class="col-12 text-center">
             <a href="{{ url('/bondiola') }}" class="text-decoration-none">
-                <img src="{{ asset('Img/FotoBondiolaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Bondiola" fetchpriority="high">
+                <img src="{{ asset('Img/FotoBondiolaCatalogo.webp') }}" class="w-100 d-block" alt="Foto de Bondiola" fetchpriority="high">
             </a>
         </div>
         @endif
@@ -91,7 +91,7 @@
         @if($tienePastas)
         <div class="col-12 text-center">
             <a href="{{ url('/pastas') }}" class="text-decoration-none">
-                <img src="{{ asset('Img/SaborAHogar.jpg') }}" class="w-100 d-block" alt="Foto de Pastas" loading="lazy">
+                <img src="{{ asset('Img/SaborAHogar.webp') }}" class="w-100 d-block" alt="Foto de Pastas" loading="lazy">
             </a>
         </div>
         @endif
