@@ -16,9 +16,20 @@
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
-    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZcgoEq3ZZ1OOFf/X9g5N0M6uF32TijFw1QvQ8FkL/z1OBO6X3/1FhT/41z4f6x" defer></script>
+    <script src="https://unpkg.com/swup@4" defer></script>
+    <script src="https://unpkg.com/@swup/scripts-plugin@3" defer></script>
+    <script src="https://unpkg.com/@swup/preload-plugin@3" defer></script>
 
     <style>
+        .transition-fade {
+            transition: opacity 0.2s ease-in-out;
+            opacity: 1;
+        }
+
+        html.is-animating .transition-fade {
+            opacity: 0;
+        }
+
         .col-12 {
             overflow: visible !important;
             position: relative;
@@ -61,53 +72,67 @@
 
     @include('componentes.navbar')
 
-    <div class="container mt-4 mb-2">
-        @include('componentes.botonesAtrasAdelante')
-    </div>
-
-    <div class="container-fluid bg-dark text-white text-center py-1 border-bottom border-warning">
-        <h1 class="fw-bold fs-2 mb-2 card-title">Nuestro Menú</h1>
-        <p class="fs-5 text-warning mb-5">Haz clic en la imagen de lo que quieras comer hoy</p>
-    </div>
-
-    <div class="row g-0 mt-5">
-
-        @if($tieneBondiolas)
-        <div class="col-12 text-center">
-            <a href="{{ url('/bondiola') }}" class="text-decoration-none">
-                <img src="{{ asset('Img/FotoBondiolaCatalogo.webp') }}" class="w-100 d-block" alt="Foto de Bondiola" fetchpriority="high">
-            </a>
+    <!-- CONTENEDOR PRINCIPAL SWUP -->
+    <main id="swup" class="transition-fade">
+        <div class="container mt-4 mb-2">
+            @include('componentes.botonesAtrasAdelante')
         </div>
-        @endif
 
-        @if($tieneMilanesas)
-        <div class="col-12 text-center">
-            <a href="{{ url('/milanesas') }}" class="text-decoration-none">
-                <img src="{{ asset('Img/FotoMilanesaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Milanesa" loading="lazy">
-            </a>
+        <div class="container-fluid bg-dark text-white text-center py-1 border-bottom border-warning">
+            <h1 class="fw-bold fs-2 mb-2 card-title">Nuestro Menú</h1>
+            <p class="fs-5 text-warning mb-5">Haz clic en la imagen de lo que quieras comer hoy</p>
         </div>
-        @endif
 
-        @if($tienePastas)
-        <div class="col-12 text-center">
-            <a href="{{ url('/pastas') }}" class="text-decoration-none">
-                <img src="{{ asset('Img/SaborAHogar.webp') }}" class="w-100 d-block" alt="Foto de Pastas" loading="lazy">
-            </a>
+        <div class="row g-0 mt-5">
+            @if($tieneBondiolas)
+            <div class="col-12 text-center">
+                <a href="{{ url('/bondiola') }}" class="text-decoration-none">
+                    <img src="{{ asset('Img/FotoBondiolaCatalogo.webp') }}" class="w-100 d-block" alt="Foto de Bondiola" fetchpriority="high">
+                </a>
+            </div>
+            @endif
+
+            @if($tieneMilanesas)
+            <div class="col-12 text-center">
+                <a href="{{ url('/milanesas') }}" class="text-decoration-none">
+                    <img src="{{ asset('Img/FotoMilanesaCatalogo.jpg') }}" class="w-100 d-block" alt="Foto de Milanesa" loading="lazy">
+                </a>
+            </div>
+            @endif
+
+            @if($tienePastas)
+            <div class="col-12 text-center">
+                <a href="{{ url('/pastas') }}" class="text-decoration-none">
+                    <img src="{{ asset('Img/SaborAHogar.webp') }}" class="w-100 d-block" alt="Foto de Pastas" loading="lazy">
+                </a>
+            </div>
+            @endif
+
+            @if(!$tieneBondiolas && !$tieneMilanesas && !$tienePastas)
+            <div class="col-12 text-center text-light my-5 py-5">
+                <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary"></i>
+                <p class="fs-4">Por el momento no tenemos productos disponibles en el menú. ¡Vuelve pronto!</p>
+            </div>
+            @endif
         </div>
-        @endif
-
-        @if(!$tieneBondiolas && !$tieneMilanesas && !$tienePastas)
-        <div class="col-12 text-center text-light my-5 py-5">
-            <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary"></i>
-            <p class="fs-4">Por el momento no tenemos productos disponibles en el menú. ¡Vuelve pronto!</p>
-        </div>
-        @endif
-
-    </div>
+    </main>
 
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.swup) {
+                window.swup = new Swup({
+                    containers: ['#swup-navbar', '#swup'],
+                    plugins: [
+                        new SwupScriptsPlugin(),
+                        new SwupPreloadPlugin()
+                    ]
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

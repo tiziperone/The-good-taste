@@ -11,17 +11,16 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav w-100 align-items-center">
+            <!-- ID AGREGADO AQUÍ PARA SWUP -->
+            <div class="navbar-nav w-100 align-items-center" id="swup-navbar">
 
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('pagina-principal') ? 'active text-black' : 'text-black' }}" href="{{ url('/pagina-principal') }}">Inicio</a>
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('catalogo') ? 'active text-black' : 'text-black' }}" href="{{ url('/catalogo') }}">Catálogo</a>
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('comercializacion') ? 'active text-black' : 'text-black' }}" href="{{ url('/comercializacion') }}">Comercialización</a>
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('contacto') ? 'active text-black' : 'text-black' }}" href="{{ url('/contacto') }}">Contáctanos</a>
-                {{-- <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('quienes-somos') ? 'active text-black' : 'text-black' }}" href="{{ url('/quienes-somos') }}">¿Quiénes somos?</a> --}}
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('terminos-y-usos') ? 'active text-black' : 'text-black' }}" href="{{ url('/terminos-y-usos') }}">Términos y Usos</a>
 
                 @auth
-                {{-- Acceso Administrativo --}}
                 @if(trim(strtolower(auth()->user()->role ?? '')) === 'admin')
                 <a class="nav-link mx-2 text-warning fw-bold pt-1 fs-6 d-flex align-items-center {{ request()->is('administracion') ? 'text-black' : '' }}" href="{{ route('admin.index') }}">
                     <i class="bi bi-shield-lock-fill me-1"></i> Administración
@@ -32,12 +31,10 @@
                     @csrf
                 </form>
 
-                {{-- MIS COMPRAS: Solo visible para usuarios logueados --}}
                 <a class="nav-link mx-2 ms-lg-auto text-lg pt-1 fs-6 d-flex align-items-center text-black {{ request()->is('mis-compras') ? 'active' : '' }}" href="{{ url('/mis-compras') }}">
                     <i class="bi bi-bag-check-fill me-1"></i> Mis Compras
                 </a>
 
-                {{-- CARRITO --}}
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 d-flex align-items-center text-black position-relative"
                     href="{{ url('/carrito') }}"
                     title="Ver mi carrito">
@@ -49,7 +46,6 @@
                     @endif
                 </a>
 
-                {{-- CERRAR SESIÓN --}}
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 d-flex align-items-center text-black"
                     href="{{ url('/cerrar-sesion') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
