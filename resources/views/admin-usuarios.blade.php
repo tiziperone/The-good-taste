@@ -118,13 +118,13 @@
                                     </td>
                                     <td class="text-center">
                                         @if($admin->id !== Auth::id())
-                                        <form action="{{ route('admin.quitarAdmin', $admin->id) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('admin.usuarios.quitarAdmin', $admin->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-outline-warning" title="Quitar rol de admin">
                                                 <i class="bi bi-person-dash"></i> Quitar Admin
                                             </button>
                                         </form>
-                                        <form action="{{ route('admin.banear', $admin->id) }}" method="POST" class="d-inline ms-1">
+                                        <form action="{{ route('admin.usuarios.banear', $admin->id) }}" method="POST" class="d-inline ms-1">
                                             @csrf
                                             <button type="submit" class="btn btn-sm {{ $admin->activo ? 'btn-outline-danger' : 'btn-outline-success' }}">
                                                 {{ $admin->activo ? 'Suspender' : 'Reactivar' }}
@@ -176,13 +176,13 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <form action="{{ route('admin.hacerAdmin', $user->id) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('admin.usuarios.hacerAdmin', $user->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-outline-warning" title="Hacer administrador">
                                                 <i class="bi bi-shield-plus"></i> Hacer Admin
                                             </button>
                                         </form>
-                                        <form action="{{ route('admin.banear', $user->id) }}" method="POST" class="d-inline ms-1">
+                                        <form action="{{ route('admin.usuarios.banear', $user->id) }}" method="POST" class="d-inline ms-1">
                                             @csrf
                                             <button type="submit" class="btn btn-sm {{ $user->activo ? 'btn-outline-danger' : 'btn-outline-success' }}">
                                                 {{ $user->activo ? 'Suspender' : 'Reactivar' }}
