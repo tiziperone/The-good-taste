@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image/png">
     <title>The Good Taste - Gestión de Usuarios</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,12 +69,137 @@
                 </div>
             </div>
 
-            <!-- Tablas de Usuarios (Mantiene todo tu código de iteración y botones) -->
+            <!-- Tablas de Usuarios -->
             <div class="col-md-9 col-lg-10">
-                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+
+                @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+
+                <!-- TABLA ADMINISTRADORES -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
                     <h2 class="fw-bold text-warning m-0"><i class="bi bi-shield-lock-fill me-2"></i> Administradores</h2>
                 </div>
-                <!-- ... tablas de administradores y usuarios ... -->
+
+                <div class="card bg-dark border-secondary shadow mb-5">
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0">
+                            <thead>
+                                <tr class="text-warning border-secondary">
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Estado</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($administradores as $admin)
+                                <tr class="border-secondary">
+                                    <td>{{ $admin->id }}</td>
+                                    <td>{{ $admin->name }}</td>
+                                    <td>{{ $admin->email }}</td>
+                                    <td>
+                                        @if($admin->activo)
+                                        <span class="badge bg-success">Activo</span>
+                                        @else
+                                        <span class="badge bg-danger">Baneado</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if($admin->id !== Auth::id())
+                                        <form action="{{ route('admin.quitarAdmin', $admin->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-outline-warning" title="Quitar rol de admin">
+                                                <i class="bi bi-person-dash"></i> Quitar Admin
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('admin.banear', $admin->id) }}" method="POST" class="d-inline ms-1">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm {{ $admin->activo ? 'btn-outline-danger' : 'btn-outline-success' }}">
+                                                {{ $admin->activo ? 'Suspender' : 'Reactivar' }}
+                                            </button>
+                                        </form>
+                                        @else
+                                        <span class="text-muted small">Tu sesión actual</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted py-3">No hay administradores registrados.</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TABLA USUARIOS CLIENTES -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="fw-bold text-warning m-0"><i class="bi bi-people-fill me-2"></i> Usuarios Clientes</h2>
+                </div>
+
+                <div class="card bg-dark border-secondary shadow">
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0">
+                            <thead>
+                                <tr class="text-warning border-secondary">
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Estado</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($usuarios as $user)
+                                <tr class="border-secondary">
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>
+                                        @if($user->activo)
+                                        <span class="badge bg-success">Activo</span>
+                                        @else
+                                        <span class="badge bg-danger">Baneado</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        <form action="{{ route('admin.hacerAdmin', $user->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-outline-warning" title="Hacer administrador">
+                                                <i class="bi bi-shield-plus"></i> Hacer Admin
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('admin.banear', $user->id) }}" method="POST" class="d-inline ms-1">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm {{ $user->activo ? 'btn-outline-danger' : 'btn-outline-success' }}">
+                                                {{ $user->activo ? 'Suspender' : 'Reactivar' }}
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted py-3">No hay usuarios clientes registrados.</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
