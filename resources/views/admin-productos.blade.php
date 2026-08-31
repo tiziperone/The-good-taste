@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -50,6 +50,7 @@
 
     <div class="container-fluid px-4 mt-5 mb-5">
         <div class="row">
+            <!-- Sidebar Panel Admin -->
             <div class="col-md-3 col-lg-2 mb-4">
                 <div class="card bg-dark border-secondary p-3 shadow">
                     <h5 class="fw-bold text-warning mb-3 text-center text-md-start">
@@ -87,6 +88,7 @@
                 </div>
                 @endif
 
+                <!-- Catálogo Actual -->
                 <div class="card bg-dark border-secondary shadow mb-5">
                     <div class="card-header border-secondary bg-secondary text-white fw-bold d-flex justify-content-between align-items-center">
                         <span>Catálogo Actual</span>
@@ -156,7 +158,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- Modal de Edición oculto por espacio en respuesta pero su código va aquí igual que en el original -->
+                                <!-- Asegúrate de que el código de tus modales esté incluido aquí -->
                                 @empty
                                 <tr>
                                     <td colspan="7" class="text-center py-5 text-secondary">
@@ -169,7 +171,70 @@
                     </div>
                 </div>
 
-                <!-- Historial Eliminados (Mantiene el mismo formato que ya enviaste) -->
+                <!-- Historial Eliminados -->
+                <div class="card bg-dark border-secondary shadow mb-5 mt-5">
+                    <div class="card-header border-secondary bg-danger bg-opacity-25 text-white fw-bold d-flex justify-content-between align-items-center">
+                        <span class="text-danger"><i class="bi bi-trash3-fill me-2"></i>Historial de Eliminados</span>
+                        <form action="{{ route('admin.productos') }}" method="GET" class="d-flex align-items-center gap-2 m-0">
+                            <input type="hidden" name="orden_activos" value="{{ $ordenActivos }}">
+                            <label class="text-white small mb-0 fw-normal">Ordenar por:</label>
+                            <select name="orden_eliminados" class="form-select form-select-sm bg-dark text-white border-secondary" onchange="this.form.submit()">
+                                <option value="desc" {{ $ordenEliminados == 'desc' ? 'selected' : '' }}>Más recientes</option>
+                                <option value="asc" {{ $ordenEliminados == 'asc' ? 'selected' : '' }}>Más antiguos</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0">
+                            <thead>
+                                <tr class="text-danger">
+                                    <th class="ps-3">ID</th>
+                                    <th>Producto</th>
+                                    <th>Categoría</th>
+                                    <th>Precio</th>
+                                    <th>Eliminado el</th>
+                                    <th class="text-center pe-3">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($productosEliminados as $prodEli)
+                                <tr>
+                                    <td class="ps-3 text-secondary">#{{ $prodEli->id }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2 text-secondary">
+                                            <img src="{{ asset($prodEli->url_imagen ?? 'Img/LogoOscuro.png') }}" style="width:40px; height:40px; object-fit:cover; border-radius:5px; border: 1px solid #6c757d; opacity: 0.5;">
+                                            <span class="text-decoration-line-through">{{ $prodEli->nombre }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-secondary">
+                                        @if($prodEli->categoria_id == 1) Bondiolas
+                                        @elseif($prodEli->categoria_id == 2) Milanesas
+                                        @elseif($prodEli->categoria_id == 3) Pastas
+                                        @else Otra @endif
+                                    </td>
+                                    <td class="text-secondary">$ {{ number_format($prodEli->precio, 0, ',', '.') }}</td>
+                                    <td class="text-secondary">{{ $prodEli->deleted_at->format('d/m/Y H:i') }}</td>
+                                    <td class="text-center pe-3">
+                                        <form action="{{ route('admin.productos.restaurar', $prodEli->id) }}" method="POST" onsubmit="return confirm('¿Restaurar este producto al catálogo?');">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" class="btn btn-outline-success btn-sm rounded-circle" title="Restaurar producto">
+                                                <i class="bi bi-arrow-counterclockwise"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="6" class="text-center py-5 text-secondary">
+                                        <i class="bi bi-check2-circle fs-1 d-block mb-2"></i> No hay productos eliminados.
+                                    </td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
             </div>
         </div>
