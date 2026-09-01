@@ -3,10 +3,10 @@
 
 <head>
     <!-- Ícono para iPhone / Safari en inicio -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('Img/LogoOscuroIOS.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('Img/LogoOscuroIOS.jpg') }}">
 
     <!-- Ícono para Android / Chrome en inicio -->
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('Img/LogoOscuroAndroid.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('Img/LogoOscuroAndroid.jpg') }}">
 
 
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
