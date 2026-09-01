@@ -2,6 +2,13 @@
 <html lang="es">
 
 <head>
+    <!-- Ícono para iPhone / Safari en inicio -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('LogoOscuroIOS.png') }}">
+
+    <!-- Ícono para Android / Chrome en inicio -->
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('LogoOscuroAndroid.png') }}">
+
+
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
