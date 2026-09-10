@@ -21,7 +21,8 @@
                 <a class="nav-link mx-2 text-lg pt-1 fs-6 {{ request()->is('terminos-y-usos') ? 'active text-black' : 'text-black' }}" href="{{ url('/terminos-y-usos') }}">Términos y Usos</a>
 
                 @auth
-                @if(trim(strtolower(auth()->user()->role ?? '')) === 'admin')
+                {{-- Modificación: Permite el acceso a Admin y Gerente --}}
+                @if(in_array(trim(strtolower(auth()->user()->role ?? '')), ['admin', 'gerente']))
                 <a class="nav-link mx-2 text-warning fw-bold pt-1 fs-6 d-flex align-items-center {{ request()->is('administracion') ? 'text-black' : '' }}" href="{{ route('admin.index') }}">
                     <i class="bi bi-shield-lock-fill me-1"></i> Administración
                 </a>
