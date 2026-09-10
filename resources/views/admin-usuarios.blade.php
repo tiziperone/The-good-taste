@@ -86,9 +86,9 @@
                 </div>
                 @endif
 
-                <!-- TABLA ADMINISTRADORES -->
+                <!-- TABLA PERSONAL DEL SISTEMA -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h2 class="fw-bold text-warning m-0"><i class="bi bi-shield-lock-fill me-2"></i> Administradores</h2>
+                    <h2 class="fw-bold text-warning m-0"><i class="bi bi-shield-lock-fill me-2"></i> Personal (Admins y Gerentes)</h2>
                 </div>
 
                 <div class="card bg-dark border-secondary shadow mb-5">
@@ -99,6 +99,7 @@
                                     <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Email</th>
+                                    <th>Rol</th>
                                     <th>Estado</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
@@ -110,6 +111,13 @@
                                     <td>{{ $admin->name }}</td>
                                     <td>{{ $admin->email }}</td>
                                     <td>
+                                        @if($admin->role === 'gerente')
+                                        <span class="badge bg-info text-dark">Gerente</span>
+                                        @else
+                                        <span class="badge bg-warning text-dark">Admin</span>
+                                        @endif
+                                    </td>
+                                    <td>
                                         @if($admin->activo)
                                         <span class="badge bg-success">Activo</span>
                                         @else
@@ -120,8 +128,8 @@
                                         @if($admin->id !== Auth::id())
                                         <form action="{{ route('admin.usuarios.quitarAdmin', $admin->id) }}" method="POST" class="d-inline">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-outline-warning" title="Quitar rol de admin">
-                                                <i class="bi bi-person-dash"></i> Quitar Admin
+                                            <button type="submit" class="btn btn-sm btn-outline-warning" title="Quitar privilegios">
+                                                <i class="bi bi-person-dash"></i> Quitar Privilegios
                                             </button>
                                         </form>
                                         <form action="{{ route('admin.usuarios.banear', $admin->id) }}" method="POST" class="d-inline ms-1">
@@ -137,7 +145,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="5" class="text-center text-muted py-3">No hay administradores registrados.</td>
+                                    <td colspan="6" class="text-center text-muted py-3">No hay personal registrado.</td>
                                 </tr>
                                 @endforelse
                             </tbody>
@@ -182,6 +190,14 @@
                                                 <i class="bi bi-shield-plus"></i> Hacer Admin
                                             </button>
                                         </form>
+                                        <!-- NUEVO BOTÓN: HACER GERENTE -->
+                                        <form action="{{ route('admin.usuarios.hacerGerente', $user->id) }}" method="POST" class="d-inline ms-1">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-outline-info" title="Hacer gerente">
+                                                <i class="bi bi-person-up"></i> Hacer Gerente
+                                            </button>
+                                        </form>
+                                        <!-- BOTÓN SUSPENDER -->
                                         <form action="{{ route('admin.usuarios.banear', $user->id) }}" method="POST" class="d-inline ms-1">
                                             @csrf
                                             <button type="submit" class="btn btn-sm {{ $user->activo ? 'btn-outline-danger' : 'btn-outline-success' }}">

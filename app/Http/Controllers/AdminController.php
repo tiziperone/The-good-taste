@@ -199,8 +199,12 @@ class AdminController extends Controller
 
     public function verUsuarios()
     {
-        $administradores = User::where('role', 'admin')->get();
-        $usuarios = User::where('role', '!=', 'admin')->orWhereNull('role')->get();
+        // Agrupa Admins y Gerentes arriba
+        $administradores = User::whereIn('role', ['admin', 'gerente'])->get();
+
+        // Deja a los usuarios comunes abajo
+        $usuarios = User::whereNotIn('role', ['admin', 'gerente'])->orWhereNull('role')->get();
+
         $consultas = Consulta::all();
 
         return view('admin-usuarios', compact('administradores', 'usuarios', 'consultas'));
@@ -242,5 +246,14 @@ class AdminController extends Controller
 
         $estado = $usuario->activo ? 'reactivado' : 'baneado';
         return back()->with('success', "Usuario {$usuario->name} ha sido {$estado} correctamente.");
+    }
+
+    public function hacerGerente(int $id)
+    {
+        $usuario = User::findOrFail($id);
+        $usuario->role = 'gerente';
+        $usuario->save();
+
+        return back()->with('success', "El usuario {$usuario->name} ahora es gerente.");
     }
 }

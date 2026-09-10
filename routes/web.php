@@ -87,6 +87,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/usuarios/{id}/banear', [AdminController::class, 'banear'])->name('admin.usuarios.banear');
         Route::post('/admin/usuarios/{id}/hacer-admin', [AdminController::class, 'hacerAdmin'])->name('admin.usuarios.hacerAdmin');
         Route::post('/admin/usuarios/{id}/quitar-admin', [AdminController::class, 'quitarAdmin'])->name('admin.usuarios.quitarAdmin');
+        Route::post('/admin/usuarios/{id}/hacer-gerente', [AdminController::class, 'hacerGerente'])->name('admin.usuarios.hacerGerente');
     });
 });
 
