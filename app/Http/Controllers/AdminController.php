@@ -16,19 +16,12 @@ class AdminController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
         $consultas = Consulta::all();
         return view('admin', compact('consultas'));
     }
 
     public function productos(Request $request)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $ordenActivos = $request->query('orden_activos', 'desc');
         $ordenEliminados = $request->query('orden_eliminados', 'desc');
 
@@ -53,10 +46,6 @@ class AdminController extends Controller
 
     public function pedidos()
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $pedidos = Orden::with('user')->orderBy('created_at', 'desc')->get();
         $consultas = Consulta::all();
 
@@ -80,10 +69,6 @@ class AdminController extends Controller
 
     public function actualizarEstadoPedido(Request $request, int $id)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $request->validate(['estado' => 'required|string']);
         $pedido = Orden::findOrFail($id);
         $estadoNuevo = $request->estado === '0' ? 'En proceso' : $request->estado;
@@ -99,10 +84,6 @@ class AdminController extends Controller
 
     public function consultas()
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         // CORRECCIÓN VELOCIDAD: Se carga el usuario asociado al mismo tiempo
         $consultas = Consulta::with('user')->orderBy('created_at', 'desc')->get();
         return view('admin-consultas', compact('consultas'));
@@ -110,10 +91,6 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
@@ -145,10 +122,6 @@ class AdminController extends Controller
 
     public function update(Request $request, int $id)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
@@ -182,10 +155,6 @@ class AdminController extends Controller
 
     public function marcarLeido(int $id)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $consulta = Consulta::findOrFail($id);
         $consulta->estado = !$consulta->estado;
         $consulta->save();
@@ -195,10 +164,6 @@ class AdminController extends Controller
 
     public function responder(Request $request, int $id)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $request->validate(['respuesta' => 'required|string']);
         $consulta = Consulta::findOrFail($id);
 
@@ -214,10 +179,6 @@ class AdminController extends Controller
 
     public function eliminar(int $id)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $consulta = Consulta::findOrFail($id);
         $consulta->delete();
 
@@ -226,10 +187,6 @@ class AdminController extends Controller
 
     public function restaurar(int $id)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $producto = Producto::onlyTrashed()->findOrFail($id);
         $producto->restore();
 
@@ -242,10 +199,6 @@ class AdminController extends Controller
 
     public function verUsuarios()
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $administradores = User::where('role', 'admin')->get();
         $usuarios = User::where('role', '!=', 'admin')->orWhereNull('role')->get();
         $consultas = Consulta::all();
@@ -255,10 +208,6 @@ class AdminController extends Controller
 
     public function hacerAdmin(int $id)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $usuario = User::findOrFail($id);
         $usuario->role = 'admin';
         $usuario->save();
@@ -268,10 +217,6 @@ class AdminController extends Controller
 
     public function quitarAdmin(int $id)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $usuario = User::findOrFail($id);
 
         if ($usuario->id === Auth::id()) {
@@ -286,10 +231,6 @@ class AdminController extends Controller
 
     public function banear(int $id)
     {
-        if (Auth::user()->role !== 'admin') {
-            return redirect('/')->with('error', 'Acceso denegado.');
-        }
-
         $usuario = User::findOrFail($id);
 
         if ($usuario->id === Auth::id()) {
