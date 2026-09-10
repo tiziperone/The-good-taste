@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,12 +16,40 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // 1. Perfil Gerente (acceso total)
+        User::updateOrCreate(
+            ['email' => 'gerente@thegoodtaste.com'],
+            [
+                'name' => 'Gerente',
+                'apellido' => 'General',
+                'password' => Hash::make('password123'),
+                'role' => 'gerente',
+                'active' => true,
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Test',
-            'apellido' => 'User',
-            'email' => 'test@example.com',
-        ]);
+        // 2. Perfil Admin (solo pedidos y productos)
+        User::updateOrCreate(
+            ['email' => 'admin@thegoodtaste.com'],
+            [
+                'name' => 'Admin',
+                'apellido' => 'Operativo',
+                'password' => Hash::make('password123'),
+                'role' => 'admin',
+                'active' => true,
+            ]
+        );
+
+        // 3. Perfil Cliente / Usuario estándar
+        User::updateOrCreate(
+            ['email' => 'cliente@thegoodtaste.com'],
+            [
+                'name' => 'Cliente',
+                'apellido' => 'Prueba',
+                'password' => Hash::make('password123'),
+                'role' => 'user',
+                'active' => true,
+            ]
+        );
     }
 }
