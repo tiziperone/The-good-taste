@@ -46,9 +46,8 @@ Route::get('terminos-y-usos', function () {
 });
 
 // Rutas protegidas
+// Rutas de cliente autenticado (Compras y Carrito)
 Route::middleware(['auth'])->group(function () {
-
-    // Rutas de Compra y Carrito
     Route::get('compra', [CompraController::class, 'index'])->name('compra.index');
     Route::post('/guardar-direccion', [CompraController::class, 'guardarDireccionOpcional'])->name('guardar.direccion');
 
@@ -58,35 +57,37 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
     Route::post('/carrito/actualizar', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
 
-    // Panel de Administración
-    Route::get('/administracion', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/administracion/productos', [AdminController::class, 'productos'])->name('admin.productos');
-    Route::get('/administracion/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
-
-    Route::post('/administracion/producto', [AdminController::class, 'store'])->name('admin.store');
-    Route::put('/administracion/producto/{id}', [AdminController::class, 'update'])->name('admin.update');
-    Route::patch('/administracion/producto/{id}/restaurar', [AdminController::class, 'restaurar'])->name('admin.productos.restaurar');
-
-    // Rutas de acción para consultas en el panel
-    Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');
-    Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responder'])->name('consultas.responder');
-    Route::delete('/admin/consultas/{id}/eliminar', [AdminController::class, 'eliminar'])->name('consultas.eliminar');
-
-    // Rutas de cliente (Compras)
     Route::post('/confirmar-compra', [CompraController::class, 'confirmarCompra'])->name('confirmar.compra');
     Route::get('/mis-compras', [MisComprasController::class, 'index'])->name('mis-compras.index');
 
-    // Gestión de pedidos
-    Route::get('/admin/pedidos', [AdminController::class, 'pedidos'])->name('admin.pedidos');
-    Route::put('/admin/pedidos/{id}/estado', [AdminController::class, 'actualizarEstadoPedido'])->name('admin.pedidos.actualizar');
+    // ==========================================
+    // PANEL COMPARTIDO: Admin y Gerente (Productos y Pedidos)
+    // ==========================================
+    Route::middleware(['staff'])->group(function () {
+        Route::get('/administracion', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/administracion/productos', [AdminController::class, 'productos'])->name('admin.productos');
+        Route::post('/administracion/producto', [AdminController::class, 'store'])->name('admin.store');
+        Route::put('/administracion/producto/{id}', [AdminController::class, 'update'])->name('admin.update');
+        Route::patch('/administracion/producto/{id}/restaurar', [AdminController::class, 'restaurar'])->name('admin.productos.restaurar');
 
-    // Gestión de usuarios y administradores
-    Route::get('/admin/usuarios', [AdminController::class, 'verUsuarios'])->name('admin.usuarios');
-    Route::post('/admin/usuarios/{id}/banear', [AdminController::class, 'banear'])->name('admin.usuarios.banear');
+        // Gestión de pedidos
+        Route::get('/admin/pedidos', [AdminController::class, 'pedidos'])->name('admin.pedidos');
+        Route::put('/admin/pedidos/{id}/estado', [AdminController::class, 'actualizarEstadoPedido'])->name('admin.pedidos.actualizar');
+    });
 
-    // Gestion de roles (Crear/Quitar Admin)
-    Route::post('/admin/usuarios/{id}/hacer-admin', [AdminController::class, 'hacerAdmin'])->name('admin.usuarios.hacerAdmin');
-    Route::post('/admin/usuarios/{id}/quitar-admin', [AdminController::class, 'quitarAdmin'])->name('admin.usuarios.quitarAdmin');
+    Route::middleware(['gerente'])->group(function () {
+        // Consultas
+        Route::get('/administracion/consultas', [AdminController::class, 'consultas'])->name('admin.consultas');
+        Route::post('/admin/consultas/{id}/marcar-leido', [AdminController::class, 'marcarLeido'])->name('consultas.marcarLeido');
+        Route::post('/admin/consultas/{id}/responder', [AdminController::class, 'responder'])->name('consultas.responder');
+        Route::delete('/admin/consultas/{id}/eliminar', [AdminController::class, 'eliminar'])->name('consultas.eliminar');
+
+        // Gestión de usuarios y roles
+        Route::get('/admin/usuarios', [AdminController::class, 'verUsuarios'])->name('admin.usuarios');
+        Route::post('/admin/usuarios/{id}/banear', [AdminController::class, 'banear'])->name('admin.usuarios.banear');
+        Route::post('/admin/usuarios/{id}/hacer-admin', [AdminController::class, 'hacerAdmin'])->name('admin.usuarios.hacerAdmin');
+        Route::post('/admin/usuarios/{id}/quitar-admin', [AdminController::class, 'quitarAdmin'])->name('admin.usuarios.quitarAdmin');
+    });
 });
 
 // Rutas de Autenticación

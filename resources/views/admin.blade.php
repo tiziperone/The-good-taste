@@ -55,21 +55,25 @@
             <div class="col-md-3 col-lg-2 mb-4">
                 <div class="card bg-dark border-secondary p-3 shadow">
                     <h5 class="fw-bold text-warning mb-3 text-center text-md-start">
-                        <i class="bi bi-speedometer2 me-2"></i>Panel Admin
+                        <i class="bi bi-speedometer2 me-2"></i>Panel {{ Auth::user()->role === 'gerente' ? 'Gerencia' : 'Admin' }}
                     </h5>
                     <hr class="border-secondary mt-0">
                     <div class="nav flex-column nav-pills sidebar-menu">
                         <a href="{{ route('admin.index') }}" class="nav-link active text-start border-0 text-decoration-none"><i class="bi bi-house-door-fill me-2"></i> Inicio</a>
                         <a href="{{ route('admin.productos') }}" class="nav-link text-start border-0 text-decoration-none"><i class="bi bi-box-seam-fill me-2"></i> Gestión de Productos</a>
                         <a href="{{ route('admin.pedidos') }}" class="nav-link text-start border-0 text-decoration-none"><i class="bi bi-bag-check-fill me-2"></i> Gestión de Pedidos</a>
+
+                        {{-- Opciones exclusivas para Gerente --}}
+                        @if(Auth::user()->role === 'gerente')
                         <a href="{{ route('admin.consultas') }}" class="nav-link text-start border-0 position-relative text-decoration-none">
                             <i class="bi bi-envelope-fill me-2"></i> Gestión de Consultas
-                            @php $mensajesNuevos = $consultas->where('estado', 0)->count(); @endphp
+                            @php $mensajesNuevos = isset($consultas) ? $consultas->where('estado', 0)->count() : 0; @endphp
                             @if($mensajesNuevos > 0)
                             <span class="position-absolute top-50 end-0 translate-middle-y me-3 badge rounded-pill bg-danger">{{ $mensajesNuevos }}</span>
                             @endif
                         </a>
                         <a href="{{ route('admin.usuarios') }}" class="nav-link text-start border-0"><i class="bi bi-people-fill me-2"></i> Gestión de Usuarios</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -89,6 +93,10 @@
                         <a href="{{ route('admin.pedidos') }}" class="btn btn-outline-warning btn-lg px-4 py-3 fw-bold" style="border-radius: 10px;">
                             <i class="bi bi-bag-check-fill d-block mb-2" style="font-size: 2rem;"></i> Ver Pedidos
                         </a>
+
+                        {{-- Botones directos exclusivos para Gerente --}}
+                        @if(Auth::user()->role === 'gerente')
+                        @php $mensajesNuevos = isset($consultas) ? $consultas->where('estado', 0)->count() : 0; @endphp
                         <a href="{{ route('admin.consultas') }}" class="btn btn-outline-warning btn-lg px-4 py-3 fw-bold position-relative" style="border-radius: 10px;">
                             <i class="bi bi-envelope-fill d-block mb-2" style="font-size: 2rem;"></i> Ver Consultas
                             @if($mensajesNuevos > 0)
@@ -101,6 +109,7 @@
                         <a href="{{ route('admin.usuarios') }}" class="btn btn-outline-warning btn-lg px-4 py-3 fw-bold" style="border-radius: 10px;">
                             <i class="bi bi-people-fill d-block mb-2" style="font-size: 2rem;"></i> Ver Usuarios
                         </a>
+                        @endif
                     </div>
                 </div>
             </div>

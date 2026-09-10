@@ -16,6 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\CheckUserActivo::class,    //Primero verifica si está baneado
             \App\Http\Middleware\UpdateUserLastSeen::class, //Si no está baneado, actualiza la última conexión
         ]);
+        $middleware->alias([
+            'staff' => \App\Http\Middleware\EnsureIsStaff::class,
+            'gerente' => \App\Http\Middleware\EnsureIsGerente::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
