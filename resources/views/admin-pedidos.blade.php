@@ -69,9 +69,11 @@
                         <a href="{{ route('admin.pedidos') }}" class="nav-link active text-start border-0 text-decoration-none">
                             <i class="bi bi-bag-check-fill me-2"></i> Gestión de Pedidos
                         </a>
+
+                        @if(auth()->user()->role === 'gerente')
                         <a href="{{ route('admin.consultas') }}" class="nav-link text-start border-0 position-relative text-decoration-none">
                             <i class="bi bi-envelope-fill me-2"></i> Gestión de Consultas
-                            @php $mensajesNuevos = $consultas->where('estado', 0)->count(); @endphp
+                            @php $mensajesNuevos = isset($consultas) ? $consultas->where('estado', 0)->count() : 0; @endphp
                             @if($mensajesNuevos > 0)
                             <span class="position-absolute top-50 end-0 translate-middle-y me-3 badge rounded-pill bg-danger">
                                 {{ $mensajesNuevos }}
@@ -81,6 +83,7 @@
                         <a href="{{ route('admin.usuarios') }}" class="nav-link text-start border-0 {{ request()->routeIs('admin.usuarios') ? 'active' : '' }}">
                             <i class="bi bi-people-fill me-2"></i> Gestión de Usuarios
                         </a>
+                        @endif
                     </div>
                 </div>
             </div>
