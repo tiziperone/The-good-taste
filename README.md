@@ -16,16 +16,6 @@ Plataforma web de comercio electrónico y gestión comercial gastronómica desar
 
 ---
 
-## 📸 Capturas de Pantalla
-
-> *Agregá capturas de tu web en funcionamiento dentro de una carpeta `docs/screenshots/` o pegá los enlaces directos:*
-
-| Catálogo & Carrito de Compras | Panel de Administración / Pedidos |
-|:---:|:---:|
-| ![Catalogo](https://via.placeholder.com/450x250?text=Catalogo+y+Carrito) | ![Panel Admin](https://via.placeholder.com/450x250?text=Panel+Administrativo) |
-
----
-
 ## ✨ Características Principales
 
 * **Control de Acceso Basado en Roles (RBAC):** Separación de permisos entre Clientes, Administradores y Gerencia.
