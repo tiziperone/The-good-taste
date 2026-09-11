@@ -53,3 +53,13 @@ The-good-taste/
 ├── Dockerfile                # Configuración de contenedor PHP 8.4 Alpine + Nginx
 ├── cacert.pem                # Bundle de certificados de CA para conexión TLS a TiDB
 └── routes/                   # Definición de endpoints web y middleware de autenticación
+```
+
+👨‍💻 Desarrolladores
+Tiziano Perone – Estudiante de Licenciatura en Sistemas de Información (FaCENA - UNNE)
+
+GitHub: @tiziperone
+
+Obregón Adrián - Estudiante de Licenciatura en Sistemas de Información (FaCENA - UNNE)
+
+GitHub: @adrianobregon2
