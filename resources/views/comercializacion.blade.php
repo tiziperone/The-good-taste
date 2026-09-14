@@ -97,10 +97,10 @@
                     <div class="col-md-6 order-md-1 order-2 mt-4 mt-md-0 text-center">
                         <div class="row g-2 justify-content-center">
                             <div class="col-6">
-                                <img src="{{ asset('Img/inicarSesion.png') }}" class="img-fluid rounded shadow border border-2 border-warning" alt="Iniciar Sesión">
+                                <img src="{{ asset('Img/inicarSesion.webp') }}" class="img-fluid rounded shadow border border-2 border-warning" alt="Iniciar Sesión">
                             </div>
                             <div class="col-6">
-                                <img src="{{ asset('Img/registrarte.png') }}" class="img-fluid rounded shadow border border-2 border-warning" alt="Registrarse">
+                                <img src="{{ asset('Img/registrarte.webp') }}" class="img-fluid rounded shadow border border-2 border-warning" alt="Registrarse">
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                     </div>
                     <div class="col-md-6 order-md-2 order-2 mt-4 mt-md-0 text-center text-md-start">
                         <!-- Nota: Cambia "elegirProducto.png" por "elegirCategoria.png" o úsalos juntos si lo deseas -->
-                        <img src="{{ asset('Img/elegirProducto.png') }}" class="img-fluid rounded shadow border border-2 border-warning w-75" alt="Elegir Producto">
+                        <img src="{{ asset('Img/elegirProducto.webp') }}" class="img-fluid rounded shadow border border-2 border-warning w-75" alt="Elegir Producto">
                     </div>
                 </div>
 
@@ -141,7 +141,7 @@
                 <!-- PASO 3 -->
                 <div class="row align-items-center mb-5">
                     <div class="col-md-6 order-md-1 order-2 mt-4 mt-md-0 text-center">
-                        <img src="{{ asset('Img/completarCompra.png') }}" class="img-fluid rounded shadow border border-2 border-warning" alt="Completar Compra">
+                        <img src="{{ asset('Img/completarCompra.webp') }}" class="img-fluid rounded shadow border border-2 border-warning" alt="Completar Compra">
                     </div>
                     <div class="col-md-6 order-md-2 order-1">
                         <div class="d-flex align-items-center mb-3">
