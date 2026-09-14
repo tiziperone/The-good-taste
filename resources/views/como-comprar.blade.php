@@ -109,7 +109,7 @@
                             <div class="bg-warning text-dark rounded-circle d-flex justify-content-center align-items-center fw-bold fs-3 me-3 shadow" style="width: 60px; height: 60px; min-width: 60px;">1</div>
                             <h3 class="fw-bold mb-0">Ingresá a tu cuenta</h3>
                         </div>
-                        <p class="fs-5 text-secondary">Para comenzar, <strong>Iniciá Sesión</strong> con tu correo y contraseña. Si sos nuevo, podés <strong>Crear tu Cuenta</strong> rápidamente para que podamos guardar tus datos de entrega.</p>
+                        <p class="fs-5 text-secondary">Para comenzar, <a href="{{ url('/inicio-sesion') }}" class="text-warning fw-bold text-decoration-none">Iniciá Sesión</a> con tu correo y contraseña. Si sos nuevo, podés <a href="{{ url('/registro') }}" class="text-warning fw-bold text-decoration-none">Crear tu Cuenta</a> rápidamente para que podamos guardar tus datos de entrega.</p>
                     </div>
                 </div>
 
@@ -125,10 +125,9 @@
                             <h3 class="fw-bold mb-0 me-3">Elegí lo que querés comer</h3>
                             <div class="bg-warning text-dark rounded-circle d-flex justify-content-center align-items-center fw-bold fs-3 shadow" style="width: 60px; height: 60px; min-width: 60px;">2</div>
                         </div>
-                        <p class="fs-5 text-secondary">Navegá por nuestro catálogo o elegí tu categoría favorita. Cuando encuentres el plato ideal, hacé click en el botón amarillo de <strong>Comprar</strong> o agregalo al carrito.</p>
+                        <p class="fs-5 text-secondary">Navegá por nuestro <a href="{{ url('/catalogo') }}" class="text-warning fw-bold text-decoration-none">catálogo</a> o elegí tu categoría favorita. Cuando encuentres el plato ideal, hacé click en el botón amarillo de <strong>Comprar</strong> o agregalo al carrito.</p>
                     </div>
                     <div class="col-md-6 order-md-2 order-2 mt-4 mt-md-0 text-center text-md-start">
-                        <!-- Nota: Cambia "elegirProducto.png" por "elegirCategoria.png" o úsalos juntos si lo deseas -->
                         <img src="{{ asset('Img/elegirProducto.webp') }}" class="img-fluid rounded shadow border border-2 border-warning w-75" alt="Elegir Producto">
                     </div>
                 </div>
