@@ -1,58 +1,66 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🌐 The Good Taste - Web Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Plataforma web de comercio electrónico y gestión comercial gastronómica desarrollada en **Laravel** con motor de plantillas **Blade**, empaquetada mediante contenedores **Docker**, con base de datos distribuida en la nube (**TiDB Cloud**) y desplegada en **Render**.
 
-## About Laravel
+![PHP](https://img.shields.io/badge/PHP-8.4-777BB4?logo=php&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-11.x-FF2D20?logo=laravel&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)
+![TiDB](https://img.shields.io/badge/Database-TiDB%20Cloud%20(MySQL)-005571)
+![Render](https://img.shields.io/badge/Deploy-Render-46E3B7)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📌 Descripción del Proyecto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**The Good Taste Web** es una solución integral para la digitalización de un negocio gastronómico artesanal. Proporciona a los clientes un catálogo interactivo con carrito de compras, gestión de pedidos y seguimiento de envíos, además de contar con un panel administrativo con control de acceso basado en roles (**RBAC**) para la gestión de productos, stock y métricas comerciales.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Características Principales
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* **Control de Acceso Basado en Roles (RBAC):** Separación de permisos entre Clientes, Administradores y Gerencia.
+* **Catálogo Dinámico & Stock:** Visualización de productos categorizados con control de stock mínimo y disponibilidad en tiempo real.
+* **Gestión de Pedidos & Checkout:** Carrito de compras reactivo, registro de direcciones de envío, métodos de pago y estados del pedido (pendiente, en preparación, enviado).
+* **Canal de Consultas:** Formulario de contacto directo con panel interno de respuestas y seguimiento de mensajes.
+* **Seguridad:** Cifrado de contraseñas mediante `bcrypt`, protección contra inyecciones SQL, tokens CSRF nativos de Laravel y conexiones seguras a bases de datos en la nube mediante certificados TLS/SSL (`cacert.pem`).
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 🛠️ Stack Tecnológico
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+* **Backend:** PHP 8.4, Laravel Framework.
+* **Frontend:** Blade Templating Engine, Vite, JavaScript, CSS3 / Tailwind CSS.
+* **Base de Datos:** TiDB Cloud Serverless (compatible con protocolo MySQL).
+* **Contenedores & Despliegue:** Docker (imagen base Alpine con Nginx + PHP-FPM) desplegado en Render.
+* **Herramientas de desarrollo:** Composer, NPM, Git.
 
-```bash
-composer require laravel/boost --dev
+---
 
-php artisan boost:install
+## 🏗️ Arquitectura y Estructura
+
+El sistema implementa el patrón de diseño **MVC (Modelo-Vista-Controlador)**:
+
+```text
+The-good-taste/
+├── app/
+│   ├── Http/Controllers/    # Lógica de controladores de negocio y rutas
+│   └── Models/               # Modelos Eloquent ORM (User, Producto, Orden, etc.)
+├── database/
+│   ├── migrations/           # Esquemas DDL versionados de base de datos
+│   └── seeders/              # Datos de prueba controlados
+├── resources/
+│   └── views/                # Plantillas y componentes modulares en Blade
+├── Dockerfile                # Configuración de contenedor PHP 8.4 Alpine + Nginx
+├── cacert.pem                # Bundle de certificados de CA para conexión TLS a TiDB
+└── routes/                   # Definición de endpoints web y middleware de autenticación
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+👨‍💻 Desarrolladores
 
-## Contributing
+Tiziano Perone – Estudiante de Licenciatura en Sistemas de Información (FaCENA - UNNE)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    GitHub: @tiziperone
 
-## Code of Conduct
+Obregón Adrián - Estudiante de Licenciatura en Sistemas de Información (FaCENA - UNNE)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    GitHub: @adrianobregon2
