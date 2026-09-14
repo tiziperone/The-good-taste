@@ -87,13 +87,12 @@
             <div class="col-lg-6 ps-lg-4 text-center d-flex flex-column align-items-center">
                 <h2 class="mt-3">Nos podés encontrar en:</h2>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d837.2926772310801!2d-59.219791729866046!3d-28.046017172031114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e1!3m2!1ses-419!2sar!4v1788055942012!5m2!1ses-419!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+                <!-- SECCIÓN ACTUALIZADA CON LA DIRECCIÓN -->
                 <div class="mt-5 p-3 border-top border-warning w-75">
-                    <h3 class="fs-5 fw-bold text-warning mb-3">Información Legal</h3>
-                    <ul class="list-unstyled text-white-50">
-                        <li class="mb-2"><strong class="text-white">Titular/es:</strong> Obregón Adrian, Perone Tiziano.</li>
-                        <li class="mb-2"><strong class="text-white">Nombre: </strong> The Good Taste.</li>
-                        <li class="mb-2"><strong class="text-white">Domicilio Legal:</strong> Corrientes Capital, Argentina. </li>
-                    </ul>
+                    <p class="fs-5 fw-bold mb-0">
+                        <i class="bi bi-geo-alt-fill text-warning me-2"></i> 9 de Julio N°223 Florencia, Santa Fe.
+                    </p>
                 </div>
             </div>
         </div>
