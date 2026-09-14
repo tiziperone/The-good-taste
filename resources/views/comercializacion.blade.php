@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
-    <title>The Good Taste - Comercialización</title>
+    <title>The Good Taste - ¿Cómo comprar?</title>
 
     <!-- Optimización de carga -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +32,7 @@
     <hr class="border-warning border-2 opacity-100">
 
     <div class="container">
-        <h1 class="text-center text-light display-3 mt-5 fw-bold">Comercialización</h1>
+        <h1 class="text-center text-light display-3 mt-5 fw-bold">¿Cómo comprar?</h1>
 
         <div class="row justify-content-center">
             <p class="text-center text-light display-6 mt-3 mb-5">
