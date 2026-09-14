@@ -35,8 +35,8 @@ Route::get('catalogo', function () {
     return view('catalogo', compact('tieneBondiolas', 'tieneMilanesas', 'tienePastas'));
 });
 
-Route::get('comercializacion', function () {
-    return view('comercializacion');
+Route::get('como-comprar', function () {
+    return view('como-comprar');
 });
 
 Route::post('/contacto', [ContactoController::class, 'procesar']);
