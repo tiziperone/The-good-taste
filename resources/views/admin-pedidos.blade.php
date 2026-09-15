@@ -121,7 +121,7 @@
                                     <th>Forma de Pago</th>
                                     <th>Productos</th>
                                     <th>Total</th>
-                                    <th class="pe-3">Acción (Estado)</th>
+                                    <th class="pe-3 text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -175,18 +175,31 @@
                                     <td class="text-success fw-bold text-nowrap">$ {{ number_format($pedido->total, 0, ',', '.') }}</td>
 
                                     <td class="pe-3">
-                                        <form action="{{ route('admin.pedidos.actualizar', $pedido->id) }}" method="POST" class="m-0">
-                                            @csrf
-                                            @method('PUT')
+                                        <div class="d-flex align-items-center justify-content-center gap-2">
+                                            <!-- Actualizar Estado -->
+                                            <form action="{{ route('admin.pedidos.actualizar', $pedido->id) }}" method="POST" class="m-0 flex-grow-1">
+                                                @csrf
+                                                @method('PUT')
+                                                <select name="estado" class="form-select form-select-sm bg-dark text-white border-warning" onchange="this.form.submit()" required>
+                                                    <option value="Sin confirmar" {{ $pedido->estado == 'Sin confirmar' ? 'selected' : '' }}>Sin confirmar</option>
+                                                    <option value="En proceso" {{ $pedido->estado == 'En proceso' ? 'selected' : '' }}>En proceso</option>
+                                                    <option value="Listo para enviar/retirar" {{ $pedido->estado == 'Listo para enviar/retirar' ? 'selected' : '' }}>Listo para enviar/retirar</option>
+                                                    <option value="Enviado" {{ $pedido->estado == 'Enviado' ? 'selected' : '' }}>Enviado</option>
+                                                    <option value="Entregado/retirado" {{ $pedido->estado == 'Entregado/retirado' ? 'selected' : '' }}>Entregado/retirado</option>
+                                                </select>
+                                            </form>
 
-                                            <select name="estado" class="form-select form-select-sm bg-dark text-white border-warning" onchange="this.form.submit()" required>
-                                                <option value="Sin confirmar" {{ $pedido->estado == 'Sin confirmar' ? 'selected' : '' }}>Sin confirmar</option>
-                                                <option value="En proceso" {{ $pedido->estado == 'En proceso' ? 'selected' : '' }}>En proceso</option>
-                                                <option value="Listo para enviar/retirar" {{ $pedido->estado == 'Listo para enviar/retirar' ? 'selected' : '' }}>Listo para enviar/retirar</option>
-                                                <option value="Enviado" {{ $pedido->estado == 'Enviado' ? 'selected' : '' }}>Enviado</option>
-                                                <option value="Entregado/retirado" {{ $pedido->estado == 'Entregado/retirado' ? 'selected' : '' }}>Entregado/retirado</option>
-                                            </select>
-                                        </form>
+                                            <!-- Eliminar Pedido (Solo Gerente) -->
+                                            @if(auth()->check() && auth()->user()->role === 'gerente')
+                                            <form action="{{ route('admin.pedidos.eliminar', $pedido->id) }}" method="POST" class="m-0" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este pedido? Esta acción no se puede deshacer.');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-outline-danger shadow-sm" title="Eliminar pedido">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </button>
+                                            </form>
+                                            @endif
+                                        </div>
                                     </td>
                                 </tr>
                                 @empty
