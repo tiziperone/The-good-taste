@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
+    <!-- Token de seguridad global para Laravel (IMPORTANTE para el carrito) -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Íconos -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('Img/LogoOscuroIOS.jpg') }}">
     <link rel="icon" type="image/jpeg" sizes="192x192" href="{{ asset('Img/LogoOscuroAndroid.jpg') }}">
@@ -21,16 +24,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
-    <!-- Scripts Globales (SOLO SWUP Y BOOTSTRAP, SIN INSTANT.PAGE) -->
+    <!-- Scripts Globales (SOLO SWUP Y BOOTSTRAP) -->
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="https://unpkg.com/swup@4" defer></script>
     <script src="https://unpkg.com/@swup/scripts-plugin@3" defer></script>
     <script src="https://unpkg.com/@swup/preload-plugin@3" defer></script>
 
     <style>
-        /* Transición de vistas global */
+        /* Transición de vistas global - ACELERADA A 0.15s */
         .transition-fade {
-            transition: opacity 0.2s ease-in-out;
+            transition: opacity 0.15s ease-out;
             opacity: 1;
         }
 
@@ -56,7 +59,6 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <!-- INICIALIZADOR GLOBAL SWUP -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (!window.swup) {
