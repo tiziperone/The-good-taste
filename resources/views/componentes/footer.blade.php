@@ -34,8 +34,11 @@
 
         </div>
 
-        <hr class="mb-4 text-secondary">
-        <div class="row text-center text-secondary" style="font-size: 0.9rem;">
+        <!-- Se ajustó la opacidad de la línea para mejor contraste -->
+        <hr class="mb-4 text-light opacity-25">
+
+        <!-- Se reemplazó 'text-secondary' por un color hexadecimal de alto contraste -->
+        <div class="row text-center" style="color: #dee2e6; font-size: 0.9rem;">
             <div class="col-12">
                 <p class="mb-1">© 2026 The Good Taste. Todos los derechos reservados.</p>
                 <p class="mb-0">Titular/es: Obregón Adrian, Perone Tiziano. | Razón Social: The Good Taste | Domicilio Legal: Corrientes Capital, Argentina.</p>

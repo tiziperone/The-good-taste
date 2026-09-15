@@ -113,7 +113,7 @@
             <a href="{{ url('/como-comprar') }}" class="text-decoration-none">
                 <div class="card tarjeta-completa shadow-sm h-100 py-4 px-3">
                     <i class="bi bi-bag-check display-3 text-warning mb-2"></i>
-                    <h4 class="fw-bold">¿Cómo comprar?</h4>
+                    <h3 class="fw-bold h4">¿Cómo comprar?</h3>
                     <p class="text-light mb-0">Toda la información que necesitas sobre cómo realizar tu pedido, envíos y medios de pago.</p>
                 </div>
             </a>
