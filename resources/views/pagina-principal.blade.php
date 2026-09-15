@@ -75,7 +75,7 @@
         <div class="carousel-item">
             <picture>
                 <!-- Celular: descarga la imagen optimizada para la bondiola -->
-                <source media="(max-width: 767px)" srcset="{{ asset('Img/BondiolaHomeMobile.webp') }}">
+                <source media="(max-width: 767px)" srcset="{{ asset('Img/BondiolaHomeProximamenteMobile.webp') }}">
                 <!-- Escritorio: descarga la versión original -->
                 <source media="(min-width: 768px)" srcset="{{ asset('Img/BondiolaHomeProximamente.webp') }}">
                 <!-- Se mantiene loading="lazy" porque no es la primera imagen que se ve al cargar -->
