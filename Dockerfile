@@ -22,12 +22,19 @@ WORKDIR /var/www
 # Copiar archivos del proyecto
 COPY . .
 
+# Copiar configuración de Nginx al contenedor
+COPY nginx.conf /etc/nginx/http.d/default.conf
+
 # Instalar dependencias de PHP
 RUN composer install --no-dev --optimize-autoloader
 
 # Permisos para storage y cache
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
+# Crear carpetas necesarias para Nginx en Alpine
+RUN mkdir -p /run/nginx
+
 EXPOSE 8080
 
-CMD php artisan config:cache && php artisan route:cache && php artisan serve --host=0.0.0.0 --port=8080
+# Compilar caché de Laravel, arrancar PHP-FPM de fondo y Nginx al frente
+CMD sh -c "php artisan config:cache && php artisan route:cache && php artisan view:cache && php-fpm -D && nginx -g 'daemon off;'"
