@@ -3,7 +3,7 @@
 @section('titulo', 'The Good Taste - Home')
 
 @section('estilos')
-<!-- Preload responsivo: celular descarga la liviana, PC descarga la grande -->
+<!-- Preload responsivo: celular descarga la liviana, PC descarga la grande (Solo para el slide activo/visible) -->
 <link rel="preload" as="image" href="{{ asset('Img/PastasHomeMobile.webp') }}" media="(max-width: 767px)" fetchpriority="high">
 <link rel="preload" as="image" href="{{ asset('Img/PastasHome.webp') }}" media="(min-width: 768px)" fetchpriority="high">
 
@@ -61,17 +61,26 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     </div>
     <div class="carousel-inner">
+        <!-- SLIDE 1: Pastas -->
         <div class="carousel-item active">
             <picture>
-                <!-- Celular: descarga la imagen de 39 KB -->
+                <!-- Celular: descarga la imagen miniatura -->
                 <source media="(max-width: 767px)" srcset="{{ asset('Img/PastasHomeMobile.webp') }}">
                 <!-- Escritorio: descarga la versión original -->
                 <source media="(min-width: 768px)" srcset="{{ asset('Img/PastasHome.webp') }}">
                 <img src="{{ asset('Img/PastasHome.webp') }}" class="d-block w-100 carousel-img-custom" alt="Pastas" fetchpriority="high">
             </picture>
         </div>
+        <!-- SLIDE 2: Bondiola -->
         <div class="carousel-item">
-            <img src="{{ asset('Img/BondiolaHomeProximamente.webp') }}" class="d-block w-100 carousel-img-custom" alt="Bondiola" loading="lazy">
+            <picture>
+                <!-- Celular: descarga la imagen optimizada para la bondiola -->
+                <source media="(max-width: 767px)" srcset="{{ asset('Img/BondiolaHomeMobile.webp') }}">
+                <!-- Escritorio: descarga la versión original -->
+                <source media="(min-width: 768px)" srcset="{{ asset('Img/BondiolaHomeProximamente.webp') }}">
+                <!-- Se mantiene loading="lazy" porque no es la primera imagen que se ve al cargar -->
+                <img src="{{ asset('Img/BondiolaHomeProximamente.webp') }}" class="d-block w-100 carousel-img-custom" alt="Bondiola" loading="lazy">
+            </picture>
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

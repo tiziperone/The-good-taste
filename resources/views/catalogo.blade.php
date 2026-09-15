@@ -72,7 +72,14 @@
     @if($tienePastas)
     <div class="col-12 text-center">
         <a href="{{ url('/pastas') }}" class="text-decoration-none">
-            <img src="{{ asset('Img/SaborAHogar.webp') }}" class="w-100 d-block" alt="Foto de Pastas" loading="lazy">
+            <picture>
+                <!-- Celular: descarga la imagen miniatura -->
+                <source media="(max-width: 767px)" srcset="{{ asset('Img/SaborAHogarMobile.webp') }}">
+                <!-- Escritorio: descarga la versión original -->
+                <source media="(min-width: 768px)" srcset="{{ asset('Img/SaborAHogar.webp') }}">
+                <!-- Fallback estándar (por si el navegador es muy antiguo) -->
+                <img src="{{ asset('Img/SaborAHogar.webp') }}" class="w-100 d-block" alt="Foto de Pastas" loading="lazy">
+            </picture>
         </a>
     </div>
     @endif
