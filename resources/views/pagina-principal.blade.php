@@ -139,13 +139,10 @@
         <div class="container mb-5">
             <div class="row justify-content-center text-center g-4">
                 <div class="col-12 col-md-8">
-                    <a href="{{ url('/comercializacion') }}" class="text-decoration-none">
+                    <a href="{{ url('/como-comprar') }}" class="text-decoration-none">
                         <div class="card tarjeta-completa shadow-sm h-100 py-4 px-3">
-                            <!-- Ícono cambiado a bolsa de compras -->
                             <i class="bi bi-bag-check display-3 text-warning mb-2"></i>
-                            <!-- Título modificado -->
                             <h4 class="fw-bold">¿Cómo comprar?</h4>
-                            <!-- Descripción ajustada para priorizar la compra -->
                             <p class="text-light mb-0">Toda la información que necesitas sobre cómo realizar tu pedido, envíos y medios de pago.</p>
                         </div>
                     </a>
@@ -157,7 +154,6 @@
     @include('componentes.botonHaciaArriba')
     @include('componentes.footer')
 
-    <!-- INICIALIZADOR GLOBAL SWUP -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (!window.swup) {
