@@ -256,4 +256,20 @@ class AdminController extends Controller
 
         return back()->with('success', "El usuario {$usuario->name} ahora es gerente.");
     }
+    public function eliminarPedido($id)
+    {
+        // 1. Buscamos el pedido, asumiendo que tu modelo se llama Pedido
+        $pedido = \App\Models\Orden::find($id);
+
+        // 2. Si por algún motivo ya no existe, volvemos con error
+        if (!$pedido) {
+            return redirect()->back()->with('error', 'El pedido no existe o ya fue eliminado.');
+        }
+
+        // 3. Eliminamos el pedido
+        $pedido->delete();
+
+        // 4. Redirigimos con mensaje de éxito
+        return redirect()->route('admin.pedidos')->with('success', 'Pedido #' . $id . ' eliminado exitosamente.');
+    }
 }

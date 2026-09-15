@@ -60,9 +60,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/confirmar-compra', [CompraController::class, 'confirmarCompra'])->name('confirmar.compra');
     Route::get('/mis-compras', [MisComprasController::class, 'index'])->name('mis-compras.index');
 
-    // ==========================================
-    // PANEL COMPARTIDO: Admin y Gerente (Productos y Pedidos)
-    // ==========================================
     Route::middleware(['staff'])->group(function () {
         Route::get('/administracion', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/administracion/productos', [AdminController::class, 'productos'])->name('admin.productos');
@@ -88,6 +85,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/usuarios/{id}/hacer-admin', [AdminController::class, 'hacerAdmin'])->name('admin.usuarios.hacerAdmin');
         Route::post('/admin/usuarios/{id}/quitar-admin', [AdminController::class, 'quitarAdmin'])->name('admin.usuarios.quitarAdmin');
         Route::post('/admin/usuarios/{id}/hacer-gerente', [AdminController::class, 'hacerGerente'])->name('admin.usuarios.hacerGerente');
+        Route::delete('/admin/pedidos/{id}/eliminar', [AdminController::class, 'eliminarPedido'])->name('admin.pedidos.eliminar');
     });
 });
 
