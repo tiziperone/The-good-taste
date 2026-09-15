@@ -3,7 +3,7 @@
 @section('titulo', 'The Good Taste - Home')
 
 @section('estilos')
-<link rel="preload" as="image" href="{{ asset('Img/PastasHome.png') }}" fetchpriority="high">
+<link rel="preload" as="image" href="{{ asset('Img/PastasHome.webp') }}" fetchpriority="high">
 <style>
     .hover-warning:hover {
         color: #ffc107 !important;
