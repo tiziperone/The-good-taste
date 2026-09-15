@@ -10,9 +10,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Íconos -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('Img/LogoOscuroIOS.jpg') }}">
-    <link rel="icon" type="image/jpeg" sizes="192x192" href="{{ asset('Img/LogoOscuroAndroid.jpg') }}">
-    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('Img/LogoOscuroIOS.webp') }}">
+    <link rel="icon" type="image/webp" sizes="192x192" href="{{ asset('Img/LogoOscuroAndroid.webp') }}">
+    <link rel="icon" href="{{ asset('Img/LogoOscuro.webp') }}" type="image-webp">
 
     <title>@yield('titulo', 'The Good Taste')</title>
 
