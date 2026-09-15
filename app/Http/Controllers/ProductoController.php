@@ -11,7 +11,12 @@ class ProductoController extends Controller
     //bondiolas
     public function mostrarBondiolas()
     {
-        $bondiolas = Producto::where('activo', true)->where('categoria_id', 1)->get();
+        // Optimizado: Solo trae las columnas necesarias para la vista, aliviando la carga en Render y TiDB
+        $bondiolas = Producto::where('activo', true)
+            ->where('categoria_id', 1)
+            ->select('id', 'nombre', 'descripcion', 'precio', 'stock', 'url_imagen')
+            ->get();
+
         return view('bondiola', compact('bondiolas'));
     }
 
@@ -36,7 +41,12 @@ class ProductoController extends Controller
     //milanesas
     public function mostrarMilanesas()
     {
-        $milanesas = Producto::where('activo', true)->where('categoria_id', 2)->get();
+        // Optimizado: Solo trae las columnas necesarias
+        $milanesas = Producto::where('activo', true)
+            ->where('categoria_id', 2)
+            ->select('id', 'nombre', 'descripcion', 'precio', 'stock', 'url_imagen')
+            ->get();
+
         return view('milanesas', compact('milanesas'));
     }
 
@@ -61,7 +71,12 @@ class ProductoController extends Controller
     //pastas
     public function mostrarPastas()
     {
-        $pastas = Producto::where('activo', true)->where('categoria_id', 3)->get();
+        // Optimizado: Solo trae las columnas necesarias
+        $pastas = Producto::where('activo', true)
+            ->where('categoria_id', 3)
+            ->select('id', 'nombre', 'descripcion', 'precio', 'stock', 'url_imagen')
+            ->get();
+
         return view('pastas', compact('pastas'));
     }
 

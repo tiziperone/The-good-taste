@@ -28,9 +28,17 @@ Route::get('quienes-somos', function () {
 
 // Ruta de catálogo
 Route::get('catalogo', function () {
-    $tieneBondiolas = \App\Models\Producto::where('categoria_id', 1)->where('activo', true)->exists();
-    $tieneMilanesas = \App\Models\Producto::where('categoria_id', 2)->where('activo', true)->exists();
-    $tienePastas = \App\Models\Producto::where('categoria_id', 3)->where('activo', true)->exists();
+    // Hace 1 solo viaje a la base de datos y trae los IDs de las categorías que tienen productos activos
+    $categoriasActivas = \App\Models\Producto::where('activo', true)
+        ->select('categoria_id')
+        ->distinct()
+        ->pluck('categoria_id')
+        ->toArray();
+
+    // Comprobamos usando el array en memoria (instantáneo)
+    $tieneBondiolas = in_array(1, $categoriasActivas);
+    $tieneMilanesas = in_array(2, $categoriasActivas);
+    $tienePastas = in_array(3, $categoriasActivas);
 
     return view('catalogo', compact('tieneBondiolas', 'tieneMilanesas', 'tienePastas'));
 });
