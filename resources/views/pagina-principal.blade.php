@@ -3,7 +3,10 @@
 @section('titulo', 'The Good Taste - Home')
 
 @section('estilos')
-<link rel="preload" as="image" href="{{ asset('Img/PastasHome.webp') }}" fetchpriority="high">
+<!-- Preload responsivo: celular descarga la liviana, PC descarga la grande -->
+<link rel="preload" as="image" href="{{ asset('Img/PastasHomeMobile.webp') }}" media="(max-width: 767px)" fetchpriority="high">
+<link rel="preload" as="image" href="{{ asset('Img/PastasHome.webp') }}" media="(min-width: 768px)" fetchpriority="high">
+
 <style>
     .hover-warning:hover {
         color: #ffc107 !important;
@@ -59,7 +62,13 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="{{ asset('Img/PastasHome.webp') }}" class="d-block w-100 carousel-img-custom" alt="Pastas" fetchpriority="high">
+            <picture>
+                <!-- Celular: descarga la imagen de 39 KB -->
+                <source media="(max-width: 767px)" srcset="{{ asset('Img/PastasHomeMobile.webp') }}">
+                <!-- Escritorio: descarga la versión original -->
+                <source media="(min-width: 768px)" srcset="{{ asset('Img/PastasHome.webp') }}">
+                <img src="{{ asset('Img/PastasHome.webp') }}" class="d-block w-100 carousel-img-custom" alt="Pastas" fetchpriority="high">
+            </picture>
         </div>
         <div class="carousel-item">
             <img src="{{ asset('Img/BondiolaHomeProximamente.webp') }}" class="d-block w-100 carousel-img-custom" alt="Bondiola" loading="lazy">
