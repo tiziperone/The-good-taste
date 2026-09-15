@@ -125,7 +125,7 @@
                             <h3 class="fw-bold mb-0 me-3">Elegí lo que querés comer</h3>
                             <div class="bg-warning text-dark rounded-circle d-flex justify-content-center align-items-center fw-bold fs-3 shadow" style="width: 60px; height: 60px; min-width: 60px;">2</div>
                         </div>
-                        <p class="fs-5 text-secondary">Navegá por nuestro <a href="{{ url('/catalogo') }}" class="text-warning fw-bold text-decoration-none">catálogo</a> o elegí tu categoría favorita. Cuando encuentres el plato ideal, hacé click en el botón amarillo de <strong>Comprar</strong> o agregalo al carrito.</p>
+                        <p class="fs-5 text-secondary">Navegá por nuestro <a href="{{ url('/catalogo') }}" class="text-warning fw-bold text-decoration-none">catálogo</a> y elegí tu categoría favorita. Cuando encuentres el plato ideal, hacé click en el botón amarillo de <strong>Comprar</strong> o agregalo al carrito.</p>
                     </div>
                     <div class="col-md-6 order-md-2 order-2 mt-4 mt-md-0 text-center text-md-start">
                         <img src="{{ asset('Img/elegirProducto.webp') }}" class="img-fluid rounded shadow border border-2 border-warning w-75" alt="Elegir Producto">
