@@ -8,7 +8,6 @@
     <!-- Ícono para Android / Chrome en inicio -->
     <link rel="icon" type="image/jpeg" sizes="192x192" href="{{ asset('Img/LogoOscuroAndroid.jpg') }}">
 
-
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,9 +141,12 @@
                 <div class="col-12 col-md-8">
                     <a href="{{ url('/comercializacion') }}" class="text-decoration-none">
                         <div class="card tarjeta-completa shadow-sm h-100 py-4 px-3">
-                            <i class="bi bi-truck display-3 text-warning mb-2"></i>
-                            <h4 class="fw-bold">¿Cómo enviamos?</h4>
-                            <p class="text-light mb-0">Información sobre pedidos: entrega, envíos, pagos y como comprar nuestra comida casera.</p>
+                            <!-- Ícono cambiado a bolsa de compras -->
+                            <i class="bi bi-bag-check display-3 text-warning mb-2"></i>
+                            <!-- Título modificado -->
+                            <h4 class="fw-bold">¿Cómo comprar?</h4>
+                            <!-- Descripción ajustada para priorizar la compra -->
+                            <p class="text-light mb-0">Toda la información que necesitas sobre cómo realizar tu pedido, envíos y medios de pago.</p>
                         </div>
                     </a>
                 </div>
