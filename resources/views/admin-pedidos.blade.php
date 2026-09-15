@@ -37,6 +37,36 @@
             color: #212529 !important;
             font-weight: bold;
         }
+
+        /* Ajustes visuales para la paginación oscura */
+        .pagination {
+            margin-bottom: 0;
+        }
+
+        .page-link {
+            background-color: #212529;
+            border-color: #495057;
+            color: #ffc107;
+        }
+
+        .page-link:hover {
+            background-color: #343a40;
+            color: #ffc107;
+            border-color: #ffc107;
+        }
+
+        .page-item.active .page-link {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #212529;
+            font-weight: bold;
+        }
+
+        .page-item.disabled .page-link {
+            background-color: #212529;
+            border-color: #495057;
+            color: #6c757d;
+        }
     </style>
 </head>
 
@@ -212,6 +242,14 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- NUEVO: Paginación agregada aquí -->
+                    @if($pedidos->hasPages())
+                    <div class="card-footer border-secondary bg-dark d-flex justify-content-center pt-3 pb-3">
+                        {{ $pedidos->links('pagination::bootstrap-5') }}
+                    </div>
+                    @endif
+
                 </div>
 
             </div>

@@ -14,9 +14,17 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
+    // Función auxiliar privada para cargar solo lo necesario para el contador de la barra lateral
+    private function getConsultasNoLeidas()
+    {
+        // Solo trae el id y estado de los mensajes nuevos, ahorrando muchísima memoria RAM
+        return Consulta::select('id', 'estado')->where('estado', 0)->get();
+    }
+
     public function index()
     {
-        $consultas = Consulta::all();
+        // Para el dashboard principal, si necesitas verlas todas, lo ideal es paginar.
+        $consultas = Consulta::orderBy('created_at', 'desc')->paginate(10);
         return view('admin', compact('consultas'));
     }
 
@@ -37,31 +45,40 @@ class AdminController extends Controller
             $queryProductos->orderBy('created_at', 'desc');
         }
 
-        $productos = $queryProductos->get();
-        $productosEliminados = Producto::onlyTrashed()->orderBy('deleted_at', $ordenEliminados)->get();
-        $consultas = Consulta::all();
+        // Paginamos separando los nombres de las páginas para que no choquen entre sí
+        $productos = $queryProductos->paginate(15, ['*'], 'page_activos')->appends(request()->query());
+        $productosEliminados = Producto::onlyTrashed()->orderBy('deleted_at', $ordenEliminados)->paginate(15, ['*'], 'page_eliminados')->appends(request()->query());
+
+        $consultas = $this->getConsultasNoLeidas();
 
         return view('admin-productos', compact('productos', 'productosEliminados', 'ordenActivos', 'ordenEliminados', 'consultas'));
     }
 
     public function pedidos()
     {
-        $pedidos = Orden::with('user')->orderBy('created_at', 'desc')->get();
-        $consultas = Consulta::all();
+        // OPTIMIZACIÓN: Solo traemos de a 15 pedidos por página para no saturar TiDB y Render
+        $pedidos = Orden::with('user')->orderBy('created_at', 'desc')->paginate(15);
+        $consultas = $this->getConsultasNoLeidas();
 
-        // CORRECCIÓN VELOCIDAD: Se agrupan las consultas a la DB para evitar hacer N peticiones.
         $pedidosIds = $pedidos->pluck('id');
 
-        $todosLosDetalles = DB::table('item_ordens')
-            ->join('productos', 'item_ordens.productos_id', '=', 'productos.id')
-            ->whereIn('item_ordens.ordens_id', $pedidosIds)
-            ->whereNull('item_ordens.deleted_at')
-            ->select('item_ordens.*', 'productos.nombre')
-            ->get()
-            ->groupBy('ordens_id');
+        // Solo hacemos el JOIN si hay pedidos en esta página
+        if ($pedidosIds->isNotEmpty()) {
+            $todosLosDetalles = DB::table('item_ordens')
+                ->join('productos', 'item_ordens.productos_id', '=', 'productos.id')
+                ->whereIn('item_ordens.ordens_id', $pedidosIds)
+                ->whereNull('item_ordens.deleted_at')
+                ->select('item_ordens.*', 'productos.nombre')
+                ->get()
+                ->groupBy('ordens_id');
 
-        foreach ($pedidos as $pedido) {
-            $pedido->detalles = $todosLosDetalles->get($pedido->id, collect());
+            foreach ($pedidos as $pedido) {
+                $pedido->detalles = $todosLosDetalles->get($pedido->id, collect());
+            }
+        } else {
+            foreach ($pedidos as $pedido) {
+                $pedido->detalles = collect();
+            }
         }
 
         return view('admin-pedidos', compact('pedidos', 'consultas'));
@@ -84,8 +101,8 @@ class AdminController extends Controller
 
     public function consultas()
     {
-        // CORRECCIÓN VELOCIDAD: Se carga el usuario asociado al mismo tiempo
-        $consultas = Consulta::with('user')->orderBy('created_at', 'desc')->get();
+        // Paginamos las consultas para que la página de lectura no explote si hay miles
+        $consultas = Consulta::with('user')->orderBy('created_at', 'desc')->paginate(15);
         return view('admin-consultas', compact('consultas'));
     }
 
@@ -199,13 +216,13 @@ class AdminController extends Controller
 
     public function verUsuarios()
     {
-        // Agrupa Admins y Gerentes arriba
+        // Administradores suelen ser pocos, está bien traerlos todos
         $administradores = User::whereIn('role', ['admin', 'gerente'])->get();
 
-        // Deja a los usuarios comunes abajo
-        $usuarios = User::whereNotIn('role', ['admin', 'gerente'])->orWhereNull('role')->get();
+        // Los clientes pueden ser miles, paginamos de a 20
+        $usuarios = User::whereNotIn('role', ['admin', 'gerente'])->orWhereNull('role')->paginate(20);
 
-        $consultas = Consulta::all();
+        $consultas = $this->getConsultasNoLeidas();
 
         return view('admin-usuarios', compact('administradores', 'usuarios', 'consultas'));
     }
@@ -256,20 +273,17 @@ class AdminController extends Controller
 
         return back()->with('success', "El usuario {$usuario->name} ahora es gerente.");
     }
+
     public function eliminarPedido($id)
     {
-        // 1. Buscamos el pedido, asumiendo que tu modelo se llama Pedido
         $pedido = \App\Models\Orden::find($id);
 
-        // 2. Si por algún motivo ya no existe, volvemos con error
         if (!$pedido) {
             return redirect()->back()->with('error', 'El pedido no existe o ya fue eliminado.');
         }
 
-        // 3. Eliminamos el pedido
         $pedido->delete();
 
-        // 4. Redirigimos con mensaje de éxito
         return redirect()->route('admin.pedidos')->with('success', 'Pedido #' . $id . ' eliminado exitosamente.');
     }
 }
