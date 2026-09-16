@@ -7,15 +7,17 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- SEO Meta Descripción (Soluciona auditoría SEO) -->
+
     <meta name="description" content="The Good Taste: Elaboración y comercialización de bondiolas y pastas caseras artesanales de alta calidad con envíos y retiros.">
 
     <!-- Íconos -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('Img/LogoOscuroIOS.jpg') }}">
     <link rel="icon" type="image/jpeg" sizes="192x192" href="{{ asset('Img/LogoOscuroAndroid.jpg') }}">
-    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('Img/LogoOscuro.png') }}" type="image-png">
 
     <title>@yield('titulo', 'The Good Taste')</title>
+
+    @yield('precargas')
 
     <!-- Optimización Fuentes: swap y preconnect para no bloquear renderizado -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

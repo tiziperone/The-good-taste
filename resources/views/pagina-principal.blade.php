@@ -2,11 +2,13 @@
 
 @section('titulo', 'The Good Taste - Home')
 
-@section('estilos')
-<!-- Preload responsivo: celular descarga la liviana, PC descarga la grande (Solo para el slide activo/visible) -->
+@section('precargas')
+<!-- Preload responsivo: el navegador las descubre INMEDIATAMENTE -->
 <link rel="preload" as="image" href="{{ asset('Img/PastasHomeMobile.webp') }}" media="(max-width: 767px)" fetchpriority="high">
 <link rel="preload" as="image" href="{{ asset('Img/PastasHome.webp') }}" media="(min-width: 768px)" fetchpriority="high">
+@endsection
 
+@section('estilos')
 <style>
     .hover-warning:hover {
         color: #ffc107 !important;
